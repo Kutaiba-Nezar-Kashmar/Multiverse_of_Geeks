@@ -27,5 +27,7 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 8. As a user, I would like to be able to rate the chosen character based on multiple factors like level, power, evil and good.
 9. As a user, I would like to be able to create an account.
 10. As a user, I would like to be able to login into my account.
-<br/>
 
+## Built with
+- JAVA
+- XML
