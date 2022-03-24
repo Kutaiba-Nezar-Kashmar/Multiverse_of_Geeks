@@ -37,7 +37,5 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 <a name="ux"/>
 
 ## UX
-<a>https://whimsical.com/multiverse-of-geeks-app-8JWu8o1x6uw9z76cm3V7bY</a>
-
-[Multiverse_of_Geeks_APP.pdf](https://github.com/Kutaiba-Nezar-Kashmar/Multiverse_of_Geeks/files/8327586/Multiverse_of_Geeks_APP.pdf)
+[Multiverse_of_Geeks_UX](https://whimsical.com/multiverse-of-geeks-app-8JWu8o1x6uw9z76cm3V7bY)
 
