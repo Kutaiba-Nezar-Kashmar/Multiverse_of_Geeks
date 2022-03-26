@@ -4,19 +4,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:theme="@style/Theme.Multiverse_of_Geeks.AppBarOverlay">
+            android:theme="@style/Theme.NewApp.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/Theme.Multiverse_of_Geeks.PopupOverlay" />
+                app:popupTheme="@style/Theme.NewApp.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
