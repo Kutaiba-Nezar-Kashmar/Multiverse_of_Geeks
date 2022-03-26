@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment()
+{
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -21,7 +22,8 @@ class HomeFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+                             ): View
+    {
         val homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -35,7 +37,8 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }

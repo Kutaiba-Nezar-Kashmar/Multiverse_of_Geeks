@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSlideshowBinding
 
-class SlideshowFragment : Fragment() {
+class SlideshowFragment : Fragment()
+{
 
     private var _binding: FragmentSlideshowBinding? = null
 
@@ -21,7 +22,8 @@ class SlideshowFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+                             ): View
+    {
         val slideshowViewModel =
                 ViewModelProvider(this).get(SlideshowViewModel::class.java)
 
@@ -35,7 +37,8 @@ class SlideshowFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }

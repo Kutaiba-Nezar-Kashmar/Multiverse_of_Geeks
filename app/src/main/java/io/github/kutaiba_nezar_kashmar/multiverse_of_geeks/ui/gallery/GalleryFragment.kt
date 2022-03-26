@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentGalleryBinding
 
-class GalleryFragment : Fragment() {
+class GalleryFragment : Fragment()
+{
 
     private var _binding: FragmentGalleryBinding? = null
 
@@ -21,7 +22,8 @@ class GalleryFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+                             ): View
+    {
         val galleryViewModel =
                 ViewModelProvider(this).get(GalleryViewModel::class.java)
 
@@ -35,7 +37,8 @@ class GalleryFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }

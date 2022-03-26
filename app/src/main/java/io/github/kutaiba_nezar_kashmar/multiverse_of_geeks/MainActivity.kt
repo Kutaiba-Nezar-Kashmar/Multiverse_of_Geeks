@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import io.github.kutaiba_nezar_kashmar.newapp.R
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+//TODO go here https://codinginflow.com/tutorials/android/clickablespan to implement the clickable link in the create profile text
+class MainActivity : AppCompatActivity()
+{
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,29 +31,39 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                    view,
+                    "Replace with your own action",
+                    Snackbar.LENGTH_LONG
+                         )
                     .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController =
+                findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-        ), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+                setOf(
+                        R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                     ), drawerLayout
+                                                 )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+    override fun onSupportNavigateUp(): Boolean
+    {
+        val navController =
+                findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

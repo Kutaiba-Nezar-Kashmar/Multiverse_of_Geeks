@@ -10,4 +10,18 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <!--create_profile strings-->
+    <string name="f_name">First Name</string>
+    <string name="l_name">Last Name</string>
+    <string name="u_name">User Name</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="r_password">Repeat Password</string>
+    <string name="term_checkbox">I agree to terms of service</string>
+    <string name="create_account_button">Create account</string>
+    <string name="already_have_account">Already have and account? go to Login window to login to your account</string>
+
+    <!--navbar strings-->
+    <string name="create_profile_nav">Create account</string>
 </resources>
