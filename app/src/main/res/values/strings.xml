@@ -21,6 +21,7 @@
     <string name="term_checkbox">I agree to terms of service</string>
     <string name="create_account_button">Create account</string>
     <string name="already_have_account">Already have and account? go to Login window to login to your account</string>
+    <string name="profile_image_disc">Her goes the profile image</string>
 
     <!--navbar strings-->
     <string name="create_profile_nav">Create account</string>
