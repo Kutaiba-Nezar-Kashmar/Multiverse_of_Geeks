@@ -13,4 +13,5 @@
     <!--login dimens-->
     <dimen name="login_edit_text_margin">40dp</dimen>
     <dimen name="login_edit_text_top_margin">75dp</dimen>
+    <dimen name="text_size_about">15sp</dimen>
 </resources>

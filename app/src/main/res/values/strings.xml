@@ -32,4 +32,18 @@
     <!--navbar strings-->
     <string name="create_profile_nav">Create account</string>
     <string name="login_nav">Login</string>
+
+    <!--about strings-->
+    <string name="createor_image_disc">creator image</string>
+    <string name="about_me">My name is Kutaiba Nezar kashmar. I know I know my name is kind of weird and maybe a bit hard to read but in the same time I think it is kind of cool.
+but you know what else is cool… having a library of every cool character from your favorite movie, show or game. and who knows maybe even more.
+No but seriously,  The multiverse of Geeks is an Android app where the user can explore various movies and video games characters and their lure.
+Furthermore, the user can leave comments, rate characters, and more.
+The motivation behind this app is to have a place where the user can keep track and interact with the geek community through
+common interests such as movies and video games all in one app.
+Let me tell you more about my self. I am a software engineering student at VIA university Collage -university located in Midtjylland Denmark- and this app is part of the android development program.
+In other words this is my first -more or less- complex android app. I love programing, acutely… I love anything has to do with computers and tech. You might have already figure this out that I love gaming and watching movies and video games.
+Below there are links to my social media and github. If you have an advice or feedback PLEASE don\'t hesitate to contact me. enjoy best regards.
+Kutaiba></string>
+
 </resources>

@@ -5,12 +5,15 @@
       <map>
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/create_account_ic.xml" value="0.1935" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/creator_pic.xml" value="0.5" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/creator_pic_background.xml" value="0.2985" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/email_ic.xml" value="0.1935" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/app_bar_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/content_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/create_profile.xml" value="0.25" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_about.xml" value="0.25" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_create_profile.xml" value="0.2" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_gallery.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
@@ -19,6 +22,8 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/nav_header_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/menu/main.xml" value="0.3625" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/mipmap-anydpi-v26/creator_pic.xml" value="0.193" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/mipmap-anydpi-v26/creator_pic_round.xml" value="0.193" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/NewApp/app/src/main/res/layout/content_main.xml" value="0.358695652173913" />
       </map>
     </option>
@@ -28,5 +33,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>
