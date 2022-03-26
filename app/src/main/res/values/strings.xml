@@ -23,6 +23,13 @@
     <string name="already_have_account">Already have and account? go to Login window to login to your account</string>
     <string name="profile_image_disc">Her goes the profile image</string>
 
+    <!--login strings-->
+    <string name="login">Login</string>
+    <string name="not_registered_message">Don\'t you have an account?</string>
+    <string name="not_registered_link"><a href="">Create account</a></string>
+    <string name="welcome_message">welcome to Multiverse of Geeks</string>
+
     <!--navbar strings-->
     <string name="create_profile_nav">Create account</string>
+    <string name="login_nav">Login</string>
 </resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/login_edit_text_top_margin"/>
+
+    <EditText
+        android:id="@+id/login_email_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:autofillHints="emailAddress"
+        android:inputType="textEmailAddress"
+        android:layout_marginStart="@dimen/login_edit_text_margin"
+        android:layout_marginEnd="@dimen/login_edit_text_margin"
+        android:layout_marginTop="@dimen/login_edit_text_top_margin"
+        android:drawableStart="@drawable/email_ic"/>
+
+    <EditText
+        android:id="@+id/login_password_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:layout_marginStart="@dimen/login_edit_text_margin"
+        android:layout_marginEnd="@dimen/login_edit_text_margin"
+        android:layout_marginTop="@dimen/login_edit_text_margin"
+        android:drawableStart="@drawable/password_ic"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_marginStart="@dimen/login_edit_text_margin"
+        android:layout_marginEnd="@dimen/login_edit_text_margin"
+        android:layout_marginTop="@dimen/login_edit_text_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/not_registered_message"
+        android:layout_marginStart="@dimen/login_edit_text_margin"
+        android:layout_marginTop="@dimen/login_edit_text_margin"/>
+
+    <TextView
+        android:id="@+id/navigate_to_create_account_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/not_registered_link"
+        android:layout_marginStart="@dimen/login_edit_text_margin"/>
+
+</LinearLayout>

@@ -28,4 +28,10 @@
         android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.create_account.CreateAccountFragment"
         android:label="@string/create_profile_nav"
         tools:layout="@layout/fragment_slideshow"/>
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login"/>
 </navigation>

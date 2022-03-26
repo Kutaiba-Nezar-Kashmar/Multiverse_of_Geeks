@@ -9,4 +9,8 @@
     <!--create_profile dimens-->
     <dimen name="edit_text_margin">20dp</dimen>
     <dimen name="edit_text_top_margin">40dp</dimen>
+
+    <!--login dimens-->
+    <dimen name="login_edit_text_margin">40dp</dimen>
+    <dimen name="login_edit_text_top_margin">75dp</dimen>
 </resources>

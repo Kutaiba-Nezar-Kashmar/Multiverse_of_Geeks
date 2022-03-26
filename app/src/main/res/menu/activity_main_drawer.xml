@@ -22,5 +22,9 @@
             android:id="@+id/nav_create_account"
             android:icon="@drawable/create_account_ic"
             android:title="@string/create_profile_nav"/>
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/login_ic"
+            android:title="@string/login"/>
     </group>
 </menu>
