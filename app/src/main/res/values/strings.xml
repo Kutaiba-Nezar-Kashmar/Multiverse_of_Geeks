@@ -33,6 +33,7 @@
     <string name="create_profile_nav">Create account</string>
     <string name="login_nav">Login</string>
     <string name="about_nav">About</string>
+    <string name="my_profile_nav">My Profile</string>
 
     <!--about strings-->
     <string name="createor_image_disc">creator image</string>
@@ -50,5 +51,17 @@ Kutaiba></string>
     <string name="github_link"><a href="">Github</a></string>
     <string name="Linkedin_link"><a href="">Linkedin</a></string>
     <string name="Facebook_link"><a href="">Facebook</a></string>
+
+    <!--my profile strings-->
+    <string name="my_profile_image_disc">User\'s profile image</string>
+    <string name="name_info_header">Name</string>
+    <string name="name_placeholder">TEMP</string>
+    <string name="address_info_header">Address</string>
+    <string name="address_placeholder">ADDRESS TEMP</string>
+    <string name="gender_header">Gender</string>
+    <string name="gender_placeholder">M F OTHERS</string>
+    <string name="birthday_header">Birthday</string>
+    <string name="birthday_placeholder">BIRTHDAY</string>
+    <string name="edit_image_disc">Edit Button</string>
 
 </resources>

@@ -31,5 +31,11 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/about_ic"
             android:title="@string/about_nav"/>
+
+        <item
+            android:id="@+id/nav_my_profile"
+            android:icon="@drawable/person_ic"
+            android:title="@string/my_profile_nav"/>
+
     </group>
 </menu>

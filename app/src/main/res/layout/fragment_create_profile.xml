@@ -14,13 +14,13 @@
             android:id="@+id/image_card_view_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            app:cardCornerRadius="100dp"
+            android:layout_marginTop="@dimen/edit_text_top_margin"
+            app:cardCornerRadius="@dimen/card_view_radius"
             android:layout_gravity="center">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="@dimen/image_view_dims"
+                android:layout_height="@dimen/image_view_dims"
                 android:src="@drawable/ic_launcher_background"
                 android:contentDescription="@string/profile_image_disc"
                 android:layout_gravity="center"/>

@@ -9,6 +9,8 @@
     <!--create_profile dimens-->
     <dimen name="edit_text_margin">20dp</dimen>
     <dimen name="edit_text_top_margin">40dp</dimen>
+    <dimen name="card_view_radius">100dp</dimen>
+    <dimen name="image_view_dims">150dp</dimen>
 
     <!--login dimens-->
     <dimen name="login_edit_text_margin">40dp</dimen>
@@ -17,4 +19,8 @@
 
     <!--about dimens-->
     <dimen name="about_margin">20dp</dimen>
+
+    <!--my profile dimens-->
+    <dimen name="card_top_margin">10dp</dimen>
+    <dimen name="margin_start_custom">45dp</dimen>
 </resources>
