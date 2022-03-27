@@ -34,4 +34,11 @@
         android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LoginFragment"
         android:label="@string/login"
         tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.about.AboutFragment"
+        android:label="@string/about_nav"
+        tools:layout="@layout/fragment_about"/>
+
 </navigation>

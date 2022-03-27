@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,9 +21,15 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginBottom="@dimen/about_margin"/>
+
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="300dp">
+        android:layout_height="400dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,5 +46,43 @@
 
     </ScrollView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="@dimen/about_margin"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/github_link"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/github_link"
+            app:drawableStartCompat="@drawable/github_ic"
+            android:layout_marginStart="@dimen/about_margin"/>
+
+        <TextView
+            android:id="@+id/linkedin_link"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Linkedin_link"
+            app:drawableStartCompat="@drawable/linkedin_ic" />
+
+        <TextView
+            android:id="@+id/facebook_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Facebook_link"
+            app:drawableStartCompat="@drawable/facebook_ic"
+            android:layout_marginEnd="@dimen/about_margin"/>
+
+    </LinearLayout>
 
 </LinearLayout>

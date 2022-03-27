@@ -32,6 +32,7 @@
     <!--navbar strings-->
     <string name="create_profile_nav">Create account</string>
     <string name="login_nav">Login</string>
+    <string name="about_nav">About</string>
 
     <!--about strings-->
     <string name="createor_image_disc">creator image</string>
@@ -45,5 +46,9 @@ Let me tell you more about my self. I am a software engineering student at VIA u
 In other words this is my first -more or less- complex android app. I love programing, acutely… I love anything has to do with computers and tech. You might have already figure this out that I love gaming and watching movies and video games.
 Below there are links to my social media and github. If you have an advice or feedback PLEASE don\'t hesitate to contact me. enjoy best regards.
 Kutaiba></string>
+
+    <string name="github_link"><a href="">Github</a></string>
+    <string name="Linkedin_link"><a href="">Linkedin</a></string>
+    <string name="Facebook_link"><a href="">Facebook</a></string>
 
 </resources>
