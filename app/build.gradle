@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "io.github.kutaiba_nezar_kashmar.newapp"
+        applicationId "io.github.kutaiba_nezar_kashmar.multiverse_of_geeks"
         minSdk 23
         targetSdk 32
         versionCode 1
