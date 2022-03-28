@@ -34,6 +34,7 @@
     <string name="login_nav">Login</string>
     <string name="about_nav">About</string>
     <string name="my_profile_nav">My Profile</string>
+    <string name="edit_profile_nav">Edit Profile</string>
 
     <!--about strings-->
     <string name="createor_image_disc">creator image</string>
@@ -60,8 +61,20 @@ Kutaiba></string>
     <string name="address_placeholder">ADDRESS TEMP</string>
     <string name="gender_header">Gender</string>
     <string name="gender_placeholder">M F OTHERS</string>
-    <string name="birthday_header">Birthday</string>
-    <string name="birthday_placeholder">BIRTHDAY</string>
+    <string name="age_placeholder">AGE</string>
     <string name="edit_image_disc">Edit Button</string>
+
+    <!--edit my profile strings-->
+    <string name="street_name_hint">Street Name</string>
+    <string name="street_number_hint">Street Number</string>
+    <string name="house_number_hint">House Number</string>
+    <string name="city_hint">City</string>
+    <string name="zip_hint">Zip code</string>
+    <string name="phone_hint">Phone number (with country code)</string>
+    <string name="optional_header">Optional</string>
+    <string name="gender_hint">Gender</string>
+    <string name="age_header">Age</string>
+    <string name="save_button">Save Changes</string>
+    <string name="cancel_button">Cancel</string>
 
 </resources>

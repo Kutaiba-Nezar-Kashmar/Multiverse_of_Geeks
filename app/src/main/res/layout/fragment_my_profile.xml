@@ -93,7 +93,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/birthday_header"
+        android:text="@string/age_header"
         app:drawableStartCompat="@drawable/birthdate_ic"
         android:layout_marginStart="@dimen/edit_text_margin"
         android:layout_marginTop="@dimen/edit_text_margin"/>
@@ -102,7 +102,7 @@
         android:id="@+id/birthdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/birthday_placeholder"
+        android:text="@string/age_placeholder"
         android:layout_marginStart="@dimen/margin_start_custom"/>
 
 </LinearLayout>

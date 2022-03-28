@@ -23,4 +23,7 @@
     <!--my profile dimens-->
     <dimen name="card_top_margin">10dp</dimen>
     <dimen name="margin_start_custom">45dp</dimen>
+
+    <!--edit profile dimens-->
+    <dimen name="birth_header_margin">75dp</dimen>
 </resources>
