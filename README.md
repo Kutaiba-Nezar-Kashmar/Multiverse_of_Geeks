@@ -39,7 +39,7 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 
 ## Built with
 So far:
-- Kotlin
+- Java
 - XML
 
 <a name="ux"/>
