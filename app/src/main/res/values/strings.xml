@@ -77,4 +77,7 @@ Kutaiba></string>
     <string name="save_button">Save Changes</string>
     <string name="cancel_button">Cancel</string>
 
+    <!--home fragment strings-->
+    <string name="home_text">PLACEHOLDER!!!</string>
+
 </resources>

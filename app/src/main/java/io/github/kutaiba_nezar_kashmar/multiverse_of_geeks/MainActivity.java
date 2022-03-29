@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView = binding.navView;
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
+    //TODO: Here goes the nave items, remember adding the relevant ones
     mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home,
-        R.id.nav_gallery, R.id.nav_slideshow).setOpenableLayout(drawer).build();
+        R.id.nav_my_profile, R.id.nav_create_account).setOpenableLayout(drawer).build();
     NavController navController = Navigation
         .findNavController(this, R.id.nav_host_fragment_content_main);
     NavigationUI.setupActionBarWithNavController(this, navController,

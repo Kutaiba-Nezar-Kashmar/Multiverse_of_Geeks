@@ -18,9 +18,10 @@ public class HomeFragment extends Fragment
   private FragmentHomeBinding binding;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
-    HomeViewModel homeViewModel =
-        new ViewModelProvider(this).get(HomeViewModel.class);
+      ViewGroup container, Bundle savedInstanceState)
+  {
+    HomeViewModel homeViewModel = new ViewModelProvider(this)
+        .get(HomeViewModel.class);
 
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
@@ -30,8 +31,8 @@ public class HomeFragment extends Fragment
     return root;
   }
 
-  @Override
-  public void onDestroyView() {
+  @Override public void onDestroyView()
+  {
     super.onDestroyView();
     binding = null;
   }

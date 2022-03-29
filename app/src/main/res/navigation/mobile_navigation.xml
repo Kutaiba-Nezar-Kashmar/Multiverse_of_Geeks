@@ -12,22 +12,10 @@
             tools:layout="@layout/fragment_home" />
 
     <fragment
-            android:id="@+id/nav_gallery"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.gallery.GalleryFragment"
-            android:label="@string/menu_gallery"
-            tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-            android:id="@+id/nav_slideshow"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.slideshow.SlideshowFragment"
-            android:label="@string/menu_slideshow"
-            tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
         android:id="@+id/nav_create_account"
         android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.create_account.CreateAccountFragment"
         android:label="@string/create_profile_nav"
-        tools:layout="@layout/fragment_slideshow"/>
+        tools:layout="@layout/fragment_create_profile"/>
 
     <fragment
         android:id="@+id/nav_login"
