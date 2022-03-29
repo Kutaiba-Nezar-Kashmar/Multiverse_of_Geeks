@@ -45,6 +45,18 @@
         android:id="@+id/nav_my_profile"
         android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.my_profile.MyProfileFragment"
         android:label="@string/my_profile_nav"
-        tools:layout="@layout/fragment_my_profile"/>
+        tools:layout="@layout/fragment_my_profile">
+        <action
+                android:id="@+id/action_nav_my_profile_to_edit_profile_nav"
+                app:destination="@id/edit_profile_nav"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/edit_profile_nav"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileFragment"
+            android:label="@string/edit_profile_nav"
+            tools:layout="@layout/fragment_edit_profile"/>
 
 </navigation>
