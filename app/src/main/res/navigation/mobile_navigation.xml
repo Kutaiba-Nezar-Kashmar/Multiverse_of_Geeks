@@ -47,4 +47,16 @@
             android:label="@string/edit_profile_nav"
             tools:layout="@layout/fragment_edit_profile"/>
 
+    <fragment
+            android:id="@+id/nav_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment"
+            android:label="@string/movies_nav"
+            tools:layout="@layout/fragment_movies"/>
+
+    <fragment
+            android:id="@+id/nav_games"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesFragment"
+            android:label="@string/games_nav"
+            tools:layout="@layout/fragment_games"/>
+
 </navigation>

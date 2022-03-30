@@ -34,6 +34,16 @@
                         android:title="@string/menu_home" />
 
                 <item
+                        android:id="@+id/nav_movies"
+                        android:icon="@drawable/movie_ic"
+                        android:title="@string/movies_nav"/>
+
+                <item
+                        android:id="@+id/nav_games"
+                        android:icon="@drawable/games_ic"
+                        android:title="@string/games_nav"/>
+
+                <item
                         android:id="@+id/nav_about"
                         android:icon="@drawable/about_ic"
                         android:title="@string/about_nav" />
