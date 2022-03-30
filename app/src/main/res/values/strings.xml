@@ -30,6 +30,7 @@
     <string name="welcome_message">welcome to Multiverse of Geeks</string>
 
     <!--navbar strings-->
+    <string name="group_title">Navigation</string>
     <string name="create_profile_nav">Create account</string>
     <string name="login_nav">Login</string>
     <string name="about_nav">About</string>

@@ -5,29 +5,44 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_home"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/menu_home" />
-
-        <!--place holder-->
-        <item
-            android:id="@+id/nav_create_account"
-            android:icon="@drawable/create_account_ic"
-            android:title="@string/create_profile_nav"/>
-        <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/login_ic"
-            android:title="@string/login"/>
+                android:id="@+id/nav_my_profile"
+                android:icon="@drawable/person_ic"
+                android:title="@string/my_profile_nav" />
 
         <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/about_ic"
-            android:title="@string/about_nav"/>
+                android:id="@+id/nav_login"
+                android:icon="@drawable/login_ic"
+                android:title="@string/login" />
+
 
         <item
-            android:id="@+id/nav_my_profile"
-            android:icon="@drawable/person_ic"
-            android:title="@string/my_profile_nav"/>
-
+                android:id="@+id/nav_create_account"
+                android:icon="@drawable/create_account_ic"
+                android:title="@string/create_profile_nav" />
     </group>
+
+    <item android:title="@string/group_title">
+
+        <menu>
+
+            <group>
+
+
+                <item
+                        android:id="@+id/nav_home"
+                        android:icon="@drawable/home_ic"
+                        android:title="@string/menu_home" />
+
+                <item
+                        android:id="@+id/nav_about"
+                        android:icon="@drawable/about_ic"
+                        android:title="@string/about_nav" />
+
+            </group>
+
+
+        </menu>
+
+    </item>
+
 </menu>
