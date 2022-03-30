@@ -26,4 +26,7 @@
 
     <!--edit profile dimens-->
     <dimen name="birth_header_margin">75dp</dimen>
+
+    <!--home-->
+    <dimen name="logo_top">10dp</dimen>
 </resources>
