@@ -38,7 +38,7 @@
     <string name="edit_profile_nav">Edit Profile</string>
     <string name="movies_genre_nav">Movies</string>
     <string name="movies_nav">Movie list</string>
-    <string name="single_movie_nav">Movie list</string>
+    <string name="single_movie_nav">Movie</string>
     <string name="games_nav">Games</string>
 
     <!--about strings-->
