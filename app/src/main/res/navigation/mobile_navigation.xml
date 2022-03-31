@@ -48,6 +48,16 @@
             tools:layout="@layout/fragment_edit_profile"/>
 
     <fragment
+            android:id="@+id/nav_movies_genre"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MovieGenreFragment"
+            android:label="@string/movies_genre_nav"
+            tools:layout="@layout/fragment_movie_genre">
+        <action
+                android:id="@+id/action_nav_movies_genre_to_nav_movies"
+                app:destination="@id/nav_movies" />
+    </fragment>
+
+    <fragment
             android:id="@+id/nav_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment"
             android:label="@string/movies_nav"
