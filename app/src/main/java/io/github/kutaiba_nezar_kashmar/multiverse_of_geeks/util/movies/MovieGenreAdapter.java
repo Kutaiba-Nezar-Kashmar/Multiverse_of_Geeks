@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,9 +46,30 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Vi
     holder.textView.setText(movies.get(position).getGenreName());
 
     String genre = movies.get(position).getGenreName();
+
     if (genre.equals("Action"))
     {
-      holder.textView.setBackgroundResource(R.drawable.birthdate_ic);
+      holder.textView.setBackgroundResource(R.drawable.action_back);
+    }
+    else if (genre.equals("Adventure"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.adventure_back);
+    }
+    else if (genre.equals("Comedy"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.comedy_back);
+    }
+    else if (genre.equals("Horror"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.horror_back);
+    }
+    else if (genre.equals("Romance"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.romance_back);
+    }
+    else if (genre.equals("Animated"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.animated_back);
     }
   }
 

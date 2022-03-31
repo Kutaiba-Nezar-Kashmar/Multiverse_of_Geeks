@@ -5,7 +5,10 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="horizontal"
-        android:id="@+id/genre_container">
+        android:id="@+id/genre_container"
+        android:layout_marginTop="@dimen/edit_text_margin"
+        android:layout_marginBottom="@dimen/edit_text_margin"
+        android:maxHeight="300dp">
 
     <androidx.cardview.widget.CardView
             android:id="@+id/genre_card_view"
@@ -20,7 +23,9 @@
                 android:background="@drawable/my_logo_background"
                 android:text="PLACEHOLDER"
                 android:gravity="center"
-                android:elevation="2dp" />
+                android:elevation="2dp"
+                android:textColor="@color/white"
+                android:textSize="50sp"/>
 
     </androidx.cardview.widget.CardView>
 
