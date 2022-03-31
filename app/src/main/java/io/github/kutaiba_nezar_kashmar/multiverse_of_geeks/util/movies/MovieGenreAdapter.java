@@ -3,12 +3,10 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -56,14 +54,13 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Vi
   {
     private final CardView cardView;
     private final TextView textView;
-    private LinearLayout parent;
 
     public ViewHolder(@NonNull View itemView)
     {
       super(itemView);
       cardView = itemView.findViewById(R.id.genre_card_view);
       textView = itemView.findViewById(R.id.genre_text_view);
-      parent = itemView.findViewById(R.id.genre_container);
+
 
       itemView.setOnClickListener(view ->
       {

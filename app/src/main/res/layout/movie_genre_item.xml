@@ -11,9 +11,7 @@
             android:id="@+id/genre_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            android:clickable="true"
-            android:focusable="true">
+            app:cardCornerRadius="10dp">
 
         <TextView
                 android:id="@+id/genre_text_view"
