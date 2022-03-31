@@ -61,12 +61,21 @@
             android:id="@+id/nav_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment"
             android:label="@string/movies_nav"
-            tools:layout="@layout/fragment_movies"/>
+            tools:layout="@layout/fragment_movies">
+        <action
+                android:id="@+id/action_nav_movies_to_nav_single_movie"
+                app:destination="@id/nav_single_movie" />
+    </fragment>
 
     <fragment
             android:id="@+id/nav_games"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesFragment"
             android:label="@string/games_nav"
             tools:layout="@layout/fragment_games"/>
+    <fragment
+            android:id="@+id/nav_single_movie"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SingleMovieFragment"
+            android:label="@string/single_movie_nav"
+            tools:layout="@layout/fragment_single_movie"/>
 
 </navigation>

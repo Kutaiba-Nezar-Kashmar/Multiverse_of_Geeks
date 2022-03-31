@@ -21,7 +21,6 @@ import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMovieGenreBind
 public class MovieGenreFragment extends Fragment
 {
   private FragmentMovieGenreBinding binding;
-  CardView cardView;
   RecyclerView recyclerView;
 
 
