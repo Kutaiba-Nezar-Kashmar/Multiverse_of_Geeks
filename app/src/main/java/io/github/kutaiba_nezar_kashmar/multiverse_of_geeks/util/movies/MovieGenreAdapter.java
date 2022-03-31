@@ -18,10 +18,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.ViewHolder>
 {
-  private MutableLiveData<ArrayList<MovieGenre>> movies;
+  private ArrayList<MovieGenre> movies;
   private OnClickListener listener;
 
-  public MovieGenreAdapter(MutableLiveData<ArrayList<MovieGenre>> movies)
+  public MovieGenreAdapter(ArrayList<MovieGenre> movies)
   {
     this.movies = movies;
   }
@@ -42,15 +42,18 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Vi
   @Override public void onBindViewHolder(@NonNull ViewHolder holder,
       int position)
   {
-    holder.textView.setText(
-        Objects.requireNonNull(movies.getValue()).get(position).getGenreName());
-    //TODO: place holder, change to different image based on the genre name
-    holder.textView.setBackgroundResource(R.drawable.mog_log_background);
+    holder.textView.setText(movies.get(position).getGenreName());
+
+    String genre = movies.get(position).getGenreName();
+    if (genre.equals("Action"))
+    {
+      holder.textView.setBackgroundResource(R.drawable.birthdate_ic);
+    }
   }
 
   @Override public int getItemCount()
   {
-    return Objects.requireNonNull(movies.getValue()).size();
+    return movies.size();
   }
 
   class ViewHolder extends RecyclerView.ViewHolder
@@ -67,7 +70,7 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Vi
 
       itemView.setOnClickListener(view ->
       {
-        listener.onClick(Objects.requireNonNull(movies.getValue()).get(getBindingAdapterPosition()));
+        listener.onClick(movies.get(getBindingAdapterPosition()));
       });
     }
   }

@@ -7,10 +7,9 @@ public class MovieGenre
   private int image;
 
 
-  public MovieGenre(String genreName, int image)
+  public MovieGenre(String genreName)
   {
     this.genreName = genreName;
-    this.image = image;
   }
 
   public String getGenreName()
