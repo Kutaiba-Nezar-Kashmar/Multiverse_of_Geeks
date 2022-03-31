@@ -37,17 +37,8 @@ public class MoviesFragment extends Fragment
     recyclerView = root.findViewById(R.id.movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-    ArrayList<Movie> movies = new ArrayList<>();
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    movies.add(new Movie("PLACEHOLDER MOVIESSS"));
-    MoviesAdapter moviesAdapter = new MoviesAdapter(movies);
+
+    MoviesAdapter moviesAdapter = new MoviesAdapter(moviesViewModel.getMovies());
 
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {

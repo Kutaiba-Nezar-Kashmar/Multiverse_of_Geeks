@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.MovieGenre;
@@ -17,10 +19,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
 {
-  private ArrayList<Movie> movies;
+  private MutableLiveData<ArrayList<Movie>> movies;
   private OnClickListener listener;
 
-  public MoviesAdapter(ArrayList<Movie> movies)
+  public MoviesAdapter(MutableLiveData<ArrayList<Movie>> movies)
   {
     this.movies = movies;
   }
@@ -36,14 +38,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
   @Override public void onBindViewHolder(@NonNull ViewHolder holder,
       int position)
   {
-    holder.textView.setText(movies.get(position).getMovieName());
+    holder.textView.setText(
+        Objects.requireNonNull(movies.getValue()).get(position).getMovieName());
     //TODO: place holder, change to different image based on the genre name
     holder.textView.setBackgroundResource(R.drawable.mog_log_background);
   }
 
   @Override public int getItemCount()
   {
-    return movies.size();
+    return Objects.requireNonNull(movies.getValue()).size();
   }
 
   public void setListener(OnClickListener listener)
@@ -63,7 +66,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
       itemView.setOnClickListener(view ->
       {
-        listener.onClick(movies.get(getBindingAdapterPosition()));
+        listener.onClick(Objects.requireNonNull(movies.getValue()).get(getBindingAdapterPosition()));
       });
     }
   }

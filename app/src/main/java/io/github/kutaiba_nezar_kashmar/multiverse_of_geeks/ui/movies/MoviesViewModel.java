@@ -1,61 +1,96 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.MovieGenre;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieGenreAdapter;
 
 public class MoviesViewModel extends ViewModel
 {
-  private ArrayList<MovieGenre> movieGenres;
-  private MovieGenreAdapter adapter;
-
+  private MutableLiveData<ArrayList<MovieGenre>> genres;
+  private MutableLiveData<ArrayList<Movie>> movies;
+  private ArrayList<MovieGenre> tempGen;
+  private ArrayList<Movie> tempMo;
   public MoviesViewModel()
   {
-    movieGenres = new ArrayList<>();
+    genres = new MutableLiveData<>();
+    movies = new MutableLiveData<>();
+    tempGen = new ArrayList<>();
+    tempMo = new ArrayList<>();
     //TODO: Change later to read from the a model
-    movieGenres = new ArrayList<>();
-    movieGenres.add(new MovieGenre("PLACEHOLDER1", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER2", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER3", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER4", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER5", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER6", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER7", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER8", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER9", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER10", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER11", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER12", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER13", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER14", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER15", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER16", 0));
-    movieGenres.add(new MovieGenre("PLACEHOLDER17", 0));
 
-    adapter = new MovieGenreAdapter(movieGenres);
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
+    tempMo.add(new Movie("PLACEHOLDER MOVIESSS"));
 
+    tempGen.add(new MovieGenre("PLACEHOLDER1", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER2", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER3", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER4", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER5", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER6", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER7", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER8", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER9", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER10", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER11", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER12", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER13", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER14", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER15", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER16", 0));
+    tempGen.add(new MovieGenre("PLACEHOLDER17", 0));
+
+    genres.setValue(tempGen);
+    movies.setValue(tempMo);
   }
 
-  public ArrayList<MovieGenre> getMovieGenres()
+  public MutableLiveData<ArrayList<MovieGenre>> getGenres()
   {
-    return movieGenres;
+    return genres;
   }
 
-  public void setMovieGenres(ArrayList<MovieGenre> movieGenres)
+  public void setGenres(MutableLiveData<ArrayList<MovieGenre>> genres)
   {
-    this.movieGenres = movieGenres;
+    this.genres = genres;
   }
 
-  public MovieGenreAdapter getAdapter()
+  public ArrayList<MovieGenre> getTempGen()
   {
-    return adapter;
+    return tempGen;
   }
 
-  public void setAdapter(MovieGenreAdapter adapter)
+  public void setTempGen(ArrayList<MovieGenre> tempGen)
   {
-    this.adapter = adapter;
+    this.tempGen = tempGen;
+  }
+
+  public MutableLiveData<ArrayList<Movie>> getMovies()
+  {
+    return movies;
+  }
+
+  public void setMovies(MutableLiveData<ArrayList<Movie>> movies)
+  {
+    this.movies = movies;
+  }
+
+  public ArrayList<Movie> getTempMo()
+  {
+    return tempMo;
+  }
+
+  public void setTempMo(ArrayList<Movie> tempMo)
+  {
+    this.tempMo = tempMo;
   }
 }
