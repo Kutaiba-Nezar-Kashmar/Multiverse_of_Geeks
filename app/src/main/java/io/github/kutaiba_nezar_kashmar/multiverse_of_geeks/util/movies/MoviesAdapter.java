@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
@@ -19,10 +20,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
 {
-  private MutableLiveData<ArrayList<Movie>> movies;
+  private List<Movie> movies;
   private OnClickListener listener;
 
-  public MoviesAdapter(MutableLiveData<ArrayList<Movie>> movies)
+  public MoviesAdapter(List<Movie> movies)
   {
     this.movies = movies;
   }
@@ -38,15 +39,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
   @Override public void onBindViewHolder(@NonNull ViewHolder holder,
       int position)
   {
-    holder.textView.setText(
-        Objects.requireNonNull(movies.getValue()).get(position).getMovieName());
-    //TODO: place holder, change to different image based on the genre name
-    holder.textView.setBackgroundResource(R.drawable.mog_log_background);
+
   }
 
   @Override public int getItemCount()
   {
-    return Objects.requireNonNull(movies.getValue()).size();
+    return movies.size();
   }
 
   public void setListener(OnClickListener listener)
@@ -66,7 +64,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
       itemView.setOnClickListener(view ->
       {
-        listener.onClick(Objects.requireNonNull(movies.getValue()).get(getBindingAdapterPosition()));
+        listener.onClick(movies.get(getBindingAdapterPosition()));
       });
     }
   }

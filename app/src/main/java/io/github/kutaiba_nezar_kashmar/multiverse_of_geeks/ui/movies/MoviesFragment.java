@@ -38,13 +38,13 @@ public class MoviesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-    MoviesAdapter moviesAdapter = new MoviesAdapter(moviesViewModel.getMovies());
+    //MoviesAdapter moviesAdapter = new MoviesAdapter(moviesViewModel.getMovies());
 
-    recyclerView.setAdapter(moviesAdapter);
+   /* recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
       NavHostFragment.findNavController(this)
           .navigate(R.id.action_nav_movies_to_nav_single_movie);
-    });
+    });*/
 
     return root;
   }
