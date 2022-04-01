@@ -2,20 +2,58 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain;
 
 public class Movie
 {
-  private String movieName;
+  private final String title;
+  private final String genre;
+  private final String targetAudience;
+  private final int yearOfRelease;
+  private final String description;
+  private final int numberOfCast;
+  private final String imageUri;
 
-  public Movie(String movieName)
+  public Movie(String title, String genre, String targetAudience,
+      int yearOfRelease, String description, int numberOfCast, String imageUri)
   {
-    this.movieName = movieName;
+    this.title = title;
+    this.genre = genre;
+    this.targetAudience = targetAudience;
+    this.yearOfRelease = yearOfRelease;
+    this.description = description;
+    this.numberOfCast = numberOfCast;
+    this.imageUri = imageUri;
   }
 
-  public String getMovieName()
+  public String getTitle()
   {
-    return movieName;
+    return title;
   }
 
-  public void setMovieName(String movieName)
+  public String getGenre()
   {
-    this.movieName = movieName;
+    return genre;
+  }
+
+  public String getTargetAudience()
+  {
+    return targetAudience;
+  }
+
+  public int getYearOfRelease()
+  {
+    return yearOfRelease;
+  }
+
+  public String getDescription()
+  {
+    return description;
+  }
+
+  public int getNumberOfCast()
+  {
+    return numberOfCast;
+  }
+
+  public String getImageUri()
+  {
+    return imageUri;
   }
 }

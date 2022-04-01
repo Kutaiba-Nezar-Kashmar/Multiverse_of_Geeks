@@ -49,6 +49,7 @@ public class MovieGenreFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
+    moviesViewModel.setUpGenreList();
     adapter = new MovieGenreAdapter(moviesViewModel.retrievedGenreList());
     recyclerView.setAdapter(adapter);
 
