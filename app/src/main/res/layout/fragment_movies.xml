@@ -5,11 +5,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <!--<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movies_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>-->
-    <TextView
+            android:layout_height="wrap_content"/>
+   <!-- <TextView
             android:id="@+id/title_test"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -18,6 +18,6 @@
             android:id="@+id/image_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/my_logo_background"/>
+            android:src="@drawable/my_logo_background"/>-->
 
 </LinearLayout>

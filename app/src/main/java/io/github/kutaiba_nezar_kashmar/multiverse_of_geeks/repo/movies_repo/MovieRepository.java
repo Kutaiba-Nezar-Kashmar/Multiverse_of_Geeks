@@ -5,6 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
@@ -17,10 +20,13 @@ public class MovieRepository
 {
   private static MovieRepository instance;
   private final MutableLiveData<Movie> movie;
+  private final MutableLiveData<ArrayList<Movie>> movies;
+  private ArrayList<Movie> movieArrayList = new ArrayList<>();
 
   private MovieRepository()
   {
     movie = new MutableLiveData<>();
+    movies = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -35,6 +41,11 @@ public class MovieRepository
   public LiveData<Movie> getMovie()
   {
     return movie;
+  }
+
+  public LiveData<ArrayList<Movie>> getMovies()
+  {
+    return movies;
   }
 
   public void findMovie(int id)
@@ -57,5 +68,28 @@ public class MovieRepository
         Log.i("Retrofit", "Something went wrong :(");
       }
     });
+  }
+
+  public MutableLiveData<ArrayList<Movie>> getAllPopularMovies()
+  {
+    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    Call<MovieResponse> call = movieAPI.getAllPopularMovies();
+    call.enqueue(new Callback<MovieResponse>()
+    {
+      @Override public void onResponse(Call<MovieResponse> call,
+          Response<MovieResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          movies.setValue(response.body().getResults());
+        }
+      }
+
+      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return movies;
   }
 }

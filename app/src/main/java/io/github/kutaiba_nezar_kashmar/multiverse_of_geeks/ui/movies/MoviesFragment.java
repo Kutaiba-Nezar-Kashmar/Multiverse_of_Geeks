@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +29,8 @@ import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMoviesBinding;
 public class MoviesFragment extends Fragment
 {
   private FragmentMoviesBinding binding;
-  //RecyclerView recyclerView;
+  private RecyclerView recyclerView;
+  private ArrayList<Movie> movies = new ArrayList<>();
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -38,26 +40,34 @@ public class MoviesFragment extends Fragment
 
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    moviesViewModel.findById(634649);
+
+    /*moviesViewModel.findById(634649);
 
     ImageView imageView = root.findViewById(R.id.image_test);
     TextView textView = root.findViewById(R.id.title_test);
     moviesViewModel.getMovie().observe(getViewLifecycleOwner(), movie -> {
       textView.setText(movie.getTitle());
       Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
-    });
+    });*/
 
-    /*recyclerView = root.findViewById(R.id.movies_rv);
+    moviesViewModel.getAllPopularMovies();
+
+    recyclerView = root.findViewById(R.id.movies_rv);
     recyclerView.hasFixedSize();
-    recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));*/
+    recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-    //MoviesAdapter moviesAdapter = new MoviesAdapter(moviesViewModel.getMovies());
+    MoviesAdapter moviesAdapter = new MoviesAdapter(movies);
+    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
+    moviesViewModel.getAllPopularMovies()
+        .observe(getViewLifecycleOwner(), update);
 
-   /* recyclerView.setAdapter(moviesAdapter);
+
+
+    recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
       NavHostFragment.findNavController(this)
           .navigate(R.id.action_nav_movies_to_nav_single_movie);
-    });*/
+    });
 
     return root;
   }

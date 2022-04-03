@@ -1,20 +1,26 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
 
+import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
+public class MoviesAdapter
+    extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
 {
   private ArrayList<Movie> movies;
   private OnClickListener listener;
@@ -35,8 +41,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
   @Override public void onBindViewHolder(@NonNull ViewHolder holder,
       int position)
   {
-    holder.textView.setText(movies.get(position).getTitle());
-    holder.textView.setBackgroundResource(R.drawable.action_back);
+    //Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
+    holder.title.setText(movies.get(position).getTitle());
+    Glide.with(holder.context).load("https://image.tmdb.org/t/p/w500" + movies.get(position).getPoster_path()).into(holder.poster);
+  }
+
+  public void updateMovieList(final ArrayList<Movie> movies)
+  {
+    this.movies.clear();
+    this.movies = movies;
+    notifyDataSetChanged();
   }
 
   @Override public int getItemCount()
@@ -55,16 +69,18 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
   class ViewHolder extends RecyclerView.ViewHolder
   {
-    private final CardView cardView;
-    private final TextView textView;
+    private final TextView title;
+    private final ImageView poster;
+    private Context context;
+
     public ViewHolder(@NonNull View itemView)
     {
       super(itemView);
-      cardView = itemView.findViewById(R.id.movie_card_view);
-      textView = itemView.findViewById(R.id.movie_text_view);
+      context = itemView.getContext();
+      title = itemView.findViewById(R.id.movie_text_view);
+      poster = itemView.findViewById(R.id.movie_image);
 
-      itemView.setOnClickListener(view ->
-      {
+      itemView.setOnClickListener(view -> {
         listener.onClick(movies.get(getBindingAdapterPosition()));
       });
     }
