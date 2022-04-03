@@ -44,7 +44,7 @@ public class MoviesFragment extends Fragment
     TextView textView = root.findViewById(R.id.title_test);
     moviesViewModel.getMovie().observe(getViewLifecycleOwner(), movie -> {
       textView.setText(movie.getTitle());
-      Glide.with(this).load(movie.getPoster_path()).into(imageView);
+      Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
     });
 
     /*recyclerView = root.findViewById(R.id.movies_rv);
