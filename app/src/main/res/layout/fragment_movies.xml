@@ -9,15 +9,5 @@
             android:id="@+id/movies_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-   <!-- <TextView
-            android:id="@+id/title_test"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="blabla"/>
-    <ImageView
-            android:id="@+id/image_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/my_logo_background"/>-->
 
 </LinearLayout>

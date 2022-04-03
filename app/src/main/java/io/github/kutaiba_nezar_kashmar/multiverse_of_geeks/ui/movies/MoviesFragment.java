@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class MoviesFragment extends Fragment
   private RecyclerView recyclerView;
   private ArrayList<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
+  private MoviesAdapter moviesAdapter;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -54,15 +56,19 @@ public class MoviesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
+    setUpOnClickListener();
   }
 
   private void setUpRecyclerView()
   {
-    MoviesAdapter moviesAdapter = new MoviesAdapter(movies);
+    moviesAdapter = new MoviesAdapter(movies);
     Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllPopularMovies()
         .observe(getViewLifecycleOwner(), update);
+  }
 
+  private void setUpOnClickListener()
+  {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
       NavHostFragment.findNavController(this)
