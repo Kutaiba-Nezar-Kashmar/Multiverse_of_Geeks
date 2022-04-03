@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,17 +15,26 @@ import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.MovieGenre;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.movies_repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {
-  private MutableLiveData<ArrayList<MovieGenre>> genres;
-  private MutableLiveData<ArrayList<Movie>> movies;
-  private ArrayList<MovieGenre> tempGen;
-  private ArrayList<Movie> tempMo;
+  private MovieRepository movieRepository;
+
   public MoviesViewModel(Application application)
   {
     super(application);
+    movieRepository = MovieRepository.getInstance();
+  }
 
+  public LiveData<Movie> getMovie()
+  {
+    return movieRepository.getMovie();
+  }
+
+  public void findById(int id)
+  {
+    movieRepository.findMovie(id);
   }
 
   public void setUpGenreList()

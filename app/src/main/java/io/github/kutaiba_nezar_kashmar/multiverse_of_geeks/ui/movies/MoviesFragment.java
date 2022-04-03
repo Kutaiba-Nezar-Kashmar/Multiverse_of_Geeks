@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -23,7 +28,7 @@ import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMoviesBinding;
 public class MoviesFragment extends Fragment
 {
   private FragmentMoviesBinding binding;
-  RecyclerView recyclerView;
+  //RecyclerView recyclerView;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -33,10 +38,18 @@ public class MoviesFragment extends Fragment
 
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+    moviesViewModel.findById(634649);
 
-    recyclerView = root.findViewById(R.id.movies_rv);
+    ImageView imageView = root.findViewById(R.id.image_test);
+    TextView textView = root.findViewById(R.id.title_test);
+    moviesViewModel.getMovie().observe(getViewLifecycleOwner(), movie -> {
+      textView.setText(movie.getTitle());
+      Glide.with(this).load(movie.getPoster_path()).into(imageView);
+    });
+
+    /*recyclerView = root.findViewById(R.id.movies_rv);
     recyclerView.hasFixedSize();
-    recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+    recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));*/
 
     //MoviesAdapter moviesAdapter = new MoviesAdapter(moviesViewModel.getMovies());
 

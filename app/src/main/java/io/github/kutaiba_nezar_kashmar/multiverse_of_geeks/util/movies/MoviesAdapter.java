@@ -7,23 +7,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.MovieGenre;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
 {
-  private List<Movie> movies;
+  private ArrayList<Movie> movies;
   private OnClickListener listener;
 
-  public MoviesAdapter(List<Movie> movies)
+  public MoviesAdapter(ArrayList<Movie> movies)
   {
     this.movies = movies;
   }
@@ -39,12 +35,17 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
   @Override public void onBindViewHolder(@NonNull ViewHolder holder,
       int position)
   {
-
+    holder.textView.setText(movies.get(position).getTitle());
+    holder.textView.setBackgroundResource(R.drawable.action_back);
   }
 
   @Override public int getItemCount()
   {
-    return movies.size();
+    if (movies != null)
+    {
+      return movies.size();
+    }
+    return 0;
   }
 
   public void setListener(OnClickListener listener)

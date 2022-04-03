@@ -2,24 +2,27 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain;
 
 public class Movie
 {
+  private final int id;
   private final String title;
-  private final String genre;
-  private final String targetAudience;
-  private final int yearOfRelease;
-  private final String description;
-  private final int numberOfCast;
-  private final String imageUri;
+  //private final String release_date;
+  private final String overview;
+  private final float vote_average;
+  private final String poster_path;
 
-  public Movie(String title, String genre, String targetAudience,
-      int yearOfRelease, String description, int numberOfCast, String imageUri)
+  public Movie(int id, String title/*, String release_date*/, String overview,
+      float vote_average, String poster_path)
   {
+    this.id = id;
     this.title = title;
-    this.genre = genre;
-    this.targetAudience = targetAudience;
-    this.yearOfRelease = yearOfRelease;
-    this.description = description;
-    this.numberOfCast = numberOfCast;
-    this.imageUri = imageUri;
+    //this.release_date = release_date;
+    this.overview = overview;
+    this.vote_average = vote_average;
+    this.poster_path = poster_path;
+  }
+
+  public int getId()
+  {
+    return id;
   }
 
   public String getTitle()
@@ -27,33 +30,23 @@ public class Movie
     return title;
   }
 
-  public String getGenre()
+  /*public String getRelease_date()
   {
-    return genre;
+    return release_date;
+  }*/
+
+  public String getOverview()
+  {
+    return overview;
   }
 
-  public String getTargetAudience()
+  public float getVote_average()
   {
-    return targetAudience;
+    return vote_average;
   }
 
-  public int getYearOfRelease()
+  public String getPoster_path()
   {
-    return yearOfRelease;
-  }
-
-  public String getDescription()
-  {
-    return description;
-  }
-
-  public int getNumberOfCast()
-  {
-    return numberOfCast;
-  }
-
-  public String getImageUri()
-  {
-    return imageUri;
+    return poster_path;
   }
 }
