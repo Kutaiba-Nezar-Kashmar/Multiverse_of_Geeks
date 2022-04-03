@@ -4,17 +4,17 @@ public class Movie
 {
   private final int id;
   private final String title;
-  //private final String release_date;
+  private final String release_date;
   private final String overview;
   private final float vote_average;
   private final String poster_path;
 
-  public Movie(int id, String title/*, String release_date*/, String overview,
+  public Movie(int id, String title, String release_date, String overview,
       float vote_average, String poster_path)
   {
     this.id = id;
     this.title = title;
-    //this.release_date = release_date;
+    this.release_date = release_date;
     this.overview = overview;
     this.vote_average = vote_average;
     this.poster_path = poster_path;
@@ -30,10 +30,10 @@ public class Movie
     return title;
   }
 
-  /*public String getRelease_date()
+  public String getRelease_date()
   {
     return release_date;
-  }*/
+  }
 
   public String getOverview()
   {

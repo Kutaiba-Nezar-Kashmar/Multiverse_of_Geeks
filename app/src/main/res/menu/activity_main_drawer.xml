@@ -34,9 +34,9 @@
                         android:title="@string/menu_home" />
 
                 <item
-                        android:id="@+id/nav_movies_genre"
+                        android:id="@+id/nav_movies"
                         android:icon="@drawable/movie_ic"
-                        android:title="@string/movies_genre_nav"/>
+                        android:title="@string/movies_nav"/>
 
                 <item
                         android:id="@+id/nav_games"

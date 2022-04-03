@@ -41,15 +41,6 @@ public class MoviesFragment extends Fragment
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
-    /*moviesViewModel.findById(634649);
-
-    ImageView imageView = root.findViewById(R.id.image_test);
-    TextView textView = root.findViewById(R.id.title_test);
-    moviesViewModel.getMovie().observe(getViewLifecycleOwner(), movie -> {
-      textView.setText(movie.getTitle());
-      Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
-    });*/
-
     moviesViewModel.getAllPopularMovies();
 
     recyclerView = root.findViewById(R.id.movies_rv);
