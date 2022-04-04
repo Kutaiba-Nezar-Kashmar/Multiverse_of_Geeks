@@ -43,7 +43,7 @@ public class MoviesAdapter
     //Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
     holder.title.setText(movies.get(position).getTitle());
     Glide.with(holder.context).load("https://image.tmdb.org/t/p/w500" + movies.get(position).getPoster_path()).into(holder.poster);
-    holder.movieRating.setRating(movies.get(position).getVote_average());
+    holder.movieRating.setText(" " + String.valueOf(movies.get(position).getVote_average()));
   }
 
   public void updateMovieList(final ArrayList<Movie> movies)
@@ -71,7 +71,7 @@ public class MoviesAdapter
   {
     private final TextView title;
     private final ImageView poster;
-    private final RatingBar movieRating;
+    private final TextView movieRating;
     private Context context;
 
     public MovieViewHolder(@NonNull View itemView)
@@ -80,7 +80,7 @@ public class MoviesAdapter
       context = itemView.getContext();
       title = itemView.findViewById(R.id.movie_text_view);
       poster = itemView.findViewById(R.id.movie_image);
-      movieRating = itemView.findViewById(R.id.movie_rating_bar);
+      movieRating = itemView.findViewById(R.id.movie_ratting);
 
       itemView.setOnClickListener(view -> {
         listener.onClick(movies.get(getBindingAdapterPosition()));

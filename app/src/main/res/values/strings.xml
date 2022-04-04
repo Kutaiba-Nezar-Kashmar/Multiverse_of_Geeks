@@ -84,4 +84,9 @@ Kutaiba></string>
     <!--home fragment strings-->
     <string name="home_text">PLACEHOLDER!!!</string>
 
+    <!--single movie strings-->
+    <string name="movie_image_desc">Here goes the movie poster</string>
+    <string name="ratting">Ratting</string>
+    <string name="r_year">Release Year</string>
+
 </resources>

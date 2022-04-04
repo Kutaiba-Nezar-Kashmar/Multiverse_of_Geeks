@@ -71,7 +71,8 @@ public class MoviesFragment extends Fragment
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      MoviesFragmentDirections.ActionNavMoviesToNavSingleMovie action = MoviesFragmentDirections.actionNavMoviesToNavSingleMovie();
+      MoviesFragmentDirections.ActionNavMoviesToNavSingleMovie action = MoviesFragmentDirections
+          .actionNavMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
     });

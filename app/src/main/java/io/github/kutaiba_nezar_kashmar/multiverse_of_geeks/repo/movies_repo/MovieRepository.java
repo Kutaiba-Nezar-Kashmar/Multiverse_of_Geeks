@@ -48,7 +48,7 @@ public class MovieRepository
     return movies;
   }
 
-  public void findMovie(int id)
+  public MutableLiveData<Movie> findMovie(int id)
   {
     MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getMovies(id);
@@ -68,6 +68,7 @@ public class MovieRepository
         Log.i("Retrofit", "Something went wrong :(");
       }
     });
+    return movie;
   }
 
   public MutableLiveData<ArrayList<Movie>> getAllPopularMovies()
