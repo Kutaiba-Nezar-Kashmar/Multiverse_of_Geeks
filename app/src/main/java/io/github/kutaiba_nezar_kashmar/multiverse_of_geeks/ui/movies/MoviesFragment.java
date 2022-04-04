@@ -1,6 +1,5 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,7 +56,7 @@ public class MoviesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
-    setUpOnClickListener();
+    setUpOnClickListener(view);
   }
 
   private void setUpRecyclerView()
@@ -67,12 +67,13 @@ public class MoviesFragment extends Fragment
         .observe(getViewLifecycleOwner(), update);
   }
 
-  private void setUpOnClickListener()
+  private void setUpOnClickListener(View view)
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      NavHostFragment.findNavController(this)
-          .navigate(R.id.action_nav_movies_to_nav_single_movie);
+      MoviesFragmentDirections.ActionNavMoviesToNavSingleMovie action = MoviesFragmentDirections.actionNavMoviesToNavSingleMovie();
+      action.setMovieIdArg(String.valueOf(movie.getId()));
+      Navigation.findNavController(view).navigate(action);
     });
   }
 }

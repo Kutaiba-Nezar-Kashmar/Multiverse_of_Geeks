@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getMovies();
   }
 
-  public void findById(int id)
+  public void findMovieById(int id)
   {
     movieRepository.findMovie(id);
   }

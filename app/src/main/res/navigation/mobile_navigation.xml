@@ -12,28 +12,28 @@
             tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_create_account"
-        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.create_account.CreateAccountFragment"
-        android:label="@string/create_profile_nav"
-        tools:layout="@layout/fragment_create_profile"/>
+            android:id="@+id/nav_create_account"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.create_account.CreateAccountFragment"
+            android:label="@string/create_profile_nav"
+            tools:layout="@layout/fragment_create_profile" />
 
     <fragment
-        android:id="@+id/nav_login"
-        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LoginFragment"
-        android:label="@string/login"
-        tools:layout="@layout/fragment_login"/>
+            android:id="@+id/nav_login"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LoginFragment"
+            android:label="@string/login"
+            tools:layout="@layout/fragment_login" />
 
     <fragment
-        android:id="@+id/nav_about"
-        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.about.AboutFragment"
-        android:label="@string/about_nav"
-        tools:layout="@layout/fragment_about"/>
+            android:id="@+id/nav_about"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.about.AboutFragment"
+            android:label="@string/about_nav"
+            tools:layout="@layout/fragment_about" />
 
     <fragment
-        android:id="@+id/nav_my_profile"
-        android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.my_profile.MyProfileFragment"
-        android:label="@string/my_profile_nav"
-        tools:layout="@layout/fragment_my_profile">
+            android:id="@+id/nav_my_profile"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.my_profile.MyProfileFragment"
+            android:label="@string/my_profile_nav"
+            tools:layout="@layout/fragment_my_profile">
         <action
                 android:id="@+id/action_nav_my_profile_to_edit_profile_nav"
                 app:destination="@id/edit_profile_nav"
@@ -45,7 +45,7 @@
             android:id="@+id/edit_profile_nav"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileFragment"
             android:label="@string/edit_profile_nav"
-            tools:layout="@layout/fragment_edit_profile"/>
+            tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
             android:id="@+id/nav_movies"
@@ -61,12 +61,17 @@
             android:id="@+id/nav_single_movie"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SingleMovieFragment"
             android:label="@string/single_movie_nav"
-            tools:layout="@layout/fragment_single_movie" />
+            tools:layout="@layout/fragment_single_movie">
+        <argument
+                android:name="movie_id_arg"
+                app:argType="string"
+                android:defaultValue="default" />
+    </fragment>
 
     <fragment
             android:id="@+id/nav_games"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesFragment"
             android:label="@string/games_nav"
-            tools:layout="@layout/fragment_games"/>
+            tools:layout="@layout/fragment_games" />
 
 </navigation>
