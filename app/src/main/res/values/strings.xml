@@ -94,5 +94,6 @@ Kutaiba></string>
     <string name="popular_button">Popular</string>
     <string name="top_button">Top rated</string>
     <string name="now_button">Now playing</string>
+    <string name="up_button">Upcoming</string>
 
 </resources>

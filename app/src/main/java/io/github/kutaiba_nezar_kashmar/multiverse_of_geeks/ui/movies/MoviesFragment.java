@@ -35,6 +35,7 @@ public class MoviesFragment extends Fragment
   private Button popularButton;
   private Button topButton;
   private Button nowButton;
+  private Button upButton;
 
   //TODO: need to find API endpoint for filtering
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -48,6 +49,7 @@ public class MoviesFragment extends Fragment
     popularButton = root.findViewById(R.id.popular_movies_button);
     topButton = root.findViewById(R.id.top_movies_button);
     nowButton = root.findViewById(R.id.now_movies_button);
+    upButton = root.findViewById(R.id.up_movies_button);
 
     refresh();
     return root;
@@ -91,6 +93,11 @@ public class MoviesFragment extends Fragment
     nowButton.setOnClickListener(view ->
     {
       moviesViewModel.getAllNowPlayingMovies()
+          .observe(getViewLifecycleOwner(), update);
+    });
+    upButton.setOnClickListener(view ->
+    {
+      moviesViewModel.getAllUpcomingMovies()
           .observe(getViewLifecycleOwner(), update);
     });
   }

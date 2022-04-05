@@ -20,4 +20,6 @@ public interface MovieAPI
       @Query("api_key") String apiKey);
   @GET("movie/now_playing") Call<MovieResponse> getAllNowPlayingMovies(
       @Query("api_key") String apiKey);
+  @GET("movie/upcoming") Call<MovieResponse> getAllUpComingsMovies(
+      @Query("api_key") String apiKey);
 }

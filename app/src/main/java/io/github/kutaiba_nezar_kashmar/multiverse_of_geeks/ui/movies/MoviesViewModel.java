@@ -39,4 +39,9 @@ public class MoviesViewModel extends AndroidViewModel
   {
     return movieRepository.getAllNowPlayingMovies();
   }
+
+  public LiveData<ArrayList<Movie>> getAllUpcomingMovies()
+  {
+    return movieRepository.getAllUpcomingMovies();
+  }
 }
