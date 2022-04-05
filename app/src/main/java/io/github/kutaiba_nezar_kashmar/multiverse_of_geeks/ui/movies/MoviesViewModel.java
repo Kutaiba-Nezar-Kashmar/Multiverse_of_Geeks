@@ -20,16 +20,6 @@ public class MoviesViewModel extends AndroidViewModel
     movieRepository = MovieRepository.getInstance();
   }
 
-  public LiveData<Movie> getMovie()
-  {
-    return movieRepository.getMovie();
-  }
-
-  public LiveData<ArrayList<Movie>> getMovies()
-  {
-    return movieRepository.getPopularMovies();
-  }
-
   public LiveData<Movie> findMovieById(int id)
   {
     return movieRepository.findMovie(id);
@@ -43,5 +33,10 @@ public class MoviesViewModel extends AndroidViewModel
   public LiveData<ArrayList<Movie>> getAllTopRatedMovies()
   {
     return movieRepository.getAllTopRatedMovies();
+  }
+
+  public LiveData<ArrayList<Movie>> getAllNowPlayingMovies()
+  {
+    return movieRepository.getAllNowPlayingMovies();
   }
 }

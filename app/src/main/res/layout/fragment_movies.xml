@@ -38,6 +38,14 @@
                     android:text="@string/top_button"
                     style="?android:attr/buttonBarButtonStyle" />
 
+            <Button
+                    android:id="@+id/now_movies_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/now_button"
+                    style="?android:attr/buttonBarButtonStyle" />
+
         </LinearLayout>
 
 
