@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class MoviesViewModel extends AndroidViewModel
 
   public LiveData<ArrayList<Movie>> getMovies()
   {
-    return movieRepository.getMovies();
+    return movieRepository.getPopularMovies();
   }
 
   public LiveData<Movie> findMovieById(int id)
@@ -39,5 +38,19 @@ public class MoviesViewModel extends AndroidViewModel
   public LiveData<ArrayList<Movie>> getAllPopularMovies()
   {
     return movieRepository.getAllPopularMovies();
+  }
+
+  public LiveData<ArrayList<Movie>> getAllLatestMovies()
+  {
+    return movieRepository.getLatestMovies();
+  }
+
+  public LiveData<ArrayList<Movie>> viewMovies(String arg)
+  {
+    if (arg.equalsIgnoreCase("Latest"))
+    {
+      return getAllLatestMovies();
+    }
+    return getAllPopularMovies();
   }
 }
