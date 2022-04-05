@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class MoviesFragment extends Fragment
   private ArrayList<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
+  private SwipeRefreshLayout swipeRefreshLayout;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -37,7 +39,8 @@ public class MoviesFragment extends Fragment
 
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-
+    swipeRefreshLayout = root.findViewById(R.id.movies_refresh_view);
+    refresh();
     return root;
   }
 
@@ -75,6 +78,14 @@ public class MoviesFragment extends Fragment
           .actionNavMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
+    });
+  }
+
+  private void refresh()
+  {
+    swipeRefreshLayout.setOnRefreshListener(() -> {
+      setUpRecyclerView();
+      swipeRefreshLayout.setRefreshing(false);
     });
   }
 }
