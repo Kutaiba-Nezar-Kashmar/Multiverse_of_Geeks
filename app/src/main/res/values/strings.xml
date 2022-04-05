@@ -88,5 +88,6 @@ Kutaiba></string>
     <string name="movie_image_desc">Here goes the movie poster</string>
     <string name="ratting">Ratting</string>
     <string name="r_year">Release Year</string>
+    <string name="search">search</string>
 
 </resources>

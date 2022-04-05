@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -31,7 +31,9 @@ public class MoviesFragment extends Fragment
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
+  private SearchView searchView;
 
+  //TODO: need to find API endpoint for filtering
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
@@ -40,6 +42,8 @@ public class MoviesFragment extends Fragment
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.movies_refresh_view);
+    searchView = root.findViewById(R.id.movie_search_view);
+
     refresh();
     return root;
   }
@@ -59,6 +63,7 @@ public class MoviesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
+    setUpFilter();
     setUpOnClickListener(view);
   }
 
@@ -87,5 +92,10 @@ public class MoviesFragment extends Fragment
       setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
     });
+  }
+
+  private void setUpFilter()
+  {
+    searchView.setIconifiedByDefault(false);
   }
 }
