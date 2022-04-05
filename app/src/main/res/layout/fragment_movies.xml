@@ -13,21 +13,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <SearchView
-                android:id="@+id/movie_search_view"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:id="@+id/linearLayout"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/popular_movies_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/popular_button"
+                    style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                    android:id="@+id/top_movies_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/top_button"
+                    style="?android:attr/buttonBarButtonStyle" />
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movies_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/movie_search_view"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -40,17 +40,8 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getAllPopularMovies();
   }
 
-  public LiveData<ArrayList<Movie>> getAllLatestMovies()
+  public LiveData<ArrayList<Movie>> getAllTopRatedMovies()
   {
-    return movieRepository.getLatestMovies();
-  }
-
-  public LiveData<ArrayList<Movie>> viewMovies(String arg)
-  {
-    if (arg.equalsIgnoreCase("Latest"))
-    {
-      return getAllLatestMovies();
-    }
-    return getAllPopularMovies();
+    return movieRepository.getAllTopRatedMovies();
   }
 }

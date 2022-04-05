@@ -21,13 +21,13 @@ public class MovieRepository
   private static MovieRepository instance;
   private final MutableLiveData<Movie> movie;
   private final MutableLiveData<ArrayList<Movie>> popularMovies;
-  private final MutableLiveData<ArrayList<Movie>> latestMovies;
+  private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
 
   private MovieRepository()
   {
     movie = new MutableLiveData<>();
     popularMovies = new MutableLiveData<>();
-    latestMovies = new MutableLiveData<>();
+    topRatedMovies = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -49,9 +49,9 @@ public class MovieRepository
     return popularMovies;
   }
 
-  public LiveData<ArrayList<Movie>> getLatestMovies()
+  public LiveData<ArrayList<Movie>> getTopRatedMovies()
   {
-    return latestMovies;
+    return topRatedMovies;
   }
 
   public MutableLiveData<Movie> findMovie(int id)
@@ -100,10 +100,10 @@ public class MovieRepository
     return popularMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies()
   {
     MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
-    Call<MovieResponse> call = movieAPI.getAllResentMovies(Constants.API_KEY);
+    Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override public void onResponse(Call<MovieResponse> call,
@@ -111,7 +111,7 @@ public class MovieRepository
       {
         if (response.code() == 200)
         {
-          latestMovies.setValue(response.body().getResults());
+          topRatedMovies.setValue(response.body().getResults());
         }
       }
 
@@ -120,6 +120,6 @@ public class MovieRepository
         Log.i("Retrofit", "Something went wrong :(");
       }
     });
-    return latestMovies;
+    return topRatedMovies;
   }
 }

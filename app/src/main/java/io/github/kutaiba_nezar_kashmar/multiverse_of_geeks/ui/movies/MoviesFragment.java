@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,8 @@ public class MoviesFragment extends Fragment
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private SearchView searchView;
+  private Button popularButton;
+  private Button topButton;
 
   //TODO: need to find API endpoint for filtering
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,7 +44,8 @@ public class MoviesFragment extends Fragment
     binding = FragmentMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.movies_refresh_view);
-    searchView = root.findViewById(R.id.movie_search_view);
+    popularButton = root.findViewById(R.id.popular_movies_button);
+    topButton = root.findViewById(R.id.top_movies_button);
 
     refresh();
     return root;
@@ -63,7 +66,6 @@ public class MoviesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
-    setUpFilter();
     setUpOnClickListener(view);
   }
 
@@ -73,6 +75,17 @@ public class MoviesFragment extends Fragment
     Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllPopularMovies()
         .observe(getViewLifecycleOwner(), update);
+
+    popularButton.setOnClickListener(view ->
+    {
+      moviesViewModel.getAllPopularMovies()
+          .observe(getViewLifecycleOwner(), update);
+    });
+    topButton.setOnClickListener(view ->
+    {
+      moviesViewModel.getAllTopRatedMovies()
+          .observe(getViewLifecycleOwner(), update);
+    });
   }
 
   private void setUpOnClickListener(View view)
@@ -94,8 +107,4 @@ public class MoviesFragment extends Fragment
     });
   }
 
-  private void setUpFilter()
-  {
-    searchView.setIconifiedByDefault(false);
-  }
 }

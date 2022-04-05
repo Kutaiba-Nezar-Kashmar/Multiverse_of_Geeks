@@ -16,6 +16,6 @@ public interface MovieAPI
       @Path("movie_id") int movie_id, @Query("api_key") String apiKey);
   @GET("movie/popular") Call<MovieResponse> getAllPopularMovies(
       @Query("api_key") String apiKey);
-  @GET("movie/latest") Call<MovieResponse> getAllResentMovies(
+  @GET("movie/top_rated") Call<MovieResponse> getAllTopRatedMovies(
       @Query("api_key") String apiKey);
 }

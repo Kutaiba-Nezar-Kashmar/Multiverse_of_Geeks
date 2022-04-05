@@ -28,7 +28,6 @@ public class SingleMovieFragment extends Fragment
   private RatingBar movieRatting;
   private ImageView moviePoster;
   private int movieId;
-
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
