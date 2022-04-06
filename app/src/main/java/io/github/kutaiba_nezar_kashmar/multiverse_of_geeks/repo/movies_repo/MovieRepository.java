@@ -24,6 +24,7 @@ public class MovieRepository
   private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
   private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
   private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
+  private final MutableLiveData<ArrayList<Movie>> searchedMovies;
 
   private MovieRepository()
   {
@@ -32,6 +33,7 @@ public class MovieRepository
     topRatedMovies = new MutableLiveData<>();
     nowPlayingMovies = new MutableLiveData<>();
     upcomingMovies = new MutableLiveData<>();
+    searchedMovies = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -158,5 +160,29 @@ public class MovieRepository
       }
     });
     return upcomingMovies;
+  }
+
+  public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String query)
+  {
+    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    Call<MovieResponse> call = movieAPI
+        .searchForMovie(Constants.API_KEY, query);
+    call.enqueue(new Callback<MovieResponse>()
+    {
+      @Override public void onResponse(Call<MovieResponse> call,
+          Response<MovieResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          searchedMovies.setValue(response.body().getResults());
+        }
+      }
+
+      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return searchedMovies;
   }
 }

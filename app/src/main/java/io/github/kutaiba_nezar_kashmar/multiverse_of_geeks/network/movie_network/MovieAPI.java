@@ -22,4 +22,6 @@ public interface MovieAPI
       @Query("api_key") String apiKey);
   @GET("movie/upcoming") Call<MovieResponse> getAllUpComingsMovies(
       @Query("api_key") String apiKey);
+  @GET("search/movie") Call<MovieResponse> searchForMovie(
+      @Query("api_key") String apiKey, @Query("query") String query);
 }

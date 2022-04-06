@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,6 +36,7 @@ public class MoviesFragment extends Fragment
   private Button topButton;
   private Button nowButton;
   private Button upButton;
+  private SearchView searchView;
 
   //TODO: need to find API endpoint for filtering
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,6 +51,7 @@ public class MoviesFragment extends Fragment
     topButton = root.findViewById(R.id.top_movies_button);
     nowButton = root.findViewById(R.id.now_movies_button);
     upButton = root.findViewById(R.id.up_movies_button);
+    searchView = root.findViewById(R.id.movies_search_view);
 
     refresh();
     return root;
@@ -80,26 +82,24 @@ public class MoviesFragment extends Fragment
     moviesViewModel.getAllPopularMovies()
         .observe(getViewLifecycleOwner(), update);
 
-    popularButton.setOnClickListener(view ->
-    {
+    popularButton.setOnClickListener(view -> {
       moviesViewModel.getAllPopularMovies()
           .observe(getViewLifecycleOwner(), update);
     });
-    topButton.setOnClickListener(view ->
-    {
+    topButton.setOnClickListener(view -> {
       moviesViewModel.getAllTopRatedMovies()
           .observe(getViewLifecycleOwner(), update);
     });
-    nowButton.setOnClickListener(view ->
-    {
+    nowButton.setOnClickListener(view -> {
       moviesViewModel.getAllNowPlayingMovies()
           .observe(getViewLifecycleOwner(), update);
     });
-    upButton.setOnClickListener(view ->
-    {
+    upButton.setOnClickListener(view -> {
       moviesViewModel.getAllUpcomingMovies()
           .observe(getViewLifecycleOwner(), update);
     });
+
+    setUpSearchView(update);
   }
 
   private void setUpOnClickListener(View view)
@@ -118,6 +118,24 @@ public class MoviesFragment extends Fragment
     swipeRefreshLayout.setOnRefreshListener(() -> {
       setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
+    });
+  }
+
+  public void setUpSearchView(Observer<ArrayList<Movie>> update)
+  {
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+    {
+      @Override public boolean onQueryTextSubmit(String query)
+      {
+        moviesViewModel.getAllSearchedMoviesMovies(query)
+            .observe(getViewLifecycleOwner(), update);
+        return false;
+      }
+
+      @Override public boolean onQueryTextChange(String newText)
+      {
+        return false;
+      }
     });
   }
 
