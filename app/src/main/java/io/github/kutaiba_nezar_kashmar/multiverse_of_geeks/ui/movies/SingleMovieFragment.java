@@ -6,15 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.CommentAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
 
@@ -28,6 +37,10 @@ public class SingleMovieFragment extends Fragment
   private RatingBar movieRatting;
   private ImageView moviePoster;
   private int movieId;
+  private ArrayList<Comment> comments = new ArrayList<>();
+  private RecyclerView commentsRecyclerView;
+  private CommentAdapter commentAdapter;
+
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
@@ -40,11 +53,13 @@ public class SingleMovieFragment extends Fragment
     movieReleaseYear = root.findViewById(R.id.movie_release_year);
     movieRatting = root.findViewById(R.id.single_movie_rating_bar);
     moviePoster = root.findViewById(R.id.single_movie_image);
+    commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
 
     return root;
   }
 
-  @Override public void onViewCreated(@NonNull View view,
+  @Override
+  public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
     super.onViewCreated(view, savedInstanceState);
@@ -64,12 +79,25 @@ public class SingleMovieFragment extends Fragment
                 .into(moviePoster);
           });
     }
+
+    commentsRecyclerView.hasFixedSize();
+    commentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    setUpAdapterView();
+    commentsRecyclerView.setAdapter(commentAdapter);
   }
 
-  @Override public void onDestroyView()
+  @Override
+  public void onDestroyView()
   {
     super.onDestroyView();
     binding = null;
+  }
+
+  private void setUpAdapterView()
+  {
+    commentAdapter = new CommentAdapter(comments);
+    Observer<ArrayList<Comment>> update = commentAdapter::updateCommentList;
+    moviesViewModel.getAllComments().observe(getViewLifecycleOwner(), update);
   }
 
 }

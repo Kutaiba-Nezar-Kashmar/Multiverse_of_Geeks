@@ -1,23 +1,30 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies;
 
 import android.app.Application;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.comment_repo.CommentRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.movies_repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {
   private MovieRepository movieRepository;
+  private CommentRepository commentRepository;
 
+  @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)
   {
     super(application);
     movieRepository = MovieRepository.getInstance();
+    commentRepository = CommentRepository.getInstance();
   }
 
   public LiveData<Movie> findMovieById(int id)
@@ -48,5 +55,10 @@ public class MoviesViewModel extends AndroidViewModel
   public LiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String arg)
   {
     return movieRepository.getAllSearchedMoviesMovies(arg);
+  }
+
+  public LiveData<ArrayList<Comment>> getAllComments()
+  {
+    return commentRepository.getComments();
   }
 }

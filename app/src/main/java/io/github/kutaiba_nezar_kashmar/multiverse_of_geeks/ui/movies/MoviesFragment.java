@@ -20,7 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MoviesAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMoviesBinding;
 
@@ -38,7 +38,6 @@ public class MoviesFragment extends Fragment
   private Button upButton;
   private SearchView searchView;
 
-  //TODO: need to find API endpoint for filtering
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
@@ -57,13 +56,15 @@ public class MoviesFragment extends Fragment
     return root;
   }
 
-  @Override public void onDestroyView()
+  @Override
+  public void onDestroyView()
   {
     super.onDestroyView();
     binding = null;
   }
 
-  @Override public void onViewCreated(@NonNull View view,
+  @Override
+  public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
     moviesViewModel.getAllPopularMovies();
@@ -125,14 +126,16 @@ public class MoviesFragment extends Fragment
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {
-      @Override public boolean onQueryTextSubmit(String query)
+      @Override
+      public boolean onQueryTextSubmit(String query)
       {
         moviesViewModel.getAllSearchedMoviesMovies(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }
 
-      @Override public boolean onQueryTextChange(String newText)
+      @Override
+      public boolean onQueryTextChange(String newText)
       {
         return false;
       }

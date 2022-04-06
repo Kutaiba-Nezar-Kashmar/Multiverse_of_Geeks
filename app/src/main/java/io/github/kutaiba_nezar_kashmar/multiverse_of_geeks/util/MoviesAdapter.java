@@ -1,11 +1,10 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,21 +28,25 @@ public class MoviesAdapter
     this.movies = movies;
   }
 
-  @NonNull @Override public MovieViewHolder onCreateViewHolder(
-      @NonNull ViewGroup parent, int viewType)
+  @NonNull
+  @Override
+  public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+      int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
     View view = inflater.inflate(R.layout.movie_item, parent, false);
     return new MovieViewHolder(view);
   }
 
-  @Override public void onBindViewHolder(@NonNull MovieViewHolder holder,
-      int position)
+  @Override
+  public void onBindViewHolder(@NonNull MovieViewHolder holder, int position)
   {
-    //Glide.with(this).load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path()).into(imageView);
     holder.title.setText(movies.get(position).getTitle());
-    Glide.with(holder.context).load("https://image.tmdb.org/t/p/w500" + movies.get(position).getPoster_path()).into(holder.poster);
-    holder.movieRating.setText(" " + String.valueOf(movies.get(position).getVote_average()));
+    Glide.with(holder.context).load(
+        "https://image.tmdb.org/t/p/w500" + movies.get(position)
+            .getPoster_path()).into(holder.poster);
+    holder.movieRating
+        .setText(" " + String.valueOf(movies.get(position).getVote_average()));
   }
 
   public void updateMovieList(final ArrayList<Movie> movies)
@@ -53,7 +56,8 @@ public class MoviesAdapter
     notifyDataSetChanged();
   }
 
-  @Override public int getItemCount()
+  @Override
+  public int getItemCount()
   {
     if (movies != null)
     {

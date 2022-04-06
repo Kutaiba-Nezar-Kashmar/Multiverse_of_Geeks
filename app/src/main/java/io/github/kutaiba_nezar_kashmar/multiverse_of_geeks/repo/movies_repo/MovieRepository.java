@@ -51,7 +51,8 @@ public class MovieRepository
     Call<MovieResponse> call = movieAPI.getMovies(id, Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -60,7 +61,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -74,7 +76,8 @@ public class MovieRepository
     Call<MovieResponse> call = movieAPI.getAllPopularMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -83,7 +86,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -97,7 +101,8 @@ public class MovieRepository
     Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -106,7 +111,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -121,7 +127,8 @@ public class MovieRepository
         .getAllNowPlayingMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -130,7 +137,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -145,7 +153,8 @@ public class MovieRepository
         .getAllUpComingsMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -154,7 +163,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -162,14 +172,16 @@ public class MovieRepository
     return upcomingMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String query)
+  public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(
+      String query)
   {
     MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .searchForMovie(Constants.API_KEY, query);
     call.enqueue(new Callback<MovieResponse>()
     {
-      @Override public void onResponse(Call<MovieResponse> call,
+      @Override
+      public void onResponse(Call<MovieResponse> call,
           Response<MovieResponse> response)
       {
         if (response.code() == 200)
@@ -178,7 +190,8 @@ public class MovieRepository
         }
       }
 
-      @Override public void onFailure(Call<MovieResponse> call, Throwable t)
+      @Override
+      public void onFailure(Call<MovieResponse> call, Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
