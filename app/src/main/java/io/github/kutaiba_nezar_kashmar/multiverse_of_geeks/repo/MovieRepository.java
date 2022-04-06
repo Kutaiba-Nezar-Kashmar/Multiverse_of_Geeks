@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +46,7 @@ public class MovieRepository
 
   public MutableLiveData<Movie> findMovie(int id)
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getMovies(id, Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -71,7 +71,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllPopularMovies()
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getAllPopularMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -96,7 +96,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies()
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -121,7 +121,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies()
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .getAllNowPlayingMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
@@ -147,7 +147,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies()
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .getAllUpComingsMovies(Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
@@ -174,7 +174,7 @@ public class MovieRepository
   public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(
       String query)
   {
-    MovieAPI movieAPI = MovieServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .searchForMovie(Constants.API_KEY, query);
     call.enqueue(new Callback<MovieResponse>()

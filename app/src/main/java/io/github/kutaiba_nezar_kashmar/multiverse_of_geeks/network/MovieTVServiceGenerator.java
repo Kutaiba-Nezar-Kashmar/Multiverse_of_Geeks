@@ -1,9 +1,11 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network.TVShowAPI;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MovieServiceGenerator
+public class MovieTVServiceGenerator
 {
   private static Retrofit.Builder builder = new Retrofit.Builder()
       .baseUrl("https://api.themoviedb.org/3/")
@@ -11,9 +13,15 @@ public class MovieServiceGenerator
 
   private static Retrofit retrofit = builder.build();
   private static MovieAPI movieAPI = retrofit.create(MovieAPI.class);
+  private static TVShowAPI tvShowAPI = retrofit.create(TVShowAPI.class);
 
   public static MovieAPI getMovieAPI()
   {
     return movieAPI;
+  }
+
+  public static TVShowAPI getTVShowAPI()
+  {
+    return tvShowAPI;
   }
 }
