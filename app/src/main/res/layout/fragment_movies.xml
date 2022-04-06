@@ -11,11 +11,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.SearchView
+                android:id="@+id/movies_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/scrollView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <HorizontalScrollView
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movies_search_view"
                 android:fillViewport="true"
                 android:scrollbars="horizontal">
 
@@ -30,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/popular_button"
                         style="?android:attr/buttonBarButtonStyle"
-                        android:layout_marginEnd="@dimen/edit_text_margin"/>
+                        android:layout_marginEnd="@dimen/edit_text_margin" />
 
                 <Button
                         android:id="@+id/top_movies_button"
@@ -38,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/top_button"
                         style="?android:attr/buttonBarButtonStyle"
-                        android:layout_marginEnd="@dimen/edit_text_margin"/>
+                        android:layout_marginEnd="@dimen/edit_text_margin" />
 
                 <Button
                         android:id="@+id/now_movies_button"
@@ -46,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/now_button"
                         style="?android:attr/buttonBarButtonStyle"
-                        android:layout_marginEnd="@dimen/edit_text_margin"/>
+                        android:layout_marginEnd="@dimen/edit_text_margin" />
 
                 <Button
                         android:id="@+id/up_movies_button"
@@ -54,17 +62,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/up_button"
                         style="?android:attr/buttonBarButtonStyle"
-                        android:layout_marginEnd="@dimen/edit_text_margin"/>
+                        android:layout_marginEnd="@dimen/edit_text_margin" />
 
             </LinearLayout>
 
         </HorizontalScrollView>
-
-        <androidx.appcompat.widget.SearchView
-                android:id="@+id/movies_search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -73,7 +75,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movies_search_view" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
