@@ -1,8 +1,7 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.movies_repo;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;

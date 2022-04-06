@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,19 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentGamesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTvShowsBinding;
 
-public class GamesFragment extends Fragment
+public class TvShowsFragment extends Fragment
 {
-  private FragmentGamesBinding binding;
+  private FragmentTvShowsBinding binding;
+  private TVShowsViewModel tvShowsViewModel;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
-    GamesViewModel moviesViewModel = new ViewModelProvider(this)
-        .get(GamesViewModel.class);
+    tvShowsViewModel = new ViewModelProvider(this)
+        .get(TVShowsViewModel.class);
 
-    binding = FragmentGamesBinding.inflate(inflater, container, false);
+    binding = FragmentTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
     return root;

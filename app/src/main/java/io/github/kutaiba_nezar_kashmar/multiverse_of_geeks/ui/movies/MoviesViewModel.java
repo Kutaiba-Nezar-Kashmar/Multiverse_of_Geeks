@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.comment_repo.CommentRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.movies_repo.MovieRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.CommentRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {
