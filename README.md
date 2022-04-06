@@ -7,6 +7,7 @@
 - [User stories](#user_stories)
 - [Built With](#built_with)
 - [UX](#ux) 
+- [Credit & References](#credit)
 
 <a name="description"/>
 
@@ -47,3 +48,7 @@ So far:
 ## UX 
 [Multiverse_of_Geeks](https://whimsical.com/multiverse-of-geeks-app-8JWu8o1x6uw9z76cm3V7bY)
 
+<a name="credit"/>
+
+## Credit & References
+- TMDB: This app was made possible with the help of The movie database (TMDB) which provides a powerful and free to use API
