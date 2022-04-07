@@ -1,12 +1,16 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -35,9 +39,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
   @Override
   public void onBindViewHolder(@NonNull CommentViewHolder holder, int position)
   {
-    holder.senderName.setText(comments.get(position).getUser().getUserName());
-    holder.timeStamp.setText(String.valueOf(comments.get(position).getTimeStamp()));
-    holder.comment.setText(comments.get(position).getText());
+    holder.comment.setText(comments.get(position).getContent());
+    holder.senderName.setText(comments.get(position).getAuthor());
+    holder.timeStamp.setText(comments.get(position).getCreated_at());
   }
 
   @Override
@@ -62,6 +66,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     private final TextView comment;
     private final TextView senderName;
     private final TextView timeStamp;
+    private ImageView avatar;
+    private Context context;
 
     public CommentViewHolder(@NonNull View itemView)
     {
@@ -69,6 +75,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
       comment = itemView.findViewById(R.id.comment_id);
       senderName = itemView.findViewById(R.id.sender_name_id);
       timeStamp = itemView.findViewById(R.id.comment_timestamp_id);
+      context = itemView.getContext();
     }
   }
 }

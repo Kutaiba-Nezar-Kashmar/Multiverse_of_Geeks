@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
@@ -24,6 +26,7 @@ public class MovieRepository
   private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
   private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
   private final MutableLiveData<ArrayList<Movie>> searchedMovies;
+  private final MutableLiveData<ArrayList<Comment>> movieReviews;
 
   private MovieRepository()
   {
@@ -33,6 +36,7 @@ public class MovieRepository
     nowPlayingMovies = new MutableLiveData<>();
     upcomingMovies = new MutableLiveData<>();
     searchedMovies = new MutableLiveData<>();
+    movieReviews = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -196,5 +200,31 @@ public class MovieRepository
       }
     });
     return searchedMovies;
+  }
+
+  public MutableLiveData<ArrayList<Comment>> getMovieReviews(int id)
+  {
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    Call<CommentResponse> call = movieAPI
+        .getMovieReviews(id, Constants.API_KEY);
+    call.enqueue(new Callback<CommentResponse>()
+    {
+      @Override
+      public void onResponse(Call<CommentResponse> call,
+          Response<CommentResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          movieReviews.setValue(response.body().getResults());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<CommentResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return movieReviews;
   }
 }

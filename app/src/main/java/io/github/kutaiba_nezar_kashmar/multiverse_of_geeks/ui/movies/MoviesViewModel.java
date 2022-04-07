@@ -11,20 +11,17 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.CommentRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {
   private MovieRepository movieRepository;
-  private CommentRepository commentRepository;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)
   {
     super(application);
     movieRepository = MovieRepository.getInstance();
-    commentRepository = CommentRepository.getInstance();
   }
 
   public LiveData<Movie> findMovieById(int id)
@@ -57,8 +54,8 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getAllSearchedMoviesMovies(arg);
   }
 
-  public LiveData<ArrayList<Comment>> getAllComments()
+  public LiveData<ArrayList<Comment>> getAllComments(int id)
   {
-    return commentRepository.getComments();
+    return movieRepository.getMovieReviews(id);
   }
 }

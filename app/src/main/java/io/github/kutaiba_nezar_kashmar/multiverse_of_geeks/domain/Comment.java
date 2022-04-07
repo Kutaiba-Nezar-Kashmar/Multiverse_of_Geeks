@@ -1,47 +1,45 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain;
 
-import java.time.LocalDateTime;
-
 public class Comment
 {
-  private String text;
-  private String timeStamp;
-  private User user;
+  private String id;
+  private String author;
+  private Commenter author_details;
+  private String content;
+  private String created_at;
 
-  public Comment(String text, String timeStamp, User user)
+  public Comment(String id, String author, Commenter author_details,
+      String content, String created_at)
   {
-    this.text = text;
-    this.timeStamp = timeStamp;
-    this.user = user;
+    this.id = id;
+    this.author = author;
+    this.author_details = author_details;
+    this.content = content;
+    this.created_at = created_at;
   }
 
-  public String getText()
+  public String getId()
   {
-    return text;
+    return id;
   }
 
-  public void setText(String text)
+  public String getAuthor()
   {
-    this.text = text;
+    return author;
   }
 
-  public String getTimeStamp()
+  public Commenter getAuthor_details()
   {
-    return timeStamp;
+    return author_details;
   }
 
-  public void setTimeStamp(String timeStamp)
+  public String getContent()
   {
-    this.timeStamp = timeStamp;
+    return content;
   }
 
-  public User getUser()
+  public String getCreated_at()
   {
-    return user;
-  }
-
-  public void setUser(User user)
-  {
-    this.user = user;
+    return created_at;
   }
 }

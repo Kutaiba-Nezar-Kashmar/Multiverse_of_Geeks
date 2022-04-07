@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,4 +23,7 @@ public interface MovieAPI
   @GET("search/movie")
   Call<MovieResponse> searchForMovie(@Query("api_key") String apiKey,
       @Query("query") String query);
+  @GET("movie/{movie_id}/reviews")
+  Call<CommentResponse> getMovieReviews(@Path("movie_id") int movie_id,
+      @Query("api_key") String apiKey);
 }

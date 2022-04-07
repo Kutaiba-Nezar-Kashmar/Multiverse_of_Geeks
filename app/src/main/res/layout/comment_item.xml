@@ -7,18 +7,30 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/edit_text_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/commenter_avatar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/tmdb"
+                android:layout_marginStart="@dimen/edit_text_margin"/>
 
         <TextView
                 android:id="@+id/sender_name_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/home_text"
-                android:layout_marginEnd="@dimen/edit_text_margin" />
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginStart="@dimen/edit_text_margin"/>
 
         <TextView
                 android:id="@+id/comment_timestamp_id"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/home_text" />
 
@@ -28,7 +40,9 @@
             android:id="@+id/comment_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/home_text" />
+            android:text="@string/home_text"
+            android:layout_marginTop="@dimen/edit_text_margin"
+            android:layout_marginStart="@dimen/edit_text_margin"/>
 
     <View
             android:layout_width="match_parent"

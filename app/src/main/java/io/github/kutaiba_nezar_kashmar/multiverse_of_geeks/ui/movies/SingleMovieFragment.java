@@ -110,7 +110,7 @@ public class SingleMovieFragment extends Fragment
   {
     commentAdapter = new CommentAdapter(comments);
     Observer<ArrayList<Comment>> update = commentAdapter::updateCommentList;
-    moviesViewModel.getAllComments().observe(getViewLifecycleOwner(), update);
+    moviesViewModel.getAllComments(movieId).observe(getViewLifecycleOwner(), update);
   }
 
 }

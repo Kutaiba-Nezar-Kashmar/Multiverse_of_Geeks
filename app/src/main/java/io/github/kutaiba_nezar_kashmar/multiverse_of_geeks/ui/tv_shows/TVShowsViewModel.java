@@ -9,21 +9,17 @@ import androidx.lifecycle.LiveData;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.CommentRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.TVShowRepository;
 
 public class TVShowsViewModel extends AndroidViewModel
 {
   private TVShowRepository tvShowRepository;
-  private CommentRepository commentRepository;
 
   public TVShowsViewModel(@NonNull Application application)
   {
     super(application);
     tvShowRepository = TVShowRepository.getInstance();
-    commentRepository = CommentRepository.getInstance();
   }
 
   public LiveData<TvShow> findTvShowById(int id)
@@ -58,6 +54,6 @@ public class TVShowsViewModel extends AndroidViewModel
 
   public LiveData<ArrayList<Comment>> getAllComments()
   {
-    return commentRepository.getComments();
+    return null;
   }
 }
