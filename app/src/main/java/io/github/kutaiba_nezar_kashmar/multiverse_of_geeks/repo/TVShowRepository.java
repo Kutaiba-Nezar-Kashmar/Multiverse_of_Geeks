@@ -23,6 +23,7 @@ public class TVShowRepository
   private final MutableLiveData<ArrayList<TvShow>> onAirTvShows;
   private final MutableLiveData<ArrayList<TvShow>> airingTodayTvShows;
   private final MutableLiveData<ArrayList<TvShow>> searchedTvShows;
+  private final MutableLiveData<TvShow> tvShow;
 
   private TVShowRepository()
   {
@@ -31,6 +32,7 @@ public class TVShowRepository
     onAirTvShows = new MutableLiveData<>();
     airingTodayTvShows = new MutableLiveData<>();
     searchedTvShows = new MutableLiveData<>();
+    tvShow = new MutableLiveData<>();
   }
 
   public static synchronized TVShowRepository getInstance()
@@ -40,6 +42,31 @@ public class TVShowRepository
       instance = new TVShowRepository();
     }
     return instance;
+  }
+
+  public MutableLiveData<TvShow> findTvShowById(int id)
+  {
+    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    Call<TvShowResponse> call = tvShowAPI.getTvShowById(id, Constants.API_KEY);
+    call.enqueue(new Callback<TvShowResponse>()
+    {
+      @Override
+      public void onResponse(Call<TvShowResponse> call,
+          Response<TvShowResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          tvShow.setValue(response.body().getTvShow());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return tvShow;
   }
 
   public MutableLiveData<ArrayList<TvShow>> getAllPopularTvShows()

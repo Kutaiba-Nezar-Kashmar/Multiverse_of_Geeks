@@ -48,6 +48,7 @@ public class SingleMovieFragment extends Fragment
 
     binding = FragmentSingleMovieBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
     movieTitle = root.findViewById(R.id.single_movie_title);
     movieOverview = root.findViewById(R.id.movie_overview);
     movieReleaseYear = root.findViewById(R.id.movie_release_year);

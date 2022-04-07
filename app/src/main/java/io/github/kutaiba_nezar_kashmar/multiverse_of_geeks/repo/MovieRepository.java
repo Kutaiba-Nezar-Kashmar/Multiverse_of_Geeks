@@ -47,7 +47,7 @@ public class MovieRepository
   public MutableLiveData<Movie> findMovie(int id)
   {
     MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
-    Call<MovieResponse> call = movieAPI.getMovies(id, Constants.API_KEY);
+    Call<MovieResponse> call = movieAPI.getMovieById(id, Constants.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
