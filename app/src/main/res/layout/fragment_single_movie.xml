@@ -85,6 +85,15 @@
 
         </LinearLayout>
 
+        <Button
+                android:id="@+id/to_movie_cast_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cast_button"
+                android:drawableEnd="@drawable/arrow_circle_right_ic"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"/>
+
         <TextView
                 android:id="@+id/movie_overview"
                 android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
@@ -15,6 +16,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +42,7 @@ public class SingleMovieFragment extends Fragment
   private ArrayList<Comment> comments = new ArrayList<>();
   private RecyclerView commentsRecyclerView;
   private CommentAdapter commentAdapter;
+  private Button toCastButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -55,6 +58,13 @@ public class SingleMovieFragment extends Fragment
     movieRatting = root.findViewById(R.id.single_movie_rating_bar);
     moviePoster = root.findViewById(R.id.single_movie_image);
     commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
+    toCastButton = root.findViewById(R.id.to_movie_cast_button);
+    toCastButton.setOnClickListener(view -> {
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
+          .actionNavSingleMovieToNavMovieCast();
+      action.setMovieId(String.valueOf(movieId));
+      Navigation.findNavController(view).navigate(action);
+    });
 
     return root;
   }
@@ -79,10 +89,12 @@ public class SingleMovieFragment extends Fragment
                 "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(moviePoster);
           });
+
     }
 
     commentsRecyclerView.hasFixedSize();
-    commentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    commentsRecyclerView
+        .setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpAdapterView();
     commentsRecyclerView.setAdapter(commentAdapter);
   }

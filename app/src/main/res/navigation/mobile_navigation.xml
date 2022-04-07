@@ -66,6 +66,20 @@
                 android:name="movie_id_arg"
                 app:argType="string"
                 android:defaultValue="default" />
+        <action
+                android:id="@+id/action_nav_single_movie_to_nav_movie_cast"
+                app:destination="@id/nav_movie_cast" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_movie_cast"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.movie_cast.MovieCastFragment"
+            android:label="@string/nav_cast"
+            tools:layout="@layout/fragment_movie_cast">
+        <argument
+                android:name="movieId"
+                app:argType="string"
+                android:defaultValue="default" />
     </fragment>
 
     <fragment

@@ -99,9 +99,16 @@ Kutaiba></string>
     <string name="up_button">Upcoming</string>
     <string name="the_app_was_made_possible_with_the_help_of">The app was made possible with the help of:</string>
     <string name="tmdb">TMDB</string>
+    <string name="cast_button">View Cast members</string>
 
     <!--TvSHows fragment strings-->
     <string name="on_air">On Air</string>
     <string name="airing_today">Airing Today</string>
+
+    <!--Cast item strings-->
+    <string name="nav_cast">Cast</string>
+    <string name="name_holder">Name:</string>
+    <string name="character">AS:</string>
+    <string name="role">Role:</string>
 
 </resources>
