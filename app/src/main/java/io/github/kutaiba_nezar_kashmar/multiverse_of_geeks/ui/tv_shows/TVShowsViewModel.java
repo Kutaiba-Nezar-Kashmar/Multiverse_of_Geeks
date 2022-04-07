@@ -25,4 +25,24 @@ public class TVShowsViewModel extends AndroidViewModel
   {
     return tvShowRepository.getAllPopularTvShows();
   }
+
+  public LiveData<ArrayList<TvShow>> getAllTopRatedTvShows()
+  {
+    return tvShowRepository.getAllTopRatedTvShows();
+  }
+
+  public LiveData<ArrayList<TvShow>> getAllOnAirTvShows()
+  {
+    return tvShowRepository.getAllOnAirTvShows();
+  }
+
+  public LiveData<ArrayList<TvShow>> getAllAiringTodayTvShows()
+  {
+    return tvShowRepository.getAllAiringTodayTvShows();
+  }
+
+  public LiveData<ArrayList<TvShow>> getAllSearchedTvShows(String arg)
+  {
+    return tvShowRepository.getAllSearchedTvShows(arg);
+  }
 }

@@ -88,6 +88,21 @@ public class TvShowsFragment extends Fragment
           .observe(getViewLifecycleOwner(), update);
     });
 
+    topButton.setOnClickListener(view -> {
+      tvShowsViewModel.getAllTopRatedTvShows()
+          .observe(getViewLifecycleOwner(), update);
+    });
+
+    nowButton.setOnClickListener(view -> {
+      tvShowsViewModel.getAllOnAirTvShows()
+          .observe(getViewLifecycleOwner(), update);
+    });
+
+    upButton.setOnClickListener(view -> {
+      tvShowsViewModel.getAllAiringTodayTvShows()
+          .observe(getViewLifecycleOwner(), update);
+    });
+
     setUpSearchView(update);
   }
 
@@ -104,7 +119,7 @@ public class TvShowsFragment extends Fragment
 
   private void refresh()
   {
-    swipeRefreshLayout.setOnRefreshListener(()-> {
+    swipeRefreshLayout.setOnRefreshListener(() -> {
       setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
     });
@@ -117,13 +132,16 @@ public class TvShowsFragment extends Fragment
       @Override
       public boolean onQueryTextSubmit(String query)
       {
-        //implement
+        tvShowsViewModel.getAllSearchedTvShows(query)
+            .observe(getViewLifecycleOwner(), update);
         return false;
       }
 
       @Override
-      public boolean onQueryTextChange(String newText)
+      public boolean onQueryTextChange(String query)
       {
+        tvShowsViewModel.getAllSearchedTvShows(query)
+            .observe(getViewLifecycleOwner(), update);
         return false;
       }
     });

@@ -135,8 +135,10 @@ public class MoviesFragment extends Fragment
       }
 
       @Override
-      public boolean onQueryTextChange(String newText)
+      public boolean onQueryTextChange(String query)
       {
+        moviesViewModel.getAllSearchedMoviesMovies(query)
+            .observe(getViewLifecycleOwner(), update);
         return false;
       }
     });

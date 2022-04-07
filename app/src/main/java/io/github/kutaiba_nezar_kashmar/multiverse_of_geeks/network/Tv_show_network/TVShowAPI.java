@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -9,4 +10,14 @@ public interface TVShowAPI
 {
   @GET("tv/popular")
   Call<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey);
+  @GET("tv/top_rated")
+  Call<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey);
+  @GET("tv/on_the_air")
+  Call<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey);
+  @GET("tv/airing_today")
+  Call<TvShowResponse> getAllAiringTodayTvShows(
+      @Query("api_key") String apiKey);
+  @GET("search/tv")
+  Call<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
+      @Query("query") String query);
 }

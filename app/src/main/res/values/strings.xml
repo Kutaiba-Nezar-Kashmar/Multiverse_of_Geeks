@@ -100,4 +100,8 @@ Kutaiba></string>
     <string name="the_app_was_made_possible_with_the_help_of">The app was made possible with the help of:</string>
     <string name="tmdb">TMDB</string>
 
+    <!--TvSHows fragment strings-->
+    <string name="on_air">On Air</string>
+    <string name="airing_today">Airing Today</string>
+
 </resources>

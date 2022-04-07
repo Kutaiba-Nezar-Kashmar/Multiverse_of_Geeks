@@ -51,7 +51,7 @@
                         android:id="@+id/now_tv_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/now_button"
+                        android:text="@string/on_air"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_marginEnd="@dimen/edit_text_margin" />
 
@@ -59,7 +59,7 @@
                         android:id="@+id/up_tv_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/up_button"
+                        android:text="@string/airing_today"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_marginEnd="@dimen/edit_text_margin" />
 
