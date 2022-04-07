@@ -25,4 +25,9 @@ public class CastViewModel extends AndroidViewModel
   {
     return castRepository.getMovieCast(movieId);
   }
+
+  public LiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
+  {
+    return castRepository.getTvShowCast(tvShowId);
+  }
 }

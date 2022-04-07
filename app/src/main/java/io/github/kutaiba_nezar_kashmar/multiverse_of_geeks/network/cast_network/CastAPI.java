@@ -11,4 +11,7 @@ public interface CastAPI
   @GET("movie/{movie_id}/credits")
   Call<CastResponse> getMovieCast(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
+  @GET("tv/{tv_id}/credits")
+  Call<CastResponse> getTvShowCast(@Path("tv_id") int tv_id,
+      @Query("api_key") String apiKey);
 }

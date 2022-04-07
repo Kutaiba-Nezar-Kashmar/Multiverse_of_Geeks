@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,7 @@ public class SingleTvFragment extends Fragment
   private CommentAdapter adapter;
   private int tvId;
   private ArrayList<Comment> comments = new ArrayList<>();
+  private Button toCastButton;
 
   @Nullable
   @Override
@@ -55,6 +58,13 @@ public class SingleTvFragment extends Fragment
     tvRatingBar = root.findViewById(R.id.single_tv_rating_bar);
     tvPoster = root.findViewById(R.id.single_tv_image);
     commentRv = root.findViewById(R.id.tv_coming_rv_id);
+    toCastButton = root.findViewById(R.id.to_tv_cast_button);
+    toCastButton.setOnClickListener(view -> {
+      SingleTvFragmentDirections.ActionNavSingleTvToNavTvCast action = SingleTvFragmentDirections
+          .actionNavSingleTvToNavTvCast();
+      action.setTvId(String.valueOf(tvId));
+      Navigation.findNavController(view).navigate(action);
+    });
 
     return root;
   }

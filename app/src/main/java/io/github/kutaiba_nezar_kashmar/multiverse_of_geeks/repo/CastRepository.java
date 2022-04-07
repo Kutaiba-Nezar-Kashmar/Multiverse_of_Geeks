@@ -19,10 +19,12 @@ public class CastRepository
 {
   private static CastRepository instance;
   private final MutableLiveData<ArrayList<Cast>> movieCast;
+  private final MutableLiveData<ArrayList<Cast>> tvShowCast;
 
   private CastRepository()
   {
     movieCast = new MutableLiveData<>();
+    tvShowCast = new MutableLiveData<>();
   }
 
   public static synchronized CastRepository getInstance()
@@ -57,5 +59,31 @@ public class CastRepository
       }
     });
     return movieCast;
+  }
+
+  public MutableLiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
+  {
+    CastAPI castAPI = MovieTVServiceGenerator.getCastAPI();
+    Call<CastResponse> call = castAPI
+        .getTvShowCast(tvShowId, Constants.API_KEY);
+    call.enqueue(new Callback<CastResponse>()
+    {
+      @Override
+      public void onResponse(Call<CastResponse> call,
+          Response<CastResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          tvShowCast.setValue(response.body().getCastList());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<CastResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return tvShowCast;
   }
 }

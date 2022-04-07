@@ -101,6 +101,20 @@
                 android:name="tv_show_id"
                 app:argType="string"
                 android:defaultValue="default" />
+        <action
+                android:id="@+id/action_nav_single_tv_to_nav_tv_cast"
+                app:destination="@id/nav_tv_cast" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_tv_cast"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.tv_show_cast.TvShowCastFragment"
+            android:label="@string/nav_cast"
+            tools:layout="@layout/fragment_tv_show_cast">
+        <argument
+                android:name="tvId"
+                app:argType="string"
+                android:defaultValue="default" />
     </fragment>
 
 </navigation>

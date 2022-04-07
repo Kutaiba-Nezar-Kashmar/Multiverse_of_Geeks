@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.movie_cast;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.tv_show_cast;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,15 +17,15 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MovieCastAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TvCastAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMovieCastBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTvShowCastBinding;
 
-public class MovieCastFragment extends Fragment
+public class TvShowCastFragment extends Fragment
 {
-  private FragmentMovieCastBinding binding;
+  private FragmentTvShowCastBinding binding;
   private CastViewModel castViewModel;
-  private MovieCastAdapter adapter;
+  private TvCastAdapter adapter;
   private ArrayList<Cast> casts = new ArrayList<>();
   private RecyclerView recyclerView;
 
@@ -36,9 +36,9 @@ public class MovieCastFragment extends Fragment
   {
     castViewModel = new ViewModelProvider(this).get(CastViewModel.class);
 
-    binding = FragmentMovieCastBinding.inflate(inflater, container, false);
+    binding = FragmentTvShowCastBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    recyclerView = root.findViewById(R.id.movie_cast_rv);
+    recyclerView = root.findViewById(R.id.tv_cast_rv);
 
     return root;
   }
@@ -56,14 +56,14 @@ public class MovieCastFragment extends Fragment
   {
     if (getArguments() != null)
     {
-      String id = MovieCastFragmentArgs.fromBundle(getArguments()).getMovieId();
-      int movieId = Integer.parseInt(id);
-      castViewModel.getMovieCast(movieId);
+      String id = TvShowCastFragmentArgs.fromBundle(getArguments()).getTvId();
+      int tvId = Integer.parseInt(id);
+      castViewModel.getTvShowCast(tvId);
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-      adapter = new MovieCastAdapter(casts);
-      Observer<ArrayList<Cast>> update = adapter::updateMovieCastList;
-      castViewModel.getMovieCast(movieId)
+      adapter = new TvCastAdapter(casts);
+      Observer<ArrayList<Cast>> update = adapter::updateTvCastList;
+      castViewModel.getTvShowCast(tvId)
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);
     }
