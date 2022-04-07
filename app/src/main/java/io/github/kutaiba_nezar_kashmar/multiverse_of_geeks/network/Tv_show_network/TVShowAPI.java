@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,4 +24,7 @@ public interface TVShowAPI
   @GET("search/tv")
   Call<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
       @Query("query") String query);
+  @GET("tv/{tv_id}/reviews")
+  Call<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
+      @Query("tv_id") String apiKey);
 }

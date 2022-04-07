@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network.TVShowAPI;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +27,7 @@ public class TVShowRepository
   private final MutableLiveData<ArrayList<TvShow>> airingTodayTvShows;
   private final MutableLiveData<ArrayList<TvShow>> searchedTvShows;
   private final MutableLiveData<TvShow> tvShow;
+  private final MutableLiveData<ArrayList<Comment>> tvReviews;
 
   private TVShowRepository()
   {
@@ -33,6 +37,7 @@ public class TVShowRepository
     airingTodayTvShows = new MutableLiveData<>();
     searchedTvShows = new MutableLiveData<>();
     tvShow = new MutableLiveData<>();
+    tvReviews = new MutableLiveData<>();
   }
 
   public static synchronized TVShowRepository getInstance()
@@ -72,7 +77,8 @@ public class TVShowRepository
   public MutableLiveData<ArrayList<TvShow>> getAllPopularTvShows()
   {
     TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.getAllPopularTvShows(Constants.API_KEY);
+    Call<TvShowResponse> call = tvShowAPI
+        .getAllPopularTvShows(Constants.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -97,7 +103,8 @@ public class TVShowRepository
   public MutableLiveData<ArrayList<TvShow>> getAllTopRatedTvShows()
   {
     TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.getAllTopRatedTvShows(Constants.API_KEY);
+    Call<TvShowResponse> call = tvShowAPI
+        .getAllTopRatedTvShows(Constants.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -147,7 +154,8 @@ public class TVShowRepository
   public MutableLiveData<ArrayList<TvShow>> getAllAiringTodayTvShows()
   {
     TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.getAllAiringTodayTvShows(Constants.API_KEY);
+    Call<TvShowResponse> call = tvShowAPI
+        .getAllAiringTodayTvShows(Constants.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -172,7 +180,8 @@ public class TVShowRepository
   public MutableLiveData<ArrayList<TvShow>> getAllSearchedTvShows(String arg)
   {
     TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.searchForTvShow(Constants.API_KEY, arg);
+    Call<TvShowResponse> call = tvShowAPI
+        .searchForTvShow(Constants.API_KEY, arg);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -192,5 +201,30 @@ public class TVShowRepository
       }
     });
     return searchedTvShows;
+  }
+
+  public MutableLiveData<ArrayList<Comment>> getTvReviews(int id)
+  {
+    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    Call<CommentResponse> call = tvShowAPI.getTvReviews(id, Constants.API_KEY);
+    call.enqueue(new Callback<CommentResponse>()
+    {
+      @Override
+      public void onResponse(Call<CommentResponse> call,
+          Response<CommentResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          tvReviews.setValue(response.body().getResults());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<CommentResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return tvReviews;
   }
 }

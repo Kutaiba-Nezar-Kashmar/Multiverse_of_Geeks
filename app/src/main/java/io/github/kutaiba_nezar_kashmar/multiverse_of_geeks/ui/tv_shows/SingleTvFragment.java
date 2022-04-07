@@ -23,7 +23,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.CommentAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MovieReviewsAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TvShowReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleTvShowBinding;
 
@@ -37,7 +38,7 @@ public class SingleTvFragment extends Fragment
   private ImageView tvPoster;
   private RecyclerView commentRv;
   private TVShowsViewModel tvShowsViewModel;
-  private CommentAdapter adapter;
+  private TvShowReviewsAdapter adapter;
   private int tvId;
   private ArrayList<Comment> comments = new ArrayList<>();
   private Button toCastButton;
@@ -105,8 +106,8 @@ public class SingleTvFragment extends Fragment
 
   private void setUpAdapterView()
   {
-    adapter = new CommentAdapter(comments);
+    adapter = new TvShowReviewsAdapter(comments);
     Observer<ArrayList<Comment>> update = adapter::updateCommentList;
-    tvShowsViewModel.getAllComments().observe(getViewLifecycleOwner(), update);
+    tvShowsViewModel.getAllComments(tvId).observe(getViewLifecycleOwner(), update);
   }
 }

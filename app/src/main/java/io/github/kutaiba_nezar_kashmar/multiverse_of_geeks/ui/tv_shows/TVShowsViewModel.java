@@ -52,8 +52,8 @@ public class TVShowsViewModel extends AndroidViewModel
     return tvShowRepository.getAllSearchedTvShows(arg);
   }
 
-  public LiveData<ArrayList<Comment>> getAllComments()
+  public LiveData<ArrayList<Comment>> getAllComments(int id)
   {
-    return null;
+    return tvShowRepository.getTvReviews(id);
   }
 }

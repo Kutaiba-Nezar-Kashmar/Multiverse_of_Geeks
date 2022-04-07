@@ -7,12 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,7 +23,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.CommentAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
 
@@ -41,7 +39,7 @@ public class SingleMovieFragment extends Fragment
   private int movieId;
   private ArrayList<Comment> comments = new ArrayList<>();
   private RecyclerView commentsRecyclerView;
-  private CommentAdapter commentAdapter;
+  private MovieReviewsAdapter movieReviewsAdapter;
   private Button toCastButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -96,7 +94,7 @@ public class SingleMovieFragment extends Fragment
     commentsRecyclerView
         .setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpAdapterView();
-    commentsRecyclerView.setAdapter(commentAdapter);
+    commentsRecyclerView.setAdapter(movieReviewsAdapter);
   }
 
   @Override
@@ -108,8 +106,8 @@ public class SingleMovieFragment extends Fragment
 
   private void setUpAdapterView()
   {
-    commentAdapter = new CommentAdapter(comments);
-    Observer<ArrayList<Comment>> update = commentAdapter::updateCommentList;
+    movieReviewsAdapter = new MovieReviewsAdapter(comments);
+    Observer<ArrayList<Comment>> update = movieReviewsAdapter::updateCommentList;
     moviesViewModel.getAllComments(movieId).observe(getViewLifecycleOwner(), update);
   }
 
