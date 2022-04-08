@@ -27,6 +27,7 @@ public class MovieRepository
   private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
   private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
   private final MutableLiveData<ArrayList<Movie>> searchedMovies;
+  private final MutableLiveData<ArrayList<Movie>> similarMovies;
   private final MutableLiveData<ArrayList<Comment>> movieReviews;
 
   private MovieRepository()
@@ -38,6 +39,7 @@ public class MovieRepository
     upcomingMovies = new MutableLiveData<>();
     searchedMovies = new MutableLiveData<>();
     movieReviews = new MutableLiveData<>();
+    similarMovies = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -225,6 +227,35 @@ public class MovieRepository
       }
     });
     return searchedMovies;
+  }
+
+  public MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
+  {
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    Call<MovieResponse> call = movieAPI.getSimilarMovies(id, Constants.API_KEY);
+    call.enqueue(new Callback<MovieResponse>()
+    {
+      @Override
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          if (response.body() != null)
+          {
+            similarMovies.setValue(response.body().getResults());
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return similarMovies;
   }
 
   public MutableLiveData<ArrayList<Comment>> getMovieReviews(int id)

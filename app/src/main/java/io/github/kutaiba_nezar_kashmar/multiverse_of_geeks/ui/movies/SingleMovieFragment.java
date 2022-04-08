@@ -63,6 +63,14 @@ public class SingleMovieFragment extends Fragment
       Navigation.findNavController(view).navigate(action);
     });
 
+    Button toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
+    toSimilarButton.setOnClickListener(view -> {
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavSimilarMovies action = SingleMovieFragmentDirections
+          .actionNavSingleMovieToNavSimilarMovies()
+          .setMovieId(String.valueOf(movieId));
+      Navigation.findNavController(view).navigate(action);
+    });
+
     return root;
   }
 

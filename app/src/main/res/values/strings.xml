@@ -90,6 +90,8 @@ Kutaiba></string>
     <string name="ratting">Ratting</string>
     <string name="r_year">Release Year</string>
     <string name="comment">Leave a comment</string>
+    <string name="to_similar">More like this</string>
+    <string name="similar_movies">Similar Movies</string>
 
     <!--Movies fragment strings-->
     <string name="search">search</string>

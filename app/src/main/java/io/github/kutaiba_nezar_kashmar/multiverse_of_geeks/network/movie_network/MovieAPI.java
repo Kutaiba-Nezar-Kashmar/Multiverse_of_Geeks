@@ -85,4 +85,15 @@ public interface MovieAPI
   @GET("movie/{movie_id}/reviews")
   Call<CommentResponse> getMovieReviews(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
+
+  /**
+   * Retrofit method that returns a response from TMDB webserver. Where the method
+   * query details of similar movies to the selected movie
+   *
+   * @param apiKey The api key required to authorize the API call
+   * @return Retrofit call with the value of MovieResponse for the queried movies
+   */
+  @GET("movie/{movie_id}/similar")
+  Call<MovieResponse> getSimilarMovies(@Path("movie_id") int movie_id,
+      @Query("api_key") String apiKey);
 }

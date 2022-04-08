@@ -69,6 +69,20 @@
         <action
                 android:id="@+id/action_nav_single_movie_to_nav_movie_cast"
                 app:destination="@id/nav_movie_cast" />
+        <action
+                android:id="@+id/action_nav_single_movie_to_nav_similar_movies"
+                app:destination="@id/nav_similar_movies" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_similar_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SimilarMoviesFragment"
+            android:label="@string/similar_movies"
+            tools:layout="@layout/fragment_similar_movies">
+        <argument
+                android:name="movieId"
+                app:argType="string"
+                android:defaultValue="default" />
     </fragment>
 
     <fragment

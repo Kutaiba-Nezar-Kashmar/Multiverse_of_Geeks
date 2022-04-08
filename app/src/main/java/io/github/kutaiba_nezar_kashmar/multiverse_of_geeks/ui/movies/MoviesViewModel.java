@@ -58,4 +58,9 @@ public class MoviesViewModel extends AndroidViewModel
   {
     return movieRepository.getMovieReviews(id);
   }
+
+  public LiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
+  {
+    return movieRepository.getAllSimilarMovies(id);
+  }
 }
