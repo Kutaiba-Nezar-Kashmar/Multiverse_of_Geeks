@@ -83,6 +83,9 @@
                 android:name="movieId"
                 app:argType="string"
                 android:defaultValue="default" />
+        <action
+                android:id="@+id/action_nav_similar_movies_to_nav_single_movie"
+                app:destination="@id/nav_single_movie" />
     </fragment>
 
     <fragment
