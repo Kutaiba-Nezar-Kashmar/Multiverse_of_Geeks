@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileViewModel;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentCreateProfileBinding;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentEditProfileBinding;
 
 public class CreateAccountFragment extends Fragment
 {
@@ -28,7 +27,8 @@ public class CreateAccountFragment extends Fragment
     return binding.getRoot();
   }
 
-  @Override public void onDestroyView()
+  @Override
+  public void onDestroyView()
   {
     super.onDestroyView();
     binding = null;

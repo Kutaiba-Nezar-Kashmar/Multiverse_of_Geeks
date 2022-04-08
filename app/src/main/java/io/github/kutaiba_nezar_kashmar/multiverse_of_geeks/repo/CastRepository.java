@@ -2,6 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -43,17 +44,21 @@ public class CastRepository
     call.enqueue(new Callback<CastResponse>()
     {
       @Override
-      public void onResponse(Call<CastResponse> call,
-          Response<CastResponse> response)
+      public void onResponse(@NonNull Call<CastResponse> call,
+          @NonNull Response<CastResponse> response)
       {
         if (response.code() == 200)
         {
-          movieCast.setValue(response.body().getCastList());
+          if (response.body() != null)
+          {
+            movieCast.setValue(response.body().getCastList());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<CastResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<CastResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -69,17 +74,21 @@ public class CastRepository
     call.enqueue(new Callback<CastResponse>()
     {
       @Override
-      public void onResponse(Call<CastResponse> call,
-          Response<CastResponse> response)
+      public void onResponse(@NonNull Call<CastResponse> call,
+          @NonNull Response<CastResponse> response)
       {
         if (response.code() == 200)
         {
-          tvShowCast.setValue(response.body().getCastList());
+          if (response.body() != null)
+          {
+            tvShowCast.setValue(response.body().getCastList());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<CastResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<CastResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }

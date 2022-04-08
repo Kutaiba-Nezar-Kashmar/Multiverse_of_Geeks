@@ -37,10 +37,9 @@ public class SingleMovieFragment extends Fragment
   private RatingBar movieRatting;
   private ImageView moviePoster;
   private int movieId;
-  private ArrayList<Comment> comments = new ArrayList<>();
+  private final ArrayList<Comment> comments = new ArrayList<>();
   private RecyclerView commentsRecyclerView;
   private MovieReviewsAdapter movieReviewsAdapter;
-  private Button toCastButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -56,7 +55,7 @@ public class SingleMovieFragment extends Fragment
     movieRatting = root.findViewById(R.id.single_movie_rating_bar);
     moviePoster = root.findViewById(R.id.single_movie_image);
     commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
-    toCastButton = root.findViewById(R.id.to_movie_cast_button);
+    Button toCastButton = root.findViewById(R.id.to_movie_cast_button);
     toCastButton.setOnClickListener(view -> {
       SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
           .actionNavSingleMovieToNavMovieCast();
@@ -108,7 +107,8 @@ public class SingleMovieFragment extends Fragment
   {
     movieReviewsAdapter = new MovieReviewsAdapter(comments);
     Observer<ArrayList<Comment>> update = movieReviewsAdapter::updateCommentList;
-    moviesViewModel.getAllComments(movieId).observe(getViewLifecycleOwner(), update);
+    moviesViewModel.getAllComments(movieId)
+        .observe(getViewLifecycleOwner(), update);
   }
 
 }

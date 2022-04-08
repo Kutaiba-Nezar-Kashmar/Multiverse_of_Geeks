@@ -49,6 +49,7 @@ public class TvCastAdapter
     holder.role.setText(
         holder.context.getString(R.string.role) + " " + casts.get(position)
             .getKnown_for_department());
+    //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + casts.get(position)
             .getProfile_path()).into(holder.pic);
@@ -64,6 +65,7 @@ public class TvCastAdapter
     return 0;
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateTvCastList(final ArrayList<Cast> casts)
   {
     this.casts.clear();

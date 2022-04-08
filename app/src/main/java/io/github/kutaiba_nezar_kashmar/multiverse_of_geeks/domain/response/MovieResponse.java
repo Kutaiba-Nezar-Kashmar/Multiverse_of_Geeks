@@ -17,7 +17,8 @@ public class MovieResponse
 
   public Movie getMovie()
   {
-    return new Movie(id, title, release_date, overview, vote_average, poster_path);
+    return new Movie(id, title, release_date, overview, vote_average,
+        poster_path);
   }
 
   public ArrayList<Movie> getResults()

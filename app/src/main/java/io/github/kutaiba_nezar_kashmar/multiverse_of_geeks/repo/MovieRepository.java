@@ -2,6 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -55,17 +56,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          movie.setValue(response.body().getMovie());
+          if (response.body() != null)
+          {
+            movie.setValue(response.body().getMovie());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -80,17 +85,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          popularMovies.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            popularMovies.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -105,17 +114,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          topRatedMovies.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            topRatedMovies.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -131,17 +144,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          nowPlayingMovies.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            nowPlayingMovies.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -157,17 +174,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          upcomingMovies.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            upcomingMovies.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -184,17 +205,21 @@ public class MovieRepository
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.code() == 200)
         {
-          searchedMovies.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            searchedMovies.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -210,17 +235,21 @@ public class MovieRepository
     call.enqueue(new Callback<CommentResponse>()
     {
       @Override
-      public void onResponse(Call<CommentResponse> call,
-          Response<CommentResponse> response)
+      public void onResponse(@NonNull Call<CommentResponse> call,
+          @NonNull Response<CommentResponse> response)
       {
         if (response.code() == 200)
         {
-          movieReviews.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            movieReviews.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<CommentResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<CommentResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }

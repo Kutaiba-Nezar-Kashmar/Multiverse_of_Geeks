@@ -13,7 +13,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.CastRepository;
 
 public class CastViewModel extends AndroidViewModel
 {
-  private CastRepository castRepository;
+  private final CastRepository castRepository;
 
   public CastViewModel(@NonNull Application application)
   {

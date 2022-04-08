@@ -42,6 +42,7 @@ public class MoviesAdapter
   public void onBindViewHolder(@NonNull MovieViewHolder holder, int position)
   {
     holder.title.setText(movies.get(position).getTitle());
+    //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + movies.get(position)
             .getPoster_path()).into(holder.poster);
@@ -49,6 +50,7 @@ public class MoviesAdapter
         .setText(" " + String.valueOf(movies.get(position).getVote_average()));
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateMovieList(final ArrayList<Movie> movies)
   {
     this.movies.clear();

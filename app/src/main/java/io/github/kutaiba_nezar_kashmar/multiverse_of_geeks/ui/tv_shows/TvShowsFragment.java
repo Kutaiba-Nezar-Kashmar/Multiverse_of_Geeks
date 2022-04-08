@@ -29,7 +29,7 @@ public class TvShowsFragment extends Fragment
   private FragmentTvShowsBinding binding;
   private TVShowsViewModel tvShowsViewModel;
   private RecyclerView recyclerView;
-  private ArrayList<TvShow> tvShows = new ArrayList<>();
+  private final ArrayList<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button popularButton;
@@ -83,25 +83,20 @@ public class TvShowsFragment extends Fragment
     tvShowsViewModel.getAllPopularTvShows()
         .observe(getViewLifecycleOwner(), update);
 
-    popularButton.setOnClickListener(view -> {
-      tvShowsViewModel.getAllPopularTvShows()
-          .observe(getViewLifecycleOwner(), update);
-    });
+    popularButton.setOnClickListener(
+        view -> tvShowsViewModel.getAllPopularTvShows()
+            .observe(getViewLifecycleOwner(), update));
 
-    topButton.setOnClickListener(view -> {
-      tvShowsViewModel.getAllTopRatedTvShows()
-          .observe(getViewLifecycleOwner(), update);
-    });
+    topButton.setOnClickListener(
+        view -> tvShowsViewModel.getAllTopRatedTvShows()
+            .observe(getViewLifecycleOwner(), update));
 
-    nowButton.setOnClickListener(view -> {
-      tvShowsViewModel.getAllOnAirTvShows()
-          .observe(getViewLifecycleOwner(), update);
-    });
+    nowButton.setOnClickListener(view -> tvShowsViewModel.getAllOnAirTvShows()
+        .observe(getViewLifecycleOwner(), update));
 
-    upButton.setOnClickListener(view -> {
-      tvShowsViewModel.getAllAiringTodayTvShows()
-          .observe(getViewLifecycleOwner(), update);
-    });
+    upButton.setOnClickListener(
+        view -> tvShowsViewModel.getAllAiringTodayTvShows()
+            .observe(getViewLifecycleOwner(), update));
 
     setUpSearchView(update);
   }

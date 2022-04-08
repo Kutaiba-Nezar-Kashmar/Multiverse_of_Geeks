@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -26,9 +25,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener
   }
 
   public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
-    MyProfileViewModel myProfileViewModel =
-        new ViewModelProvider(this).get(MyProfileViewModel.class);
+      ViewGroup container, Bundle savedInstanceState)
+  {
+    MyProfileViewModel myProfileViewModel = new ViewModelProvider(this)
+        .get(MyProfileViewModel.class);
 
     binding = FragmentMyProfileBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
@@ -36,13 +36,15 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener
     return root;
   }
 
-  @Override public void onDestroyView()
+  @Override
+  public void onDestroyView()
   {
     super.onDestroyView();
     binding = null;
   }
 
-  @Override public void onViewCreated(@NonNull View view,
+  @Override
+  public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
     super.onViewCreated(view, savedInstanceState);
@@ -51,7 +53,8 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener
     editIcon.setOnClickListener(this);
   }
 
-  @Override public void onClick(View view)
+  @Override
+  public void onClick(View view)
   {
     Navigation.findNavController(view).navigate(R.id.edit_profile_nav);
   }

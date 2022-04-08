@@ -36,7 +36,8 @@ public class MovieReviewsAdapter
   }
 
   @Override
-  public void onBindViewHolder(@NonNull MovieCommentViewHolder holder, int position)
+  public void onBindViewHolder(@NonNull MovieCommentViewHolder holder,
+      int position)
   {
     holder.comment.setText(comments.get(position).getContent());
     holder.senderName.setText(comments.get(position).getAuthor());
@@ -53,6 +54,7 @@ public class MovieReviewsAdapter
     return 0;
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateCommentList(final ArrayList<Comment> comments)
   {
     this.comments.clear();

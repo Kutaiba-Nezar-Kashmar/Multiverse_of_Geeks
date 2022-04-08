@@ -16,19 +16,20 @@ public class LoginFragment extends Fragment
   private FragmentLoginBinding binding;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
-    LoginViewModel homeViewModel =
-        new ViewModelProvider(this).get(LoginViewModel.class);
+      ViewGroup container, Bundle savedInstanceState)
+  {
+    LoginViewModel homeViewModel = new ViewModelProvider(this)
+        .get(LoginViewModel.class);
 
     binding = FragmentLoginBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-
 
     return root;
   }
 
   @Override
-  public void onDestroyView() {
+  public void onDestroyView()
+  {
     super.onDestroyView();
     binding = null;
   }

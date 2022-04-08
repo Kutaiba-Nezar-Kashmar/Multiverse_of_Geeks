@@ -25,8 +25,7 @@ public class MovieCastFragment extends Fragment
 {
   private FragmentMovieCastBinding binding;
   private CastViewModel castViewModel;
-  private MovieCastAdapter adapter;
-  private ArrayList<Cast> casts = new ArrayList<>();
+  private final ArrayList<Cast> casts = new ArrayList<>();
   private RecyclerView recyclerView;
 
   @Nullable
@@ -61,7 +60,7 @@ public class MovieCastFragment extends Fragment
       castViewModel.getMovieCast(movieId);
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-      adapter = new MovieCastAdapter(casts);
+      MovieCastAdapter adapter = new MovieCastAdapter(casts);
       Observer<ArrayList<Cast>> update = adapter::updateMovieCastList;
       castViewModel.getMovieCast(movieId)
           .observe(getViewLifecycleOwner(), update);

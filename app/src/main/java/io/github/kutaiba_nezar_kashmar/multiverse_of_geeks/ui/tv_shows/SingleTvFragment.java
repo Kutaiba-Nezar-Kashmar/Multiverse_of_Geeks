@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TvShowReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleTvShowBinding;
@@ -40,8 +39,7 @@ public class SingleTvFragment extends Fragment
   private TVShowsViewModel tvShowsViewModel;
   private TvShowReviewsAdapter adapter;
   private int tvId;
-  private ArrayList<Comment> comments = new ArrayList<>();
-  private Button toCastButton;
+  private final ArrayList<Comment> comments = new ArrayList<>();
 
   @Nullable
   @Override
@@ -59,7 +57,7 @@ public class SingleTvFragment extends Fragment
     tvRatingBar = root.findViewById(R.id.single_tv_rating_bar);
     tvPoster = root.findViewById(R.id.single_tv_image);
     commentRv = root.findViewById(R.id.tv_coming_rv_id);
-    toCastButton = root.findViewById(R.id.to_tv_cast_button);
+    Button toCastButton = root.findViewById(R.id.to_tv_cast_button);
     toCastButton.setOnClickListener(view -> {
       SingleTvFragmentDirections.ActionNavSingleTvToNavTvCast action = SingleTvFragmentDirections
           .actionNavSingleTvToNavTvCast();

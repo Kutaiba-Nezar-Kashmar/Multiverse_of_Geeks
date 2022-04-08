@@ -42,6 +42,7 @@ public class TVShowAdapter
   public void onBindViewHolder(@NonNull TVShowViewHolder holder, int position)
   {
     holder.title.setText(tvShows.get(position).getName());
+    //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShows.get(position)
             .getPoster_path()).into(holder.poster);
@@ -59,6 +60,7 @@ public class TVShowAdapter
     return 0;
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateTVShowList(final ArrayList<TvShow> tvShows)
   {
     this.tvShows.clear();

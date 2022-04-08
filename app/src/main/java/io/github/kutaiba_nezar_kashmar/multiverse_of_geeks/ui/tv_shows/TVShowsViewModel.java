@@ -14,7 +14,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.TVShowRepository
 
 public class TVShowsViewModel extends AndroidViewModel
 {
-  private TVShowRepository tvShowRepository;
+  private final TVShowRepository tvShowRepository;
 
   public TVShowsViewModel(@NonNull Application application)
   {

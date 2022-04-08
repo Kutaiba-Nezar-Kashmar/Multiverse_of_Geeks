@@ -2,7 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain;
 
 public class Cast
 {
-  private  int id;
+  private int id;
   private int gender;
   private String known_for_department;
   private String name;

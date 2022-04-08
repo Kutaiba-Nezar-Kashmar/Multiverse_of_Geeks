@@ -28,7 +28,7 @@ public class MoviesFragment extends Fragment
 {
   private FragmentMoviesBinding binding;
   private RecyclerView recyclerView;
-  private ArrayList<Movie> movies = new ArrayList<>();
+  private final ArrayList<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -83,22 +83,16 @@ public class MoviesFragment extends Fragment
     moviesViewModel.getAllPopularMovies()
         .observe(getViewLifecycleOwner(), update);
 
-    popularButton.setOnClickListener(view -> {
-      moviesViewModel.getAllPopularMovies()
-          .observe(getViewLifecycleOwner(), update);
-    });
-    topButton.setOnClickListener(view -> {
-      moviesViewModel.getAllTopRatedMovies()
-          .observe(getViewLifecycleOwner(), update);
-    });
-    nowButton.setOnClickListener(view -> {
-      moviesViewModel.getAllNowPlayingMovies()
-          .observe(getViewLifecycleOwner(), update);
-    });
-    upButton.setOnClickListener(view -> {
-      moviesViewModel.getAllUpcomingMovies()
-          .observe(getViewLifecycleOwner(), update);
-    });
+    popularButton.setOnClickListener(
+        view -> moviesViewModel.getAllPopularMovies()
+            .observe(getViewLifecycleOwner(), update));
+    topButton.setOnClickListener(view -> moviesViewModel.getAllTopRatedMovies()
+        .observe(getViewLifecycleOwner(), update));
+    nowButton.setOnClickListener(
+        view -> moviesViewModel.getAllNowPlayingMovies()
+            .observe(getViewLifecycleOwner(), update));
+    upButton.setOnClickListener(view -> moviesViewModel.getAllUpcomingMovies()
+        .observe(getViewLifecycleOwner(), update));
 
     setUpSearchView(update);
   }

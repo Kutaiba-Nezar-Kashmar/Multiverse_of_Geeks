@@ -6,7 +6,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
 
 public class CastResponse
 {
-  private  int id;
+  private int id;
   private int gender;
   private String known_for_department;
   private String name;
@@ -16,7 +16,8 @@ public class CastResponse
 
   public Cast getCast()
   {
-    return new Cast(id, gender, known_for_department, name, profile_path, character);
+    return new Cast(id, gender, known_for_department, name, profile_path,
+        character);
   }
 
   public ArrayList<Cast> getCastList()

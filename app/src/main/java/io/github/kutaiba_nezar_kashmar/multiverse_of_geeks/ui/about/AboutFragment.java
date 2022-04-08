@@ -19,9 +19,6 @@ import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentAboutBinding;
 public class AboutFragment extends Fragment
 {
   private FragmentAboutBinding binding;
-  private TextView facebook;
-  private TextView github;
-  private TextView linkedin;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -32,32 +29,33 @@ public class AboutFragment extends Fragment
     binding = FragmentAboutBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     String action = Intent.ACTION_VIEW;
-    facebook = root.findViewById(R.id.facebook_link);
-    github = root.findViewById(R.id.github_link);
-    linkedin = root.findViewById(R.id.linkedin_link);
+    TextView facebook = root.findViewById(R.id.facebook_link);
+    TextView github = root.findViewById(R.id.github_link);
+    TextView linkedin = root.findViewById(R.id.linkedin_link);
 
-    facebook.setOnClickListener(view ->
-    {
-      Intent intent = new Intent(action, navToLinkIntent("https://www.facebook.com/kutaiba.kashmar"));
+    facebook.setOnClickListener(view -> {
+      Intent intent = new Intent(action,
+          navToLinkIntent("https://www.facebook.com/kutaiba.kashmar"));
       startActivity(intent);
     });
 
-    github.setOnClickListener(view ->
-    {
-      Intent intent = new Intent(action, navToLinkIntent("https://github.com/Kutaiba-Nezar-Kashmar"));
+    github.setOnClickListener(view -> {
+      Intent intent = new Intent(action,
+          navToLinkIntent("https://github.com/Kutaiba-Nezar-Kashmar"));
       startActivity(intent);
     });
 
-    linkedin.setOnClickListener(view ->
-    {
-      Intent intent = new Intent(action, navToLinkIntent("https://www.linkedin.com/in/kutaiba-nezar-kashmar-5380a81b5/"));
+    linkedin.setOnClickListener(view -> {
+      Intent intent = new Intent(action, navToLinkIntent(
+          "https://www.linkedin.com/in/kutaiba-nezar-kashmar-5380a81b5/"));
       startActivity(intent);
     });
 
     return root;
   }
 
-  @Override public void onDestroyView()
+  @Override
+  public void onDestroyView()
   {
     super.onDestroyView();
     binding = null;

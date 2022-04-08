@@ -8,14 +8,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieTVServiceGenerator
 {
-  private static Retrofit.Builder builder = new Retrofit.Builder()
+  //instance of retrofit to specify the base URL for the service
+  private static final Retrofit.Builder builder = new Retrofit.Builder()
       .baseUrl("https://api.themoviedb.org/3/")
       .addConverterFactory(GsonConverterFactory.create());
 
-  private static Retrofit retrofit = builder.build();
-  private static MovieAPI movieAPI = retrofit.create(MovieAPI.class);
-  private static TVShowAPI tvShowAPI = retrofit.create(TVShowAPI.class);
-  private static CastAPI castAPI = retrofit.create(CastAPI.class);
+  private static final Retrofit retrofit = builder.build();
+  private static final MovieAPI movieAPI = retrofit.create(MovieAPI.class);
+  private static final TVShowAPI tvShowAPI = retrofit.create(TVShowAPI.class);
+  private static final CastAPI castAPI = retrofit.create(CastAPI.class);
 
   public static MovieAPI getMovieAPI()
   {
@@ -26,6 +27,7 @@ public class MovieTVServiceGenerator
   {
     return tvShowAPI;
   }
+
   public static CastAPI getCastAPI()
   {
     return castAPI;

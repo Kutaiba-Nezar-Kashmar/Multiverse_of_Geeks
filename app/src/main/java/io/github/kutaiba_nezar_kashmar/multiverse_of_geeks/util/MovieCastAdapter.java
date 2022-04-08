@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MovieCastAdapter
@@ -51,6 +50,7 @@ public class MovieCastAdapter
     holder.role.setText(
         holder.context.getString(R.string.role) + " " + casts.get(position)
             .getKnown_for_department());
+    //set up image view from an API requires Glide
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + casts.get(position)
             .getProfile_path()).into(holder.pic);
@@ -66,6 +66,7 @@ public class MovieCastAdapter
     return 0;
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateMovieCastList(final ArrayList<Cast> casts)
   {
     this.casts.clear();

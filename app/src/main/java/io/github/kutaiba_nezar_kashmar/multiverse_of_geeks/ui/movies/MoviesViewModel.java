@@ -15,7 +15,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {
-  private MovieRepository movieRepository;
+  private final MovieRepository movieRepository;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)

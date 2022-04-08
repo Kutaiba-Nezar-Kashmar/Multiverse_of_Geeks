@@ -54,6 +54,7 @@ public class TvShowReviewsAdapter
     return 0;
   }
 
+  //clear and reassign the cast list every time this method is called
   public void updateCommentList(final ArrayList<Comment> comments)
   {
     this.comments.clear();

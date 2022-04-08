@@ -2,6 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.Comme
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network.TVShowAPI;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,17 +56,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          tvShow.setValue(response.body().getTvShow());
+          if (response.body() != null)
+          {
+            tvShow.setValue(response.body().getTvShow());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -82,17 +86,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          popularTvShows.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            popularTvShows.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -108,17 +116,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          topRatedTvShows.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            topRatedTvShows.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -133,17 +145,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          onAirTvShows.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            onAirTvShows.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -159,17 +175,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          airingTodayTvShows.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            airingTodayTvShows.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -185,17 +205,21 @@ public class TVShowRepository
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
-      public void onResponse(Call<TvShowResponse> call,
-          Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<TvShowResponse> call,
+          @NonNull Response<TvShowResponse> response)
       {
         if (response.code() == 200)
         {
-          searchedTvShows.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            searchedTvShows.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<TvShowResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<TvShowResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -210,17 +234,21 @@ public class TVShowRepository
     call.enqueue(new Callback<CommentResponse>()
     {
       @Override
-      public void onResponse(Call<CommentResponse> call,
-          Response<CommentResponse> response)
+      public void onResponse(@NonNull Call<CommentResponse> call,
+          @NonNull Response<CommentResponse> response)
       {
         if (response.code() == 200)
         {
-          tvReviews.setValue(response.body().getResults());
+          if (response.body() != null)
+          {
+            tvReviews.setValue(response.body().getResults());
+          }
         }
       }
 
       @Override
-      public void onFailure(Call<CommentResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<CommentResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
