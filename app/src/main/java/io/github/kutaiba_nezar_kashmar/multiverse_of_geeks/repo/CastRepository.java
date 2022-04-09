@@ -11,7 +11,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CastResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.cast_network.CastAPI;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.Constants;
+import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +40,7 @@ public class CastRepository
   public MutableLiveData<ArrayList<Cast>> getMovieCast(int movieId)
   {
     CastAPI castAPI = MovieTVServiceGenerator.getCastAPI();
-    Call<CastResponse> call = castAPI.getMovieCast(movieId, Constants.API_KEY);
+    Call<CastResponse> call = castAPI.getMovieCast(movieId, BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()
     {
       @Override
@@ -70,7 +70,7 @@ public class CastRepository
   {
     CastAPI castAPI = MovieTVServiceGenerator.getCastAPI();
     Call<CastResponse> call = castAPI
-        .getTvShowCast(tvShowId, Constants.API_KEY);
+        .getTvShowCast(tvShowId, BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()
     {
       @Override

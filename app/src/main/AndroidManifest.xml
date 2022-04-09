@@ -26,6 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+                android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.API_KEY"
+                android:value="${API_KEY}"/>
     </application>
 
 </manifest>
