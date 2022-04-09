@@ -106,20 +106,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/edit_text_margin">
 
-            <androidx.core.widget.NestedScrollView
-                    android:id="@+id/nested_scroll_view_tv"
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tv_coming_rv_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/tv_coming_rv_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-            </androidx.core.widget.NestedScrollView>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
                     android:id="@+id/comment_edit_text_id_tv"
@@ -127,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:importantForAutofill="yes"
                     android:hint="@string/comment"
-                    app:layout_constraintTop_toBottomOf="@+id/nested_scroll_view_tv"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_coming_rv_id"
+                    android:minHeight="48dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
