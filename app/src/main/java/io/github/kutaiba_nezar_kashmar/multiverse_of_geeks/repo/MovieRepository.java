@@ -26,6 +26,7 @@ public class MovieRepository
   private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
   private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
   private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
+  private final MutableLiveData<ArrayList<Movie>> latestMovies;
   private final MutableLiveData<ArrayList<Movie>> searchedMovies;
   private final MutableLiveData<ArrayList<Movie>> similarMovies;
   private final MutableLiveData<ArrayList<Comment>> movieReviews;
@@ -40,6 +41,7 @@ public class MovieRepository
     searchedMovies = new MutableLiveData<>();
     movieReviews = new MutableLiveData<>();
     similarMovies = new MutableLiveData<>();
+    latestMovies = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance()
@@ -166,6 +168,36 @@ public class MovieRepository
       }
     });
     return nowPlayingMovies;
+  }
+
+  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies()
+  {
+    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    Call<MovieResponse> call = movieAPI
+        .getAllLatestMovies(BuildConfig.API_KEY);
+    call.enqueue(new Callback<MovieResponse>()
+    {
+      @Override
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
+      {
+        if (response.code() == 200)
+        {
+          if (response.body() != null)
+          {
+            latestMovies.setValue(response.body().getResults());
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return latestMovies;
   }
 
   public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies()

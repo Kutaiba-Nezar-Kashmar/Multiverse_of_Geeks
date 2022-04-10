@@ -63,6 +63,16 @@ public interface MovieAPI
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
+   * query details of latest movies
+   *
+   * @param apiKey The api key required to authorize the API call
+   * @return Retrofit call with the value of MovieResponse for the queried movies
+   */
+  @GET("movie/latest")
+  Call<MovieResponse> getAllLatestMovies(@Query("api_key") String apiKey);
+
+  /**
+   * Retrofit method that returns a response from TMDB webserver. Where the method
    * query details of movie/movies based on the given parameter
    *
    * @param query  The keyword used to search for movies/movie that contain part/entire
