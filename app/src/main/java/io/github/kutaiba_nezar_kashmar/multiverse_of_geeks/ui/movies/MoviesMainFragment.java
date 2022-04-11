@@ -23,7 +23,8 @@ public class MoviesMainFragment extends Fragment
   private TabLayout tabLayout;
   private ViewPager2 viewPager;
   private MoviePagerAdapter adapter;
-  private String[] titles = new String[]{"POPULAR", "TOP RATED"};
+  private final String[] titles = new String[] {"POPULAR", "TOP RATED", "BOX OFFICE"};
+  public static final int PAGE_NUM = 3;
 
   @Nullable
   @Override
@@ -36,10 +37,15 @@ public class MoviesMainFragment extends Fragment
     viewPager = root.findViewById(R.id.movies_view_pager);
     adapter = new MoviePagerAdapter(this);
     viewPager.setAdapter(adapter);
-    new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-      tab.setText(titles[position]);
-    }).attach();
+    new TabLayoutMediator(tabLayout, viewPager,
+        (tab, position) -> tab.setText(titles[position])).attach();
     return root;
   }
 
+  @Override
+  public void onDestroyView()
+  {
+    super.onDestroyView();
+    binding = null;
+  }
 }

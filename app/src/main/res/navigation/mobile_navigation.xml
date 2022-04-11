@@ -51,7 +51,7 @@
             android:id="@+id/nav_main_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragment"
             tools:layout="@layout/fragment_movies_main"
-            android:label="@string/movies_main_nav" >
+            android:label="@string/movies_main_nav">
         <action
                 android:id="@+id/action_nav_main_movies_to_nav_single_movie"
                 app:destination="@id/nav_single_movie" />
@@ -59,15 +59,21 @@
 
     <fragment
             android:id="@+id/nav_popular_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.PopularMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.PopularMoviesFragment"
             android:label="@string/popular_movies_nav"
-            tools:layout="@layout/fragment_popular_movies"/>
+            tools:layout="@layout/fragment_popular_movies" />
 
     <fragment
             android:id="@+id/nav_top_rated_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.TopRatedMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.TopRatedMoviesFragment"
             android:label="@string/top_rated_movies"
-            tools:layout="@layout/fragment_top_rated_movies"/>
+            tools:layout="@layout/fragment_top_rated_movies" />
+
+    <fragment
+            android:id="@+id/nav_boxoffice_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.BoxOfficeMoviesFragment"
+            android:label="@string/boxoffice_movies"
+            tools:layout="@layout/fragment_boxoffice_movies" />
 
     <fragment
             android:id="@+id/nav_single_movie"
@@ -88,7 +94,7 @@
 
     <fragment
             android:id="@+id/nav_similar_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SimilarMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SimilarMoviesFragment"
             android:label="@string/similar_movies"
             tools:layout="@layout/fragment_similar_movies">
         <argument

@@ -39,6 +39,7 @@
     <string name="movies_main_nav">Movies</string>
     <string name="popular_movies_nav">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="boxoffice_movies">Boxoffice Movies</string>
     <string name="single_movie_nav">Movie</string>
     <string name="tv_show_nav">Tv Shows</string>
     <string name="tv_show_nav_s">Tv Show</string>

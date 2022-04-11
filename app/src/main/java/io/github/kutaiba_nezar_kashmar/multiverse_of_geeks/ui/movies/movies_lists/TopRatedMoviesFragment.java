@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +19,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragmentDirections;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTopRatedMoviesBinding;
