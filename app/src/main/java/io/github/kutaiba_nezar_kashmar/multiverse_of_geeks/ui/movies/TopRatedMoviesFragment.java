@@ -81,12 +81,12 @@ public class TopRatedMoviesFragment extends Fragment
   private void setUpOnClickListener(View view)
   {
     recyclerView.setAdapter(moviesAdapter);
-    /*moviesAdapter.setListener(movie -> {
-      PopularMoviesFragmentDirections.ActionNavPopularMoviesToNavSingleMovie action = PopularMoviesFragmentDirections
-          .actionNavPopularMoviesToNavSingleMovie();
+    moviesAdapter.setListener(movie -> {
+      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
+          .actionNavMainMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
-    });*/
+    });
   }
 
   private void refresh()

@@ -23,6 +23,7 @@ public class MoviesMainFragment extends Fragment
   private TabLayout tabLayout;
   private ViewPager2 viewPager;
   private MoviePagerAdapter adapter;
+  private String[] titles = new String[]{"POPULAR", "TOP RATED"};
 
   @Nullable
   @Override
@@ -36,7 +37,7 @@ public class MoviesMainFragment extends Fragment
     adapter = new MoviePagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-      tab.setText("Test" + (position + 1));
+      tab.setText(titles[position]);
     }).attach();
     return root;
   }
