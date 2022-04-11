@@ -76,6 +76,12 @@
             tools:layout="@layout/fragment_boxoffice_movies" />
 
     <fragment
+            android:id="@+id/nav_upcoming_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.UpcomingMoviesFragment"
+            android:label="@string/upcoming_movies"
+            tools:layout="@layout/fragment_upcoming_movies" />
+
+    <fragment
             android:id="@+id/nav_single_movie"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SingleMovieFragment"
             android:label="@string/single_movie_nav"

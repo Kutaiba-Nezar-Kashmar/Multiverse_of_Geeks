@@ -8,6 +8,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainF
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.BoxOfficeMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.PopularMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.TopRatedMoviesFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.UpcomingMoviesFragment;
 
 public class MoviePagerAdapter extends FragmentStateAdapter
 {
@@ -32,6 +33,10 @@ public class MoviePagerAdapter extends FragmentStateAdapter
     if (position == 2)
     {
       fragment = new BoxOfficeMoviesFragment();
+    }
+    if (position == 3)
+    {
+      fragment = new UpcomingMoviesFragment();
     }
     return fragment;
   }
