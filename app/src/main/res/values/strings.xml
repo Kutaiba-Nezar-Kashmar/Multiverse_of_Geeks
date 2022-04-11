@@ -36,6 +36,7 @@
     <string name="about_nav">About</string>
     <string name="my_profile_nav">My Profile</string>
     <string name="edit_profile_nav">Edit Profile</string>
+    <string name="movies_main_nav">Movies main</string>
     <string name="movies_nav">Movies</string>
     <string name="single_movie_nav">Movie</string>
     <string name="tv_show_nav">Tv Shows</string>

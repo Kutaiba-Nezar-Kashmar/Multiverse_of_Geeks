@@ -48,6 +48,12 @@
             tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
+            android:id="@+id/nav_main_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragment"
+            tools:layout="@layout/fragment_movies_main"
+            android:label="@string/movies_main_nav" />
+
+    <fragment
             android:id="@+id/nav_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment"
             android:label="@string/movies_nav"
