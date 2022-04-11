@@ -42,7 +42,12 @@
     <string name="boxoffice_movies">Boxoffice Movies</string>
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="single_movie_nav">Movie</string>
+    <string name="main_tv_shows">Tv Shows Main</string>
     <string name="tv_show_nav">Tv Shows</string>
+    <string name="popular_tv_show_nav">popular Tv Shows</string>
+    <string name="top_rated_tv_show_nav">Top rated Tv Shows</string>
+    <string name="on_air_tv_show_nav">On Air Tv Shows</string>
+    <string name="airing_today_tv_show_nav">Airing today Tv Shows</string>
     <string name="tv_show_nav_s">Tv Show</string>
 
     <!--about strings-->

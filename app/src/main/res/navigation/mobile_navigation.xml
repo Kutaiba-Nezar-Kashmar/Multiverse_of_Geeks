@@ -47,6 +47,8 @@
             android:label="@string/edit_profile_nav"
             tools:layout="@layout/fragment_edit_profile" />
 
+    <!--MOVIES-->
+
     <fragment
             android:id="@+id/nav_main_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragment"
@@ -123,15 +125,41 @@
                 android:defaultValue="default" />
     </fragment>
 
+    <!--TV SHOWS-->
+
     <fragment
             android:id="@+id/nav_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsFragment"
-            android:label="@string/tv_show_nav"
-            tools:layout="@layout/fragment_tv_shows">
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragment"
+            android:label="main_tv_shows"
+            tools:layout="@layout/fragment_main_tv_shows">
         <action
                 android:id="@+id/action_nav_tv_to_nav_single_tv"
                 app:destination="@id/nav_single_tv" />
     </fragment>
+
+    <fragment
+            android:id="@+id/nav_popular_tv"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.PopularTvShowsFragment"
+            android:label="@string/popular_tv_show_nav"
+            tools:layout="@layout/fragment_popular_tv_shows"/>
+
+    <fragment
+            android:id="@+id/nav_top_rated_tv"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.TopRatedTvShowsFragment"
+            android:label="@string/top_rated_tv_show_nav"
+            tools:layout="@layout/fragment_top_rated_tv_shows"/>
+
+    <fragment
+            android:id="@+id/nav_on_air_tv"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.OnAirTvShowsFragment"
+            android:label="@string/on_air_tv_show_nav"
+            tools:layout="@layout/fragment_on_air_tv_shows"/>
+
+    <fragment
+            android:id="@+id/nav_airing_today_tv"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment"
+            android:label="@string/airing_today_tv_show_nav"
+            tools:layout="@layout/fragment_airing_today_tv_shows"/>
 
     <fragment
             android:id="@+id/nav_single_tv"

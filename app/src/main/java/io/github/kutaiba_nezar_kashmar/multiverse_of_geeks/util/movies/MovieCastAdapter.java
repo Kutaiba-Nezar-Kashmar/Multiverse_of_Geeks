@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,28 +17,29 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class TvCastAdapter
-    extends RecyclerView.Adapter<TvCastAdapter.TvCastViewHolder>
+public class MovieCastAdapter
+    extends RecyclerView.Adapter<MovieCastAdapter.MovieCastViewHolder>
 {
   private ArrayList<Cast> casts;
 
-  public TvCastAdapter(ArrayList<Cast> casts)
+  public MovieCastAdapter(ArrayList<Cast> casts)
   {
     this.casts = casts;
   }
 
   @NonNull
   @Override
-  public TvCastViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+  public MovieCastViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
       int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater.inflate(R.layout.tv_show_cast_item, parent, false);
-    return new TvCastViewHolder(view);
+    View view = inflater.inflate(R.layout.movie_cast_item, parent, false);
+    return new MovieCastViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull TvCastViewHolder holder, int position)
+  public void onBindViewHolder(@NonNull MovieCastViewHolder holder,
+      int position)
   {
     holder.name.setText(
         holder.context.getString(R.string.name_holder) + " " + casts
@@ -49,7 +50,7 @@ public class TvCastAdapter
     holder.role.setText(
         holder.context.getString(R.string.role) + " " + casts.get(position)
             .getKnown_for_department());
-    //Glide is required to fill image view from API
+    //set up image view from an API requires Glide
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + casts.get(position)
             .getProfile_path()).into(holder.pic);
@@ -66,14 +67,14 @@ public class TvCastAdapter
   }
 
   //clear and reassign the cast list every time this method is called
-  public void updateTvCastList(final ArrayList<Cast> casts)
+  public void updateMovieCastList(final ArrayList<Cast> casts)
   {
     this.casts.clear();
     this.casts = casts;
     notifyDataSetChanged();
   }
 
-  class TvCastViewHolder extends RecyclerView.ViewHolder
+  class MovieCastViewHolder extends RecyclerView.ViewHolder
   {
     private final TextView name;
     private final TextView character;
@@ -81,14 +82,14 @@ public class TvCastAdapter
     private final ImageView pic;
     private Context context;
 
-    public TvCastViewHolder(@NonNull View itemView)
+    public MovieCastViewHolder(@NonNull View itemView)
     {
       super(itemView);
       context = itemView.getContext();
-      name = itemView.findViewById(R.id.tv_cast_name);
-      character = itemView.findViewById(R.id.tv_character);
-      role = itemView.findViewById(R.id.tv_cast_role);
-      pic = itemView.findViewById(R.id.tv_cast_image);
+      name = itemView.findViewById(R.id.movie_cast_name);
+      character = itemView.findViewById(R.id.movie_character);
+      role = itemView.findViewById(R.id.movie_cast_role);
+      pic = itemView.findViewById(R.id.movie_cast_image);
     }
   }
 }

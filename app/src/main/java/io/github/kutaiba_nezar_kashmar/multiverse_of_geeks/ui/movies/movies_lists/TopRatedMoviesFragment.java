@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragmentDirections;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MoviesAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTopRatedMoviesBinding;
 

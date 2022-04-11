@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show;
 
 import android.content.Context;
 import android.view.LayoutInflater;

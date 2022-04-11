@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TvShowReviewsAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show.TvShowReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleTvShowBinding;
 

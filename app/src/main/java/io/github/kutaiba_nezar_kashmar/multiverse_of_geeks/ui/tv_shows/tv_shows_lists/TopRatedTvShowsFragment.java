@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,20 +18,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragmentDirections;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MoviesAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TVShowsViewModel;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragmentDirections;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show.TVShowAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentBoxofficeMoviesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTopRatedTvShowsBinding;
 
-public class BoxOfficeMoviesFragment extends Fragment
+public class TopRatedTvShowsFragment extends Fragment
 {
-  private FragmentBoxofficeMoviesBinding binding;
+  private FragmentTopRatedTvShowsBinding binding;
+  private TVShowsViewModel tvShowsViewModel;
   private RecyclerView recyclerView;
-  private final ArrayList<Movie> movies = new ArrayList<>();
-  private MoviesViewModel moviesViewModel;
-  private MoviesAdapter moviesAdapter;
+  private final ArrayList<TvShow> tvShows = new ArrayList<>();
+  private TVShowAdapter adapter;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -40,11 +40,12 @@ public class BoxOfficeMoviesFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater,
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
-    moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-    binding = FragmentBoxofficeMoviesBinding.inflate(inflater, container, false);
+    tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
+    binding = FragmentTopRatedTvShowsBinding
+        .inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.boxoffice_movies_refresh_view);
-    searchView = root.findViewById(R.id.boxoffice_movies_search_view);
+    swipeRefreshLayout = root.findViewById(R.id.top_rated_tv_refresh_view);
+    searchView = root.findViewById(R.id.top_rated_tv_search_view);
     refresh();
     return root;
   }
@@ -60,9 +61,9 @@ public class BoxOfficeMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    moviesViewModel.getAllNowPlayingMovies();
+    tvShowsViewModel.getAllTopRatedTvShows();
 
-    recyclerView = view.findViewById(R.id.boxoffice_movies_rv);
+    recyclerView = view.findViewById(R.id.top_rated_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
@@ -71,21 +72,20 @@ public class BoxOfficeMoviesFragment extends Fragment
 
   private void setUpRecyclerView()
   {
-    moviesAdapter = new MoviesAdapter(movies);
-    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
-    moviesViewModel.getAllNowPlayingMovies()
+    adapter = new TVShowAdapter(tvShows);
+    Observer<ArrayList<TvShow>> update = adapter::updateTVShowList;
+    tvShowsViewModel.getAllTopRatedTvShows()
         .observe(getViewLifecycleOwner(), update);
-
     setUpSearchView(update);
   }
 
   private void setUpOnClickListener(View view)
   {
-    recyclerView.setAdapter(moviesAdapter);
-    moviesAdapter.setListener(movie -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
-      action.setMovieIdArg(String.valueOf(movie.getId()));
+    recyclerView.setAdapter(adapter);
+    adapter.setListener(tvShow -> {
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
+          .actionNavTvToNavSingleTv();
+      action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });
   }
@@ -98,14 +98,14 @@ public class BoxOfficeMoviesFragment extends Fragment
     });
   }
 
-  public void setUpSearchView(Observer<ArrayList<Movie>> update)
+  private void setUpSearchView(Observer<ArrayList<TvShow>> update)
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {
       @Override
       public boolean onQueryTextSubmit(String query)
       {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
+        tvShowsViewModel.getAllSearchedTvShows(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }
@@ -113,7 +113,7 @@ public class BoxOfficeMoviesFragment extends Fragment
       @Override
       public boolean onQueryTextChange(String query)
       {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
+        tvShowsViewModel.getAllSearchedTvShows(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }

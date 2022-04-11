@@ -1,10 +1,9 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,38 +19,32 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TVShowAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TVShowsViewModel;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragmentDirections;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show.TVShowAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTvShowsBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentOnAirTvShowsBinding;
 
-public class TvShowsFragment extends Fragment
+public class OnAirTvShowsFragment extends Fragment
 {
-  private FragmentTvShowsBinding binding;
+  private FragmentOnAirTvShowsBinding binding;
   private TVShowsViewModel tvShowsViewModel;
   private RecyclerView recyclerView;
   private final ArrayList<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private Button popularButton;
-  private Button topButton;
-  private Button nowButton;
-  private Button upButton;
   private SearchView searchView;
 
+  @Nullable
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState)
+      @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
-
-    binding = FragmentTvShowsBinding.inflate(inflater, container, false);
+    binding = FragmentOnAirTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.tv_refresh_view);
-    popularButton = root.findViewById(R.id.popular_tv_button);
-    topButton = root.findViewById(R.id.top_tv_button);
-    nowButton = root.findViewById(R.id.now_tv_button);
-    upButton = root.findViewById(R.id.up_tv_button);
-    searchView = root.findViewById(R.id.tv_search_view);
-
+    swipeRefreshLayout = root.findViewById(R.id.on_air_tv_refresh_view);
+    searchView = root.findViewById(R.id.on_air_tv_search_view);
     refresh();
     return root;
   }
@@ -67,9 +60,9 @@ public class TvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    tvShowsViewModel.getAllPopularTvShows();
+    tvShowsViewModel.getAllOnAirTvShows();
 
-    recyclerView = view.findViewById(R.id.tv_rv);
+    recyclerView = view.findViewById(R.id.on_air_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
@@ -80,24 +73,8 @@ public class TvShowsFragment extends Fragment
   {
     adapter = new TVShowAdapter(tvShows);
     Observer<ArrayList<TvShow>> update = adapter::updateTVShowList;
-    tvShowsViewModel.getAllPopularTvShows()
+    tvShowsViewModel.getAllOnAirTvShows()
         .observe(getViewLifecycleOwner(), update);
-
-    popularButton.setOnClickListener(
-        view -> tvShowsViewModel.getAllPopularTvShows()
-            .observe(getViewLifecycleOwner(), update));
-
-    topButton.setOnClickListener(
-        view -> tvShowsViewModel.getAllTopRatedTvShows()
-            .observe(getViewLifecycleOwner(), update));
-
-    nowButton.setOnClickListener(view -> tvShowsViewModel.getAllOnAirTvShows()
-        .observe(getViewLifecycleOwner(), update));
-
-    upButton.setOnClickListener(
-        view -> tvShowsViewModel.getAllAiringTodayTvShows()
-            .observe(getViewLifecycleOwner(), update));
-
     setUpSearchView(update);
   }
 
@@ -105,7 +82,7 @@ public class TvShowsFragment extends Fragment
   {
     recyclerView.setAdapter(adapter);
     adapter.setListener(tvShow -> {
-      TvShowsFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsFragmentDirections
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
           .actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);

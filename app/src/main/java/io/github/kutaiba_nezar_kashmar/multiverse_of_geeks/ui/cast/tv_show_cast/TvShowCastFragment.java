@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.TvCastAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show.TvCastAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentTvShowCastBinding;
 
