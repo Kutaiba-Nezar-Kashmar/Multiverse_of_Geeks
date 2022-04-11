@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.PopularMoviesFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.TopRatedMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsFragment;
 
 public class MoviePagerAdapter extends FragmentStateAdapter
@@ -25,7 +26,7 @@ public class MoviePagerAdapter extends FragmentStateAdapter
     }
     if (position == 1)
     {
-      fragment = new TvShowsFragment();
+      fragment = new TopRatedMoviesFragment();
     }
     return fragment;
   }

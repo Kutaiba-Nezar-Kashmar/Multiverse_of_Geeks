@@ -64,6 +64,12 @@
     </fragment>
 
     <fragment
+            android:id="@+id/nav_top_rated_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.TopRatedMoviesFragment"
+            android:label="@string/top_rated_movies"
+            tools:layout="@layout/fragment_top_rated_movies"/>
+
+    <fragment
             android:id="@+id/nav_single_movie"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SingleMovieFragment"
             android:label="@string/single_movie_nav"
