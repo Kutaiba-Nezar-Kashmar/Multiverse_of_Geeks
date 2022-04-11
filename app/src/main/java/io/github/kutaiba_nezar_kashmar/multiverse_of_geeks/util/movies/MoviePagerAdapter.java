@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.PopularMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsFragment;
 
 public class MoviePagerAdapter extends FragmentStateAdapter
@@ -18,10 +18,10 @@ public class MoviePagerAdapter extends FragmentStateAdapter
   @Override
   public Fragment createFragment(int position)
   {
-    Fragment fragment = new MoviesFragment();
+    Fragment fragment = new PopularMoviesFragment();
     if (position == 0)
     {
-      fragment = new MoviesFragment();
+      fragment = new PopularMoviesFragment();
     }
     if (position == 1)
     {

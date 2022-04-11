@@ -54,12 +54,12 @@
             android:label="@string/movies_main_nav" />
 
     <fragment
-            android:id="@+id/nav_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesFragment"
-            android:label="@string/movies_nav"
-            tools:layout="@layout/fragment_movies">
+            android:id="@+id/nav_popular_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.PopularMoviesFragment"
+            android:label="@string/popular_movies_nav"
+            tools:layout="@layout/fragment_popular_movies">
         <action
-                android:id="@+id/action_nav_movies_to_nav_single_movie"
+                android:id="@+id/action_nav_popular_movies_to_nav_single_movie"
                 app:destination="@id/nav_single_movie" />
     </fragment>
 

@@ -36,7 +36,7 @@
                 <item
                         android:id="@+id/nav_main_movies"
                         android:icon="@drawable/movie_ic"
-                        android:title="@string/movies_nav"/>
+                        android:title="@string/movies_main_nav"/>
 
                 <item
                         android:id="@+id/nav_tv"

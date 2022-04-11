@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,20 +21,16 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentMoviesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentPopularMoviesBinding;
 
-public class MoviesFragment extends Fragment
+public class PopularMoviesFragment extends Fragment
 {
-  private FragmentMoviesBinding binding;
+  private FragmentPopularMoviesBinding binding;
   private RecyclerView recyclerView;
   private final ArrayList<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private Button popularButton;
-  private Button topButton;
-  private Button nowButton;
-  private Button upButton;
   private SearchView searchView;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,13 +38,9 @@ public class MoviesFragment extends Fragment
   {
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
 
-    binding = FragmentMoviesBinding.inflate(inflater, container, false);
+    binding = FragmentPopularMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.movies_refresh_view);
-    popularButton = root.findViewById(R.id.popular_movies_button);
-    topButton = root.findViewById(R.id.top_movies_button);
-    nowButton = root.findViewById(R.id.now_movies_button);
-    upButton = root.findViewById(R.id.up_movies_button);
     searchView = root.findViewById(R.id.movies_search_view);
 
     refresh();
@@ -83,17 +74,6 @@ public class MoviesFragment extends Fragment
     moviesViewModel.getAllPopularMovies()
         .observe(getViewLifecycleOwner(), update);
 
-    popularButton.setOnClickListener(
-        view -> moviesViewModel.getAllPopularMovies()
-            .observe(getViewLifecycleOwner(), update));
-    topButton.setOnClickListener(view -> moviesViewModel.getAllTopRatedMovies()
-        .observe(getViewLifecycleOwner(), update));
-    nowButton.setOnClickListener(
-        view -> moviesViewModel.getAllNowPlayingMovies()
-            .observe(getViewLifecycleOwner(), update));
-    upButton.setOnClickListener(view -> moviesViewModel.getAllUpcomingMovies()
-        .observe(getViewLifecycleOwner(), update));
-
     setUpSearchView(update);
   }
 
@@ -101,8 +81,8 @@ public class MoviesFragment extends Fragment
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      MoviesFragmentDirections.ActionNavMoviesToNavSingleMovie action = MoviesFragmentDirections
-          .actionNavMoviesToNavSingleMovie();
+      PopularMoviesFragmentDirections.ActionNavPopularMoviesToNavSingleMovie action = PopularMoviesFragmentDirections
+          .actionNavPopularMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
     });
