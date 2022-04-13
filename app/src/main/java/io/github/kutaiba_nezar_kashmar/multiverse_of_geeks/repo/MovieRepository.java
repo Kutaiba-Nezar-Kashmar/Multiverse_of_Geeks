@@ -11,8 +11,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.movie_network.MovieAPI;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MediaServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +55,7 @@ public class MovieRepository
 
   public MutableLiveData<Movie> findMovie(int id)
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getMovieById(id, BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -84,7 +84,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllPopularMovies()
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getAllPopularMovies(BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -113,7 +113,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies()
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -142,7 +142,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies()
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .getAllNowPlayingMovies(BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
@@ -172,7 +172,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllLatestMovies()
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .getAllLatestMovies(BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
@@ -202,7 +202,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies()
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .getAllUpComingsMovies(BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
@@ -233,7 +233,7 @@ public class MovieRepository
   public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(
       String query)
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
         .searchForMovie(BuildConfig.API_KEY, query);
     call.enqueue(new Callback<MovieResponse>()
@@ -263,7 +263,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI.getSimilarMovies(id, BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
@@ -292,7 +292,7 @@ public class MovieRepository
 
   public MutableLiveData<ArrayList<Comment>> getMovieReviews(int id)
   {
-    MovieAPI movieAPI = MovieTVServiceGenerator.getMovieAPI();
+    MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<CommentResponse> call = movieAPI
         .getMovieReviews(id, BuildConfig.API_KEY);
     call.enqueue(new Callback<CommentResponse>()

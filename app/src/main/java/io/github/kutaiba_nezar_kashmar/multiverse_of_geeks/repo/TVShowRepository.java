@@ -11,8 +11,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MovieTVServiceGenerator;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network.TVShowAPI;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MediaServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.Tv_show_network.TVShowAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +51,7 @@ public class TVShowRepository
 
   public MutableLiveData<TvShow> findTvShowById(int id)
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI.getTvShowById(id, BuildConfig.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
     {
@@ -80,7 +80,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<TvShow>> getAllPopularTvShows()
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
         .getAllPopularTvShows(BuildConfig.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
@@ -110,7 +110,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<TvShow>> getAllTopRatedTvShows()
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
         .getAllTopRatedTvShows(BuildConfig.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
@@ -140,7 +140,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<TvShow>> getAllOnAirTvShows()
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI.getAllOnAirTvShows(BuildConfig.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
     {
@@ -169,7 +169,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<TvShow>> getAllAiringTodayTvShows()
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
         .getAllAiringTodayTvShows(BuildConfig.API_KEY);
     call.enqueue(new Callback<TvShowResponse>()
@@ -199,7 +199,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<TvShow>> getAllSearchedTvShows(String arg)
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
         .searchForTvShow(BuildConfig.API_KEY, arg);
     call.enqueue(new Callback<TvShowResponse>()
@@ -229,7 +229,7 @@ public class TVShowRepository
 
   public MutableLiveData<ArrayList<Comment>> getTvReviews(int id)
   {
-    TVShowAPI tvShowAPI = MovieTVServiceGenerator.getTVShowAPI();
+    TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<CommentResponse> call = tvShowAPI.getTvReviews(id, BuildConfig.API_KEY);
     call.enqueue(new Callback<CommentResponse>()
     {

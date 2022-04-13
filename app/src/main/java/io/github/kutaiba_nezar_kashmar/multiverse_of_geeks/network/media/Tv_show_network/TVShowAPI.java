@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.Tv_show_network;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.Tv_show_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.TvShowResponse;

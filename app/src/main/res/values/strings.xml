@@ -93,10 +93,12 @@ Kutaiba></string>
 
     <!--home fragment strings-->
     <string name="home_text">PLACEHOLDER!!!</string>
+    <string name="trending">Trending Today</string>
 
     <!--single movie strings-->
     <string name="movie_image_desc">Here goes the movie poster</string>
     <string name="ratting">Ratting</string>
+    <string name="popularity">Popularity</string>
     <string name="r_year">Release Year</string>
     <string name="comment">Leave a comment</string>
     <string name="to_similar">More like this</string>
