@@ -28,7 +28,8 @@
                 android:id="@+id/trending_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:clickable="false"/>
 
     </LinearLayout>
 

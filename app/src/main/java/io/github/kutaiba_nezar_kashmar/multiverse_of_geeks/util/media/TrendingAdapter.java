@@ -21,7 +21,6 @@ public class TrendingAdapter
     extends RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>
 {
   private ArrayList<Trending> trendingList;
-  private OnClickListener listener;
 
   public TrendingAdapter(ArrayList<Trending> trendingList)
   {
@@ -41,16 +40,16 @@ public class TrendingAdapter
   @Override
   public void onBindViewHolder(@NonNull TrendingViewHolder holder, int position)
   {
-    holder.title.setText(trendingList.get(position).getTitle());
-    holder.mediaType.setText("Media Type: " + trendingList.get(position).getMedia_type());
+    holder.mediaType
+        .setText(trendingList.get(position).getMedia_type());
     //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + trendingList.get(position)
             .getPoster_path()).into(holder.poster);
-    holder.mediaRating
-        .setText(" " + String.valueOf(trendingList.get(position).getVote_average()));
-    holder.mediaPopularity
-        .setText(" " + String.valueOf(trendingList.get(position).getPopularity()));
+    holder.mediaRating.setText(
+        " " + String.valueOf(trendingList.get(position).getVote_average()));
+    holder.mediaPopularity.setText(
+        " " + String.valueOf(trendingList.get(position).getPopularity()));
   }
 
   @Override
@@ -63,11 +62,6 @@ public class TrendingAdapter
     return 0;
   }
 
-  public void setListener(OnClickListener listener)
-  {
-    this.listener = listener;
-  }
-
   public void updateMovieList(final ArrayList<Trending> trendingList)
   {
     this.trendingList.clear();
@@ -77,7 +71,6 @@ public class TrendingAdapter
 
   class TrendingViewHolder extends RecyclerView.ViewHolder
   {
-    private final TextView title;
     private final ImageView poster;
     private final TextView mediaRating;
     private final TextView mediaPopularity;
@@ -88,20 +81,10 @@ public class TrendingAdapter
     {
       super(itemView);
       context = itemView.getContext();
-      title = itemView.findViewById(R.id.trending_text_view);
       poster = itemView.findViewById(R.id.trending_image);
       mediaRating = itemView.findViewById(R.id.trending_ratting);
       mediaPopularity = itemView.findViewById(R.id.trending_popularity);
       mediaType = itemView.findViewById(R.id.media_type);
-
-      itemView.setOnClickListener(view -> {
-        listener.onClick(trendingList.get(getBindingAdapterPosition()));
-      });
     }
-  }
-
-  public interface OnClickListener
-  {
-    void onClick(Trending trending);
   }
 }
