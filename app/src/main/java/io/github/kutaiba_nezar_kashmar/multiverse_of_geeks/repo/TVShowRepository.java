@@ -78,11 +78,11 @@ public class TVShowRepository
     return tvShow;
   }
 
-  public MutableLiveData<ArrayList<TvShow>> getAllPopularTvShows()
+  public MutableLiveData<ArrayList<TvShow>> getAllPopularTvShows(int pageNumber)
   {
     TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
-        .getAllPopularTvShows(BuildConfig.API_KEY);
+        .getAllPopularTvShows(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -108,11 +108,11 @@ public class TVShowRepository
     return popularTvShows;
   }
 
-  public MutableLiveData<ArrayList<TvShow>> getAllTopRatedTvShows()
+  public MutableLiveData<ArrayList<TvShow>> getAllTopRatedTvShows(int pageNumber)
   {
     TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
-        .getAllTopRatedTvShows(BuildConfig.API_KEY);
+        .getAllTopRatedTvShows(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -138,10 +138,10 @@ public class TVShowRepository
     return topRatedTvShows;
   }
 
-  public MutableLiveData<ArrayList<TvShow>> getAllOnAirTvShows()
+  public MutableLiveData<ArrayList<TvShow>> getAllOnAirTvShows(int pageNumber)
   {
     TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.getAllOnAirTvShows(BuildConfig.API_KEY);
+    Call<TvShowResponse> call = tvShowAPI.getAllOnAirTvShows(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override
@@ -167,11 +167,11 @@ public class TVShowRepository
     return onAirTvShows;
   }
 
-  public MutableLiveData<ArrayList<TvShow>> getAllAiringTodayTvShows()
+  public MutableLiveData<ArrayList<TvShow>> getAllAiringTodayTvShows(int pageNumber)
   {
     TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
     Call<TvShowResponse> call = tvShowAPI
-        .getAllAiringTodayTvShows(BuildConfig.API_KEY);
+        .getAllAiringTodayTvShows(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<TvShowResponse>()
     {
       @Override

@@ -8,6 +8,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMa
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.OnAirTvShowsFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.PopularTvShowsFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.SearchTvShowFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.TopRatedTvShowsFragment;
 
 public class TvPagerAdapter extends FragmentStateAdapter
@@ -37,6 +38,10 @@ public class TvPagerAdapter extends FragmentStateAdapter
     if (position == 3)
     {
       fragment = new AiringTodayTvShowsFragment();
+    }
+    if (position == 4)
+    {
+      fragment = new SearchTvShowFragment();
     }
     return fragment;
   }

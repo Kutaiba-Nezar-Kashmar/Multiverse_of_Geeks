@@ -168,6 +168,12 @@
             tools:layout="@layout/fragment_airing_today_tv_shows"/>
 
     <fragment
+            android:id="@+id/nav_search_tv_show"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.SearchTvShowFragment"
+            tools:layout="@layout/fragment_search_tv_show"
+            android:label="@string/search_tv_show_nav"/>
+
+    <fragment
             android:id="@+id/nav_single_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.SingleTvFragment"
             android:label="@string/tv_show_nav_s"

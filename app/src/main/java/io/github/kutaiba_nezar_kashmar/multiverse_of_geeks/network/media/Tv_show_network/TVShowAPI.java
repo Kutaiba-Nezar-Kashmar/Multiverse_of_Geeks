@@ -28,8 +28,8 @@ public interface TVShowAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
-  @GET("tv/popular")
-  Call<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey);
+  @GET("tv/popular?&language=en")
+  Call<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -38,8 +38,8 @@ public interface TVShowAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
-  @GET("tv/top_rated")
-  Call<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey);
+  @GET("tv/top_rated?&language=en")
+  Call<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -48,8 +48,8 @@ public interface TVShowAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
-  @GET("tv/on_the_air")
-  Call<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey);
+  @GET("tv/on_the_air?&language=en")
+  Call<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -58,9 +58,9 @@ public interface TVShowAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
-  @GET("tv/airing_today")
+  @GET("tv/airing_today?&language=en")
   Call<TvShowResponse> getAllAiringTodayTvShows(
-      @Query("api_key") String apiKey);
+      @Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method

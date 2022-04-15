@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,20 +23,17 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TVShowsVi
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragmentDirections;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.tv_show.TVShowAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentAiringTodayTvShowsBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSearchTvShowBinding;
 
-public class AiringTodayTvShowsFragment extends Fragment
+public class SearchTvShowFragment extends Fragment
 {
-  private FragmentAiringTodayTvShowsBinding binding;
-  private TVShowsViewModel tvShowsViewModel;
+  private FragmentSearchTvShowBinding binding;
   private RecyclerView recyclerView;
   private final ArrayList<TvShow> tvShows = new ArrayList<>();
-  private TVShowAdapter adapter;
+  private TVShowsViewModel tvShowsViewModel;
+  private TVShowAdapter tvShowAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private Button leftArrow;
-  private Button rightArrow;
-  private TextView pageNumber;
-  private int pageNum = 1;
+  private SearchView searchView;
 
   @Nullable
   @Override
@@ -46,13 +41,10 @@ public class AiringTodayTvShowsFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
-    binding = FragmentAiringTodayTvShowsBinding
-        .inflate(inflater, container, false);
+    binding = FragmentSearchTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.airing_today_tv_refresh_view);
-    leftArrow = root.findViewById(R.id.airing_today_tv_left_arrow);
-    rightArrow = root.findViewById(R.id.airing_today_tv_right_arrow);
-    pageNumber = root.findViewById(R.id.airing_today_tv_page_number);
+    swipeRefreshLayout = root.findViewById(R.id.search_tv_refresh_view);
+    searchView = root.findViewById(R.id.tv_search_view);
     refresh();
     return root;
   }
@@ -68,33 +60,30 @@ public class AiringTodayTvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    tvShowsViewModel.getAllAiringTodayTvShows(pageNum);
-
-    recyclerView = view.findViewById(R.id.airing_today_tv_rv);
+    recyclerView = view.findViewById(R.id.tv_search_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    tvShowAdapter = new TVShowAdapter(tvShows);
     setUpRecyclerView();
     setUpOnClickListener(view);
-    setUpPageChange();
-  }
-
-  private void setUpRecyclerView()
-  {
-    adapter = new TVShowAdapter(tvShows);
-    Observer<ArrayList<TvShow>> update = adapter::updateTVShowList;
-    tvShowsViewModel.getAllAiringTodayTvShows(pageNum)
-        .observe(getViewLifecycleOwner(), update);
   }
 
   private void setUpOnClickListener(View view)
   {
-    recyclerView.setAdapter(adapter);
-    adapter.setListener(tvShow -> {
+    recyclerView.setAdapter(tvShowAdapter);
+    tvShowAdapter.setListener(tvShow -> {
       TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
           .actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });
+  }
+
+  private void setUpRecyclerView()
+  {
+    tvShowAdapter = new TVShowAdapter(tvShows);
+    Observer<ArrayList<TvShow>> update = tvShowAdapter::updateTVShowList;
+    setUpSearchView(update);
   }
 
   private void refresh()
@@ -105,36 +94,25 @@ public class AiringTodayTvShowsFragment extends Fragment
     });
   }
 
-  private void setUpPageChange()
+  private void setUpSearchView(Observer<ArrayList<TvShow>> update)
   {
-    rightArrow.setOnClickListener(view -> {
-      incrementPage();
-      setUpRecyclerView();
-    });
-    leftArrow.setOnClickListener(view -> {
-      decrementPage();
-      setUpRecyclerView();
-    });
-  }
-
-  private void display()
-  {
-    pageNumber.setText(String.valueOf(pageNum));
-  }
-
-  private void incrementPage()
-  {
-    if (pageNum < 10)
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {
-      pageNum = pageNum + 1;
-      display();
-    }
-  }
+      @Override
+      public boolean onQueryTextSubmit(String query)
+      {
+        tvShowsViewModel.getAllSearchedTvShows(query)
+            .observe(getViewLifecycleOwner(), update);
+        return false;
+      }
 
-  private void decrementPage()
-  {
-    if (pageNum > 1)
-      pageNum = pageNum - 1;
-    display();
+      @Override
+      public boolean onQueryTextChange(String query)
+      {
+        tvShowsViewModel.getAllSearchedTvShows(query)
+            .observe(getViewLifecycleOwner(), update);
+        return false;
+      }
+    });
   }
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +35,10 @@ public class OnAirTvShowsFragment extends Fragment
   private final ArrayList<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private SearchView searchView;
+  private Button leftArrow;
+  private Button rightArrow;
+  private TextView pageNumber;
+  private int pageNum = 1;
 
   @Nullable
   @Override
@@ -44,7 +49,9 @@ public class OnAirTvShowsFragment extends Fragment
     binding = FragmentOnAirTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.on_air_tv_refresh_view);
-    searchView = root.findViewById(R.id.on_air_tv_search_view);
+    leftArrow = root.findViewById(R.id.on_air_tv_left_arrow);
+    rightArrow = root.findViewById(R.id.on_air_tv_right_arrow);
+    pageNumber = root.findViewById(R.id.on_air_tv_page_number);
     refresh();
     return root;
   }
@@ -60,22 +67,22 @@ public class OnAirTvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    tvShowsViewModel.getAllOnAirTvShows();
+    tvShowsViewModel.getAllOnAirTvShows(pageNum);
 
     recyclerView = view.findViewById(R.id.on_air_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
     setUpOnClickListener(view);
+    setUpPageChange();
   }
 
   private void setUpRecyclerView()
   {
     adapter = new TVShowAdapter(tvShows);
     Observer<ArrayList<TvShow>> update = adapter::updateTVShowList;
-    tvShowsViewModel.getAllOnAirTvShows()
+    tvShowsViewModel.getAllOnAirTvShows(pageNum)
         .observe(getViewLifecycleOwner(), update);
-    setUpSearchView(update);
   }
 
   private void setUpOnClickListener(View view)
@@ -97,25 +104,36 @@ public class OnAirTvShowsFragment extends Fragment
     });
   }
 
-  private void setUpSearchView(Observer<ArrayList<TvShow>> update)
+  private void setUpPageChange()
   {
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-    {
-      @Override
-      public boolean onQueryTextSubmit(String query)
-      {
-        tvShowsViewModel.getAllSearchedTvShows(query)
-            .observe(getViewLifecycleOwner(), update);
-        return false;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String query)
-      {
-        tvShowsViewModel.getAllSearchedTvShows(query)
-            .observe(getViewLifecycleOwner(), update);
-        return false;
-      }
+    rightArrow.setOnClickListener(view -> {
+      incrementPage();
+      setUpRecyclerView();
     });
+    leftArrow.setOnClickListener(view -> {
+      decrementPage();
+      setUpRecyclerView();
+    });
+  }
+
+  private void display()
+  {
+    pageNumber.setText(String.valueOf(pageNum));
+  }
+
+  private void incrementPage()
+  {
+    if (pageNum < 10)
+    {
+      pageNum = pageNum + 1;
+      display();
+    }
+  }
+
+  private void decrementPage()
+  {
+    if (pageNum > 1)
+      pageNum = pageNum - 1;
+    display();
   }
 }

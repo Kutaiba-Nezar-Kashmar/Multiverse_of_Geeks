@@ -27,24 +27,24 @@ public class TVShowsViewModel extends AndroidViewModel
     return tvShowRepository.findTvShowById(id);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllPopularTvShows()
+  public LiveData<ArrayList<TvShow>> getAllPopularTvShows(int pageNumber)
   {
-    return tvShowRepository.getAllPopularTvShows();
+    return tvShowRepository.getAllPopularTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllTopRatedTvShows()
+  public LiveData<ArrayList<TvShow>> getAllTopRatedTvShows(int pageNumber)
   {
-    return tvShowRepository.getAllTopRatedTvShows();
+    return tvShowRepository.getAllTopRatedTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllOnAirTvShows()
+  public LiveData<ArrayList<TvShow>> getAllOnAirTvShows(int pageNumber)
   {
-    return tvShowRepository.getAllOnAirTvShows();
+    return tvShowRepository.getAllOnAirTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllAiringTodayTvShows()
+  public LiveData<ArrayList<TvShow>> getAllAiringTodayTvShows(int pageNumber)
   {
-    return tvShowRepository.getAllAiringTodayTvShows();
+    return tvShowRepository.getAllAiringTodayTvShows(pageNumber);
   }
 
   public LiveData<ArrayList<TvShow>> getAllSearchedTvShows(String arg)
