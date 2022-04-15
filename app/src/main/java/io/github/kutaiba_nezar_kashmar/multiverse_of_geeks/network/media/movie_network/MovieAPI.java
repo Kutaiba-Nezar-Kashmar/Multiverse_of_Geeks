@@ -28,8 +28,8 @@ public interface MovieAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
-  @GET("movie/popular")
-  Call<MovieResponse> getAllPopularMovies(@Query("api_key") String apiKey);
+  @GET("movie/popular?&language=en")
+  Call<MovieResponse> getAllPopularMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method

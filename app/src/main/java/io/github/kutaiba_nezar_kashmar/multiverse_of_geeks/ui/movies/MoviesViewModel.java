@@ -29,9 +29,9 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.findMovie(id);
   }
 
-  public LiveData<ArrayList<Movie>> getAllPopularMovies()
+  public LiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
   {
-    return movieRepository.getAllPopularMovies();
+    return movieRepository.getAllPopularMovies(pageNumber);
   }
 
   public LiveData<ArrayList<Movie>> getAllTopRatedMovies()

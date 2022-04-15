@@ -125,6 +125,12 @@
                 android:defaultValue="default" />
     </fragment>
 
+    <fragment
+            android:id="@+id/nav_search_movies"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SearchedMoviesFragment"
+            android:label="@string/search_movie_nav"
+            tools:layout="@layout/fragment_serach_movies"/>
+
     <!--TV SHOWS-->
 
     <fragment

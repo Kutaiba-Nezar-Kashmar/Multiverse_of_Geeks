@@ -82,10 +82,10 @@ public class MovieRepository
     return movie;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllPopularMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
-    Call<MovieResponse> call = movieAPI.getAllPopularMovies(BuildConfig.API_KEY);
+    Call<MovieResponse> call = movieAPI.getAllPopularMovies(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override

@@ -23,24 +23,28 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainF
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentPopularMoviesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSerachMoviesBinding;
 
-public class PopularMoviesFragment extends Fragment
+public class SearchedMoviesFragment extends Fragment
 {
-  private FragmentPopularMoviesBinding binding;
+  private FragmentSerachMoviesBinding binding;
   private RecyclerView recyclerView;
   private final ArrayList<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
+  private SearchView searchView;
 
+  @Nullable
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState)
+      @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-    binding = FragmentPopularMoviesBinding.inflate(inflater, container, false);
+    binding = FragmentSerachMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.popular_movies_refresh_view);
+    swipeRefreshLayout = root.findViewById(R.id.search_movies_refresh_view);
+    searchView = root.findViewById(R.id.movies_search_view);
     refresh();
     return root;
   }
@@ -56,23 +60,13 @@ public class PopularMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    moviesViewModel.getAllPopularMovies(2);
-
-    recyclerView = view.findViewById(R.id.popular_movies_rv);
+    recyclerView = view.findViewById(R.id.search_movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    moviesAdapter = new MoviesAdapter(movies);
     setUpRecyclerView();
     setUpOnClickListener(view);
   }
-
-  private void setUpRecyclerView()
-  {
-    moviesAdapter = new MoviesAdapter(movies);
-    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
-    moviesViewModel.getAllPopularMovies(2)
-        .observe(getViewLifecycleOwner(), update);
-  }
-
   private void setUpOnClickListener(View view)
   {
     recyclerView.setAdapter(moviesAdapter);
@@ -84,11 +78,38 @@ public class PopularMoviesFragment extends Fragment
     });
   }
 
+  private void setUpRecyclerView()
+  {
+    moviesAdapter = new MoviesAdapter(movies);
+    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
+    setUpSearchView(update);
+  }
+
   private void refresh()
   {
     swipeRefreshLayout.setOnRefreshListener(() -> {
-      setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
+    });
+  }
+  public void setUpSearchView(Observer<ArrayList<Movie>> update)
+  {
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+    {
+      @Override
+      public boolean onQueryTextSubmit(String query)
+      {
+        moviesViewModel.getAllSearchedMoviesMovies(query)
+            .observe(getViewLifecycleOwner(), update);
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String query)
+      {
+        moviesViewModel.getAllSearchedMoviesMovies(query)
+            .observe(getViewLifecycleOwner(), update);
+        return false;
+      }
     });
   }
 }

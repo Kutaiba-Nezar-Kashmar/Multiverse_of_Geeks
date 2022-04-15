@@ -33,7 +33,6 @@ public class UpcomingMoviesFragment extends Fragment
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
-  private SearchView searchView;
 
   @Nullable
   @Override
@@ -44,7 +43,6 @@ public class UpcomingMoviesFragment extends Fragment
     binding = FragmentUpcomingMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.upcoming_movies_refresh_view);
-    searchView = root.findViewById(R.id.upcoming_movies_search_view);
     refresh();
     return root;
   }
@@ -75,8 +73,6 @@ public class UpcomingMoviesFragment extends Fragment
     Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllUpcomingMovies()
         .observe(getViewLifecycleOwner(), update);
-
-    setUpSearchView(update);
   }
 
   private void setUpOnClickListener(View view)
@@ -95,28 +91,6 @@ public class UpcomingMoviesFragment extends Fragment
     swipeRefreshLayout.setOnRefreshListener(() -> {
       setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
-    });
-  }
-
-  public void setUpSearchView(Observer<ArrayList<Movie>> update)
-  {
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-    {
-      @Override
-      public boolean onQueryTextSubmit(String query)
-      {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
-            .observe(getViewLifecycleOwner(), update);
-        return false;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String query)
-      {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
-            .observe(getViewLifecycleOwner(), update);
-        return false;
-      }
     });
   }
 }
