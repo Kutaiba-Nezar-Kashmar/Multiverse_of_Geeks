@@ -41,13 +41,10 @@ public class TVShowAdapter
   @Override
   public void onBindViewHolder(@NonNull TVShowViewHolder holder, int position)
   {
-    holder.title.setText(tvShows.get(position).getName());
     //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShows.get(position)
             .getPoster_path()).into(holder.poster);
-    holder.tvRatting
-        .setText(" " + String.valueOf(tvShows.get(position).getVote_average()));
   }
 
   @Override
@@ -75,18 +72,14 @@ public class TVShowAdapter
 
   class TVShowViewHolder extends RecyclerView.ViewHolder
   {
-    private final TextView title;
     private final ImageView poster;
-    private final TextView tvRatting;
     private Context context;
 
     public TVShowViewHolder(@NonNull View itemView)
     {
       super(itemView);
       context = itemView.getContext();
-      title = itemView.findViewById(R.id.tv_text_view);
       poster = itemView.findViewById(R.id.tv_image);
-      tvRatting = itemView.findViewById(R.id.tv_ratting);
 
       itemView.setOnClickListener(view -> {
         listener.onClick(tvShows.get(getBindingAdapterPosition()));

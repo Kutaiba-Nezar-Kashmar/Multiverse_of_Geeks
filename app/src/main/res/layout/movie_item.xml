@@ -7,10 +7,10 @@
         android:layout_marginTop="@dimen/edit_text_margin"
         android:layout_marginBottom="@dimen/edit_text_margin">
 
-            <ImageView
-                    android:id="@+id/movie_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/my_logo_background" />
+    <ImageView
+            android:id="@+id/movie_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/my_logo_background" />
 
 </LinearLayout>
