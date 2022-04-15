@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +35,10 @@ public class PopularMoviesFragment extends Fragment
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
+  private Button leftArrow;
+  private Button rightArrow;
+  private TextView pageNumber;
+  private int pageNum = 1;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -41,6 +47,9 @@ public class PopularMoviesFragment extends Fragment
     binding = FragmentPopularMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.popular_movies_refresh_view);
+    leftArrow = root.findViewById(R.id.popular_movie_left_arrow);
+    rightArrow = root.findViewById(R.id.popular_movie_right_arrow);
+    pageNumber = root.findViewById(R.id.popular_movie_page_number);
     refresh();
     return root;
   }
@@ -56,20 +65,21 @@ public class PopularMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    moviesViewModel.getAllPopularMovies(2);
+    moviesViewModel.getAllPopularMovies(pageNum);
 
     recyclerView = view.findViewById(R.id.popular_movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
     setUpOnClickListener(view);
+    setUpPageChange();
   }
 
   private void setUpRecyclerView()
   {
     moviesAdapter = new MoviesAdapter(movies);
     Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
-    moviesViewModel.getAllPopularMovies(2)
+    moviesViewModel.getAllPopularMovies(pageNum)
         .observe(getViewLifecycleOwner(), update);
   }
 
@@ -90,5 +100,38 @@ public class PopularMoviesFragment extends Fragment
       setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
     });
+  }
+
+  private void setUpPageChange()
+  {
+    rightArrow.setOnClickListener(view -> {
+      incrementPage();
+      setUpRecyclerView();
+    });
+    leftArrow.setOnClickListener(view -> {
+      decrementPage();
+      setUpRecyclerView();
+    });
+  }
+
+  private void display()
+  {
+    pageNumber.setText(String.valueOf(pageNum));
+  }
+
+  private void incrementPage()
+  {
+    if (pageNum < 10)
+    {
+      pageNum = pageNum + 1;
+      display();
+    }
+  }
+
+  private void decrementPage()
+  {
+    if (pageNum > 1)
+      pageNum = pageNum - 1;
+    display();
   }
 }

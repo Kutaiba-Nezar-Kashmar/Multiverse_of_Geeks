@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/about_ic.xml" value="0.1815" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/arrow_left_ic.xml" value="0.245" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/birthdate_ic.xml" value="0.1815" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/create_account_ic.xml" value="0.1935" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/creator_pic.xml" value="0.5" />
@@ -53,7 +54,7 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_movies_main.xml" value="0.184375" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_on_air_tv_shows.xml" value="0.3625" />
-        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_popular_movies.xml" value="0.1" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_popular_movies.xml" value="0.5" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_popular_tv_shows.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_serach_movies.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_similar_movies.xml" value="0.3625" />

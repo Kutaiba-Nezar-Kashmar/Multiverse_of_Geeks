@@ -104,6 +104,7 @@ Kutaiba></string>
     <string name="comment">Leave a comment</string>
     <string name="to_similar">More like this</string>
     <string name="similar_movies">Similar Movies</string>
+    <string name="page">Page: </string>
 
     <!--Movies fragment strings-->
     <string name="search">search</string>
