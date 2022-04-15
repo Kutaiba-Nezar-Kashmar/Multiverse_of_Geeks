@@ -111,10 +111,10 @@ public class MovieRepository
     return popularMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
-    Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(BuildConfig.API_KEY);
+    Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
@@ -140,11 +140,11 @@ public class MovieRepository
     return topRatedMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
-        .getAllNowPlayingMovies(BuildConfig.API_KEY);
+        .getAllNowPlayingMovies(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
@@ -170,11 +170,11 @@ public class MovieRepository
     return nowPlayingMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
-        .getAllLatestMovies(BuildConfig.API_KEY);
+        .getAllLatestMovies(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
@@ -200,11 +200,11 @@ public class MovieRepository
     return latestMovies;
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies()
+  public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
     Call<MovieResponse> call = movieAPI
-        .getAllUpComingsMovies(BuildConfig.API_KEY);
+        .getAllUpComingsMovies(BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override

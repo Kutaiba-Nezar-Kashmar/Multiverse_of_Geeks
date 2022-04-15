@@ -38,8 +38,8 @@ public interface MovieAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
-  @GET("movie/top_rated")
-  Call<MovieResponse> getAllTopRatedMovies(@Query("api_key") String apiKey);
+  @GET("movie/top_rated?&language=en")
+  Call<MovieResponse> getAllTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -48,8 +48,8 @@ public interface MovieAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
-  @GET("movie/now_playing")
-  Call<MovieResponse> getAllNowPlayingMovies(@Query("api_key") String apiKey);
+  @GET("movie/now_playing?&language=en")
+  Call<MovieResponse> getAllNowPlayingMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -58,8 +58,8 @@ public interface MovieAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
-  @GET("movie/upcoming")
-  Call<MovieResponse> getAllUpComingsMovies(@Query("api_key") String apiKey);
+  @GET("movie/upcoming?&language=en")
+  Call<MovieResponse> getAllUpComingsMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -68,8 +68,8 @@ public interface MovieAPI
    * @param apiKey The api key required to authorize the API call
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
-  @GET("movie/latest")
-  Call<MovieResponse> getAllLatestMovies(@Query("api_key") String apiKey);
+  @GET("movie/latest?&language=en")
+  Call<MovieResponse> getAllLatestMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
