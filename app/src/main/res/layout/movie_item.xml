@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -8,61 +7,10 @@
         android:layout_marginTop="@dimen/edit_text_margin"
         android:layout_marginBottom="@dimen/edit_text_margin">
 
-
-    <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="2dp">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <TextView
-                    android:id="@+id/movie_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="@string/home_text"
-                    android:gravity="center"
-                    android:elevation="2dp"
-                    android:textSize="30sp" />
-
             <ImageView
                     android:id="@+id/movie_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/my_logo_background" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/edit_text_margin">
-
-                <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/ratting"
-                        android:layout_gravity="center"
-                        android:gravity="center" />
-
-                <TextView
-                        android:id="@+id/movie_ratting"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:drawableStartCompat="@drawable/ratting_ic"
-                        android:text="@string/home_text"
-                        android:gravity="center_vertical" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
 
 </LinearLayout>

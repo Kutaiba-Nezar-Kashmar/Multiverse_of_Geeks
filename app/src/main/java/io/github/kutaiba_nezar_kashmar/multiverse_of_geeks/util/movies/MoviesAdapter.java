@@ -41,13 +41,13 @@ public class MoviesAdapter
   @Override
   public void onBindViewHolder(@NonNull MovieViewHolder holder, int position)
   {
-    holder.title.setText(movies.get(position).getTitle());
+   // holder.title.setText(movies.get(position).getTitle());
     //Glide is required to fill image view from API
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + movies.get(position)
             .getPoster_path()).into(holder.poster);
-    holder.movieRating
-        .setText(" " + String.valueOf(movies.get(position).getVote_average()));
+    /*holder.movieRating
+        .setText(" " + String.valueOf(movies.get(position).getVote_average()));*/
   }
 
   //clear and reassign the cast list every time this method is called
@@ -75,18 +75,18 @@ public class MoviesAdapter
 
   class MovieViewHolder extends RecyclerView.ViewHolder
   {
-    private final TextView title;
+    //private final TextView title;
     private final ImageView poster;
-    private final TextView movieRating;
+    //private final TextView movieRating;
     private Context context;
 
     public MovieViewHolder(@NonNull View itemView)
     {
       super(itemView);
       context = itemView.getContext();
-      title = itemView.findViewById(R.id.movie_text_view);
+      //title = itemView.findViewById(R.id.movie_text_view);
       poster = itemView.findViewById(R.id.movie_image);
-      movieRating = itemView.findViewById(R.id.movie_ratting);
+      //movieRating = itemView.findViewById(R.id.movie_ratting);
 
       itemView.setOnClickListener(view -> {
         listener.onClick(movies.get(getBindingAdapterPosition()));
