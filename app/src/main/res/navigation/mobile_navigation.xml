@@ -185,6 +185,9 @@
         <action
                 android:id="@+id/action_nav_single_tv_to_nav_tv_cast"
                 app:destination="@id/nav_tv_cast" />
+        <action
+                android:id="@+id/action_nav_single_tv_to_nav_tv_seasons"
+                app:destination="@id/nav_tv_seasons" />
     </fragment>
 
     <fragment
@@ -194,6 +197,17 @@
             tools:layout="@layout/fragment_tv_show_cast">
         <argument
                 android:name="tvId"
+                app:argType="string"
+                android:defaultValue="default" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_tv_seasons"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowSeasonsFragment"
+            android:label="@string/tv_season"
+            tools:layout="@layout/fragment_tv_show_seasons">
+        <argument
+                android:name="tv_show_id"
                 app:argType="string"
                 android:defaultValue="default" />
     </fragment>

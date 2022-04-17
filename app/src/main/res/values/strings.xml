@@ -53,6 +53,7 @@
     <string name="search_tv_show_nav">Search tv shows</string>
     <string name="game_nave">Games</string>
     <string name="single_free_game_nave">Free to play</string>
+    <string name="tv_season">Tv Seasons</string>
 
     <!--about strings-->
     <string name="createor_image_disc">creator image</string>
@@ -122,10 +123,19 @@ Kutaiba></string>
     <string name="the_app_was_made_possible_with_the_help_of">The app was made possible with the help of:</string>
     <string name="tmdb">TMDB</string>
     <string name="cast_button">View Cast members</string>
+    <string name="seasons_button">View Seasons</string>
 
     <!--TvSHows fragment strings-->
     <string name="on_air">On Air</string>
     <string name="airing_today">Airing Today</string>
+    <string name="created_by">Created By</string>
+    <string name="episode_runtime">Episode Runtime</string>
+    <string name="tv_network">Network</string>
+    <string name="tv_episode_num">Total Episodes</string>
+    <string name="tv_season_num">Total Seasons</string>
+    <string name="tv_status">Status</string>
+    <string name="tv_type">Type</string>
+    <string name="tv_production_company_heading">Production Companies</string>
 
     <!--Cast item strings-->
     <string name="nav_cast">Cast</string>
@@ -148,4 +158,7 @@ Kutaiba></string>
     <string name="graphics">Graphics</string>
     <string name="memory">Memory</string>
     <string name="storage">Storage</string>
+
+    <!--Error-->
+    <string name="not_found">SOMETHING WENT WRONG; TRY LATER</string>
 </resources>

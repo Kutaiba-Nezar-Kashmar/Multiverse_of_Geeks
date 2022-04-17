@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.tv_responses.TvShowResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.SingleTvShowResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.TvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MediaServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.Tv_show_network.TVShowAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
@@ -26,7 +27,7 @@ public class TVShowRepository
   private final MutableLiveData<ArrayList<TvShow>> onAirTvShows;
   private final MutableLiveData<ArrayList<TvShow>> airingTodayTvShows;
   private final MutableLiveData<ArrayList<TvShow>> searchedTvShows;
-  private final MutableLiveData<TvShow> tvShow;
+  private final MutableLiveData<SingleTvShowResponse> tvShow;
   private final MutableLiveData<ArrayList<Comment>> tvReviews;
 
   private TVShowRepository()
@@ -49,27 +50,27 @@ public class TVShowRepository
     return instance;
   }
 
-  public MutableLiveData<TvShow> findTvShowById(int id)
+  public MutableLiveData<SingleTvShowResponse> findTvShowById(int id)
   {
     TVShowAPI tvShowAPI = MediaServiceGenerator.getTVShowAPI();
-    Call<TvShowResponse> call = tvShowAPI.getTvShowById(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<TvShowResponse>()
+    Call<SingleTvShowResponse> call = tvShowAPI.getTvShowById(id, BuildConfig.API_KEY);
+    call.enqueue(new Callback<SingleTvShowResponse>()
     {
       @Override
-      public void onResponse(@NonNull Call<TvShowResponse> call,
-          @NonNull Response<TvShowResponse> response)
+      public void onResponse(@NonNull Call<SingleTvShowResponse> call,
+          @NonNull Response<SingleTvShowResponse> response)
       {
         if (response.code() == 200)
         {
           if (response.body() != null)
           {
-            tvShow.setValue(response.body().getTvShow());
+            tvShow.setValue(response.body());
           }
         }
       }
 
       @Override
-      public void onFailure(@NonNull Call<TvShowResponse> call,
+      public void onFailure(@NonNull Call<SingleTvShowResponse> call,
           @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");

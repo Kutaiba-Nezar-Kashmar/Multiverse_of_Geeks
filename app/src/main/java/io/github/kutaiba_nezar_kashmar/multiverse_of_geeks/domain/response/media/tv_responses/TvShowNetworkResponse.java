@@ -1,11 +1,16 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses;
 
-public class MoviesProductionCompaniesResponse
+public class TvShowNetworkResponse
 {
-  private  int id;
-  private String logo_path;
   private String name;
+  private int id;
+  private String logo_path;
   private String origin_country;
+
+  public String getName()
+  {
+    return name;
+  }
 
   public int getId()
   {
@@ -15,11 +20,6 @@ public class MoviesProductionCompaniesResponse
   public String getLogo_path()
   {
     return logo_path;
-  }
-
-  public String getName()
-  {
-    return name;
   }
 
   public String getOrigin_country()

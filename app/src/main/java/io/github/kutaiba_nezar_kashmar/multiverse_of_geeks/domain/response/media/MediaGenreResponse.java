@@ -1,6 +1,6 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media;
 
-public class MovieGenreResponse
+public class MediaGenreResponse
 {
   private int id;
   private String name;

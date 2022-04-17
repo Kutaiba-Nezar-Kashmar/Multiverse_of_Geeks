@@ -1,6 +1,11 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses;
 
 import java.util.ArrayList;
+
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaGenreResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaProductionCompaniesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaProductionCountriesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaSpokenLanguagesResponse;
 
 public class SingleMovieResponse
 {
@@ -8,7 +13,7 @@ public class SingleMovieResponse
   private MovieCollectionResponse belongs_to_collection;
   private String backdrop_path;
   private int budget;
-  private ArrayList<MovieGenreResponse> genres;
+  private ArrayList<MediaGenreResponse> genres;
   private String homepage;
   private int id;
   private String imdb_id;
@@ -17,12 +22,12 @@ public class SingleMovieResponse
   private String overview;
   private float popularity;
   private String poster_path;
-  private ArrayList<MoviesProductionCompaniesResponse> production_companies;
-  private ArrayList<MovieProductionCountriesResponse> production_countries;
+  private ArrayList<MediaProductionCompaniesResponse> production_companies;
+  private ArrayList<MediaProductionCountriesResponse> production_countries;
   private String release_date;
   private int revenue;
   private int runtime;
-  private ArrayList<MovieSpokenLanguagesResponse> spoken_languages;
+  private ArrayList<MediaSpokenLanguagesResponse> spoken_languages;
   private String status;
   private String tagline;
   private String title;
@@ -50,7 +55,7 @@ public class SingleMovieResponse
     return budget;
   }
 
-  public ArrayList<MovieGenreResponse> getGenres()
+  public ArrayList<MediaGenreResponse> getGenres()
   {
     return genres;
   }
@@ -95,12 +100,12 @@ public class SingleMovieResponse
     return poster_path;
   }
 
-  public ArrayList<MoviesProductionCompaniesResponse> getProduction_companies()
+  public ArrayList<MediaProductionCompaniesResponse> getProduction_companies()
   {
     return production_companies;
   }
 
-  public ArrayList<MovieProductionCountriesResponse> getProduction_countries()
+  public ArrayList<MediaProductionCountriesResponse> getProduction_countries()
   {
     return production_countries;
   }
@@ -120,7 +125,7 @@ public class SingleMovieResponse
     return runtime;
   }
 
-  public ArrayList<MovieSpokenLanguagesResponse> getSpoken_languages()
+  public ArrayList<MediaSpokenLanguagesResponse> getSpoken_languages()
   {
     return spoken_languages;
   }

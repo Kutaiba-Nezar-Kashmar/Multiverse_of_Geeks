@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.SingleTvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.TVShowRepository;
 
 public class TVShowsViewModel extends AndroidViewModel
@@ -22,7 +23,7 @@ public class TVShowsViewModel extends AndroidViewModel
     tvShowRepository = TVShowRepository.getInstance();
   }
 
-  public LiveData<TvShow> findTvShowById(int id)
+  public LiveData<SingleTvShowResponse> findTvShowById(int id)
   {
     return tvShowRepository.findTvShowById(id);
   }

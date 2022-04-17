@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.media;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,16 +14,16 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MoviesProductionCompaniesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaProductionCompaniesResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class MovieProductionCompanyAdapter extends
-    RecyclerView.Adapter<MovieProductionCompanyAdapter.MovieProductionCompanyViewHolder>
+public class MediaProductionCompanyAdapter extends
+    RecyclerView.Adapter<MediaProductionCompanyAdapter.MovieProductionCompanyViewHolder>
 {
-  private ArrayList<MoviesProductionCompaniesResponse> productionCompaniesResponses;
+  private ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses;
 
-  public MovieProductionCompanyAdapter(
-      ArrayList<MoviesProductionCompaniesResponse> productionCompaniesResponses)
+  public MediaProductionCompanyAdapter(
+      ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses)
   {
     this.productionCompaniesResponses = productionCompaniesResponses;
   }
@@ -62,7 +62,7 @@ public class MovieProductionCompanyAdapter extends
     return 0;
   }
 
-  public void updateCompanyList(final ArrayList<MoviesProductionCompaniesResponse> productionCompaniesResponses)
+  public void updateCompanyList(final ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses)
   {
     this.productionCompaniesResponses.clear();
     this.productionCompaniesResponses = productionCompaniesResponses;

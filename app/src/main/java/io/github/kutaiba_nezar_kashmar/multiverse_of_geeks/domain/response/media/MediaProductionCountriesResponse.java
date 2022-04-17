@@ -1,6 +1,6 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media;
 
-public class MovieProductionCountriesResponse
+public class MediaProductionCountriesResponse
 {
   private String iso_3166_1;
   private String name;

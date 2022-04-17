@@ -1,7 +1,8 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.Tv_show_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.tv_responses.TvShowResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.SingleTvShowResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.TvShowResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -18,7 +19,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv show
    */
   @GET("tv/{tv_id}")
-  Call<TvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
+  Call<SingleTvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
       @Query("api_key") String apiKey);
 
   /**

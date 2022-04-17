@@ -18,6 +18,15 @@
                 android:gravity="center"
                 android:layout_margin="@dimen/edit_text_margin" />
 
+        <TextView
+                android:id="@+id/single_tv_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_margin="@dimen/edit_text_margin" />
+
             <ImageView
                     android:id="@+id/single_tv_image"
                     android:layout_width="match_parent"
@@ -76,11 +85,146 @@
 
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/episode_runtime" />
+
+            <TextView
+                    android:id="@+id/tv_episode_runtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/game_genre" />
+
+            <TextView
+                    android:id="@+id/tv_genre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_episode_num" />
+
+            <TextView
+                    android:id="@+id/tv_episode_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_season_num" />
+
+            <TextView
+                    android:id="@+id/tv_season_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_status" />
+
+            <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_type" />
+
+            <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
         <Button
                 android:id="@+id/to_tv_cast_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cast_button"
+                android:drawableEnd="@drawable/arrow_circle_right_ic"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"/>
+
+        <Button
+                android:id="@+id/to_tv_seasons_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seasons_button"
                 android:drawableEnd="@drawable/arrow_circle_right_ic"
                 android:layout_marginStart="@dimen/edit_text_margin"
                 android:layout_marginEnd="@dimen/edit_text_margin"/>
@@ -92,6 +236,69 @@
                 android:text="@string/home_text"
                 android:layout_marginStart="@dimen/edit_text_margin"
                 android:layout_marginTop="@dimen/edit_text_margin" />
+
+        <TextView
+                android:id="@+id/tv_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:text="@string/home_text"/>
+
+        <TextView
+                android:id="@+id/tv_creator_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:textSize="25sp"
+                android:text="@string/created_by"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tv_creator_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/tv_network_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:textSize="25sp"
+                android:text="@string/tv_network"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tv_network_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/tv_production_company_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:textSize="25sp"
+                android:text="@string/tv_production_company_heading"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tv_production_company_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

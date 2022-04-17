@@ -65,12 +65,13 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_single_free_to_play_game.xml" value="0.34084231145935356" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_single_movie.xml" value="0.18071065989847715" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_single_trending.xml" value="0.3625" />
-        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_single_tv_show.xml" value="0.1" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_single_tv_show.xml" value="0.25" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_slideshow.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_test.xml" value="0.4233576642335766" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_top_rated_movies.xml" value="0.18" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_top_rated_tv_shows.xml" value="0.19948849104859334" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_tv_show_cast.xml" value="0.3625" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_tv_show_seasons.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_tv_shows.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_upcoming_movies.xml" value="0.184375" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/free_to_play_game_item.xml" value="0.3625" />
@@ -92,6 +93,8 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/test_frag.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/trending_media_item.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/tv_comment_item.xml" value="0.3625" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/tv_creator_item.xml" value="0.3625" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/tv_network_item.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/tv_show_cast_item.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/tv_show_item.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />

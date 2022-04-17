@@ -23,9 +23,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieGenreResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MoviesProductionCompaniesResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieProductionCompanyAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaGenreResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaProductionCompaniesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.media.MediaProductionCompanyAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
@@ -36,9 +36,9 @@ public class SingleMovieFragment extends Fragment
   private MoviesViewModel moviesViewModel;
   private RecyclerView commentsRecyclerView;
   private MovieReviewsAdapter movieReviewsAdapter;
-  private MovieProductionCompanyAdapter productionCompanyAdapter;
+  private MediaProductionCompanyAdapter productionCompanyAdapter;
   private final ArrayList<Comment> comments = new ArrayList<>();
-  private ArrayList<MoviesProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
   private TextView movieTitle;
   private TextView movieTagline;
@@ -122,7 +122,7 @@ public class SingleMovieFragment extends Fragment
             if (movie.getGenres() != null)
             {
               genre.setText("");
-              for (MovieGenreResponse genreItem : movie.getGenres())
+              for (MediaGenreResponse genreItem : movie.getGenres())
               {
                 genre.append(genreItem.getName() + "\n");
               }
@@ -182,7 +182,7 @@ public class SingleMovieFragment extends Fragment
     companyRv.hasFixedSize();
     companyRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
         LinearLayoutManager.HORIZONTAL, false));
-    productionCompanyAdapter = new MovieProductionCompanyAdapter(companiesResponses);
+    productionCompanyAdapter = new MediaProductionCompanyAdapter(companiesResponses);
     companyRv.setAdapter(productionCompanyAdapter);
   }
 }

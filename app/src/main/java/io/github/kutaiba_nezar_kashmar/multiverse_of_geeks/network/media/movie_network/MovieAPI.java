@@ -1,8 +1,8 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.movie_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.SingleMovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses.MovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses.SingleMovieResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

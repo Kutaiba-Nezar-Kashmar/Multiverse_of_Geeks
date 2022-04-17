@@ -1,6 +1,6 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media;
 
-public class MovieSpokenLanguagesResponse
+public class MediaSpokenLanguagesResponse
 {
   private String english_name;
   private String iso_639_1;
