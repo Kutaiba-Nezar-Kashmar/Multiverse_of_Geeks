@@ -52,6 +52,7 @@
     <string name="search_movie_nav">Search movies</string>
     <string name="search_tv_show_nav">Search tv shows</string>
     <string name="game_nave">Games</string>
+    <string name="single_free_game_nave">Free to play</string>
 
     <!--about strings-->
     <string name="createor_image_disc">creator image</string>
@@ -128,4 +129,6 @@ Kutaiba></string>
     <string name="character">AS:</string>
     <string name="role">Role:</string>
 
+    <!--games-->
+    <string name="minimum_system_requirements">Minimum System Requirements</string>
 </resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/edit_text_margin">
+
+        <TextView
+                android:id="@+id/single_free_to_play_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:textSize="35sp"
+                android:gravity="center"
+                android:layout_margin="@dimen/edit_text_top_margin"/>
+
+        <ImageView
+                android:id="@+id/single_free_to_play_poster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mog_log_background"
+                android:layout_gravity="center"
+                android:minHeight="500dp"/>
+
+        <TextView
+                android:id="@+id/free_to_play_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"/>
+
+        <TextView
+                android:id="@+id/free_to_play_short_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/free_to_play_game_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/free_to_play_screen_shots_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/free_to_play_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_top_margin">
+
+            <TextView
+                    android:id="@+id/free_to_play_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"/>
+
+            <TextView
+                    android:id="@+id/free_to_play_genre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_top_margin">
+
+            <TextView
+                    android:id="@+id/free_to_play_platform"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"/>
+
+            <TextView
+                    android:id="@+id/free_to_play_publisher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/minimum_system_requirements"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textSize="25sp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/edit_text_margin">
+
+                <TextView
+                        android:id="@+id/free_to_play_os"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_text"/>
+
+                <TextView
+                        android:id="@+id/free_to_play_processor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_text"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/free_to_play_graphics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_text"
+                    android:layout_marginTop="@dimen/edit_text_margin"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/edit_text_margin">
+
+                <TextView
+                        android:id="@+id/free_to_play_memory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_text"/>
+
+                <TextView
+                        android:id="@+id/free_to_play_storage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_text"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

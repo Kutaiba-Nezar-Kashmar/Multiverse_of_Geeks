@@ -13,15 +13,17 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.FreeToPlayGameResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class FreeToPlayAdapter
     extends RecyclerView.Adapter<FreeToPlayAdapter.FreeToPlayViewHolder>
 {
-  private ArrayList<FreeToPlayGameResponse> freeToPlayGames;
+  private ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames;
+  private OnClickListener listener;
 
-  public FreeToPlayAdapter(ArrayList<FreeToPlayGameResponse> freeToPlayGames)
+  public FreeToPlayAdapter(
+      ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames)
   {
     this.freeToPlayGames = freeToPlayGames;
   }
@@ -45,7 +47,8 @@ public class FreeToPlayAdapter
         .load(freeToPlayGames.get(position).getThumbnail()).into(holder.poster);
   }
 
-  public void updateFreeToPlayList(final ArrayList<FreeToPlayGameResponse> freeToPlayGames)
+  public void updateFreeToPlayList(
+      final ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames)
   {
     this.freeToPlayGames.clear();
     this.freeToPlayGames = freeToPlayGames;
@@ -62,6 +65,11 @@ public class FreeToPlayAdapter
     return 0;
   }
 
+  public void setListener(OnClickListener listener)
+  {
+    this.listener = listener;
+  }
+
   class FreeToPlayViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
@@ -72,6 +80,15 @@ public class FreeToPlayAdapter
       super(itemView);
       context = itemView.getContext();
       poster = itemView.findViewById(R.id.free_to_play_image);
+
+      itemView.setOnClickListener(view -> {
+        listener.onClick(freeToPlayGames.get(getBindingAdapterPosition()));
+      });
     }
+  }
+
+  public interface OnClickListener
+  {
+    void onClick(AllFreeToPlayGamesResponse allFreeToPlayGamesResponse);
   }
 }

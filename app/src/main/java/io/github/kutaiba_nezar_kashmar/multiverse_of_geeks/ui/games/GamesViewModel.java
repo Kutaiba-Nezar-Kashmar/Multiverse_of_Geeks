@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.FreeToPlayGameResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.FreeToPlayGamesRepository;
 
@@ -21,8 +22,13 @@ public class GamesViewModel extends AndroidViewModel
     freeToPlayGamesRepository = FreeToPlayGamesRepository.getInstance();
   }
 
-  public LiveData<ArrayList<FreeToPlayGameResponse>> getAllFreeToPlay()
+  public LiveData<ArrayList<AllFreeToPlayGamesResponse>> getAllFreeToPlay()
   {
     return freeToPlayGamesRepository.getAllFreeToPlayGames();
+  }
+
+  public LiveData<FreeToPlayGameResponse> findFreeToPlayGameById(int id)
+  {
+    return freeToPlayGamesRepository.findFreeToPlayGame(id);
   }
 }
