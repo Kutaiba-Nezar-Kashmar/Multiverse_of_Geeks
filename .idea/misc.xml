@@ -30,6 +30,7 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/phone_ic.xml" value="0.1815" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/settings_ic.xml" value="0.1815" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/side_nav_bar.xml" value="0.1815" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/drawable/tv_ic.xml" value="0.245" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/app_bar_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/comment_item.xml" value="0.1762917933130699" />
@@ -40,7 +41,9 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_boxoffice_movies.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_create_profile.xml" value="0.2" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_edit_profile.xml" value="0.33" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_free_to_play_games.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_gallery.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_games_main.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_latest_movies.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_login.xml" value="0.358695652173913" />
@@ -69,6 +72,7 @@
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_tv_show_cast.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_tv_shows.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/fragment_upcoming_movies.xml" value="0.184375" />
+        <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/free_to_play_game_item.xml" value="0.3625" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/game_item.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/gender_spinner_item.xml" value="0.25" />
         <entry key="..\:/Users/kkash/AndroidStudioProjects/Multiverse_of_Geeks/app/src/main/res/layout/latest_movie_item.xml" value="0.3625" />
