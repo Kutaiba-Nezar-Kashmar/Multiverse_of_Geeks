@@ -131,4 +131,17 @@ Kutaiba></string>
 
     <!--games-->
     <string name="minimum_system_requirements">Minimum System Requirements</string>
+    <string name="release_date">Release Date</string>
+    <string name="game_url">Game URL</string>
+    <string name="screen_shots">Screen Shots</string>
+    <string name="description">Description</string>
+    <string name="status">Status</string>
+    <string name="game_genre">Genre</string>
+    <string name="publisher">Publisher</string>
+    <string name="platform">Platform</string>
+    <string name="os">OS</string>
+    <string name="processor">Processor</string>
+    <string name="graphics">Graphics</string>
+    <string name="memory">Memory</string>
+    <string name="storage">Storage</string>
 </resources>
