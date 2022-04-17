@@ -26,7 +26,7 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 
 ## User stories
 1. As a user, I would like to be able to view a list of the available movies.
-2. ~~As a user, I would like to be able to view a list of the available games.~~
+2. As a user, I would like to be able to view a list of the available games.
 3. As a user, I would like to be able to view a list of the available characters in the chosen movie.
 4. ~~As a user, I would like to be able to view a list of the available characters in the chosen game.~~
 5. As a user, I would like to be able to view the various information about the chosen character.
