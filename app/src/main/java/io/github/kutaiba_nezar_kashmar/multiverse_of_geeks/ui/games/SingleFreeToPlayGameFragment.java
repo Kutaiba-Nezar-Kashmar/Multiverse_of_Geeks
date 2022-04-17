@@ -130,7 +130,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private void setUpRecyclerView(View view)
   {
     screenShotRv.hasFixedSize();
-    screenShotRv.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+    screenShotRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
+        LinearLayoutManager.HORIZONTAL, false));
     screenShotsAdapter = new FreeToPlayScreenShotsAdapter(screenShots);
     screenShotRv.setAdapter(screenShotsAdapter);
   }

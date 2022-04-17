@@ -177,12 +177,22 @@
                 android:layout_gravity="center"
                 android:minHeight="400dp"/>
 
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:text="@string/production_companies"
+                android:textSize="25sp"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_production_companies_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin"/>
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin"/>
 
         <Button
                 android:id="@+id/to_movie_cast_button"

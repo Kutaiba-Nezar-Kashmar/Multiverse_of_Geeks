@@ -51,7 +51,6 @@ public class FreeToPlayScreenShotsAdapter extends
       final ArrayList<FreeToPlayGameScreenShots> freeToPlayGameScreenShots)
   {
     this.freeToPlayGameScreenShots.clear();
-    ;
     this.freeToPlayGameScreenShots = freeToPlayGameScreenShots;
     notifyDataSetChanged();
   }

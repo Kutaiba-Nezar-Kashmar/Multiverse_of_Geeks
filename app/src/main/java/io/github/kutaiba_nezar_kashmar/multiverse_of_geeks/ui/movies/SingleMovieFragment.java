@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieGenreResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MoviesProductionCompaniesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieProductionCompanyAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
@@ -32,6 +34,12 @@ public class SingleMovieFragment extends Fragment
 {
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
+  private RecyclerView commentsRecyclerView;
+  private MovieReviewsAdapter movieReviewsAdapter;
+  private MovieProductionCompanyAdapter productionCompanyAdapter;
+  private final ArrayList<Comment> comments = new ArrayList<>();
+  private ArrayList<MoviesProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private int movieId;
   private TextView movieTitle;
   private TextView movieTagline;
   private TextView budget;
@@ -46,10 +54,6 @@ public class SingleMovieFragment extends Fragment
   private TextView movieReleaseYear;
   private RatingBar movieRatting;
   private ImageView moviePoster;
-  private int movieId;
-  private final ArrayList<Comment> comments = new ArrayList<>();
-  private RecyclerView commentsRecyclerView;
-  private MovieReviewsAdapter movieReviewsAdapter;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -144,8 +148,11 @@ public class SingleMovieFragment extends Fragment
               collectionName.setVisibility(View.GONE);
               collectionPoster.setVisibility(View.GONE);
             }
-          });
 
+            companiesResponses = movie.getProduction_companies();
+            productionCompanyAdapter.updateCompanyList(companiesResponses);
+          });
+      setUpCompanyRv(view);
     }
 
     commentsRecyclerView.hasFixedSize();
@@ -170,4 +177,12 @@ public class SingleMovieFragment extends Fragment
         .observe(getViewLifecycleOwner(), update);
   }
 
+  private void setUpCompanyRv(View view)
+  {
+    companyRv.hasFixedSize();
+    companyRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
+        LinearLayoutManager.HORIZONTAL, false));
+    productionCompanyAdapter = new MovieProductionCompanyAdapter(companiesResponses);
+    companyRv.setAdapter(productionCompanyAdapter);
+  }
 }

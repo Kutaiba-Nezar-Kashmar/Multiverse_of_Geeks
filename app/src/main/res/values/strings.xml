@@ -111,6 +111,7 @@ Kutaiba></string>
     <string name="movie_collection">Collection</string>
     <string name="movie_budget">Budget</string>
     <string name="movie_revenue">Revenue</string>
+    <string name="production_companies">Production Companies</string>
 
     <!--Movies fragment strings-->
     <string name="search">search</string>
