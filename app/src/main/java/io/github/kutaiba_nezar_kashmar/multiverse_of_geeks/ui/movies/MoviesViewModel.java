@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
@@ -24,7 +25,7 @@ public class MoviesViewModel extends AndroidViewModel
     movieRepository = MovieRepository.getInstance();
   }
 
-  public LiveData<Movie> findMovieById(int id)
+  public LiveData<SingleMovieResponse> findMovieById(int id)
   {
     return movieRepository.findMovie(id);
   }

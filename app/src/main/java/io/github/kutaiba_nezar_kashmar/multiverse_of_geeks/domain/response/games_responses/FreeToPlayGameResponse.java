@@ -1,11 +1,15 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses;
 
-public class AllFreeToPlayGamesResponse
+import java.util.ArrayList;
+
+public class FreeToPlayGameResponse
 {
   private int id;
   private String title;
   private String thumbnail;
+  private String status;
   private String short_description;
+  private String description;
   private String game_url;
   private String genre;
   private String platform;
@@ -13,6 +17,8 @@ public class AllFreeToPlayGamesResponse
   private String developer;
   private String release_date;
   private String freetogame_profile_url;
+  private FreeToPlayGameRequirementsResponse minimum_system_requirements;
+  private ArrayList<FreeToPlayGameScreenShots> screenshots;
 
   public int getId()
   {
@@ -29,9 +35,19 @@ public class AllFreeToPlayGamesResponse
     return thumbnail;
   }
 
+  public String getStatus()
+  {
+    return status;
+  }
+
   public String getShort_description()
   {
     return short_description;
+  }
+
+  public String getDescription()
+  {
+    return description;
   }
 
   public String getGame_url()
@@ -67,5 +83,15 @@ public class AllFreeToPlayGamesResponse
   public String getFreetogame_profile_url()
   {
     return freetogame_profile_url;
+  }
+
+  public FreeToPlayGameRequirementsResponse getMinimum_system_requirements()
+  {
+    return minimum_system_requirements;
+  }
+
+  public ArrayList<FreeToPlayGameScreenShots> getScreenshots()
+  {
+    return screenshots;
   }
 }

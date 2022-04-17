@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.AllFreeToPlayGamesResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.FreeToPlayGameResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.AllFreeToPlayGamesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.FreeToPlayGameResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.FreeToPlayGamesServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.games_network.FreeToPlayAPI;
 import retrofit2.Call;

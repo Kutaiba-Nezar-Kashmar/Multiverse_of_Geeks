@@ -18,6 +18,15 @@
                 android:gravity="center"
                 android:layout_margin="@dimen/edit_text_margin" />
 
+        <TextView
+                android:id="@+id/single_movie_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_margin="@dimen/edit_text_margin" />
+
         <ImageView
                 android:id="@+id/single_movie_image"
                 android:layout_width="match_parent"
@@ -76,6 +85,105 @@
 
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/movie_budget" />
+
+            <TextView
+                    android:id="@+id/movie_budget"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/movie_revenue" />
+
+            <TextView
+                    android:id="@+id/movie_revenue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/game_genre" />
+
+            <TextView
+                    android:id="@+id/movie_genre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/movie_home_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:layout_marginStart="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/movie_collection_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/movie_collection"
+                android:textSize="25sp"
+                android:layout_marginStart="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/movie_collection_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:layout_marginStart="@dimen/edit_text_margin"/>
+
+        <ImageView
+                android:id="@+id/movie_collection_poster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mog_log_background"
+                android:layout_gravity="center"
+                android:minHeight="400dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movie_production_companies_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edit_text_margin"
+                android:layout_marginEnd="@dimen/edit_text_margin"/>
+
         <Button
                 android:id="@+id/to_movie_cast_button"
                 android:layout_width="match_parent"
@@ -83,7 +191,8 @@
                 android:text="@string/cast_button"
                 android:drawableEnd="@drawable/arrow_circle_right_ic"
                 android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin"/>
+                android:layout_marginEnd="@dimen/edit_text_margin"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
 
         <Button
                 android:id="@+id/to_similar_movie_button"

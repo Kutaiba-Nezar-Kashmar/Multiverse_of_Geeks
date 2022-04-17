@@ -108,6 +108,9 @@ Kutaiba></string>
     <string name="to_similar">More like this</string>
     <string name="similar_movies">Similar Movies</string>
     <string name="page">Page: </string>
+    <string name="movie_collection">Collection</string>
+    <string name="movie_budget">Budget</string>
+    <string name="movie_revenue">Revenue</string>
 
     <!--Movies fragment strings-->
     <string name="search">search</string>

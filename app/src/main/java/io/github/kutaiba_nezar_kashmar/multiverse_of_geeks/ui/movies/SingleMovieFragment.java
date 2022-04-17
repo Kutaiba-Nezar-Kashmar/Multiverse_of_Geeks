@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
@@ -32,6 +33,15 @@ public class SingleMovieFragment extends Fragment
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
   private TextView movieTitle;
+  private TextView movieTagline;
+  private TextView budget;
+  private TextView revenue;
+  private TextView genre;
+  private TextView homePage;
+  private TextView collectionName;
+  private TextView collectionHeader;
+  private ImageView collectionPoster;
+  private RecyclerView companyRv;
   private TextView movieOverview;
   private TextView movieReleaseYear;
   private RatingBar movieRatting;
@@ -56,6 +66,15 @@ public class SingleMovieFragment extends Fragment
     moviePoster = root.findViewById(R.id.single_movie_image);
     commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
     Button toCastButton = root.findViewById(R.id.to_movie_cast_button);
+    movieTagline = root.findViewById(R.id.single_movie_tagline);
+    budget = root.findViewById(R.id.movie_budget);
+    revenue = root.findViewById(R.id.movie_revenue);
+    genre = root.findViewById(R.id.movie_genre);
+    homePage = root.findViewById(R.id.movie_home_page);
+    collectionName = root.findViewById(R.id.movie_collection_name);
+    collectionHeader = root.findViewById(R.id.movie_collection_header);
+    collectionPoster = root.findViewById(R.id.movie_collection_poster);
+    companyRv = root.findViewById(R.id.movie_production_companies_rv);
     toCastButton.setOnClickListener(view -> {
       SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
           .actionNavSingleMovieToNavMovieCast();
@@ -93,6 +112,38 @@ public class SingleMovieFragment extends Fragment
             Glide.with(view.getContext()).load(
                 "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(moviePoster);
+            movieTagline.setText(movie.getTagline());
+            budget.setText(String.valueOf(movie.getBudget()));
+            revenue.setText(String.valueOf(movie.getRevenue()));
+            if (movie.getGenres() != null)
+            {
+              genre.setText("");
+              for (MovieGenreResponse genreItem : movie.getGenres())
+              {
+                genre.append(genreItem.getName() + "\n");
+              }
+            }
+            homePage.setText(movie.getHomepage());
+            if (movie.getBelongs_to_collection() != null)
+            {
+              collectionHeader.setVisibility(View.VISIBLE);
+              collectionName.setVisibility(View.VISIBLE);
+              collectionPoster.setVisibility(View.VISIBLE);
+              collectionName.setText("");
+              collectionName
+                  .setText(movie.getBelongs_to_collection().getName());
+              Glide.with(view.getContext()).load(
+                  "https://image.tmdb.org/t/p/w500" + movie
+                      .getBelongs_to_collection().getPoster_path())
+                  .into(collectionPoster);
+            }
+            else
+            {
+              collectionPoster.setImageResource(android.R.color.transparent);
+              collectionHeader.setVisibility(View.GONE);
+              collectionName.setVisibility(View.GONE);
+              collectionPoster.setVisibility(View.GONE);
+            }
           });
 
     }

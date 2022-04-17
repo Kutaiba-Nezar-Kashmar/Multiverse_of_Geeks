@@ -1,7 +1,8 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.movie_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.SingleMovieResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -18,7 +19,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movie
    */
   @GET("movie/{movie_id}")
-  Call<MovieResponse> getMovieById(@Path("movie_id") int movie_id,
+  Call<SingleMovieResponse> getMovieById(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 
   /**

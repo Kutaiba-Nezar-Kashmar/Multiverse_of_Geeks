@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.AllFreeToPlayGamesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class FreeToPlayAdapter

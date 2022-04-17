@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses;
 
 import java.util.ArrayList;
 import java.util.Collections;

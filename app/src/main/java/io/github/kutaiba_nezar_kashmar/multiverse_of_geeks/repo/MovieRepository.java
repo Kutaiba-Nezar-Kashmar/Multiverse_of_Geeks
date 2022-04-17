@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.MovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.MovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.MediaServiceGenerator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.media.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public class MovieRepository
 {
   private static MovieRepository instance;
-  private final MutableLiveData<Movie> movie;
+  private final MutableLiveData<SingleMovieResponse> movie;
   private final MutableLiveData<ArrayList<Movie>> popularMovies;
   private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
   private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
@@ -53,27 +54,27 @@ public class MovieRepository
     return instance;
   }
 
-  public MutableLiveData<Movie> findMovie(int id)
+  public MutableLiveData<SingleMovieResponse> findMovie(int id)
   {
     MovieAPI movieAPI = MediaServiceGenerator.getMovieAPI();
-    Call<MovieResponse> call = movieAPI.getMovieById(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<MovieResponse>()
+    Call<SingleMovieResponse> call = movieAPI.getMovieById(id, BuildConfig.API_KEY);
+    call.enqueue(new Callback<SingleMovieResponse>()
     {
       @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<SingleMovieResponse> call,
+          @NonNull Response<SingleMovieResponse> response)
       {
         if (response.code() == 200)
         {
           if (response.body() != null)
           {
-            movie.setValue(response.body().getMovie());
+            movie.setValue(response.body());
           }
         }
       }
 
       @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
+      public void onFailure(@NonNull Call<SingleMovieResponse> call,
           @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
