@@ -41,9 +41,9 @@ public class GamesAdapter
   @Override
   public void onBindViewHolder(@NonNull GamesViewHolder holder, int position)
   {
-    /*Glide.with(holder.context)
+    Glide.with(holder.context)
         .load(gamesResponses.get(position).getBackground_image())
-        .into(holder.gamePoster);*/
+        .into(holder.gamePoster);
     holder.gameTitle.setText(gamesResponses.get(position).getName());
   }
 
@@ -66,7 +66,7 @@ public class GamesAdapter
 
   class GamesViewHolder extends RecyclerView.ViewHolder
   {
-    //private ImageView gamePoster;
+    private ImageView gamePoster;
     private TextView gameTitle;
     private Context context;
 
@@ -74,7 +74,7 @@ public class GamesAdapter
     {
       super(itemView);
       context = itemView.getContext();
-      //gamePoster = itemView.findViewById(R.id.game_poster);
+      gamePoster = itemView.findViewById(R.id.game_poster);
       gameTitle = itemView.findViewById(R.id.game_name);
     }
   }

@@ -4,11 +4,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <!--<ImageView
+    <ImageView
             android:id="@+id/game_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/mog_log_background"/>-->
+            android:src="@drawable/mog_log_background"/>
 
     <TextView
             android:id="@+id/game_name"
