@@ -44,6 +44,7 @@ public class GamesAdapter
     Glide.with(holder.context)
         .load(gamesResponses.get(position).getBackground_image())
         .into(holder.gamePoster);
+    holder.gameTitle.setText(gamesResponses.get(position).getName());
   }
 
   public void updateGameList(final ArrayList<Game> gamesResponses)
@@ -66,6 +67,7 @@ public class GamesAdapter
   class GamesViewHolder extends RecyclerView.ViewHolder
   {
     private ImageView gamePoster;
+    private TextView gameTitle;
     private Context context;
 
     public GamesViewHolder(@NonNull View itemView)
@@ -73,6 +75,7 @@ public class GamesAdapter
       super(itemView);
       context = itemView.getContext();
       gamePoster = itemView.findViewById(R.id.game_poster);
+      gameTitle = itemView.findViewById(R.id.game_name);
     }
   }
 }
