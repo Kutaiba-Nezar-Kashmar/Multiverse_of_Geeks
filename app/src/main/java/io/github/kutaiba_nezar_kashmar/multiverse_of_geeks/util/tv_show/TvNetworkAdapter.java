@@ -42,9 +42,11 @@ public class TvNetworkAdapter
   public void onBindViewHolder(@NonNull TvNetworkHolder holder, int position)
   {
     holder.networkName.setText(tvShowNetworkResponses.get(position).getName());
+    System.out.println("-----------------------------------" + tvShowNetworkResponses.get(position)
+        .getLogo_path() + "----------------------------------");
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShowNetworkResponses.get(position)
-            .getLogo_path()).load(holder.networkLogo);
+            .getLogo_path()).into(holder.networkLogo);
   }
 
   @Override
@@ -57,7 +59,8 @@ public class TvNetworkAdapter
     return 0;
   }
 
-  public void updateNetworkList(final ArrayList<TvShowNetworkResponse> tvShowNetworkResponses)
+  public void updateNetworkList(
+      final ArrayList<TvShowNetworkResponse> tvShowNetworkResponses)
   {
     this.tvShowNetworkResponses.clear();
     this.tvShowNetworkResponses = tvShowNetworkResponses;
