@@ -53,6 +53,7 @@
     <string name="search_tv_show_nav">Search tv shows</string>
     <string name="game_nave">Games</string>
     <string name="single_free_game_nave">Free to play</string>
+    <string name="all_games_nave">All games</string>
     <string name="tv_season">Tv Seasons</string>
 
     <!--about strings-->

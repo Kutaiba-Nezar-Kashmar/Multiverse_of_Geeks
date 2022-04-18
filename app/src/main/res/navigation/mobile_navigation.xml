@@ -235,4 +235,10 @@
                 android:defaultValue="default" />
     </fragment>
 
+    <fragment
+            android:id="@+id/nav_all_games"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.AllGamesFragment"
+            android:label="@string/all_games_nave"
+            tools:layout="@layout/fragment_all_games"/>
+
 </navigation>

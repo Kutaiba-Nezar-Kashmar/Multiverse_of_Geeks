@@ -2,8 +2,8 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.network.games_networ
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.AllFreeToPlayGamesResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.FreeToPlayGameResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

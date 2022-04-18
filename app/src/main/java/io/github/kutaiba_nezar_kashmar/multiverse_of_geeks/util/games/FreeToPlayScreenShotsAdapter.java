@@ -13,18 +13,18 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.FreeToPlayGameScreenShots;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class FreeToPlayScreenShotsAdapter extends
     RecyclerView.Adapter<FreeToPlayScreenShotsAdapter.FreeToPlayScreenShotsViewHolder>
 {
-  private ArrayList<FreeToPlayGameScreenShots> freeToPlayGameScreenShots;
+  private ArrayList<GameScreenShots> gameScreenShots;
 
   public FreeToPlayScreenShotsAdapter(
-      ArrayList<FreeToPlayGameScreenShots> freeToPlayGameScreenShots)
+      ArrayList<GameScreenShots> gameScreenShots)
   {
-    this.freeToPlayGameScreenShots = freeToPlayGameScreenShots;
+    this.gameScreenShots = gameScreenShots;
   }
 
   @NonNull
@@ -43,24 +43,24 @@ public class FreeToPlayScreenShotsAdapter extends
       int position)
   {
     Glide.with(holder.context)
-        .load(freeToPlayGameScreenShots.get(position).getImage())
+        .load(gameScreenShots.get(position).getImage())
         .into(holder.screenShot);
   }
 
   public void updateScreenShotList(
-      final ArrayList<FreeToPlayGameScreenShots> freeToPlayGameScreenShots)
+      final ArrayList<GameScreenShots> gameScreenShots)
   {
-    this.freeToPlayGameScreenShots.clear();
-    this.freeToPlayGameScreenShots = freeToPlayGameScreenShots;
+    this.gameScreenShots.clear();
+    this.gameScreenShots = gameScreenShots;
     notifyDataSetChanged();
   }
 
   @Override
   public int getItemCount()
   {
-    if (freeToPlayGameScreenShots != null)
+    if (gameScreenShots != null)
     {
-      return freeToPlayGameScreenShots.size();
+      return gameScreenShots.size();
     }
     return 0;
   }

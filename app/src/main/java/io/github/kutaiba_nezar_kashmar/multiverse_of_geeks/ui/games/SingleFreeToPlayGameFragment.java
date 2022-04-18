@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.FreeToPlayGameScreenShots;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.FreeToPlayScreenShotsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleFreeToPlayGameBinding;
@@ -28,7 +28,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private FragmentSingleFreeToPlayGameBinding binding;
   private FreeToPlayScreenShotsAdapter screenShotsAdapter;
   private GamesViewModel gamesViewModel;
-  private ArrayList<FreeToPlayGameScreenShots> screenShots = new ArrayList<>();
+  private ArrayList<GameScreenShots> screenShots = new ArrayList<>();
   private int gameId;
   private TextView title;
   private ImageView poster;
