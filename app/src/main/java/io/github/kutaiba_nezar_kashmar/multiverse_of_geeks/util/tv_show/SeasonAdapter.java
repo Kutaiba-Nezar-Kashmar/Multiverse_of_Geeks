@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +21,6 @@ public class SeasonAdapter
     extends RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>
 {
   private ArrayList<TvShowSeasonResponse> seasons;
-  private OnClickListener listener;
 
   public SeasonAdapter(ArrayList<TvShowSeasonResponse> seasons)
   {
@@ -43,6 +43,13 @@ public class SeasonAdapter
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + seasons.get(position)
             .getPoster_path()).into(holder.poster);
+    holder.seasonName.setText(seasons.get(position).getName());
+    holder.seasonNumber
+        .setText("Season " + seasons.get(position).getSeason_number());
+    holder.seasonEpisodesNumber
+        .setText("episode " + seasons.get(position).getEpisode_count());
+    holder.seasonAirDate.setText(seasons.get(position).getAir_date());
+    holder.seasonOverview.setText(seasons.get(position).getOverview());
   }
 
   @Override
@@ -62,14 +69,14 @@ public class SeasonAdapter
     notifyDataSetChanged();
   }
 
-  public void setListener(OnClickListener listener)
-  {
-    this.listener = listener;
-  }
-
   class SeasonViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
+    private final TextView seasonName;
+    private final TextView seasonNumber;
+    private final TextView seasonEpisodesNumber;
+    private final TextView seasonAirDate;
+    private final TextView seasonOverview;
     private Context context;
 
     public SeasonViewHolder(@NonNull View itemView)
@@ -77,14 +84,11 @@ public class SeasonAdapter
       super(itemView);
       context = itemView.getContext();
       poster = itemView.findViewById(R.id.season_poster);
-      itemView.setOnClickListener(view -> {
-        listener.onClick(seasons.get(getBindingAdapterPosition()));
-      });
+      seasonName = itemView.findViewById(R.id.season_name);
+      seasonNumber = itemView.findViewById(R.id.season_number);
+      seasonEpisodesNumber = itemView.findViewById(R.id.season_episodes_num);
+      seasonAirDate = itemView.findViewById(R.id.season_air_date);
+      seasonOverview = itemView.findViewById(R.id.season_overview);
     }
-  }
-
-  interface OnClickListener
-  {
-    void onClick(TvShowSeasonResponse season);
   }
 }

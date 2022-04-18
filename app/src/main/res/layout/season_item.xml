@@ -4,10 +4,62 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+    <TextView
+            android:id="@+id/season_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_text"
+            android:gravity="center"
+            android:textSize="35sp"/>
+
+    <TextView
+            android:id="@+id/season_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_text"/>
+
+    <TextView
+            android:id="@+id/season_episodes_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_text"/>
+
     <ImageView
             android:id="@+id/season_poster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/mog_log_background"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/season_release_Date"/>
+
+        <TextView
+                android:id="@+id/season_air_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_text"/>
+
+    </LinearLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/season_overview"
+                android:textSize="25sp"/>
+
+        <TextView
+                android:id="@+id/season_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"/>
 
 </LinearLayout>

@@ -136,6 +136,8 @@ Kutaiba></string>
     <string name="tv_status">Status</string>
     <string name="tv_type">Type</string>
     <string name="tv_production_company_heading">Production Companies</string>
+    <string name="season_release_Date">Air date</string>
+    <string name="season_overview">Overview</string>
 
     <!--Cast item strings-->
     <string name="nav_cast">Cast</string>
