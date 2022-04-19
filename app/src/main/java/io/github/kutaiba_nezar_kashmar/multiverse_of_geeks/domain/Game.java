@@ -7,6 +7,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameStoreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameTageResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesDevelopersResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.PlatformsResponse;
 
@@ -26,13 +27,14 @@ public class Game
   private ArrayList<GameTageResponse> tags;
   private GameAgeRating esrb_rating;
   private ArrayList<GameScreenShots> short_screenshots;
+  private ArrayList<GamesDevelopersResponse> developers;
 
   public Game(int id, String name, String released, boolean tba,
       String background_image, float rating, int playtime, String updated,
       ArrayList<PlatformsResponse> platforms,
       ArrayList<GameGenreResponse> genres, ArrayList<GameStoreResponse> stores,
       ArrayList<GameTageResponse> tags, GameAgeRating esrb_rating,
-      ArrayList<GameScreenShots> short_screenshots)
+      ArrayList<GameScreenShots> short_screenshots, ArrayList<GamesDevelopersResponse> developers)
   {
     this.id = id;
     this.name = name;
@@ -48,6 +50,7 @@ public class Game
     this.tags = tags;
     this.esrb_rating = esrb_rating;
     this.short_screenshots = short_screenshots;
+    this.developers = developers;
   }
 
   public int getId()
@@ -118,5 +121,10 @@ public class Game
   public ArrayList<GameScreenShots> getShort_screenshots()
   {
     return short_screenshots;
+  }
+
+  public ArrayList<GamesDevelopersResponse> getDevelopers()
+  {
+    return developers;
   }
 }

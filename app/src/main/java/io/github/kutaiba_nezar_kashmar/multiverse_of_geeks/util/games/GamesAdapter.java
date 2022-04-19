@@ -22,6 +22,7 @@ public class GamesAdapter
     extends RecyclerView.Adapter<GamesAdapter.GamesViewHolder>
 {
   private ArrayList<Game> gamesResponses;
+  private OnClickListener listener;
 
   public GamesAdapter(ArrayList<Game> gamesResponses)
   {
@@ -54,6 +55,11 @@ public class GamesAdapter
     notifyDataSetChanged();
   }
 
+  public void setListener(OnClickListener listener)
+  {
+    this.listener = listener;
+  }
+
   @Override
   public int getItemCount()
   {
@@ -76,6 +82,15 @@ public class GamesAdapter
       context = itemView.getContext();
       gamePoster = itemView.findViewById(R.id.game_poster);
       gameTitle = itemView.findViewById(R.id.game_name);
+
+      itemView.setOnClickListener(view -> {
+        listener.onClick(gamesResponses.get(getBindingAdapterPosition()));
+      });
     }
+  }
+
+  public interface OnClickListener
+  {
+    void onClick(Game game);
   }
 }

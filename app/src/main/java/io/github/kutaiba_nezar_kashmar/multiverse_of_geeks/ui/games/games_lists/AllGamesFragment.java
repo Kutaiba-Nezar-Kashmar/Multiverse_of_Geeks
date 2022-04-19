@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.MainGamesFragmentDirections;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.GamesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentAllGamesBinding;
@@ -58,6 +60,7 @@ public class AllGamesFragment extends Fragment
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
+    setOnClickListener(view);
   }
 
   private void setUpRecyclerView()
@@ -66,5 +69,15 @@ public class AllGamesFragment extends Fragment
     Observer<ArrayList<Game>> update = adapter::updateGameList;
     gamesViewModel.getAllGames().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);
+  }
+
+  private void setOnClickListener(View view)
+  {
+    adapter.setListener(game -> {
+      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections
+          .actionNavGamesToSingleGameNave();
+      action.setGameId(String.valueOf(game.getId()));
+      Navigation.findNavController(view).navigate(action);
+    });
   }
 }

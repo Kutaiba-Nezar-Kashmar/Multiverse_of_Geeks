@@ -54,6 +54,7 @@
     <string name="game_nave">Games</string>
     <string name="single_free_game_nave">Free to play</string>
     <string name="all_games_nave">All games</string>
+    <string name="single_game_nave">Single games</string>
     <string name="tv_season">Tv Seasons</string>
 
     <!--about strings-->
@@ -161,6 +162,10 @@ Kutaiba></string>
     <string name="graphics">Graphics</string>
     <string name="memory">Memory</string>
     <string name="storage">Storage</string>
+    <string name="average_play_time">Average Play Time</string>
+    <string name="last_update">Last Update</string>
+    <string name="tags">Tags</string>
+    <string name="age">Ratted</string>
 
     <!--Error-->
     <string name="not_found">SOMETHING WENT WRONG; TRY LATER</string>

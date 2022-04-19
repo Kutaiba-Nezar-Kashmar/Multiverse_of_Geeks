@@ -21,12 +21,14 @@ public class GamesResponse
   private GameAgeRating esrb_rating;
   private ArrayList<GameScreenShots> short_screenshots;
   private ArrayList<Game> results = null;
+  private ArrayList<GamesDevelopersResponse> developers = new ArrayList<>();
+
 
   public Game getGame()
   {
     return new Game(id, name, released, tba, background_image, rating, playtime,
         updated, platforms, genres, stores, tags, esrb_rating,
-        short_screenshots);
+        short_screenshots, developers);
   }
 
   public ArrayList<Game> getResults()

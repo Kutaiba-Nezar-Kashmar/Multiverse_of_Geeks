@@ -41,4 +41,9 @@ public class GamesViewModel extends AndroidViewModel
   {
     return gamesRepository.getAllGames();
   }
+
+  public LiveData<Game> getGameById(int id)
+  {
+    return gamesRepository.getGameById(id);
+  }
 }

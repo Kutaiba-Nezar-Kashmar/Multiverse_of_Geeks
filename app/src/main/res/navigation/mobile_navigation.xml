@@ -222,6 +222,9 @@
         <action
                 android:id="@+id/action_nav_games_to_single_free_to_play_nav"
                 app:destination="@id/single_free_to_play_nav" />
+        <action
+                android:id="@+id/action_nav_games_to_single_game_nave"
+                app:destination="@id/single_game_nave" />
     </fragment>
 
     <fragment
@@ -240,5 +243,16 @@
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.AllGamesFragment"
             android:label="@string/all_games_nave"
             tools:layout="@layout/fragment_all_games"/>
+
+    <fragment
+            android:id="@+id/single_game_nave"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.SingleGameFragment"
+            android:label="@string/single_game_nave"
+            tools:layout="@layout/fragment_single_game">
+        <argument
+                android:name="game_id"
+                app:argType="string"
+                android:defaultValue="default" />
+    </fragment>
 
 </navigation>
