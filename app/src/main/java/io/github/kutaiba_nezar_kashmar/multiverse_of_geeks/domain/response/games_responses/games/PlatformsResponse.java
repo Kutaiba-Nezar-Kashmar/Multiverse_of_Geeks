@@ -2,43 +2,13 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.game
 
 public class PlatformsResponse
 {
-  private int id;
-  private String name;
-  private String image;
-  private String year_end;
-  private String year_start;
-  private String image_background;
+  private GamePlatformDetailsResponse platform;
   private String released_at;
   private RequirementResponse requirements_en;
 
-  public int getId()
+  public GamePlatformDetailsResponse getPlatform()
   {
-    return id;
-  }
-
-  public String getName()
-  {
-    return name;
-  }
-
-  public String getImage()
-  {
-    return image;
-  }
-
-  public String getYear_end()
-  {
-    return year_end;
-  }
-
-  public String getYear_start()
-  {
-    return year_start;
-  }
-
-  public String getImage_background()
-  {
-    return image_background;
+    return platform;
   }
 
   public String getReleased_at()

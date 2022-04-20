@@ -21,7 +21,9 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameTageResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesDevelopersResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.PlatformsResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.DeveloperAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.PlatformAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleGameBinding;
 
@@ -30,7 +32,9 @@ public class SingleGameFragment extends Fragment
   private FragmentSingleGameBinding binding;
   private GamesViewModel viewModel;
   private DeveloperAdapter developerAdapter;
+  private PlatformAdapter platformAdapter;
   private ArrayList<GamesDevelopersResponse> developersResponses = new ArrayList<>();
+  private ArrayList<PlatformsResponse> platformsResponses = new ArrayList<>();
   private int id;
   private TextView title;
   private ImageView poster;
@@ -103,9 +107,12 @@ public class SingleGameFragment extends Fragment
         age.setText(game.getEsrb_rating().getName());
         developersResponses = game.getDevelopers();
         developerAdapter.updateDeveloperList(developersResponses);
+        platformsResponses = game.getPlatforms();
+        platformAdapter.updatePlatformList(platformsResponses);
       });
     }
     setDevelopersRv(view);
+    setPlatformRv(view);
   }
 
   private void setDevelopersRv(View view)
@@ -115,5 +122,14 @@ public class SingleGameFragment extends Fragment
         LinearLayoutManager.HORIZONTAL, false));
     developerAdapter = new DeveloperAdapter(developersResponses);
     developersRv.setAdapter(developerAdapter);
+  }
+
+  private void setPlatformRv(View view)
+  {
+    platformRv.hasFixedSize();
+    platformRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
+        LinearLayoutManager.HORIZONTAL, false));
+    platformAdapter = new PlatformAdapter(platformsResponses);
+    platformRv.setAdapter(platformAdapter);
   }
 }
