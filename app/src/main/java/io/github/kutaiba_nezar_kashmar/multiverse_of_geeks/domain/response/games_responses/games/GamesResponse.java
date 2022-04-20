@@ -16,7 +16,6 @@ public class GamesResponse
   private String updated;
   private ArrayList<PlatformsResponse> platforms;
   private ArrayList<GameGenreResponse> genres;
-  private ArrayList<GameStoreResponse> stores;
   private ArrayList<GameTageResponse> tags;
   private GameAgeRating esrb_rating;
   private ArrayList<GameScreenShots> short_screenshots;
@@ -27,7 +26,7 @@ public class GamesResponse
   public Game getGame()
   {
     return new Game(id, name, released, tba, background_image, rating, playtime,
-        updated, platforms, genres, stores, tags, esrb_rating,
+        updated, platforms, genres, tags, esrb_rating,
         short_screenshots, developers);
   }
 

@@ -47,7 +47,6 @@ public class SingleGameFragment extends Fragment
   private TextView age;
   private RecyclerView developersRv;
   private RecyclerView platformRv;
-  private RecyclerView storeRv;
 
   @Nullable
   @Override
@@ -68,7 +67,6 @@ public class SingleGameFragment extends Fragment
     age = root.findViewById(R.id.single_game_age);
     developersRv = root.findViewById(R.id.single_game_developers_rv);
     platformRv = root.findViewById(R.id.game_platform_rv);
-    storeRv = root.findViewById(R.id.single_game_store_rv);
     return root;
   }
 

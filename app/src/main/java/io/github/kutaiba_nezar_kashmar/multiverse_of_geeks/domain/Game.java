@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameAgeRating;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameScreenShots;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameStoreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameTageResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesDevelopersResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.PlatformsResponse;
 
 public class Game
@@ -23,7 +21,6 @@ public class Game
   private String updated;
   private ArrayList<PlatformsResponse> platforms;
   private ArrayList<GameGenreResponse> genres;
-  private ArrayList<GameStoreResponse> stores;
   private ArrayList<GameTageResponse> tags;
   private GameAgeRating esrb_rating;
   private ArrayList<GameScreenShots> short_screenshots;
@@ -32,7 +29,7 @@ public class Game
   public Game(int id, String name, String released, boolean tba,
       String background_image, float rating, int playtime, String updated,
       ArrayList<PlatformsResponse> platforms,
-      ArrayList<GameGenreResponse> genres, ArrayList<GameStoreResponse> stores,
+      ArrayList<GameGenreResponse> genres,
       ArrayList<GameTageResponse> tags, GameAgeRating esrb_rating,
       ArrayList<GameScreenShots> short_screenshots, ArrayList<GamesDevelopersResponse> developers)
   {
@@ -46,7 +43,6 @@ public class Game
     this.updated = updated;
     this.platforms = platforms;
     this.genres = genres;
-    this.stores = stores;
     this.tags = tags;
     this.esrb_rating = esrb_rating;
     this.short_screenshots = short_screenshots;
@@ -101,11 +97,6 @@ public class Game
   public ArrayList<GameGenreResponse> getGenres()
   {
     return genres;
-  }
-
-  public ArrayList<GameStoreResponse> getStores()
-  {
-    return stores;
   }
 
   public ArrayList<GameTageResponse> getTags()
