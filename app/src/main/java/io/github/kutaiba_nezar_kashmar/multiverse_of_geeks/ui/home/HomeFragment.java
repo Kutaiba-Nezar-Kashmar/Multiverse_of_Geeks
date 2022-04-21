@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Trending;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.media.TrendingAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentHomeBinding;
 
@@ -25,9 +24,7 @@ public class HomeFragment extends Fragment
 
   private FragmentHomeBinding binding;
   private HomeViewModel homeViewModel;
-  private RecyclerView recyclerView;
   private final ArrayList<Trending> trendingList = new ArrayList<>();
-  private TrendingAdapter adapter;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -35,7 +32,6 @@ public class HomeFragment extends Fragment
     homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    recyclerView = root.findViewById(R.id.trending_rv);
     return root;
   }
 
@@ -45,34 +41,4 @@ public class HomeFragment extends Fragment
     super.onDestroyView();
     binding = null;
   }
-
-  @Override
-  public void onViewCreated(@NonNull View view,
-      @Nullable Bundle savedInstanceState)
-  {
-    homeViewModel.getAllTrendingToday();
-    recyclerView.hasFixedSize();
-    recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    setUpRecyclerView();
-  }
-
-  private void setUpRecyclerView()
-  {
-    adapter = new TrendingAdapter(trendingList);
-    Observer<ArrayList<Trending>> update = adapter::updateMovieList;
-    homeViewModel.getAllTrendingToday()
-        .observe(getViewLifecycleOwner(), update);
-    recyclerView.setAdapter(adapter);
-  }
-
-  /*private void setUpOnClickListener(View view)
-  {
-    recyclerView.setAdapter(adapter);
-    adapter.setListener(trending -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
-      action.setMovieIdArg(String.valueOf(trending.getId()));
-      Navigation.findNavController(view).navigate(action);
-    });
-  }*/
 }

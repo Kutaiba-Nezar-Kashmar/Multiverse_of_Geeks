@@ -5,6 +5,13 @@
         android:id="@+id/mobile_navigation"
         app:startDestination="@+id/nav_home">
 
+    <!--settings-->
+    <fragment
+            android:id="@+id/nav_settings"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.settings.SettingsViewFragment"
+            android:label="@string/action_settings"
+            tools:layout="@layout/fragment_settings_view"/>
+
     <fragment
             android:id="@+id/nav_home"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.home.HomeFragment"
