@@ -11,6 +11,9 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <!--settings strings-->
+    <string name="theme_title_settings">Dark Theme</string>
+
     <!--create_profile strings-->
     <string name="f_name">First Name</string>
     <string name="l_name">Last Name</string>
