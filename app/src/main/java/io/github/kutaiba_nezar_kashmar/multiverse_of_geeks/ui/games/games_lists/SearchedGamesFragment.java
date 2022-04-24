@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,20 +18,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragmentDirections;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MoviesAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.MainGamesFragmentDirections;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.GamesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSerachMoviesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSearchGamesBinding;
 
-public class SearchedMoviesFragment extends Fragment
+public class SearchedGamesFragment extends Fragment
 {
-  private FragmentSerachMoviesBinding binding;
+  private FragmentSearchGamesBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<Movie> movies = new ArrayList<>();
-  private MoviesViewModel moviesViewModel;
-  private MoviesAdapter moviesAdapter;
+  private final ArrayList<Game> games = new ArrayList<>();
+  private GamesViewModel viewModel;
+  private GamesAdapter gamesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -40,11 +40,11 @@ public class SearchedMoviesFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater,
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
-    moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-    binding = FragmentSerachMoviesBinding.inflate(inflater, container, false);
+    viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
+    binding = FragmentSearchGamesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.search_movies_refresh_view);
-    searchView = root.findViewById(R.id.movies_search_view);
+    swipeRefreshLayout = root.findViewById(R.id.search_game_refresh_view);
+    searchView = root.findViewById(R.id.game_search_view);
     refresh();
     return root;
   }
@@ -60,29 +60,29 @@ public class SearchedMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    recyclerView = view.findViewById(R.id.search_movies_rv);
+    recyclerView = view.findViewById(R.id.game_search_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    moviesAdapter = new MoviesAdapter(movies);
+    gamesAdapter = new GamesAdapter(games);
     setUpRecyclerView();
     setUpOnClickListener(view);
   }
 
   private void setUpOnClickListener(View view)
   {
-    recyclerView.setAdapter(moviesAdapter);
-    moviesAdapter.setListener(movie -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
-      action.setMovieIdArg(String.valueOf(movie.getId()));
+    recyclerView.setAdapter(gamesAdapter);
+    gamesAdapter.setListener(game -> {
+      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections
+          .actionNavGamesToSingleGameNave();
+      action.setGameId(String.valueOf(game.getId()));
       Navigation.findNavController(view).navigate(action);
     });
   }
 
   private void setUpRecyclerView()
   {
-    moviesAdapter = new MoviesAdapter(movies);
-    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
+    gamesAdapter = new GamesAdapter(games);
+    Observer<ArrayList<Game>> update = gamesAdapter::updateGameList;
     setUpSearchView(update);
   }
 
@@ -93,14 +93,14 @@ public class SearchedMoviesFragment extends Fragment
     });
   }
 
-  public void setUpSearchView(Observer<ArrayList<Movie>> update)
+  private void setUpSearchView(Observer<ArrayList<Game>> update)
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {
       @Override
       public boolean onQueryTextSubmit(String query)
       {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
+        viewModel.getSearchedGames(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }
@@ -108,7 +108,7 @@ public class SearchedMoviesFragment extends Fragment
       @Override
       public boolean onQueryTextChange(String query)
       {
-        moviesViewModel.getAllSearchedMoviesMovies(query)
+        viewModel.getSearchedGames(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }

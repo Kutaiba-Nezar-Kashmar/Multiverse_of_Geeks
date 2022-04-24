@@ -10,7 +10,7 @@
             android:id="@+id/nav_settings"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.settings.SettingFragment"
             android:label="@string/action_settings"
-            tools:layout="@layout/fragment_settings"/>
+            tools:layout="@layout/fragment_settings" />
 
     <!--home-->
 
@@ -140,7 +140,7 @@
             android:id="@+id/nav_search_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SearchedMoviesFragment"
             android:label="@string/search_movie_nav"
-            tools:layout="@layout/fragment_serach_movies"/>
+            tools:layout="@layout/fragment_serach_movies" />
 
     <!--TV SHOWS-->
 
@@ -158,31 +158,31 @@
             android:id="@+id/nav_popular_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.PopularTvShowsFragment"
             android:label="@string/popular_tv_show_nav"
-            tools:layout="@layout/fragment_popular_tv_shows"/>
+            tools:layout="@layout/fragment_popular_tv_shows" />
 
     <fragment
             android:id="@+id/nav_top_rated_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.TopRatedTvShowsFragment"
             android:label="@string/top_rated_tv_show_nav"
-            tools:layout="@layout/fragment_top_rated_tv_shows"/>
+            tools:layout="@layout/fragment_top_rated_tv_shows" />
 
     <fragment
             android:id="@+id/nav_on_air_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.OnAirTvShowsFragment"
             android:label="@string/on_air_tv_show_nav"
-            tools:layout="@layout/fragment_on_air_tv_shows"/>
+            tools:layout="@layout/fragment_on_air_tv_shows" />
 
     <fragment
             android:id="@+id/nav_airing_today_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment"
             android:label="@string/airing_today_tv_show_nav"
-            tools:layout="@layout/fragment_airing_today_tv_shows"/>
+            tools:layout="@layout/fragment_airing_today_tv_shows" />
 
     <fragment
             android:id="@+id/nav_search_tv_show"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.SearchTvShowFragment"
             tools:layout="@layout/fragment_search_tv_show"
-            android:label="@string/search_tv_show_nav"/>
+            android:label="@string/search_tv_show_nav" />
 
     <fragment
             android:id="@+id/nav_single_tv"
@@ -253,7 +253,7 @@
             android:id="@+id/nav_all_games"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.AllGamesFragment"
             android:label="@string/all_games_nave"
-            tools:layout="@layout/fragment_all_games"/>
+            tools:layout="@layout/fragment_all_games" />
 
     <fragment
             android:id="@+id/single_game_nave"
@@ -265,5 +265,11 @@
                 app:argType="string"
                 android:defaultValue="default" />
     </fragment>
+
+    <fragment
+            android:id="@+id/nav_game_search"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.SearchedGamesFragment"
+            android:label="@string/search_game_nave"
+            tools:layout="@layout/fragment_search_games" />
 
 </navigation>

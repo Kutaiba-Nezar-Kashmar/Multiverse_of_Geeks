@@ -19,11 +19,13 @@ public class GamesRepository
 {
   private static GamesRepository instance;
   private final MutableLiveData<ArrayList<Game>> allGames;
+  private final MutableLiveData<ArrayList<Game>> searchedGames;
   private final MutableLiveData<Game> game;
 
   private GamesRepository()
   {
     allGames = new MutableLiveData<>();
+    searchedGames = new MutableLiveData<>();
     game = new MutableLiveData<>();
   }
 
@@ -62,6 +64,35 @@ public class GamesRepository
       }
     });
     return allGames;
+  }
+
+  public MutableLiveData<ArrayList<Game>> getSearchedGames(String query)
+  {
+    GamesAPI gamesAPI = GamesServiceGenerator.gamesAPI();
+    Call<GamesResponse> call = gamesAPI
+        .getSearchGames(BuildConfig.RAWG_API_KEY, query);
+    call.enqueue(new Callback<GamesResponse>()
+    {
+      @Override
+      public void onResponse(Call<GamesResponse> call,
+          Response<GamesResponse> response)
+      {
+        if (response.isSuccessful())
+        {
+          if (response.body() != null)
+          {
+            searchedGames.setValue(response.body().getResults());
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Call<GamesResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return searchedGames;
   }
 
   public MutableLiveData<Game> getGameById(int id)

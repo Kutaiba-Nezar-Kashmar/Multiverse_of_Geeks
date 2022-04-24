@@ -46,4 +46,9 @@ public class GamesViewModel extends AndroidViewModel
   {
     return gamesRepository.getGameById(id);
   }
+
+  public LiveData<ArrayList<Game>> getSearchedGames(String query)
+  {
+    return gamesRepository.getSearchedGames(query);
+  }
 }

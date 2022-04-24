@@ -14,5 +14,10 @@ public interface GamesAPI
   Call<GamesResponse> getAllGames(@Query("key") String apiKey);
 
   @GET("games/{id}")
-  Call<GamesResponse> getGameById(@Path("id") int id, @Query("key") String apiKey);
+  Call<GamesResponse> getGameById(@Path("id") int id,
+      @Query("key") String apiKey);
+
+  @GET("games")
+  Call<GamesResponse> getSearchGames(@Query("key") String apiKey,
+      @Query("search") String query);
 }
