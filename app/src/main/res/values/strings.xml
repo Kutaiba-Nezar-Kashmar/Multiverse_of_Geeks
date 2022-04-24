@@ -175,6 +175,6 @@ Kutaiba></string>
     <string name="not_found">SOMETHING WENT WRONG; TRY LATER</string>
 
     <!--settings-->
-    <string name="theme_key">Theme</string>
+    <string name="dark_theme_key">Dark Theme</string>
     <string name="theme_title">Change theme</string>
 </resources>
