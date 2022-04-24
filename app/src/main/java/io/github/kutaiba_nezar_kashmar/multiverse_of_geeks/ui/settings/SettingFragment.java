@@ -9,22 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSettingsViewBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSettingsBinding;
 
-public class SettingsViewFragment extends Fragment
+public class SettingFragment extends Fragment
 {
-  private FragmentSettingsViewBinding binding;
+  private FragmentSettingsBinding binding;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater,
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
-    binding = FragmentSettingsViewBinding.inflate(inflater, container, false);
+    binding = FragmentSettingsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    getParentFragmentManager().beginTransaction()
-        .replace(R.id.settings_container, new SettingsFragment()).commit();
+
     return root;
   }
 }

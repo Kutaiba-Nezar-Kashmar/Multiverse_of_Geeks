@@ -36,17 +36,35 @@
                 <item
                         android:id="@+id/nav_main_movies"
                         android:icon="@drawable/movie_ic"
-                        android:title="@string/movies_main_nav"/>
+                        android:title="@string/movies_main_nav" />
 
                 <item
                         android:id="@+id/nav_tv"
                         android:icon="@drawable/tv_ic"
-                        android:title="@string/tv_show_nav"/>
+                        android:title="@string/tv_show_nav" />
 
                 <item
                         android:id="@+id/nav_games"
                         android:icon="@drawable/games_ic"
-                        android:title="@string/game_nave"/>
+                        android:title="@string/game_nave" />
+
+            </group>
+
+
+        </menu>
+
+    </item>
+
+    <item android:title="@string/util_group_title">
+
+        <menu>
+
+            <group>
+
+                <item
+                        android:id="@+id/nav_settings"
+                        android:icon="@drawable/settings_ic"
+                        android:title="@string/action_settings" />
 
                 <item
                         android:id="@+id/nav_about"
@@ -59,5 +77,6 @@
         </menu>
 
     </item>
+
 
 </menu>
