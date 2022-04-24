@@ -6,6 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.BoxOfficeMoviesFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.FavoriteMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.PopularMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SearchedMoviesFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.TopRatedMoviesFragment;
@@ -40,6 +41,10 @@ public class MoviePagerAdapter extends FragmentStateAdapter
       fragment = new UpcomingMoviesFragment();
     }
     if (position == 4)
+    {
+      fragment = new FavoriteMoviesFragment();
+    }
+    if (position == 5)
     {
       fragment = new SearchedMoviesFragment();
     }

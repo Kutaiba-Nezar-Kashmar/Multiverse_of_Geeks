@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
@@ -22,7 +23,22 @@ public class MoviesViewModel extends AndroidViewModel
   public MoviesViewModel(Application application)
   {
     super(application);
-    movieRepository = MovieRepository.getInstance();
+    movieRepository = MovieRepository.getInstance(application);
+  }
+
+  public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
+  {
+    return movieRepository.getFavoritMovies();
+  }
+
+  public LiveData<SingleMovieResponse> getSingleFavoriteMovie()
+  {
+    return movieRepository.getSingleFavoriteMovie();
+  }
+
+  public void insertMovie(SingleMovieResponse movie)
+  {
+    movieRepository.insertFavoriteMovie(movie);
   }
 
   public LiveData<SingleMovieResponse> findMovieById(int id)

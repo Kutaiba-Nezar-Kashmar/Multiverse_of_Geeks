@@ -23,8 +23,8 @@ public class MoviesMainFragment extends Fragment
   private TabLayout tabLayout;
   private ViewPager2 viewPager;
   private MoviePagerAdapter adapter;
-  private final String[] titles = new String[] {"POPULAR", "TOP RATED", "BOX OFFICE", "COMING SOON", "Search Movies"};
-  public static final int PAGE_NUM = 5;
+  private final String[] titles = new String[] {"POPULAR", "TOP RATED", "BOX OFFICE", "COMING SOON", "Favorite", "Search Movies"};
+  public static final int PAGE_NUM = 6;
 
   @Nullable
   @Override

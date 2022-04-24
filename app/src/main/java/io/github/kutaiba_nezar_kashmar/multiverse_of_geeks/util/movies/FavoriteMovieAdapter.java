@@ -12,45 +12,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class MoviesAdapter
-    extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>
+public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.FavMovieViewHolder>
 {
-  private ArrayList<Movie> movies;
-  private OnClickListener listener;
+  private List<SingleMovieResponse> movies;
 
-  public MoviesAdapter(ArrayList<Movie> movies)
+  public FavoriteMovieAdapter(List<SingleMovieResponse> movies)
   {
     this.movies = movies;
   }
 
   @NonNull
   @Override
-  public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+  public FavMovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
       int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
     View view = inflater.inflate(R.layout.movie_item, parent, false);
-    return new MovieViewHolder(view);
+    return new FavMovieViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull MovieViewHolder holder, int position)
+  public void onBindViewHolder(@NonNull FavMovieViewHolder holder, int position)
   {
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + movies.get(position)
             .getPoster_path()).into(holder.poster);
-  }
-
-  //clear and reassign the cast list every time this method is called
-  public void updateMovieList(final ArrayList<Movie> movies)
-  {
-    this.movies.clear();
-    this.movies = movies;
-    notifyDataSetChanged();
   }
 
   @Override
@@ -63,30 +55,22 @@ public class MoviesAdapter
     return 0;
   }
 
-  public void setListener(OnClickListener listener)
+  public void updateMovieList(final List<SingleMovieResponse> movies)
   {
-    this.listener = listener;
+    this.movies.clear();
+    this.movies = movies;
+    notifyDataSetChanged();
   }
 
-  class MovieViewHolder extends RecyclerView.ViewHolder
+  class FavMovieViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
     private Context context;
-
-    public MovieViewHolder(@NonNull View itemView)
+    public FavMovieViewHolder(@NonNull View itemView)
     {
       super(itemView);
       context = itemView.getContext();
       poster = itemView.findViewById(R.id.movie_image);
-
-      itemView.setOnClickListener(view -> {
-        listener.onClick(movies.get(getBindingAdapterPosition()));
-      });
     }
-  }
-
-  public interface OnClickListener
-  {
-    void onClick(Movie movie);
   }
 }

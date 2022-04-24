@@ -21,10 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.MediaProductionCompaniesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.media.MediaProductionCompanyAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.movies.MovieReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -54,6 +57,7 @@ public class SingleMovieFragment extends Fragment
   private TextView movieReleaseYear;
   private RatingBar movieRatting;
   private ImageView moviePoster;
+  private Button favButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -62,7 +66,7 @@ public class SingleMovieFragment extends Fragment
 
     binding = FragmentSingleMovieBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-
+    favButton = root.findViewById(R.id.movie_fav_button_id);
     movieTitle = root.findViewById(R.id.single_movie_title);
     movieOverview = root.findViewById(R.id.movie_overview);
     movieReleaseYear = root.findViewById(R.id.movie_release_year);
@@ -151,6 +155,7 @@ public class SingleMovieFragment extends Fragment
 
             companiesResponses = movie.getProduction_companies();
             productionCompanyAdapter.updateCompanyList(companiesResponses);
+            setUpFavorite(movie);
           });
       setUpCompanyRv(view);
     }
@@ -182,7 +187,32 @@ public class SingleMovieFragment extends Fragment
     companyRv.hasFixedSize();
     companyRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
         LinearLayoutManager.HORIZONTAL, false));
-    productionCompanyAdapter = new MediaProductionCompanyAdapter(companiesResponses);
+    productionCompanyAdapter = new MediaProductionCompanyAdapter(
+        companiesResponses);
     companyRv.setAdapter(productionCompanyAdapter);
+  }
+
+  private void setUpFavorite(SingleMovieResponse singleMovie)
+  {
+    AtomicInteger movieId = new AtomicInteger();
+    moviesViewModel.getSingleFavoriteMovie()
+        .observe(getViewLifecycleOwner(), movie -> {
+          if (movie != null)
+          {
+            movieId.set(movie.getId());
+          }
+        });
+
+    /*if (movieId.get() != 0 && movieId.get() != singleMovie.getId())
+    {*/
+      favButton.setOnClickListener(view -> {
+        favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+        moviesViewModel.insertMovie(singleMovie);
+      });
+    /*}
+    else
+    {
+      favButton.setBackgroundResource(R.drawable.fav_border_ic);
+    }*/
   }
 }
