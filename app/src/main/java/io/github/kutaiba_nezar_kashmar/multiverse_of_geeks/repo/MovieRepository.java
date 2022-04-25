@@ -81,9 +81,14 @@ public class MovieRepository
     executorService.execute(() -> moviesDAO.insertMovie(movie));
   }
 
-  public LiveData<SingleMovieResponse> getSingleFavoriteMovie()
+  public void deleteFavoriteMovie(SingleMovieResponse movie)
   {
-    return singleFavoriteMovie;
+    executorService.execute(() -> moviesDAO.deleteMovie(movie));
+  }
+
+  public LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id)
+  {
+    return moviesDAO.getMovieById(id);
   }
 
   public MutableLiveData<SingleMovieResponse> findMovie(int id)

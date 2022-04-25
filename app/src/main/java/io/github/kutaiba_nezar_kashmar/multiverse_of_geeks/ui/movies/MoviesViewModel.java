@@ -31,14 +31,19 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getFavoritMovies();
   }
 
-  public LiveData<SingleMovieResponse> getSingleFavoriteMovie()
+  public LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id)
   {
-    return movieRepository.getSingleFavoriteMovie();
+    return movieRepository.getSingleFavoriteMovie(id);
   }
 
   public void insertMovie(SingleMovieResponse movie)
   {
     movieRepository.insertFavoriteMovie(movie);
+  }
+
+  public void deleteMovie(SingleMovieResponse movie)
+  {
+    movieRepository.deleteFavoriteMovie(movie);
   }
 
   public LiveData<SingleMovieResponse> findMovieById(int id)

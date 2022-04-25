@@ -43,6 +43,7 @@ public class SingleMovieFragment extends Fragment
   private final ArrayList<Comment> comments = new ArrayList<>();
   private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
+  private boolean isFav;
   private TextView movieTitle;
   private TextView movieTagline;
   private TextView budget;
@@ -194,25 +195,23 @@ public class SingleMovieFragment extends Fragment
 
   private void setUpFavorite(SingleMovieResponse singleMovie)
   {
-    AtomicInteger movieId = new AtomicInteger();
-    moviesViewModel.getSingleFavoriteMovie()
-        .observe(getViewLifecycleOwner(), movie -> {
-          if (movie != null)
+    moviesViewModel.getSingleFavoriteMovie(movieId)
+        .observe(getViewLifecycleOwner(), singleMovieResponse -> {
+          if (singleMovieResponse != null)
           {
-            movieId.set(movie.getId());
+            favButton.setOnClickListener(view -> {
+              favButton.setBackgroundResource(R.drawable.fav_border_ic);
+              moviesViewModel.deleteMovie(singleMovie);
+            });
+          }
+          else
+          {
+            favButton.setOnClickListener(view -> {
+              favButton
+                  .setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+              moviesViewModel.insertMovie(singleMovie);
+            });
           }
         });
-
-    /*if (movieId.get() != 0 && movieId.get() != singleMovie.getId())
-    {*/
-      favButton.setOnClickListener(view -> {
-        favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
-        moviesViewModel.insertMovie(singleMovie);
-      });
-    /*}
-    else
-    {
-      favButton.setBackgroundResource(R.drawable.fav_border_ic);
-    }*/
   }
 }

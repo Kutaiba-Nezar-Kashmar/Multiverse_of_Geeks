@@ -45,7 +45,7 @@ public class FavoriteMoviesFragment extends Fragment
     View root = binding.getRoot();
     refreshLayout = root.findViewById(R.id.movie_fav_refresh_view);
     recyclerView = root.findViewById(R.id.favorite_movies_rv);
-    //refresh();
+    refresh();
     return root;
   }
 

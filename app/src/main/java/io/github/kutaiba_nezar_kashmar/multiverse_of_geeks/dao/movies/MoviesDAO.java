@@ -2,6 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.movies;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -22,4 +23,7 @@ public interface MoviesDAO
 
   @Query("SELECT * FROM movie WHERE id = :id")
   LiveData<SingleMovieResponse> getMovieById(int id);
+
+  @Delete
+  void deleteMovie(SingleMovieResponse movie);
 }
