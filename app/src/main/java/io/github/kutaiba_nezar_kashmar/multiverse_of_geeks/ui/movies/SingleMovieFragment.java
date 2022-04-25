@@ -43,7 +43,6 @@ public class SingleMovieFragment extends Fragment
   private final ArrayList<Comment> comments = new ArrayList<>();
   private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
-  private boolean isFav;
   private TextView movieTitle;
   private TextView movieTagline;
   private TextView budget;
@@ -199,16 +198,15 @@ public class SingleMovieFragment extends Fragment
         .observe(getViewLifecycleOwner(), singleMovieResponse -> {
           if (singleMovieResponse != null)
           {
+            favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
             favButton.setOnClickListener(view -> {
-              favButton.setBackgroundResource(R.drawable.fav_border_ic);
               moviesViewModel.deleteMovie(singleMovie);
             });
           }
           else
           {
+            favButton.setBackgroundResource(R.drawable.fav_border_ic);
             favButton.setOnClickListener(view -> {
-              favButton
-                  .setBackgroundResource(R.drawable.ic_baseline_favorite_24);
               moviesViewModel.insertMovie(singleMovie);
             });
           }
