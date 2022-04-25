@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,27 +8,50 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/edit_text_margin">
 
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:src="@mipmap/my_logo_foreground"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:text="@string/trending"
-                android:gravity="center"/>
+                android:text="@string/rawg" />
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trending_rv"
+        <TextView
+                android:id="@+id/rawg_link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:clickable="false"/>
+                android:text="@string/home_text"
+                android:autoLink="web"
+                android:linksClickable="true" />
+
+        <ImageView
+                android:id="@+id/rawg_ref_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tmdb_desc"/>
+
+        <TextView
+                android:id="@+id/tmdb_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:autoLink="web"
+                android:linksClickable="true"/>
+
+        <ImageView
+                android:id="@+id/tmdb_ref_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

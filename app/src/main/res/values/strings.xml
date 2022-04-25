@@ -108,7 +108,8 @@ Kutaiba></string>
 
     <!--home fragment strings-->
     <string name="home_text">PLACEHOLDER!!!</string>
-    <string name="trending">Trending Today</string>
+    <string name="rawg">For More Games please check RAWG the video game database on the link below</string>
+    <string name="tmdb_desc">For More Movies and Tv Showws please check TMDB the movie database on the link below</string>
 
     <!--single movie strings-->
     <string name="movie_image_desc">Here goes the movie poster</string>
