@@ -229,6 +229,12 @@
                 android:defaultValue="default" />
     </fragment>
 
+    <fragment
+            android:id="@+id/nav_fav_tv"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.FavoriteTvShowFragment"
+            android:label="@string/fav_tv_nav"
+            tools:layout="@layout/fragment_favorite_tv_show"/>
+
     <!--Games-->
 
     <fragment
@@ -277,5 +283,11 @@
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.SearchedGamesFragment"
             android:label="@string/search_game_nave"
             tools:layout="@layout/fragment_search_games" />
+
+    <fragment
+            android:id="@+id/fav_game_nav"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.FavoriteGamesFragment"
+            android:label="@string/fav_game_nav"
+            tools:layout="@layout/fragment_favorite_game"/>
 
 </navigation>

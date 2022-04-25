@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.movies.MoviesDAO;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.movies.MoviesDatabase;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.GeekDatabase;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
@@ -45,7 +45,7 @@ public class MovieRepository
 
   private MovieRepository(Application application)
   {
-    MoviesDatabase database = MoviesDatabase.getInstance(application);
+    GeekDatabase database = GeekDatabase.getInstance(application);
     moviesDAO = database.moviesDAO();
     executorService = Executors.newFixedThreadPool(2);
     favoritMovies = moviesDAO.getAllFavoriteMovies();

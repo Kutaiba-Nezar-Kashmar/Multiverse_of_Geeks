@@ -23,8 +23,8 @@ public class MainGamesFragment extends Fragment
   private TabLayout tabLayout;
   private ViewPager2 viewPager;
   private GamesPagerAdapter adapter;
-  private final String[] titles = new String[] {"Free to play", "ALL GAMES", "Search"};
-  public static final int PAGE_NUM = 3;
+  private final String[] titles = new String[] {"Free to play", "ALL GAMES", "Favorite", "Search"};
+  public static final int PAGE_NUM = 4;
 
   @Nullable
   @Override

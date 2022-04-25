@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
@@ -24,7 +25,27 @@ public class GamesViewModel extends AndroidViewModel
   {
     super(application);
     freeToPlayGamesRepository = FreeToPlayGamesRepository.getInstance();
-    gamesRepository = GamesRepository.getInstance();
+    gamesRepository = GamesRepository.getInstance(application);
+  }
+
+  public LiveData<List<Game>> getFavoriteGames()
+  {
+    return gamesRepository.getFavoriteGames();
+  }
+
+  public LiveData<Game> getSingleFavoriteGame(int id)
+  {
+    return gamesRepository.getSingleFavoriteGame(id);
+  }
+
+  public void insertFavoriteGame(Game game)
+  {
+    gamesRepository.insertFavoriteGame(game);
+  }
+
+  public void deleteFavoriteGame(Game game)
+  {
+    gamesRepository.deleteFavoriteGame(game);
   }
 
   public LiveData<ArrayList<AllFreeToPlayGamesResponse>> getAllFreeToPlay()

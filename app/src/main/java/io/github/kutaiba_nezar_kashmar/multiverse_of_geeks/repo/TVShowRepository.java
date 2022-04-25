@@ -1,12 +1,19 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.GeekDatabase;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.dao.tv.TVShowDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.CommentResponse;
@@ -22,6 +29,10 @@ import retrofit2.Response;
 public class TVShowRepository
 {
   private static TVShowRepository instance;
+  private final ExecutorService executorService;
+  private final TVShowDAO tvShowDAO;
+  private final LiveData<List<SingleTvShowResponse>> favoriteTvShows;
+  private final LiveData<SingleTvShowResponse> singleFavoriteTvShow;
   private final MutableLiveData<ArrayList<TvShow>> popularTvShows;
   private final MutableLiveData<ArrayList<TvShow>> topRatedTvShows;
   private final MutableLiveData<ArrayList<TvShow>> onAirTvShows;
@@ -30,8 +41,13 @@ public class TVShowRepository
   private final MutableLiveData<SingleTvShowResponse> tvShow;
   private final MutableLiveData<ArrayList<Comment>> tvReviews;
 
-  private TVShowRepository()
+  private TVShowRepository(Application application)
   {
+    GeekDatabase database = GeekDatabase.getInstance(application);
+    tvShowDAO = database.tvShowDAO();
+    executorService = Executors.newFixedThreadPool(2);
+    favoriteTvShows = tvShowDAO.getAllFavoriteTvShows();
+    singleFavoriteTvShow = new MutableLiveData<>();
     popularTvShows = new MutableLiveData<>();
     topRatedTvShows = new MutableLiveData<>();
     onAirTvShows = new MutableLiveData<>();
@@ -41,13 +57,33 @@ public class TVShowRepository
     tvReviews = new MutableLiveData<>();
   }
 
-  public static synchronized TVShowRepository getInstance()
+  public static synchronized TVShowRepository getInstance(Application application)
   {
     if (instance == null)
     {
-      instance = new TVShowRepository();
+      instance = new TVShowRepository(application);
     }
     return instance;
+  }
+
+  public LiveData<List<SingleTvShowResponse>> getFavoriteTvShows()
+  {
+    return favoriteTvShows;
+  }
+
+  public void insertFavoriteTvShow(SingleTvShowResponse tv)
+  {
+    executorService.execute(() -> tvShowDAO.insertTvShow(tv));
+  }
+
+  public void deleteFavoriteTvShow(SingleTvShowResponse tv)
+  {
+    executorService.execute(() -> tvShowDAO.deleteTvShow(tv));
+  }
+
+  public LiveData<SingleTvShowResponse> getSingleFavoriteTvShow(int id)
+  {
+    return tvShowDAO.getTvShowById(id);
   }
 
   public MutableLiveData<SingleTvShowResponse> findTvShowById(int id)

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameTageResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesDevelopersResponse;
@@ -47,6 +49,7 @@ public class SingleGameFragment extends Fragment
   private TextView age;
   private RecyclerView developersRv;
   private RecyclerView platformRv;
+  private Button favButton;
 
   @Nullable
   @Override
@@ -56,6 +59,7 @@ public class SingleGameFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
     binding = FragmentSingleGameBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+    favButton = root.findViewById(R.id.game_fav_button_id);
     title = root.findViewById(R.id.single_game_title);
     poster = root.findViewById(R.id.single_game_poster);
     releaseDate = root.findViewById(R.id.single_game_release_date);
@@ -107,6 +111,7 @@ public class SingleGameFragment extends Fragment
         developerAdapter.updateDeveloperList(developersResponses);
         platformsResponses = game.getPlatforms();
         platformAdapter.updatePlatformList(platformsResponses);
+        setUpFavorite(game);
       });
     }
     setDevelopersRv(view);
@@ -129,5 +134,26 @@ public class SingleGameFragment extends Fragment
         LinearLayoutManager.HORIZONTAL, false));
     platformAdapter = new PlatformAdapter(platformsResponses);
     platformRv.setAdapter(platformAdapter);
+  }
+
+  private void setUpFavorite(Game game)
+  {
+    viewModel.getSingleFavoriteGame(id)
+        .observe(getViewLifecycleOwner(), favGame -> {
+          if (favGame != null)
+          {
+            favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+            favButton.setOnClickListener(view -> {
+              viewModel.deleteFavoriteGame(game);
+            });
+          }
+          else
+          {
+            favButton.setBackgroundResource(R.drawable.fav_border_ic);
+            favButton.setOnClickListener(view -> {
+              viewModel.insertFavoriteGame(game);
+            });
+          }
+        });
   }
 }

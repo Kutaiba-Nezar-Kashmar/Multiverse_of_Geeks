@@ -70,6 +70,7 @@ public class SingleTvFragment extends Fragment
   private RecyclerView creatorRv;
   private RecyclerView networkRv;
   private RecyclerView productionCompanyRv;
+  private Button favButton;
 
   @Nullable
   @Override
@@ -80,7 +81,7 @@ public class SingleTvFragment extends Fragment
 
     binding = FragmentSingleTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-
+    favButton = root.findViewById(R.id.tv_fav_button_id);
     tvTitle = root.findViewById(R.id.single_tv_title);
     tvOverview = root.findViewById(R.id.tv_overview);
     tvReleaseYear = root.findViewById(R.id.tv_release_year);
@@ -154,6 +155,7 @@ public class SingleTvFragment extends Fragment
             tvCreatorAdapter.updateCreatorList(creatorResponses);
             tvShowNetworkResponses = tvShow.getNetworks();
             networkAdapter.updateNetworkList(tvShowNetworkResponses);
+            setUpFavoriteTv(tvShow);
           });
       setUpCompanyRv(view);
       setUpCreatorRv(view);
@@ -307,5 +309,27 @@ public class SingleTvFragment extends Fragment
         LinearLayoutManager.HORIZONTAL, false));
     networkAdapter = new TvNetworkAdapter(tvShowNetworkResponses);
     networkRv.setAdapter(networkAdapter);
+  }
+
+  private void setUpFavoriteTv(SingleTvShowResponse tv)
+  {
+
+    tvShowsViewModel.getSingleFavoriteTvShow(tvId)
+        .observe(getViewLifecycleOwner(), singleTvShowResponse -> {
+          if (singleTvShowResponse != null)
+          {
+            favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+            favButton.setOnClickListener(view -> {
+              tvShowsViewModel.deleteFavoriteTvShow(tv);
+            });
+          }
+          else
+          {
+            favButton.setBackgroundResource(R.drawable.fav_border_ic);
+            favButton.setOnClickListener(view -> {
+              tvShowsViewModel.insertFavoriteTvShow(tv);
+            });
+          }
+        });
   }
 }

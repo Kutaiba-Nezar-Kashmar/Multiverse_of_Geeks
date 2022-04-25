@@ -6,6 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.FavoriteTvShowFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.OnAirTvShowsFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.PopularTvShowsFragment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.SearchTvShowFragment;
@@ -40,6 +41,10 @@ public class TvPagerAdapter extends FragmentStateAdapter
       fragment = new AiringTodayTvShowsFragment();
     }
     if (position == 4)
+    {
+      fragment = new FavoriteTvShowFragment();
+    }
+    if (position == 5)
     {
       fragment = new SearchTvShowFragment();
     }

@@ -24,8 +24,8 @@ public class TvShowsMainFragment extends Fragment
   private ViewPager2 viewPager;
   private TvPagerAdapter adapter;
   private final String[] titles = new String[] {"POPULAR", "TOP RATED",
-      "STREAMING", "STREAMING TODAY", "Search Tv Show"};
-  public static final int PAGE_NUM = 5;
+      "STREAMING", "STREAMING TODAY", "Favorite", "Search Tv Show"};
+  public static final int PAGE_NUM = 6;
 
   @Nullable
   @Override

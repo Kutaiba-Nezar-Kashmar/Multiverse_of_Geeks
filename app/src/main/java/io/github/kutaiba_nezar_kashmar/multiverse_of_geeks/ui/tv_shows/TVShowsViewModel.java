@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
@@ -20,7 +21,27 @@ public class TVShowsViewModel extends AndroidViewModel
   public TVShowsViewModel(@NonNull Application application)
   {
     super(application);
-    tvShowRepository = TVShowRepository.getInstance();
+    tvShowRepository = TVShowRepository.getInstance(application);
+  }
+
+  public LiveData<List<SingleTvShowResponse>> getFavoriteTvShows()
+  {
+    return tvShowRepository.getFavoriteTvShows();
+  }
+
+  public LiveData<SingleTvShowResponse> getSingleFavoriteTvShow(int id)
+  {
+    return tvShowRepository.getSingleFavoriteTvShow(id);
+  }
+
+  public void insertFavoriteTvShow(SingleTvShowResponse tv)
+  {
+    tvShowRepository.insertFavoriteTvShow(tv);
+  }
+
+  public void deleteFavoriteTvShow(SingleTvShowResponse tv)
+  {
+    tvShowRepository.deleteFavoriteTvShow(tv);
   }
 
   public LiveData<SingleTvShowResponse> findTvShowById(int id)
