@@ -7,7 +7,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="@dimen/edit_text_margin">
+            android:paddingBottom="@dimen/edit_text_margin"
+            android:paddingStart="@dimen/edit_text_margin"
+            android:paddingEnd="@dimen/edit_text_margin">
 
         <TextView
                 android:id="@+id/single_free_to_play_title"
@@ -15,26 +17,35 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="35sp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:paddingTop="@dimen/edit_text_margin"/>
 
         <ImageView
                 android:id="@+id/single_free_to_play_poster"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/mog_log_background"
                 android:layout_gravity="center"
-                android:minHeight="500dp" />
+                android:minHeight="350dp" />
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="@string/release_date"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/free_to_play_release_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/release_date" />
+                android:text="@string/home_text" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_nav"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/free_to_play_short_description"
@@ -46,20 +57,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/game_url"
-                android:layout_marginTop="@dimen/edit_text_margin" />
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/free_to_play_game_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_text" />
+                android:text="@string/home_text"
+                android:autoLink="web"
+                android:linksClickable="true"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:text="@string/screen_shots"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/free_to_play_screen_shots_rv"
@@ -71,7 +86,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/description"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/free_to_play_description"
@@ -89,13 +106,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status" />
+                    android:text="@string/status"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/game_genre" />
+                    android:text="@string/game_genre"
+                    android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -130,13 +149,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/platform" />
+                    android:text="@string/platform"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/publisher" />
+                    android:text="@string/publisher"
+                    android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -166,7 +187,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/minimum_system_requirements"
                 android:layout_marginTop="@dimen/edit_text_margin"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -177,7 +199,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/os"
-                    android:layout_marginTop="@dimen/edit_text_margin" />
+                    android:layout_marginTop="@dimen/edit_text_margin"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/free_to_play_os"
@@ -189,7 +212,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/processor"
-                    android:layout_marginTop="@dimen/edit_text_margin" />
+                    android:layout_marginTop="@dimen/edit_text_margin"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/free_to_play_processor"
@@ -201,7 +225,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/graphics"
-                    android:layout_marginTop="@dimen/edit_text_margin" />
+                    android:layout_marginTop="@dimen/edit_text_margin"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/free_to_play_graphics"
@@ -213,7 +238,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/memory"
-                    android:layout_marginTop="@dimen/edit_text_margin" />
+                    android:layout_marginTop="@dimen/edit_text_margin"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/free_to_play_memory"
@@ -225,7 +251,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/storage"
-                    android:layout_marginTop="@dimen/edit_text_margin" />
+                    android:layout_marginTop="@dimen/edit_text_margin"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/free_to_play_storage"
