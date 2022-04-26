@@ -25,16 +25,27 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 
 
 ## User stories
-1. As a user, I would like to be able to view a list of the available movies.
-2. As a user, I would like to be able to view a list of the available games.
-3. As a user, I would like to be able to view a list of the available characters in the chosen movie.
-4. ~~As a user, I would like to be able to view a list of the available characters in the chosen game.~~
-5. As a user, I would like to be able to view the various information about the chosen character.
-6. As a user, I would like to be able to view the various comments of other users on the chosen character.
-7. As a user, I would like to be able to leave a comment on ~~the chosen character~~mocie.
-8. As a user, I would like to be able to rate the chosen ~~character based on multiple factors like level, power, evil and good~~ movie.
-9. As a user, I would like to be able to create an account.
-10. As a user, I would like to be able to login into my account.
+- [ ] As a user, I would like to be able to create an account.
+- [ ] As a user, I would like to be able to login into my account.
+- [x] As a user, I would like to be able to view a list of movies.
+- [x] As a user, I would like to be able to view detales of chosen move.
+- [x] As a user, I would like to be able to search for a movie.
+- [x] As a user, I would like to be able to add a movie to my favorite movie list.
+- [x] As a user, I would like to se comment on a movie.
+- [ ] As a user, I would like to be able to leave a comment on a movie
+- [ ] As a user, I would like to be able to rate a movie.
+- [x] As a user, I would like to be able to view a list of tv shows.
+- [x] As a user, I would like to be able to view detales of chosen tv show.
+- [x] As a user, I would like to be able to search for a tv show.
+- [x] As a user, I would like to be able to add a tv show to my favorite tv show list.
+- [x] As a user, I would like to se comment on a tv show.
+- [ ] As a user, I would like to be able to leave a comment on a tv show.
+- [ ] As a user, I would like to be able to rate a tv show.
+- [x] As a user, I would like to be able to view a list of games.
+- [x] As a user, I would like to be able to view detales of chosen game.
+- [x] As a user, I would like to be able to search for a game.
+- [x] As a user, I would like to be able to add a game to my favorite game list.
+- [ ] As a user, I would like to be able to rate a game.
 
 <a name="built_with"/>
 
@@ -42,6 +53,8 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 So far:
 - Java
 - XML
+- SQLit (Room)
+- Firebase
 
 <a name="ux"/>
 
@@ -51,4 +64,5 @@ So far:
 <a name="credit"/>
 
 ## Credit & References
-- TMDB: This app was made possible with the help of The movie database (TMDB) which provides a powerful and free to use API
+- TMDB: Viewing and interacting with movies and tv shows was made possible with the help of The movie database (TMDB) which provides a powerful and free to use API
+- RAWG: Viewing and interacting with games was made possible with the help of Game database(RAWG).
