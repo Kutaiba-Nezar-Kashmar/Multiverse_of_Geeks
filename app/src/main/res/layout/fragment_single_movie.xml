@@ -8,9 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/edit_text_margin"
-            android:paddingEnd="@dimen/edit_text_margin"
-            android:paddingBottom="@dimen/edit_text_margin">
+            android:padding="@dimen/edit_text_margin">
 
         <TextView
                 android:id="@+id/single_movie_title"
@@ -18,8 +16,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="35sp"
-                android:gravity="center"
-                android:layout_margin="@dimen/edit_text_margin" />
+                android:gravity="center"/>
 
         <TextView
                 android:id="@+id/single_movie_tagline"
@@ -27,8 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="25sp"
-                android:gravity="center"
-                android:layout_margin="@dimen/edit_text_margin" />
+                android:gravity="center"/>
 
         <ImageView
                 android:id="@+id/single_movie_image"
@@ -50,28 +46,23 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:orientation="horizontal">
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/ratting"
-                    android:paddingTop="4dp" />
+                    android:paddingTop="4dp"
+                    android:textStyle="bold"/>
 
-            <RatingBar
-                    android:id="@+id/single_movie_rating_bar"
+            <TextView
+                    android:id="@+id/single_movie_rating"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    style="@android:style/Widget.DeviceDefault.RatingBar.Small"
-                    android:numStars="10"
-                    android:isIndicator="true"
-                    android:paddingTop="8dp"
-                    android:layout_marginEnd="@dimen/edit_text_top_margin"
-                    android:rating="0.0"
-                    android:stepSize="0.5" />
+                    android:layout_weight="1"
+                    android:text="@string/home_text"
+                    app:drawableStartCompat="@drawable/ratting_ic"/>
 
         </LinearLayout>
 
@@ -79,13 +70,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:layout_marginTop="@dimen/edit_text_margin">
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/r_year" />
+                    android:text="@string/r_year"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/movie_release_year"
@@ -100,13 +92,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:layout_marginTop="@dimen/edit_text_margin">
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/movie_budget" />
+                    android:text="@string/movie_budget"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/movie_budget"
@@ -121,13 +114,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:layout_marginTop="@dimen/edit_text_margin">
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/movie_revenue" />
+                    android:text="@string/movie_revenue"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/movie_revenue"
@@ -142,13 +136,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:layout_marginTop="@dimen/edit_text_margin">
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/game_genre" />
+                    android:text="@string/game_genre"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/movie_genre"
@@ -159,11 +154,20 @@
         </LinearLayout>
 
         <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_page"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
+
+        <TextView
                 android:id="@+id/movie_home_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
-                android:layout_marginStart="@dimen/edit_text_margin"/>
+                android:autoLink="web"
+                android:linksClickable="true" />
 
         <TextView
                 android:id="@+id/movie_collection_header"
@@ -171,14 +175,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/movie_collection"
                 android:textSize="25sp"
-                android:layout_marginStart="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/movie_collection_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_text"
-                android:layout_marginStart="@dimen/edit_text_margin"/>
+                android:text="@string/home_text"/>
 
         <ImageView
                 android:id="@+id/movie_collection_poster"
@@ -191,19 +195,15 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin"
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:text="@string/production_companies"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_production_companies_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin"
-                android:layout_marginBottom="@dimen/edit_text_margin"/>
+                android:layout_height="wrap_content"/>
 
         <Button
                 android:id="@+id/to_movie_cast_button"
@@ -211,8 +211,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cast_button"
                 android:drawableEnd="@drawable/arrow_circle_right_ic"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin"
                 android:layout_marginTop="@dimen/edit_text_margin"/>
 
         <Button
@@ -220,22 +218,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/to_similar"
-                android:drawableEnd="@drawable/arrow_circle_right_ic"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginEnd="@dimen/edit_text_margin" />
+                android:drawableEnd="@drawable/arrow_circle_right_ic"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/season_overview"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/movie_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_text"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:layout_marginTop="@dimen/edit_text_margin" />
+                android:text="@string/home_text" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/edit_text_margin">
+                android:layout_marginTop="@dimen/edit_text_margin">
 
 
             <androidx.recyclerview.widget.RecyclerView

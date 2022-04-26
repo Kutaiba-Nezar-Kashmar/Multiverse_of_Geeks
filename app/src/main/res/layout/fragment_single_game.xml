@@ -8,9 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/edit_text_margin"
-            android:paddingStart="@dimen/edit_text_margin"
-            android:paddingEnd="@dimen/edit_text_margin">
+            android:padding="@dimen/edit_text_margin">
 
         <TextView
                 android:id="@+id/single_game_title"
@@ -26,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/mog_log_background"
                 android:minHeight="500dp"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <Button
                 android:id="@+id/game_fav_button_id"
@@ -44,14 +42,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/release_date"/>
+                    android:text="@string/release_date"
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_game_release_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
 
@@ -65,7 +64,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/ratting"/>
+                    android:text="@string/ratting"
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_game_rating"
@@ -87,14 +87,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/average_play_time"/>
+                    android:text="@string/average_play_time"
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_game_play_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
 
@@ -108,37 +109,59 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/last_update"/>
+                    android:text="@string/last_update"
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_game_last_update"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dev_title"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textStyle="bold"
+                android:textSize="25sp" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/single_game_developers_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:clickable="false"/>
+                android:clickable="false" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <TextView
                 android:id="@+id/single_game_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/season_overview"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:text="@string/season_overview" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/platform"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:textSize="25sp" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/game_platform_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:clickable="false"/>
+                android:clickable="false" />
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -150,14 +173,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/game_genre"/>
+                    android:text="@string/game_genre"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/single_game_genre"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
 
@@ -171,14 +195,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/tags"/>
+                    android:text="@string/tags"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/single_game_tags"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
 
@@ -192,14 +217,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/age"/>
+                    android:text="@string/age"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/single_game_age"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"/>
+                    android:text="@string/home_text" />
 
         </LinearLayout>
 

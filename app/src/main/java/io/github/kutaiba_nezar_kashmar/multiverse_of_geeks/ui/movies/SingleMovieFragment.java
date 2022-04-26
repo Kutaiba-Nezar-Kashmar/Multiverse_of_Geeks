@@ -55,7 +55,7 @@ public class SingleMovieFragment extends Fragment
   private RecyclerView companyRv;
   private TextView movieOverview;
   private TextView movieReleaseYear;
-  private RatingBar movieRatting;
+  private TextView movieRatting;
   private ImageView moviePoster;
   private Button favButton;
 
@@ -70,7 +70,7 @@ public class SingleMovieFragment extends Fragment
     movieTitle = root.findViewById(R.id.single_movie_title);
     movieOverview = root.findViewById(R.id.movie_overview);
     movieReleaseYear = root.findViewById(R.id.movie_release_year);
-    movieRatting = root.findViewById(R.id.single_movie_rating_bar);
+    movieRatting = root.findViewById(R.id.single_movie_rating);
     moviePoster = root.findViewById(R.id.single_movie_image);
     commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
     Button toCastButton = root.findViewById(R.id.to_movie_cast_button);
@@ -116,7 +116,7 @@ public class SingleMovieFragment extends Fragment
             movieTitle.setText(movie.getTitle());
             movieOverview.setText(movie.getOverview());
             movieReleaseYear.setText(movie.getRelease_date());
-            movieRatting.setRating(movie.getVote_average());
+            movieRatting.setText(String.valueOf(movie.getVote_average()));
             Glide.with(view.getContext()).load(
                 "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(moviePoster);

@@ -124,6 +124,7 @@ Kutaiba></string>
     <string name="movie_budget">Budget</string>
     <string name="movie_revenue">Revenue</string>
     <string name="production_companies">Production Companies</string>
+    <string name="home_page">Home Page</string>
 
     <!--Movies fragment strings-->
     <string name="search">search</string>
@@ -175,6 +176,7 @@ Kutaiba></string>
     <string name="last_update">Last Update</string>
     <string name="tags">Tags</string>
     <string name="age">Ratted</string>
+    <string name="dev_title">Developer</string>
 
     <!--Error-->
     <string name="not_found">SOMETHING WENT WRONG; TRY LATER</string>

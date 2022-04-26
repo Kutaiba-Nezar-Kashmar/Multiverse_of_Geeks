@@ -64,7 +64,7 @@ public class SingleTvFragment extends Fragment
   private TextView tvProductionCompany;
   private Button toCastButton;
   private Button toSeasonsButton;
-  private RatingBar tvRatingBar;
+  private TextView tvRating;
   private ImageView tvPoster;
   private RecyclerView commentRv;
   private RecyclerView creatorRv;
@@ -85,7 +85,7 @@ public class SingleTvFragment extends Fragment
     tvTitle = root.findViewById(R.id.single_tv_title);
     tvOverview = root.findViewById(R.id.tv_overview);
     tvReleaseYear = root.findViewById(R.id.tv_release_year);
-    tvRatingBar = root.findViewById(R.id.single_tv_rating_bar);
+    tvRating = root.findViewById(R.id.single_tv_rating);
     tvPoster = root.findViewById(R.id.single_tv_image);
     commentRv = root.findViewById(R.id.tv_coming_rv_id);
     toCastButton = root.findViewById(R.id.to_tv_cast_button);
@@ -135,7 +135,7 @@ public class SingleTvFragment extends Fragment
             setTvTitle(tvShow);
             setOverview(tvShow);
             setReleaseDate(tvShow);
-            tvRatingBar.setRating(tvShow.getVote_average());
+            tvRating.setText(String.valueOf(tvShow.getVote_average()));
             setTvPoster(view, tvShow);
             setTvTagLine(tvShow);
             tvEpisodeRunTime
