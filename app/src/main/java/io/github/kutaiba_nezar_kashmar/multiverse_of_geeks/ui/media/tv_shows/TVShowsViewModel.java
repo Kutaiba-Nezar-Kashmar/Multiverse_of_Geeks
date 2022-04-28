@@ -12,7 +12,7 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.tv_responses.SingleTvShowResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.TVShowRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.media.tv_show.TVShowRepository;
 
 public class TVShowsViewModel extends AndroidViewModel
 {

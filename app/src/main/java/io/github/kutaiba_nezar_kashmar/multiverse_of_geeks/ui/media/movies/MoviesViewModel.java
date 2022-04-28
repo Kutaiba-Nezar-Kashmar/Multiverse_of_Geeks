@@ -13,7 +13,7 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.media.movie_responses.SingleMovieResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.MovieRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.media.movies.MovieRepository;
 
 public class MoviesViewModel extends AndroidViewModel
 {

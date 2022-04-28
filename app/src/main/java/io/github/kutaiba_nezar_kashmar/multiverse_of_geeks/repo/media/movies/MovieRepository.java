@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.media.movies;
 
 import android.app.Application;
 import android.util.Log;
