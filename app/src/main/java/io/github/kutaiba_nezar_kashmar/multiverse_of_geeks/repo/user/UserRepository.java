@@ -53,7 +53,31 @@ public class UserRepository
           {
             Toast.makeText(application, "OK", Toast.LENGTH_SHORT).show();
           }
-          Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
+          if (email.isEmpty())
+          {
+            Toast.makeText(application, "Email must be provided",
+                Toast.LENGTH_SHORT).show();
+          }
+          if (!email
+              .matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"))
+          {
+            Toast.makeText(application, "Invalid email", Toast.LENGTH_SHORT)
+                .show();
+          }
+          if (password.isEmpty())
+          {
+            Toast.makeText(application, "Password must be provided",
+                Toast.LENGTH_SHORT).show();
+          }
+          if (password.length() < 6)
+          {
+            Toast.makeText(application, "Password most be at least 6 digits",
+                Toast.LENGTH_SHORT).show();
+          }
+          else
+          {
+            Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
+          }
         });
   }
 }
