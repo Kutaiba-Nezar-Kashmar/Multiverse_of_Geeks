@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,7 @@ public class CreateAccountFragment extends Fragment
   private EditText email;
   private EditText password;
   private Button createAccount;
+  private Button toLoginButton;
   private FirebaseAuth firebaseAuth;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,6 +46,7 @@ public class CreateAccountFragment extends Fragment
     email = root.findViewById(R.id.email_field);
     password = root.findViewById(R.id.password_field);
     createAccount = root.findViewById(R.id.create_account_button);
+    toLoginButton = root.findViewById(R.id.go_to_login_button);
     return root;
   }
 
@@ -61,6 +64,10 @@ public class CreateAccountFragment extends Fragment
     createAccount.setOnClickListener(view1 -> {
       createNewUser();
     });
+    toLoginButton.setOnClickListener(view1 -> {
+      Navigation.findNavController(view).navigate(
+          CreateAccountFragmentDirections.actionNavCreateAccountToNavLogin());
+    });
   }
 
   private void createNewUser()
@@ -73,7 +80,8 @@ public class CreateAccountFragment extends Fragment
     }
     else
     {
-      Toast.makeText(getContext(), "email and password are required", Toast.LENGTH_SHORT).show();
+      Toast.makeText(getContext(), "email and password are required",
+          Toast.LENGTH_SHORT).show();
     }
   }
 }
