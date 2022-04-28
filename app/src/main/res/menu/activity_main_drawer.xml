@@ -14,20 +14,15 @@
                 android:icon="@drawable/login_ic"
                 android:title="@string/login" />
 
-
         <item
                 android:id="@+id/nav_create_account"
                 android:icon="@drawable/create_account_ic"
                 android:title="@string/create_profile_nav" />
     </group>
 
-    <item android:title="@string/group_title">
-
+    <item android:title="">
         <menu>
-
-            <group>
-
-
+            <group android:checkableBehavior="single">
                 <item
                         android:id="@+id/nav_home"
                         android:icon="@drawable/home_ic"
@@ -47,20 +42,14 @@
                         android:id="@+id/nav_games"
                         android:icon="@drawable/games_ic"
                         android:title="@string/game_nave" />
-
             </group>
-
-
         </menu>
-
     </item>
 
-    <item android:title="@string/util_group_title">
 
+    <item android:title="">
         <menu>
-
-            <group>
-
+            <group android:checkableBehavior="single">
                 <item
                         android:id="@+id/nav_settings"
                         android:icon="@drawable/settings_ic"
@@ -70,12 +59,8 @@
                         android:id="@+id/nav_about"
                         android:icon="@drawable/about_ic"
                         android:title="@string/about_nav" />
-
             </group>
-
-
         </menu>
-
     </item>
 
 
