@@ -62,7 +62,7 @@
 
     <fragment
             android:id="@+id/nav_main_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.MoviesMainFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.MoviesMainFragment"
             tools:layout="@layout/fragment_movies_main"
             android:label="@string/movies_main_nav">
         <action
@@ -72,31 +72,31 @@
 
     <fragment
             android:id="@+id/nav_popular_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.PopularMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.PopularMoviesFragment"
             android:label="@string/popular_movies_nav"
             tools:layout="@layout/fragment_popular_movies" />
 
     <fragment
             android:id="@+id/nav_top_rated_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.TopRatedMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.TopRatedMoviesFragment"
             android:label="@string/top_rated_movies"
             tools:layout="@layout/fragment_top_rated_movies" />
 
     <fragment
             android:id="@+id/nav_boxoffice_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.BoxOfficeMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.BoxOfficeMoviesFragment"
             android:label="@string/boxoffice_movies"
             tools:layout="@layout/fragment_boxoffice_movies" />
 
     <fragment
             android:id="@+id/nav_upcoming_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.UpcomingMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.UpcomingMoviesFragment"
             android:label="@string/upcoming_movies"
             tools:layout="@layout/fragment_upcoming_movies" />
 
     <fragment
             android:id="@+id/nav_single_movie"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.SingleMovieFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.SingleMovieFragment"
             android:label="@string/single_movie_nav"
             tools:layout="@layout/fragment_single_movie">
         <argument
@@ -113,7 +113,7 @@
 
     <fragment
             android:id="@+id/nav_similar_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SimilarMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.SimilarMoviesFragment"
             android:label="@string/similar_movies"
             tools:layout="@layout/fragment_similar_movies">
         <argument
@@ -138,13 +138,13 @@
 
     <fragment
             android:id="@+id/nav_search_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.SearchedMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.SearchedMoviesFragment"
             android:label="@string/search_movie_nav"
             tools:layout="@layout/fragment_serach_movies" />
 
     <fragment
             android:id="@+id/nav_fav_movies"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.movies.movies_lists.FavoriteMoviesFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.FavoriteMoviesFragment"
             android:label="@string/fav_movie_nav"
             tools:layout="@layout/fragment_favorite_movies"/>
 
@@ -152,7 +152,7 @@
 
     <fragment
             android:id="@+id/nav_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowsMainFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TvShowsMainFragment"
             android:label="main_tv_shows"
             tools:layout="@layout/fragment_main_tv_shows">
         <action
@@ -162,37 +162,37 @@
 
     <fragment
             android:id="@+id/nav_popular_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.PopularTvShowsFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.PopularTvShowsFragment"
             android:label="@string/popular_tv_show_nav"
             tools:layout="@layout/fragment_popular_tv_shows" />
 
     <fragment
             android:id="@+id/nav_top_rated_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.TopRatedTvShowsFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.TopRatedTvShowsFragment"
             android:label="@string/top_rated_tv_show_nav"
             tools:layout="@layout/fragment_top_rated_tv_shows" />
 
     <fragment
             android:id="@+id/nav_on_air_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.OnAirTvShowsFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.OnAirTvShowsFragment"
             android:label="@string/on_air_tv_show_nav"
             tools:layout="@layout/fragment_on_air_tv_shows" />
 
     <fragment
             android:id="@+id/nav_airing_today_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.AiringTodayTvShowsFragment"
             android:label="@string/airing_today_tv_show_nav"
             tools:layout="@layout/fragment_airing_today_tv_shows" />
 
     <fragment
             android:id="@+id/nav_search_tv_show"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.SearchTvShowFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.SearchTvShowFragment"
             tools:layout="@layout/fragment_search_tv_show"
             android:label="@string/search_tv_show_nav" />
 
     <fragment
             android:id="@+id/nav_single_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.SingleTvFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.SingleTvFragment"
             android:label="@string/tv_show_nav_s"
             tools:layout="@layout/fragment_single_tv_show">
         <argument
@@ -220,7 +220,7 @@
 
     <fragment
             android:id="@+id/nav_tv_seasons"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.TvShowSeasonsFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TvShowSeasonsFragment"
             android:label="@string/tv_season"
             tools:layout="@layout/fragment_tv_show_seasons">
         <argument
@@ -231,7 +231,7 @@
 
     <fragment
             android:id="@+id/nav_fav_tv"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.tv_shows.tv_shows_lists.FavoriteTvShowFragment"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.FavoriteTvShowFragment"
             android:label="@string/fav_tv_nav"
             tools:layout="@layout/fragment_favorite_tv_show"/>
 

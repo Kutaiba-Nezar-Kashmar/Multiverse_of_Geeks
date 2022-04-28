@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "282353711889",
+    "project_id": "multiverse-of-geeks",
+    "storage_bucket": "multiverse-of-geeks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282353711889:android:4485ba14f3e07400482ab0",
+        "android_client_info": {
+          "package_name": "io.github.kutaiba_nezar_kashmar.multiverse_of_geeks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282353711889-ot0o1l7pvb3f2f67kjb52brd15m12jeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVWAW1ubPC75TBWvgaT2KhOSnWxsZITc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282353711889-ot0o1l7pvb3f2f67kjb52brd15m12jeq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

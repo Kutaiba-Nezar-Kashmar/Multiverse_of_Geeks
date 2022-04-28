@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,20 +18,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.MainGamesFragmentDirections;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.GamesAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TVShowsViewModel;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TvShowsMainFragmentDirections;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TVShowAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSearchGamesBinding;
+import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSearchTvShowBinding;
 
-public class SearchedGamesFragment extends Fragment
+public class SearchTvShowFragment extends Fragment
 {
-  private FragmentSearchGamesBinding binding;
+  private FragmentSearchTvShowBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<Game> games = new ArrayList<>();
-  private GamesViewModel viewModel;
-  private GamesAdapter gamesAdapter;
+  private final ArrayList<TvShow> tvShows = new ArrayList<>();
+  private TVShowsViewModel tvShowsViewModel;
+  private TVShowAdapter tvShowAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -40,11 +40,11 @@ public class SearchedGamesFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater,
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
-    viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
-    binding = FragmentSearchGamesBinding.inflate(inflater, container, false);
+    tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
+    binding = FragmentSearchTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    swipeRefreshLayout = root.findViewById(R.id.search_game_refresh_view);
-    searchView = root.findViewById(R.id.game_search_view);
+    swipeRefreshLayout = root.findViewById(R.id.search_tv_refresh_view);
+    searchView = root.findViewById(R.id.tv_search_view);
     refresh();
     return root;
   }
@@ -60,47 +60,48 @@ public class SearchedGamesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    recyclerView = view.findViewById(R.id.game_search_rv);
+    recyclerView = view.findViewById(R.id.tv_search_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    gamesAdapter = new GamesAdapter(games);
+    tvShowAdapter = new TVShowAdapter(tvShows);
     setUpRecyclerView();
     setUpOnClickListener(view);
   }
 
   private void setUpOnClickListener(View view)
   {
-    recyclerView.setAdapter(gamesAdapter);
-    gamesAdapter.setListener(game -> {
-      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections
-          .actionNavGamesToSingleGameNave();
-      action.setGameId(String.valueOf(game.getId()));
+    recyclerView.setAdapter(tvShowAdapter);
+    tvShowAdapter.setListener(tvShow -> {
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
+          .actionNavTvToNavSingleTv();
+      action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });
   }
 
   private void setUpRecyclerView()
   {
-    gamesAdapter = new GamesAdapter(games);
-    Observer<ArrayList<Game>> update = gamesAdapter::updateGameList;
+    tvShowAdapter = new TVShowAdapter(tvShows);
+    Observer<ArrayList<TvShow>> update = tvShowAdapter::updateTVShowList;
     setUpSearchView(update);
   }
 
   private void refresh()
   {
     swipeRefreshLayout.setOnRefreshListener(() -> {
+      setUpRecyclerView();
       swipeRefreshLayout.setRefreshing(false);
     });
   }
 
-  private void setUpSearchView(Observer<ArrayList<Game>> update)
+  private void setUpSearchView(Observer<ArrayList<TvShow>> update)
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {
       @Override
       public boolean onQueryTextSubmit(String query)
       {
-        viewModel.getSearchedGames(query)
+        tvShowsViewModel.getAllSearchedTvShows(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }
@@ -108,7 +109,7 @@ public class SearchedGamesFragment extends Fragment
       @Override
       public boolean onQueryTextChange(String query)
       {
-        viewModel.getSearchedGames(query)
+        tvShowsViewModel.getAllSearchedTvShows(query)
             .observe(getViewLifecycleOwner(), update);
         return false;
       }

@@ -19,7 +19,7 @@ import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.FavoriteGameAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.FavoriteGameAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentFavoriteGameBinding;
 

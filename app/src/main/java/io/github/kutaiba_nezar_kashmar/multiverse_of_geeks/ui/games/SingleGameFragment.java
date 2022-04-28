@@ -24,8 +24,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GameTageResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.GamesDevelopersResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.games.PlatformsResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.DeveloperAdapter;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.util.games.PlatformAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.DeveloperAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.PlatformAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleGameBinding;
 
