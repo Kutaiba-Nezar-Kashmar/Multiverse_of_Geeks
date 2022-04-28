@@ -1,17 +1,11 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.user;
 
 import android.app.Application;
-import android.os.Build;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -40,7 +34,7 @@ public class UserRepository
     return instance;
   }
 
-  public MutableLiveData<FirebaseUser> getCurrentUser()
+  public LiveData<FirebaseUser> getCurrentUser()
   {
     return user;
   }
@@ -79,5 +73,40 @@ public class UserRepository
             Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
           }
         });
+  }
+
+  public void login(String email, String password)
+  {
+    firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+      if (task.isSuccessful())
+      {
+        Toast.makeText(application, "Ok" , Toast.LENGTH_SHORT).show();
+      }
+      if (email.isEmpty())
+      {
+        Toast.makeText(application, "Email must be provided",
+            Toast.LENGTH_SHORT).show();
+      }
+      if (!email
+          .matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"))
+      {
+        Toast.makeText(application, "Invalid email", Toast.LENGTH_SHORT)
+            .show();
+      }
+      if (password.isEmpty())
+      {
+        Toast.makeText(application, "Password must be provided",
+            Toast.LENGTH_SHORT).show();
+      }
+      if (password.length() < 6)
+      {
+        Toast.makeText(application, "Password most be at least 6 digits",
+            Toast.LENGTH_SHORT).show();
+      }
+      else
+      {
+        Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 }

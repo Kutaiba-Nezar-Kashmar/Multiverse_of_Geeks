@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,7 +15,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.user.UserReposit
 public class CreateAccountViewModel extends AndroidViewModel
 {
   private UserRepository userRepository;
-  private MutableLiveData<FirebaseUser> user;
+  private LiveData<FirebaseUser> user;
 
   public CreateAccountViewModel(@NonNull Application application)
   {

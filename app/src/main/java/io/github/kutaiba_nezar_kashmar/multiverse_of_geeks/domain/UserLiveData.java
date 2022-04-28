@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class UserLiveData extends MutableLiveData<FirebaseUser>
+public class UserLiveData extends LiveData<FirebaseUser>
 {
   private final FirebaseAuth.AuthStateListener listener = firebaseAuth -> setValue(
       firebaseAuth.getCurrentUser());

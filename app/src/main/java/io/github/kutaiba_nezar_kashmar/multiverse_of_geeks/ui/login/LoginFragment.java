@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +21,7 @@ import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentLoginBinding;
 public class LoginFragment extends Fragment
 {
   private FragmentLoginBinding binding;
+  private LoginViewModel loginViewModel;
   private EditText emailField;
   private EditText passwordField;
   private Button loginButton;
@@ -27,13 +30,13 @@ public class LoginFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
-    LoginViewModel homeViewModel = new ViewModelProvider(this)
+    loginViewModel = new ViewModelProvider(this)
         .get(LoginViewModel.class);
 
     binding = FragmentLoginBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     emailField = root.findViewById(R.id.login_email_field);
-    passwordField = root.findViewById(R.id.login_email_field);
+    passwordField = root.findViewById(R.id.login_password_field);
     loginButton = root.findViewById(R.id.login_button);
     return root;
   }
@@ -43,5 +46,28 @@ public class LoginFragment extends Fragment
   {
     super.onDestroyView();
     binding = null;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view,
+      @Nullable Bundle savedInstanceState)
+  {
+    loginButton.setOnClickListener(view1 -> {
+      login();
+    });
+  }
+
+  private void login()
+  {
+    String email = this.emailField.getText().toString();
+    String password = this.passwordField.getText().toString();
+    if (!email.isEmpty() && !password.isEmpty())
+    {
+      loginViewModel.login(email, password);
+    }
+    else
+    {
+      Toast.makeText(getContext(), "email and password are required", Toast.LENGTH_SHORT).show();
+    }
   }
 }
