@@ -109,4 +109,9 @@ public class UserRepository
       }
     });
   }
+
+  public void signOut()
+  {
+    firebaseAuth.signOut();
+  }
 }

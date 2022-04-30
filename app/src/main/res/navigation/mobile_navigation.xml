@@ -52,6 +52,9 @@
         <action
                 android:id="@+id/action_nav_login_to_nav_create_account"
                 app:destination="@id/nav_create_account" />
+        <action
+                android:id="@+id/action_nav_login_to_logout_nav"
+                app:destination="@id/logout_nav" />
     </fragment>
 
     <fragment
@@ -71,6 +74,16 @@
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileFragment"
             android:label="@string/edit_profile_nav"
             tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+            android:id="@+id/logout_nav"
+            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LogoutFragment"
+            android:label="logout"
+            tools:layout="@layout/fragment_logout">
+        <action
+                android:id="@+id/action_logout_nav_to_nav_login"
+                app:destination="@id/nav_login" />
+    </fragment>
 
     <!--MOVIES-->
 

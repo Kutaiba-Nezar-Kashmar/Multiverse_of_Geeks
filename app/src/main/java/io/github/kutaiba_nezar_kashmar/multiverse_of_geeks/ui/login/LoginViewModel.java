@@ -14,18 +14,26 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.user.UserReposit
 public class LoginViewModel extends AndroidViewModel
 {
   private UserRepository userRepository;
-  private LiveData<FirebaseUser> user;
 
 
   public LoginViewModel(@NonNull Application application)
   {
     super(application);
     userRepository =  UserRepository.getInstance(application);
-    user = userRepository.getCurrentUser();
   }
 
   public void login(String email, String password)
   {
     userRepository.login(email, password);
+  }
+
+  public LiveData<FirebaseUser> getCurrentUser()
+  {
+    return userRepository.getCurrentUser();
+  }
+
+  public void signOut()
+  {
+    userRepository.signOut();
   }
 }

@@ -54,27 +54,43 @@ public class LoginFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
-    loginButton.setOnClickListener(view1 -> {
-      login();
-    });
+    checkIfSignedIn(view);
+    login(view);
+
     toCreateAccount.setOnClickListener(view1 -> {
       Navigation.findNavController(view)
           .navigate(LoginFragmentDirections.actionNavLoginToNavCreateAccount());
     });
   }
 
-  private void login()
+  private void login(View view)
   {
     String email = this.emailField.getText().toString();
     String password = this.passwordField.getText().toString();
     if (!email.isEmpty() && !password.isEmpty())
     {
       loginViewModel.login(email, password);
+      loginButton.setOnClickListener(view1 -> {
+        Navigation.findNavController(view)
+            .navigate(LoginFragmentDirections.actionNavLoginToNavHome());
+      });
     }
     else
     {
       Toast.makeText(getContext(), "email and password are required",
           Toast.LENGTH_SHORT).show();
     }
+  }
+
+  private void checkIfSignedIn(View view)
+  {
+    loginViewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            Navigation.findNavController(view)
+                .navigate(LoginFragmentDirections.actionNavLoginToLogoutNav());
+          }
+        });
   }
 }
