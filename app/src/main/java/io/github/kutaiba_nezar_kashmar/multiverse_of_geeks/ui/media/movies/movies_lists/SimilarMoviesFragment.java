@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.MoviesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MoviesAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;

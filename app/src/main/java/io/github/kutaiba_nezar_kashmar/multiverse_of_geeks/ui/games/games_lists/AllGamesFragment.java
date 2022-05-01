@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.MainGamesFragmentDirections;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.GamesAdapter;

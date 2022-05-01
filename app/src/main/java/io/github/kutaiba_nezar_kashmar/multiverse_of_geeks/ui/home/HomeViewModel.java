@@ -8,8 +8,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Trending;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.media.MediaRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Trending;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.MediaRepository;
 
 public class HomeViewModel extends AndroidViewModel
 {

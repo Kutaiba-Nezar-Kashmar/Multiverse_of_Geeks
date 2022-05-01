@@ -9,11 +9,11 @@ import androidx.lifecycle.LiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.Game;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.games.FreeToPlayGamesRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.games.GamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
 
 public class GamesViewModel extends AndroidViewModel
 {

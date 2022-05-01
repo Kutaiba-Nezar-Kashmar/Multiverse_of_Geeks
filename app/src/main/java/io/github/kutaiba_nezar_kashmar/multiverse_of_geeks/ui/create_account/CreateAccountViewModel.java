@@ -5,12 +5,10 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseUser;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.repo.user.UserRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 
 public class CreateAccountViewModel extends AndroidViewModel
 {
