@@ -16,7 +16,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.games.GameD
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.games_network.GamesAPI;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.GamesServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.GamesClient;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,7 +77,7 @@ public class GamesRepository
 
   public MutableLiveData<ArrayList<Game>> getAllGames()
   {
-    GamesAPI gamesAPI = GamesServiceGenerator.gamesAPI();
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
     Call<GamesResponse> call = gamesAPI.getAllGames(BuildConfig.RAWG_API_KEY);
     call.enqueue(new Callback<GamesResponse>()
     {
@@ -105,7 +105,7 @@ public class GamesRepository
 
   public MutableLiveData<ArrayList<Game>> getSearchedGames(String query)
   {
-    GamesAPI gamesAPI = GamesServiceGenerator.gamesAPI();
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
     Call<GamesResponse> call = gamesAPI
         .getSearchGames(BuildConfig.RAWG_API_KEY, query);
     call.enqueue(new Callback<GamesResponse>()
@@ -134,7 +134,7 @@ public class GamesRepository
 
   public MutableLiveData<Game> getGameById(int id)
   {
-    GamesAPI gamesAPI = GamesServiceGenerator.gamesAPI();
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
     Call<GamesResponse> call = gamesAPI
         .getGameById(id, BuildConfig.RAWG_API_KEY);
     call.enqueue(new Callback<GamesResponse>()

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Trending;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.TrendingResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.MediaServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.MediaAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
@@ -37,7 +37,7 @@ public class MediaRepository
 
   public MutableLiveData<ArrayList<Trending>> getTrendingToday()
   {
-    MediaAPI mediaAPI = MediaServiceGenerator.getMediaAPI();
+    MediaAPI mediaAPI = MediaClient.getMediaAPI();
     Call<TrendingResponse> call = mediaAPI
         .getTrendingMediaToday(BuildConfig.API_KEY);
     call.enqueue(new Callback<TrendingResponse>()

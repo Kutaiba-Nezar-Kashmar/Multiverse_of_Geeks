@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.FreeToPlayGamesServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.FreeToPlayGamesClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.games_network.FreeToPlayAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +37,7 @@ public class FreeToPlayGamesRepository
 
   public MutableLiveData<FreeToPlayGameResponse> findFreeToPlayGame(int id)
   {
-    FreeToPlayAPI freeToPlayAPI = FreeToPlayGamesServiceGenerator
+    FreeToPlayAPI freeToPlayAPI = FreeToPlayGamesClient
         .getFreeToPlayAPI();
     Call<FreeToPlayGameResponse> call = freeToPlayAPI.getFreeToPlayGameById(id);
     call.enqueue(new Callback<FreeToPlayGameResponse>()
@@ -66,7 +66,7 @@ public class FreeToPlayGamesRepository
 
   public MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> getAllFreeToPlayGames()
   {
-    FreeToPlayAPI freeToPlayAPI = FreeToPlayGamesServiceGenerator
+    FreeToPlayAPI freeToPlayAPI = FreeToPlayGamesClient
         .getFreeToPlayAPI();
     Call<ArrayList<AllFreeToPlayGamesResponse>> call = freeToPlayAPI
         .getLiveFreeToPlay();

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.MediaServiceGenerator;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
@@ -39,7 +39,7 @@ public class CastRepository
 
   public MutableLiveData<ArrayList<Cast>> getMovieCast(int movieId)
   {
-    CastAPI castAPI = MediaServiceGenerator.getCastAPI();
+    CastAPI castAPI = MediaClient.getCastAPI();
     Call<CastResponse> call = castAPI.getMovieCast(movieId, BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()
     {
@@ -68,7 +68,7 @@ public class CastRepository
 
   public MutableLiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
   {
-    CastAPI castAPI = MediaServiceGenerator.getCastAPI();
+    CastAPI castAPI = MediaClient.getCastAPI();
     Call<CastResponse> call = castAPI
         .getTvShowCast(tvShowId, BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()

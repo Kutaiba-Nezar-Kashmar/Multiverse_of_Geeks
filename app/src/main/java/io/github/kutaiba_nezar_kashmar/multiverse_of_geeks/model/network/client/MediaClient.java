@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.MediaAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.Tv_show_network.TVShowAPI;
@@ -7,7 +7,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.m
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MediaServiceGenerator
+public class MediaClient
 {
   //instance of retrofit to specify the base URL for the service
   private static final Retrofit.Builder builder = new Retrofit.Builder()
