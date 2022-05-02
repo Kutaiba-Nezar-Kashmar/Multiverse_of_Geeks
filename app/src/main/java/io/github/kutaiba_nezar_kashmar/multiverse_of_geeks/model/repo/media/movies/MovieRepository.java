@@ -1,162 +1,28 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies;
 
-import android.app.Application;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.movies.MoviesDAO;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.GeekDatabase;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CommentResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.movie_network.MovieAPI;
-import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class MovieRepository
+public interface MovieRepository
 {
-  private static MovieRepository instance;
-  private final MutableLiveData<SingleMovieResponse> movie;
-  private final MutableLiveData<ArrayList<Movie>> popularMovies;
-  private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
-  private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
-  private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
-  private final MutableLiveData<ArrayList<Movie>> latestMovies;
-  private final MutableLiveData<ArrayList<Movie>> searchedMovies;
-  private final MutableLiveData<ArrayList<Movie>> similarMovies;
-  private final LiveData<List<SingleMovieResponse>> favoritMovies;
-  private final LiveData<SingleMovieResponse> singleFavoriteMovie;
-  private final ExecutorService executorService;
-  private final MoviesDAO moviesDAO;
-  private final MutableLiveData<ArrayList<Comment>> movieReviews;
-
-  private MovieRepository(Application application)
-  {
-    GeekDatabase database = GeekDatabase.getInstance(application);
-    moviesDAO = database.moviesDAO();
-    executorService = Executors.newFixedThreadPool(2);
-    favoritMovies = moviesDAO.getAllFavoriteMovies();
-    singleFavoriteMovie = new MutableLiveData<>();
-    movie = new MutableLiveData<>();
-    popularMovies = new MutableLiveData<>();
-    topRatedMovies = new MutableLiveData<>();
-    nowPlayingMovies = new MutableLiveData<>();
-    upcomingMovies = new MutableLiveData<>();
-    searchedMovies = new MutableLiveData<>();
-    movieReviews = new MutableLiveData<>();
-    similarMovies = new MutableLiveData<>();
-    latestMovies = new MutableLiveData<>();
-  }
-
-  public static synchronized MovieRepository getInstance(
-      Application application)
-  {
-    if (instance == null)
-    {
-      instance = new MovieRepository(application);
-    }
-    return instance;
-  }
-
-  public LiveData<List<SingleMovieResponse>> getFavoritMovies()
-  {
-    return favoritMovies;
-  }
-
-  public void insertFavoriteMovie(SingleMovieResponse movie)
-  {
-    executorService.execute(() -> moviesDAO.insertMovie(movie));
-  }
-
-  public void deleteFavoriteMovie(SingleMovieResponse movie)
-  {
-    executorService.execute(() -> moviesDAO.deleteMovie(movie));
-  }
-
-  public LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id)
-  {
-    return moviesDAO.getMovieById(id);
-  }
-
-  public Flowable<SingleMovieResponse> findMovie(int id)
-  {
-    return MediaClient.getMovieAPI().getMovieById(id, BuildConfig.API_KEY)
-        .subscribeOn(Schedulers.io()).flatMap(Flowable::just);
-  }
-
-  public Flowable<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
-  {
-    return MediaClient.getMovieAPI()
-        .getAllPopularMovies(BuildConfig.API_KEY, pageNumber)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
-  {
-    return MediaClient.getMovieAPI()
-        .getAllTopRatedMovies(BuildConfig.API_KEY, pageNumber)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber)
-  {
-    return MediaClient.getMovieAPI()
-        .getAllNowPlayingMovies(BuildConfig.API_KEY, pageNumber)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllLatestMovies(int pageNumber)
-  {
-    return MediaClient.getMovieAPI()
-        .getAllLatestMovies(BuildConfig.API_KEY, pageNumber)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
-  {
-    return MediaClient.getMovieAPI()
-        .getAllUpComingsMovies(BuildConfig.API_KEY, pageNumber)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllSearchedMoviesMovies(String query)
-  {
-    return MediaClient.getMovieAPI().searchForMovie(BuildConfig.API_KEY, query)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Movie>> getAllSimilarMovies(int id)
-  {
-    return MediaClient.getMovieAPI().getSimilarMovies(id, BuildConfig.API_KEY)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
-
-  public Flowable<ArrayList<Comment>> getMovieReviews(int id)
-  {
-    return MediaClient.getMovieAPI().getMovieReviews(id, BuildConfig.API_KEY)
-        .subscribeOn(Schedulers.io())
-        .flatMap(item -> Flowable.just(item.getResults()));
-  }
+  LiveData<List<SingleMovieResponse>> getFavoriteMovies();
+  void insertFavoriteMovie(SingleMovieResponse movie);
+  void deleteFavoriteMovie(SingleMovieResponse movie);
+  LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id);
+  Flowable<SingleMovieResponse> findMovie(int id);
+  Flowable<ArrayList<Movie>> getAllPopularMovies(int pageNumber);
+  Flowable<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber);
+  Flowable<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber);
+  Flowable<ArrayList<Movie>> getAllLatestMovies(int pageNumber);
+  Flowable<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber);
+  Flowable<ArrayList<Movie>> getAllSearchedMoviesMovies(String query);
+  Flowable<ArrayList<Movie>> getAllSimilarMovies(int id);
+  Flowable<ArrayList<Comment>> getMovieReviews(int id);
 }

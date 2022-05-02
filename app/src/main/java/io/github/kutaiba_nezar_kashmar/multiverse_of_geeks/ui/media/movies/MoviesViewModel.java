@@ -15,6 +15,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepositoryImpl;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MoviesViewModel extends AndroidViewModel
@@ -33,7 +34,7 @@ public class MoviesViewModel extends AndroidViewModel
   public MoviesViewModel(Application application)
   {
     super(application);
-    movieRepository = MovieRepository.getInstance(application);
+    movieRepository = new MovieRepositoryImpl(application);
     singleMovie = new MutableLiveData<>();
     popularMovies = new MutableLiveData<>();
     topRatedMovies = new MutableLiveData<>();
@@ -46,7 +47,7 @@ public class MoviesViewModel extends AndroidViewModel
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
   {
-    return movieRepository.getFavoritMovies();
+    return movieRepository.getFavoriteMovies();
   }
 
   public LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id)
