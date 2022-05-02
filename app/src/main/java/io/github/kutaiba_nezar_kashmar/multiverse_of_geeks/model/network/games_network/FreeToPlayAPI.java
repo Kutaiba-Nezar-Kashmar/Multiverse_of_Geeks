@@ -15,5 +15,5 @@ public interface FreeToPlayAPI
   Flowable<ArrayList<AllFreeToPlayGamesResponse>> getLiveFreeToPlay();
 
   @GET("game")
-  Call<FreeToPlayGameResponse> getFreeToPlayGameById(@Query("id") int id);
+  Flowable<FreeToPlayGameResponse> getFreeToPlayGameById(@Query("id") int id);
 }

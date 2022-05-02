@@ -7,9 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,23 +14,24 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GamesViewModel extends AndroidViewModel
 {
   private final FreeToPlayGamesRepository freeToPlayGamesRepository;
   private final GamesRepository gamesRepository;
-  private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> freeGames;
+  private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> allFreeGames;
+  private MutableLiveData<FreeToPlayGameResponse> freeGame;
 
   public GamesViewModel(@NonNull Application application)
   {
     super(application);
-    freeToPlayGamesRepository = FreeToPlayGamesRepository.getInstance();
+    freeToPlayGamesRepository = new FreeToPlayGamesRepositoryImpl();
     gamesRepository = GamesRepository.getInstance(application);
-    freeGames = new MutableLiveData<>();
+    allFreeGames = new MutableLiveData<>();
+    freeGame = new MutableLiveData<>();
   }
 
   public LiveData<List<Game>> getFavoriteGames()
@@ -60,14 +58,18 @@ public class GamesViewModel extends AndroidViewModel
   {
     freeToPlayGamesRepository.getAllFreeToPlayGames()
         .subscribeOn(Schedulers.io()).doOnNext(allFreeToPlayGamesResponses -> {
-      freeGames.postValue(allFreeToPlayGamesResponses);
+      allFreeGames.postValue(allFreeToPlayGamesResponses);
     }).subscribe();
-    return freeGames;
+    return allFreeGames;
   }
 
   public LiveData<FreeToPlayGameResponse> findFreeToPlayGameById(int id)
   {
-    return freeToPlayGamesRepository.findFreeToPlayGame(id);
+    freeToPlayGamesRepository.findFreeToPlayGame(id)
+        .subscribeOn(Schedulers.io()).doOnNext(freeToPlayGameResponse -> {
+      freeGame.postValue(freeToPlayGameResponse);
+    }).subscribe();
+    return freeGame;
   }
 
   public LiveData<ArrayList<Game>> getAllGames()
