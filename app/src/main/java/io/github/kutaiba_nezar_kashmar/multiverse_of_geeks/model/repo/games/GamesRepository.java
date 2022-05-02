@@ -18,6 +18,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.games_network.GamesAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.GamesClient;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,32 +77,13 @@ public class GamesRepository
     executorService.execute(() -> gameDAO.deleteGame(game));
   }
 
-  public MutableLiveData<ArrayList<Game>> getAllGames()
+  public Flowable<GamesResponse> getAllGames()
   {
-    GamesAPI gamesAPI = GamesClient.gamesAPI();
-    Call<GamesResponse> call = gamesAPI.getAllGames(BuildConfig.RAWG_API_KEY);
-    call.enqueue(new Callback<GamesResponse>()
-    {
-      @Override
-      public void onResponse(Call<GamesResponse> call,
-          Response<GamesResponse> response)
-      {
-        if (response.isSuccessful())
-        {
-          if (response.body() != null)
-          {
-            allGames.setValue(response.body().getResults());
-          }
-        }
-      }
+    return GamesClient.gamesAPI().getAllGames(BuildConfig.RAWG_API_KEY)
+        .subscribeOn(Schedulers.io()).flatMap((GamesResponse item) -> {
+          return Flowable.just(item);
+        });
 
-      @Override
-      public void onFailure(Call<GamesResponse> call, Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return allGames;
   }
 
   public MutableLiveData<ArrayList<Game>> getSearchedGames(String query)

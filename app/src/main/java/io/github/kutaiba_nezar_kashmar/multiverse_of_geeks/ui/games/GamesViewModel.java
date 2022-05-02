@@ -13,6 +13,7 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
@@ -24,6 +25,7 @@ public class GamesViewModel extends AndroidViewModel
   private final GamesRepository gamesRepository;
   private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> allFreeGames;
   private MutableLiveData<FreeToPlayGameResponse> freeGame;
+  private MutableLiveData<ArrayList<Game>> allGames;
 
   public GamesViewModel(@NonNull Application application)
   {
@@ -32,6 +34,7 @@ public class GamesViewModel extends AndroidViewModel
     gamesRepository = GamesRepository.getInstance(application);
     allFreeGames = new MutableLiveData<>();
     freeGame = new MutableLiveData<>();
+    allGames = new MutableLiveData<>();
   }
 
   public LiveData<List<Game>> getFavoriteGames()
@@ -74,7 +77,11 @@ public class GamesViewModel extends AndroidViewModel
 
   public LiveData<ArrayList<Game>> getAllGames()
   {
-    return gamesRepository.getAllGames();
+    gamesRepository.getAllGames().subscribeOn(Schedulers.io())
+        .doOnNext(gamesResponses -> {
+          allGames.postValue(gamesResponses.getResults());
+        }).subscribe();
+    return allGames;
   }
 
   public LiveData<Game> getGameById(int id)
