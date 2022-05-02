@@ -14,7 +14,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 
 @Database(entities = {SingleMovieResponse.class, SingleTvShowResponse.class,
-    Game.class}, version = 2) public abstract class GeekDatabase
+    Game.class}, version = 3) public abstract class GeekDatabase
     extends RoomDatabase
 {
   private static GeekDatabase instance;
