@@ -52,6 +52,7 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 ## Built with
 So far:
 - Java
+- Kotlin
 - XML
 - SQLit (Room)
 - Firebase
