@@ -5,6 +5,7 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.T
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.movie_network.MovieAPI;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MediaClient
@@ -12,7 +13,8 @@ public class MediaClient
   //instance of retrofit to specify the base URL for the service
   private static final Retrofit.Builder builder = new Retrofit.Builder()
       .baseUrl("https://api.themoviedb.org/3/")
-      .addConverterFactory(GsonConverterFactory.create());
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(RxJava3CallAdapterFactory.create());
 
   private static final Retrofit retrofit = builder.build();
   private static final MediaAPI mediaAPI = retrofit.create(MediaAPI.class);

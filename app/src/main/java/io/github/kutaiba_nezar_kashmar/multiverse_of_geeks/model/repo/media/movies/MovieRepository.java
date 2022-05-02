@@ -22,6 +22,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,275 +93,70 @@ public class MovieRepository
     return moviesDAO.getMovieById(id);
   }
 
-  public MutableLiveData<SingleMovieResponse> findMovie(int id)
+  public Flowable<SingleMovieResponse> findMovie(int id)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<SingleMovieResponse> call = movieAPI
-        .getMovieById(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<SingleMovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<SingleMovieResponse> call,
-          @NonNull Response<SingleMovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            movie.setValue(response.body());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<SingleMovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return movie;
+    return MediaClient.getMovieAPI().getMovieById(id, BuildConfig.API_KEY)
+        .subscribeOn(Schedulers.io()).flatMap(Flowable::just);
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
+  public Flowable<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllPopularMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            popularMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return popularMovies;
+    return MediaClient.getMovieAPI()
+        .getAllPopularMovies(BuildConfig.API_KEY, pageNumber)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
+  public Flowable<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllTopRatedMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            topRatedMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return topRatedMovies;
+    return MediaClient.getMovieAPI()
+        .getAllTopRatedMovies(BuildConfig.API_KEY, pageNumber)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies(
-      int pageNumber)
+  public Flowable<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllNowPlayingMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            nowPlayingMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return nowPlayingMovies;
+    return MediaClient.getMovieAPI()
+        .getAllNowPlayingMovies(BuildConfig.API_KEY, pageNumber)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies(int pageNumber)
+  public Flowable<ArrayList<Movie>> getAllLatestMovies(int pageNumber)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllLatestMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            latestMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return latestMovies;
+    return MediaClient.getMovieAPI()
+        .getAllLatestMovies(BuildConfig.API_KEY, pageNumber)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
+  public Flowable<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllUpComingsMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            upcomingMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return upcomingMovies;
+    return MediaClient.getMovieAPI()
+        .getAllUpComingsMovies(BuildConfig.API_KEY, pageNumber)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(
-      String query)
+  public Flowable<ArrayList<Movie>> getAllSearchedMoviesMovies(String query)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .searchForMovie(BuildConfig.API_KEY, query);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            searchedMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return searchedMovies;
+    return MediaClient.getMovieAPI().searchForMovie(BuildConfig.API_KEY, query)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
+  public Flowable<ArrayList<Movie>> getAllSimilarMovies(int id)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getSimilarMovies(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<MovieResponse> call,
-          @NonNull Response<MovieResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            similarMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<MovieResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return similarMovies;
+    return MediaClient.getMovieAPI().getSimilarMovies(id, BuildConfig.API_KEY)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 
-  public MutableLiveData<ArrayList<Comment>> getMovieReviews(int id)
+  public Flowable<ArrayList<Comment>> getMovieReviews(int id)
   {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<CommentResponse> call = movieAPI
-        .getMovieReviews(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<CommentResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<CommentResponse> call,
-          @NonNull Response<CommentResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            movieReviews.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<CommentResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return movieReviews;
+    return MediaClient.getMovieAPI().getMovieReviews(id, BuildConfig.API_KEY)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getResults()));
   }
 }
