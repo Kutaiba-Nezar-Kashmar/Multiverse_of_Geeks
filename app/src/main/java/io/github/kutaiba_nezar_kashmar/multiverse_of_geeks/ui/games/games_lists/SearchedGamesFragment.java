@@ -84,7 +84,7 @@ public class SearchedGamesFragment extends Fragment
   {
     gamesAdapter = new GamesAdapter(games);
     Observer<ArrayList<Game>> update = gamesAdapter::updateGameList;
-    //setUpSearchView(update);
+    setUpSearchView(update);
   }
 
   private void refresh()

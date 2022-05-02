@@ -13,28 +13,31 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepositoryImpl;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepositoryImpl;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GamesViewModel extends AndroidViewModel
 {
   private final FreeToPlayGamesRepository freeToPlayGamesRepository;
-  private final GamesRepository gamesRepository;
+  private final GamesRepositoryImpl gamesRepository;
   private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> allFreeGames;
   private MutableLiveData<FreeToPlayGameResponse> freeGame;
   private MutableLiveData<ArrayList<Game>> allGames;
+  private MutableLiveData<Game> gameById;
+  private MutableLiveData<ArrayList<Game>> searchedGames;
 
   public GamesViewModel(@NonNull Application application)
   {
     super(application);
     freeToPlayGamesRepository = new FreeToPlayGamesRepositoryImpl();
-    gamesRepository = GamesRepository.getInstance(application);
+    gamesRepository = new GamesRepositoryImpl(application);
     allFreeGames = new MutableLiveData<>();
     freeGame = new MutableLiveData<>();
     allGames = new MutableLiveData<>();
+    gameById = new MutableLiveData<>();
+    searchedGames = new MutableLiveData<>();
   }
 
   public LiveData<List<Game>> getFavoriteGames()
@@ -86,11 +89,19 @@ public class GamesViewModel extends AndroidViewModel
 
   public LiveData<Game> getGameById(int id)
   {
-    return gamesRepository.getGameById(id);
+    gamesRepository.getGameById(id).subscribeOn(Schedulers.io())
+        .doOnNext(game -> {
+          gameById.postValue(game);
+        }).subscribe();
+    return gameById;
   }
 
   public LiveData<ArrayList<Game>> getSearchedGames(String query)
   {
-    return gamesRepository.getSearchedGames(query);
+    gamesRepository.getSearchedGames(query).subscribeOn(Schedulers.io())
+        .doOnNext(games -> {
+          searchedGames.postValue(games);
+        }).subscribe();
+    return searchedGames;
   }
 }
