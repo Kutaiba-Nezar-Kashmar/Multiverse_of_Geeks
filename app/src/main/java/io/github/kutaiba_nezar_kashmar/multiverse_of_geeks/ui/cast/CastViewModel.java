@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.CastRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.CastRepositoryImpl;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CastViewModel extends AndroidViewModel
@@ -22,7 +23,7 @@ public class CastViewModel extends AndroidViewModel
   public CastViewModel(@NonNull Application application)
   {
     super(application);
-    castRepository = CastRepository.getInstance();
+    castRepository = CastRepositoryImpl.getInstance();
     movieCast = new MutableLiveData<>();
     tvCast = new MutableLiveData<>();
   }
