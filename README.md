@@ -6,7 +6,7 @@
 - [Description](#description)
 - [User stories](#user_stories)
 - [Built With](#built_with)
-- [UX](#ux) 
+- [Mockup](#mockup) 
 - [Credit & References](#credit)
 
 <a name="description"/>
@@ -25,8 +25,8 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 
 
 ## User stories
-- [ ] As a user, I would like to be able to create an account.
-- [ ] As a user, I would like to be able to login into my account.
+- [x] As a user, I would like to be able to create an account.
+- [x] As a user, I would like to be able to login into my account.
 - [x] As a user, I would like to be able to view a list of movies.
 - [x] As a user, I would like to be able to view detales of chosen move.
 - [x] As a user, I would like to be able to search for a movie.
@@ -57,9 +57,9 @@ So far:
 - SQLit (Room)
 - Firebase
 
-<a name="ux"/>
+<a name="mockup"/>
 
-## UX 
+## Mockup 
 [Multiverse_of_Geeks](https://whimsical.com/multiverse-of-geeks-app-8JWu8o1x6uw9z76cm3V7bY)
 
 <a name="credit"/>
