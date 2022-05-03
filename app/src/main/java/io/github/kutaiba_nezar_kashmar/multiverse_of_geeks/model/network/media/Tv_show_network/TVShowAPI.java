@@ -87,5 +87,5 @@ public interface TVShowAPI
    */
   @GET("tv/{tv_id}/reviews")
   Flowable<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
-      @Query("tv_id") String apiKey);
+      @Query("api_key") String apiKey);
 }

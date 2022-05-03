@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -66,7 +67,7 @@ public class TVShowsViewModel extends AndroidViewModel
     tvShowRepository.findTvShowById(id).subscribeOn(Schedulers.io())
         .doOnNext(singleTvShowResponse -> {
           singleTvShow.postValue(singleTvShowResponse);
-        }).subscribe();
+        }).doOnError(Throwable -> Log.i("errorHttp", "here")).subscribe();
     return singleTvShow;
   }
 
