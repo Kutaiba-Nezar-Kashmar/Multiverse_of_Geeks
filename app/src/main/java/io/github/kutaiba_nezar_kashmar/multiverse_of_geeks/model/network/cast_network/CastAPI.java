@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -17,7 +18,7 @@ public interface CastAPI
    * @return Retrofit call with the value of CastResponse for the queried movie
    */
   @GET("movie/{movie_id}/credits")
-  Call<CastResponse> getMovieCast(@Path("movie_id") int movie_id,
+  Flowable<CastResponse> getMovieCast(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -29,6 +30,6 @@ public interface CastAPI
    * @return Retrofit call with the value of CastResponse for the queried tv show
    */
   @GET("tv/{tv_id}/credits")
-  Call<CastResponse> getTvShowCast(@Path("tv_id") int tv_id,
+  Flowable<CastResponse> getTvShowCast(@Path("tv_id") int tv_id,
       @Query("api_key") String apiKey);
 }

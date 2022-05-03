@@ -75,7 +75,16 @@ public class TVShowRepositoryImpl implements TvShowRepository
   public Flowable<SingleTvShowResponse> findTvShowById(int id)
   {
     return MediaClient.getTVShowAPI().getTvShowById(id, BuildConfig.API_KEY)
-        .subscribeOn(Schedulers.io()).flatMap(Flowable::just);
+        .subscribeOn(Schedulers.io()).flatMap(item -> {
+          try
+          {
+            return Flowable.just(item);
+          }
+          catch (Throwable t)
+          {
+            return Flowable.error(t);
+          }
+        });
   }
 
   @Override

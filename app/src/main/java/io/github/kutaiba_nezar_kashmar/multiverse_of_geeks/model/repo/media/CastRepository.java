@@ -12,6 +12,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,62 +39,17 @@ public class CastRepository
     return instance;
   }
 
-  public MutableLiveData<ArrayList<Cast>> getMovieCast(int movieId)
+  public Flowable<ArrayList<Cast>> getMovieCast(int movieId)
   {
-    CastAPI castAPI = MediaClient.getCastAPI();
-    Call<CastResponse> call = castAPI.getMovieCast(movieId, BuildConfig.API_KEY);
-    call.enqueue(new Callback<CastResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<CastResponse> call,
-          @NonNull Response<CastResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            movieCast.setValue(response.body().getCastList());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<CastResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return movieCast;
+    return MediaClient.getCastAPI().getMovieCast(movieId, BuildConfig.API_KEY)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getCastList()));
   }
 
-  public MutableLiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
+  public Flowable<ArrayList<Cast>> getTvShowCast(int tvShowId)
   {
-    CastAPI castAPI = MediaClient.getCastAPI();
-    Call<CastResponse> call = castAPI
-        .getTvShowCast(tvShowId, BuildConfig.API_KEY);
-    call.enqueue(new Callback<CastResponse>()
-    {
-      @Override
-      public void onResponse(@NonNull Call<CastResponse> call,
-          @NonNull Response<CastResponse> response)
-      {
-        if (response.code() == 200)
-        {
-          if (response.body() != null)
-          {
-            tvShowCast.setValue(response.body().getCastList());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(@NonNull Call<CastResponse> call,
-          @NonNull Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return tvShowCast;
+    return MediaClient.getCastAPI().getTvShowCast(tvShowId, BuildConfig.API_KEY)
+        .subscribeOn(Schedulers.io())
+        .flatMap(item -> Flowable.just(item.getCastList()));
   }
 }
