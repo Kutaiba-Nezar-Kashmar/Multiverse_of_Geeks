@@ -15,13 +15,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepositoryImpl;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GamesViewModel extends AndroidViewModel
 {
   private final FreeToPlayGamesRepository freeToPlayGamesRepository;
-  private final GamesRepositoryImpl gamesRepository;
+  private final GamesRepository gamesRepository;
   private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> allFreeGames;
   private MutableLiveData<FreeToPlayGameResponse> freeGame;
   private MutableLiveData<ArrayList<Game>> allGames;
@@ -31,8 +32,8 @@ public class GamesViewModel extends AndroidViewModel
   public GamesViewModel(@NonNull Application application)
   {
     super(application);
-    freeToPlayGamesRepository = new FreeToPlayGamesRepositoryImpl();
-    gamesRepository = new GamesRepositoryImpl(application);
+    freeToPlayGamesRepository = FreeToPlayGamesRepositoryImpl.getInstance();
+    gamesRepository = GamesRepositoryImpl.getInstance(application);
     allFreeGames = new MutableLiveData<>();
     freeGame = new MutableLiveData<>();
     allGames = new MutableLiveData<>();

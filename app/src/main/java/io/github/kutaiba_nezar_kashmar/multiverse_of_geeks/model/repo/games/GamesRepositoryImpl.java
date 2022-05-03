@@ -21,12 +21,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GamesRepositoryImpl implements GamesRepository
 {
+  private static GamesRepositoryImpl instance;
   private final ExecutorService executorService;
   private final GameDAO gameDAO;
   private final LiveData<List<Game>> favoriteGames;
   private final LiveData<Game> singleFavoriteGame;
 
-  public GamesRepositoryImpl(Application application)
+  private GamesRepositoryImpl(Application application)
   {
     GeekDatabase database = GeekDatabase.getInstance(application);
     gameDAO = database.gameDAO();
@@ -35,21 +36,35 @@ public class GamesRepositoryImpl implements GamesRepository
     singleFavoriteGame = new MutableLiveData<>();
   }
 
+  public static synchronized GamesRepositoryImpl getInstance(
+      Application application)
+  {
+    if (instance == null)
+    {
+      instance = new GamesRepositoryImpl(application);
+    }
+    return instance;
+  }
+
+  @Override
   public LiveData<List<Game>> getFavoriteGames()
   {
     return favoriteGames;
   }
 
+  @Override
   public LiveData<Game> getSingleFavoriteGame(int id)
   {
     return gameDAO.getGameById(id);
   }
 
+  @Override
   public void insertFavoriteGame(Game game)
   {
     executorService.execute(() -> gameDAO.insertGame(game));
   }
 
+  @Override
   public void deleteFavoriteGame(Game game)
   {
     executorService.execute(() -> gameDAO.deleteGame(game));

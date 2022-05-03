@@ -3,6 +3,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowResponse;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,7 +20,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv show
    */
   @GET("tv/{tv_id}")
-  Call<SingleTvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
+  Flowable<SingleTvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -30,7 +31,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/popular?&language=en")
-  Call<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Flowable<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -40,7 +41,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/top_rated?&language=en")
-  Call<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Flowable<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -50,7 +51,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/on_the_air?&language=en")
-  Call<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Flowable<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -60,7 +61,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/airing_today?&language=en")
-  Call<TvShowResponse> getAllAiringTodayTvShows(
+  Flowable<TvShowResponse> getAllAiringTodayTvShows(
       @Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
@@ -73,7 +74,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv show/tv shows
    */
   @GET("search/tv")
-  Call<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
+  Flowable<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
       @Query("query") String query);
 
   /**
@@ -85,6 +86,6 @@ public interface TVShowAPI
    * @return Retrofit call with the value of CommentResponse for the queried tv show
    */
   @GET("tv/{tv_id}/reviews")
-  Call<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
+  Flowable<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
       @Query("tv_id") String apiKey);
 }

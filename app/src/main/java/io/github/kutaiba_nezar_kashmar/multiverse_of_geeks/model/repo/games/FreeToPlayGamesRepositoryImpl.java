@@ -10,11 +10,21 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
 {
+  private static FreeToPlayGamesRepositoryImpl instance;
   private FreeToPlayGamesClient client;
 
-  public FreeToPlayGamesRepositoryImpl()
+  private FreeToPlayGamesRepositoryImpl()
   {
     client = new FreeToPlayGamesClient();
+  }
+
+  public static synchronized FreeToPlayGamesRepositoryImpl getInstance()
+  {
+    if (instance == null)
+    {
+      instance = new FreeToPlayGamesRepositoryImpl();
+    }
+    return instance;
   }
 
   @Override

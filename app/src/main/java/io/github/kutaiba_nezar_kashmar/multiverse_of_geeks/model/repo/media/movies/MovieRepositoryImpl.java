@@ -30,18 +30,29 @@ import retrofit2.Response;
 
 public class MovieRepositoryImpl implements MovieRepository
 {
+  private static MovieRepositoryImpl instance;
   private final LiveData<List<SingleMovieResponse>> favoritMovies;
   private final LiveData<SingleMovieResponse> singleFavoriteMovie;
   private final ExecutorService executorService;
   private final MoviesDAO moviesDAO;
 
-  public MovieRepositoryImpl(Application application)
+  private MovieRepositoryImpl(Application application)
   {
     GeekDatabase database = GeekDatabase.getInstance(application);
     moviesDAO = database.moviesDAO();
     executorService = Executors.newFixedThreadPool(2);
     favoritMovies = moviesDAO.getAllFavoriteMovies();
     singleFavoriteMovie = new MutableLiveData<>();
+  }
+
+  public static synchronized MovieRepositoryImpl getInstance(
+      Application application)
+  {
+    if (instance == null)
+    {
+      instance = new MovieRepositoryImpl(application);
+    }
+    return instance;
   }
 
   @Override

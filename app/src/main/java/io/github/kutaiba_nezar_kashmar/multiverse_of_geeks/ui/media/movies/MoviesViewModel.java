@@ -34,7 +34,7 @@ public class MoviesViewModel extends AndroidViewModel
   public MoviesViewModel(Application application)
   {
     super(application);
-    movieRepository = new MovieRepositoryImpl(application);
+    movieRepository = MovieRepositoryImpl.getInstance(application);
     singleMovie = new MutableLiveData<>();
     popularMovies = new MutableLiveData<>();
     topRatedMovies = new MutableLiveData<>();
