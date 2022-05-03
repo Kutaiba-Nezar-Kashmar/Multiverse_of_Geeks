@@ -25,8 +25,8 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 
 
 ## User stories
-- [ ] As a user, I would like to be able to create an account.
-- [ ] As a user, I would like to be able to login into my account.
+- [x] As a user, I would like to be able to create an account.
+- [x] As a user, I would like to be able to login into my account.
 - [x] As a user, I would like to be able to view a list of movies.
 - [x] As a user, I would like to be able to view detales of chosen move.
 - [x] As a user, I would like to be able to search for a movie.
