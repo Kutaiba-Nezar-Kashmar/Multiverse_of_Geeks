@@ -6,7 +6,7 @@
 - [Description](#description)
 - [User stories](#user_stories)
 - [Built With](#built_with)
-- [UX](#ux) 
+- [Mockup](#mockup) 
 - [Credit & References](#credit)
 
 <a name="description"/>
@@ -57,9 +57,9 @@ So far:
 - SQLit (Room)
 - Firebase
 
-<a name="ux"/>
+<a name="mockup"/>
 
-## UX 
+## Mockup 
 [Multiverse_of_Geeks](https://whimsical.com/multiverse-of-geeks-app-8JWu8o1x6uw9z76cm3V7bY)
 
 <a name="credit"/>
