@@ -3,6 +3,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.ActivityMainBinding;
 
@@ -55,6 +57,27 @@ public class MainActivity extends AppCompatActivity
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.main, menu);
     return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item)
+  {
+    switch (item.getItemId())
+    {
+      case R.id.action_sign_out:
+        signOut();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  public void signOut()
+  {
+    UserRepository userRepository = UserRepository
+        .getInstance(getApplication());
+    userRepository.signOut();
+    Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
   }
 
   @Override
