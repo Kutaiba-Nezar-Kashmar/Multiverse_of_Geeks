@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -76,41 +77,42 @@ public class UserRepository
 
   public void login(String email, String password)
   {
-    firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-      if (task.isSuccessful())
-      {
-        Toast.makeText(application, "Ok" , Toast.LENGTH_SHORT).show();
-      }
-      if (email.isEmpty())
-      {
-        Toast.makeText(application, "Email must be provided",
-            Toast.LENGTH_SHORT).show();
-      }
-      if (!email
-          .matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"))
-      {
-        Toast.makeText(application, "Invalid email", Toast.LENGTH_SHORT)
-            .show();
-      }
-      if (password.isEmpty())
-      {
-        Toast.makeText(application, "Password must be provided",
-            Toast.LENGTH_SHORT).show();
-      }
-      if (password.length() < 6)
-      {
-        Toast.makeText(application, "Password most be at least 6 digits",
-            Toast.LENGTH_SHORT).show();
-      }
-      else
-      {
-        Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
-      }
-    });
+    firebaseAuth.signInWithEmailAndPassword(email, password)
+        .addOnCompleteListener(task -> {
+          if (task.isSuccessful())
+          {
+            Toast.makeText(application, "Ok", Toast.LENGTH_SHORT).show();
+          }
+          if (email.isEmpty())
+          {
+            Toast.makeText(application, "Email must be provided",
+                Toast.LENGTH_SHORT).show();
+          }
+          if (!email
+              .matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"))
+          {
+            Toast.makeText(application, "Invalid email", Toast.LENGTH_SHORT)
+                .show();
+          }
+          if (password.isEmpty())
+          {
+            Toast.makeText(application, "Password must be provided",
+                Toast.LENGTH_SHORT).show();
+          }
+          if (password.length() < 6)
+          {
+            Toast.makeText(application, "Password most be at least 6 digits",
+                Toast.LENGTH_SHORT).show();
+          }
+          else
+          {
+            Toast.makeText(application, "NOT OK", Toast.LENGTH_SHORT).show();
+          }
+        });
   }
 
   public void signOut()
   {
-    firebaseAuth.signOut();
+    AuthUI.getInstance().signOut(application.getApplicationContext());
   }
 }

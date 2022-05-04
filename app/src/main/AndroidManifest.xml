@@ -29,6 +29,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.SignInActivity" />
+
         <meta-data
                 android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.API_KEY"
                 android:value="${API_KEY}" />
