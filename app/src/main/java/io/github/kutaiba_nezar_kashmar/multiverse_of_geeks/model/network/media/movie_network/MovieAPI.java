@@ -20,7 +20,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movie
    */
   @GET("movie/{movie_id}")
-  Flowable<SingleMovieResponse> getMovieById(@Path("movie_id") int movie_id,
+  Call<SingleMovieResponse> getMovieById(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -31,7 +31,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/popular?&language=en")
-  Flowable<MovieResponse> getAllPopularMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<MovieResponse> getAllPopularMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -41,7 +41,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/top_rated?&language=en")
-  Flowable<MovieResponse> getAllTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<MovieResponse> getAllTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -51,7 +51,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/now_playing?&language=en")
-  Flowable<MovieResponse> getAllNowPlayingMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<MovieResponse> getAllNowPlayingMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -61,7 +61,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/upcoming?&language=en")
-  Flowable<MovieResponse> getAllUpComingsMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<MovieResponse> getAllUpComingsMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -71,7 +71,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/latest?&language=en")
-  Flowable<MovieResponse> getAllLatestMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<MovieResponse> getAllLatestMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -83,7 +83,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movie/movies
    */
   @GET("search/movie")
-  Flowable<MovieResponse> searchForMovie(@Query("api_key") String apiKey,
+  Call<MovieResponse> searchForMovie(@Query("api_key") String apiKey,
       @Query("query") String query);
 
   /**
@@ -95,7 +95,7 @@ public interface MovieAPI
    * @return Retrofit call with the value of CommentResponse for the queried movie
    */
   @GET("movie/{movie_id}/reviews")
-  Flowable<CommentResponse> getMovieReviews(@Path("movie_id") int movie_id,
+  Call<CommentResponse> getMovieReviews(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -106,6 +106,6 @@ public interface MovieAPI
    * @return Retrofit call with the value of MovieResponse for the queried movies
    */
   @GET("movie/{movie_id}/similar")
-  Flowable<MovieResponse> getSimilarMovies(@Path("movie_id") int movie_id,
+  Call<MovieResponse> getSimilarMovies(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 }

@@ -16,5 +16,5 @@ public interface MediaAPI
    * @return Retrofit call with the value of TrendingResponse for the queried movies and tv shows
    */
   @GET("trending/all/day")
-  Flowable<TrendingResponse> getTrendingMediaToday(@Query("api_key") String apiKey);
+  Call<TrendingResponse> getTrendingMediaToday(@Query("api_key") String apiKey);
 }

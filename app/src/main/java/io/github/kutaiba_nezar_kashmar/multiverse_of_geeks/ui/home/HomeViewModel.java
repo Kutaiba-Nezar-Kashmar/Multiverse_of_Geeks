@@ -17,21 +17,15 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class HomeViewModel extends AndroidViewModel
 {
   private final MediaRepository mediaRepository;
-  private MutableLiveData<ArrayList<Trending>> trendingMedia;
 
   public HomeViewModel(@NonNull Application application)
   {
     super(application);
     mediaRepository = MediaRepositoryImpl.getInstance();
-    trendingMedia = new MutableLiveData<>();
   }
 
   public LiveData<ArrayList<Trending>> getAllTrendingToday()
   {
-    mediaRepository.getTrendingToday().subscribeOn(Schedulers.io())
-        .doOnNext(trendings -> {
-          trendingMedia.postValue(trendings);
-        }).subscribe();
-    return trendingMedia;
+    return mediaRepository.getTrendingToday();
   }
 }

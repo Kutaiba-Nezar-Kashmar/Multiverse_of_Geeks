@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,13 @@ public interface MovieRepository
   void insertFavoriteMovie(SingleMovieResponse movie);
   void deleteFavoriteMovie(SingleMovieResponse movie);
   LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id);
-  Flowable<SingleMovieResponse> findMovie(int id);
-  Flowable<ArrayList<Movie>> getAllPopularMovies(int pageNumber);
-  Flowable<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber);
-  Flowable<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber);
-  Flowable<ArrayList<Movie>> getAllLatestMovies(int pageNumber);
-  Flowable<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber);
-  Flowable<ArrayList<Movie>> getAllSearchedMoviesMovies(String query);
-  Flowable<ArrayList<Movie>> getAllSimilarMovies(int id);
-  Flowable<ArrayList<Comment>> getMovieReviews(int id);
+  MutableLiveData<SingleMovieResponse> findMovie(int id);
+  MutableLiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber);
+  MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber);
+  MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber);
+  MutableLiveData<ArrayList<Movie>> getAllLatestMovies(int pageNumber);
+  MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber);
+  MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String query);
+  MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id);
+  MutableLiveData<ArrayList<Comment>> getMovieReviews(int id);
 }

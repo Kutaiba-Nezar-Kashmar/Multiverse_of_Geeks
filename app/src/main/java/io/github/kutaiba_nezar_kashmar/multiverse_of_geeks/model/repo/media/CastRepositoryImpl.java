@@ -50,7 +50,7 @@ public class CastRepositoryImpl implements CastRepository
       public void onResponse(@NonNull Call<CastResponse> call,
           @NonNull Response<CastResponse> response)
       {
-        if (response.code() == 200)
+        if (response.isSuccessful())
         {
           if (response.body() != null)
           {
@@ -80,7 +80,7 @@ public class CastRepositoryImpl implements CastRepository
       public void onResponse(@NonNull Call<CastResponse> call,
           @NonNull Response<CastResponse> response)
       {
-        if (response.code() == 200)
+        if (response.isSuccessful())
         {
           if (response.body() != null)
           {

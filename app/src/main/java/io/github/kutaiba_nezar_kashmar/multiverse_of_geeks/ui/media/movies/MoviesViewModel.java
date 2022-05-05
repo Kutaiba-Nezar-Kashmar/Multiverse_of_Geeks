@@ -21,28 +21,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MoviesViewModel extends AndroidViewModel
 {
   private final MovieRepository movieRepository;
-  private MutableLiveData<SingleMovieResponse> singleMovie;
-  private MutableLiveData<ArrayList<Movie>> popularMovies;
-  private MutableLiveData<ArrayList<Movie>> topRatedMovies;
-  private MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
-  private MutableLiveData<ArrayList<Movie>> upcomingMovies;
-  private MutableLiveData<ArrayList<Movie>> searchMovies;
-  private MutableLiveData<ArrayList<Movie>> similarMovies;
-  private MutableLiveData<ArrayList<Comment>> comments;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)
   {
     super(application);
     movieRepository = MovieRepositoryImpl.getInstance(application);
-    singleMovie = new MutableLiveData<>();
-    popularMovies = new MutableLiveData<>();
-    topRatedMovies = new MutableLiveData<>();
-    nowPlayingMovies = new MutableLiveData<>();
-    upcomingMovies = new MutableLiveData<>();
-    searchMovies = new MutableLiveData<>();
-    similarMovies = new MutableLiveData<>();
-    comments = new MutableLiveData<>();
   }
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
@@ -67,73 +51,41 @@ public class MoviesViewModel extends AndroidViewModel
 
   public LiveData<SingleMovieResponse> findMovieById(int id)
   {
-    movieRepository.findMovie(id).subscribeOn(Schedulers.io())
-        .doOnNext(singleMovieResponse -> {
-          singleMovie.postValue(singleMovieResponse);
-        }).subscribe();
-    return singleMovie;
+    return movieRepository.findMovie(id);
   }
 
   public LiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
   {
-    movieRepository.getAllPopularMovies(pageNumber).subscribeOn(Schedulers.io())
-        .doOnNext(movies -> {
-          popularMovies.postValue(movies);
-        }).subscribe();
-    return popularMovies;
+    return movieRepository.getAllPopularMovies(pageNumber);
   }
 
   public LiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
   {
-    movieRepository.getAllTopRatedMovies(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(movies -> {
-      topRatedMovies.postValue(movies);
-    }).subscribe();
-    return topRatedMovies;
+    return movieRepository.getAllTopRatedMovies(pageNumber);
   }
 
   public LiveData<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber)
   {
-    movieRepository.getAllNowPlayingMovies(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(movies -> {
-      nowPlayingMovies.postValue(movies);
-    }).subscribe();
-    return nowPlayingMovies;
+    return movieRepository.getAllNowPlayingMovies(pageNumber);
   }
 
   public LiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
   {
-    movieRepository.getAllUpcomingMovies(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(movies -> {
-      upcomingMovies.postValue(movies);
-    }).subscribe();
-    return upcomingMovies;
+    return movieRepository.getAllUpcomingMovies(pageNumber);
   }
 
   public LiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String arg)
   {
-    movieRepository.getAllSearchedMoviesMovies(arg).subscribeOn(Schedulers.io())
-        .doOnNext(movies -> {
-          searchMovies.postValue(movies);
-        }).subscribe();
-    return searchMovies;
+    return movieRepository.getAllSearchedMoviesMovies(arg);
   }
 
   public LiveData<ArrayList<Comment>> getAllComments(int id)
   {
-    movieRepository.getMovieReviews(id).subscribeOn(Schedulers.io())
-        .doOnNext(comments1 -> {
-          comments.postValue(comments1);
-        }).subscribe();
-    return comments;
+    return movieRepository.getMovieReviews(id);
   }
 
   public LiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
   {
-    movieRepository.getAllSimilarMovies(id).subscribeOn(Schedulers.io())
-        .doOnNext(movies -> {
-          similarMovies.postValue(movies);
-        }).subscribe();
-    return similarMovies;
+    return movieRepository.getAllSimilarMovies(id);
   }
 }
