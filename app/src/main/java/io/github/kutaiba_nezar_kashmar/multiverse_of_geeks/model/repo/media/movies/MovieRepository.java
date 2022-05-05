@@ -18,12 +18,12 @@ public interface MovieRepository
   void deleteFavoriteMovie(SingleMovieResponse movie);
   LiveData<SingleMovieResponse> getSingleFavoriteMovie(int id);
   MutableLiveData<SingleMovieResponse> findMovie(int id);
-  MutableLiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber);
-  MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber);
-  MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber);
-  MutableLiveData<ArrayList<Movie>> getAllLatestMovies(int pageNumber);
-  MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber);
-  MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String query);
-  MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id);
-  MutableLiveData<ArrayList<Comment>> getMovieReviews(int id);
+  MutableLiveData<List<Movie>> getAllPopularMovies(int pageNumber);
+  MutableLiveData<List<Movie>> getAllTopRatedMovies(int pageNumber);
+  MutableLiveData<List<Movie>> getAllNowPlayingMovies(int pageNumber);
+  MutableLiveData<List<Movie>> getAllLatestMovies(int pageNumber);
+  MutableLiveData<List<Movie>> getAllUpcomingMovies(int pageNumber);
+  MutableLiveData<List<Movie>> getAllSearchedMoviesMovies(String query);
+  MutableLiveData<List<Movie>> getAllSimilarMovies(int id);
+  MutableLiveData<List<Comment>> getMovieReviews(int id);
 }

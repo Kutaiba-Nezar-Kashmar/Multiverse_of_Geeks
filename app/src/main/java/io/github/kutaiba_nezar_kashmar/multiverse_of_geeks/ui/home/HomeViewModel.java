@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Trending;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.MediaRepository;
@@ -24,7 +25,7 @@ public class HomeViewModel extends AndroidViewModel
     mediaRepository = MediaRepositoryImpl.getInstance();
   }
 
-  public LiveData<ArrayList<Trending>> getAllTrendingToday()
+  public LiveData<List<Trending>> getAllTrendingToday()
   {
     return mediaRepository.getTrendingToday();
   }

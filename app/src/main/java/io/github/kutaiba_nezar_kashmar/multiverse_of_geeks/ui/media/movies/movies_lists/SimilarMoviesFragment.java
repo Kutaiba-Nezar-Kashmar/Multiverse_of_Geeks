@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.MoviesViewModel;
@@ -26,7 +27,7 @@ public class SimilarMoviesFragment extends Fragment
 {
   private FragmentSimilarMoviesBinding binding;
   private MoviesViewModel moviesViewModel;
-  private final ArrayList<Movie> movies = new ArrayList<>();
+  private final List<Movie> movies = new ArrayList<>();
   private RecyclerView recyclerView;
 
   @Nullable
@@ -63,7 +64,7 @@ public class SimilarMoviesFragment extends Fragment
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       MoviesAdapter adapter = new MoviesAdapter(movies);
-      Observer<ArrayList<Movie>> update = adapter::updateMovieList;
+      Observer<List<Movie>> update = adapter::updateMovieList;
       moviesViewModel.getAllSimilarMovies(movieId)
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);

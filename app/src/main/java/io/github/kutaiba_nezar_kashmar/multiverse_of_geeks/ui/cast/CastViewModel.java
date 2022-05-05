@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.CastRepository;
@@ -24,12 +25,12 @@ public class CastViewModel extends AndroidViewModel
     castRepository = CastRepositoryImpl.getInstance();
   }
 
-  public LiveData<ArrayList<Cast>> getMovieCast(int movieId)
+  public LiveData<List<Cast>> getMovieCast(int movieId)
   {
     return castRepository.getMovieCast(movieId);
   }
 
-  public LiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
+  public LiveData<List<Cast>> getTvShowCast(int tvShowId)
   {
     return castRepository.getTvShowCast(tvShowId);
   }

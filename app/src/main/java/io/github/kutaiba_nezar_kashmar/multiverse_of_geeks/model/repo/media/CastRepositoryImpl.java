@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
@@ -21,8 +22,8 @@ import retrofit2.Response;
 public class CastRepositoryImpl implements CastRepository
 {
   private static CastRepositoryImpl instance;
-  private final MutableLiveData<ArrayList<Cast>> movieCast;
-  private final MutableLiveData<ArrayList<Cast>> tvCast;
+  private final MutableLiveData<List<Cast>> movieCast;
+  private final MutableLiveData<List<Cast>> tvCast;
 
   private CastRepositoryImpl()
   {
@@ -40,7 +41,7 @@ public class CastRepositoryImpl implements CastRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Cast>> getMovieCast(int movieId)
+  public MutableLiveData<List<Cast>> getMovieCast(int movieId)
   {
     CastAPI castAPI = MediaClient.getCastAPI();
     Call<CastResponse> call = castAPI.getMovieCast(movieId, BuildConfig.API_KEY);
@@ -70,7 +71,7 @@ public class CastRepositoryImpl implements CastRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
+  public MutableLiveData<List<Cast>> getTvShowCast(int tvShowId)
   {
     CastAPI castAPI = MediaClient.getCastAPI();
     Call<CastResponse> call = castAPI.getTvShowCast(tvShowId, BuildConfig.API_KEY);

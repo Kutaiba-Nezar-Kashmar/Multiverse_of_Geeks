@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.MoviesMainFragmentDirections;
@@ -30,7 +31,7 @@ public class PopularMoviesFragment extends Fragment
 {
   private FragmentPopularMoviesBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<Movie> movies = new ArrayList<>();
+  private final List<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -77,7 +78,7 @@ public class PopularMoviesFragment extends Fragment
   private void setUpRecyclerView()
   {
     moviesAdapter = new MoviesAdapter(movies);
-    Observer<ArrayList<Movie>> update = moviesAdapter::updateMovieList;
+    Observer<List<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllPopularMovies(pageNum)
         .observe(getViewLifecycleOwner(), update);
   }

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Trending;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.TrendingResponse;
@@ -20,7 +21,7 @@ import retrofit2.Response;
 public class MediaRepositoryImpl implements MediaRepository
 {
   private static MediaRepositoryImpl instance;
-  private final MutableLiveData<ArrayList<Trending>> trending;
+  private final MutableLiveData<List<Trending>> trending;
 
   private MediaRepositoryImpl()
   {
@@ -37,7 +38,7 @@ public class MediaRepositoryImpl implements MediaRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Trending>> getTrendingToday()
+  public MutableLiveData<List<Trending>> getTrendingToday()
   {
     MediaAPI mediaAPI = MediaClient.getMediaAPI();
     Call<TrendingResponse> call = mediaAPI

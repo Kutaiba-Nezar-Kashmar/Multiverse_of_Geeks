@@ -54,37 +54,37 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.findMovie(id);
   }
 
-  public LiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
+  public LiveData<List<Movie>> getAllPopularMovies(int pageNumber)
   {
     return movieRepository.getAllPopularMovies(pageNumber);
   }
 
-  public LiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
+  public LiveData<List<Movie>> getAllTopRatedMovies(int pageNumber)
   {
     return movieRepository.getAllTopRatedMovies(pageNumber);
   }
 
-  public LiveData<ArrayList<Movie>> getAllNowPlayingMovies(int pageNumber)
+  public LiveData<List<Movie>> getAllNowPlayingMovies(int pageNumber)
   {
     return movieRepository.getAllNowPlayingMovies(pageNumber);
   }
 
-  public LiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
+  public LiveData<List<Movie>> getAllUpcomingMovies(int pageNumber)
   {
     return movieRepository.getAllUpcomingMovies(pageNumber);
   }
 
-  public LiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(String arg)
+  public LiveData<List<Movie>> getAllSearchedMoviesMovies(String arg)
   {
     return movieRepository.getAllSearchedMoviesMovies(arg);
   }
 
-  public LiveData<ArrayList<Comment>> getAllComments(int id)
+  public LiveData<List<Comment>> getAllComments(int id)
   {
     return movieRepository.getMovieReviews(id);
   }
 
-  public LiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
+  public LiveData<List<Movie>> getAllSimilarMovies(int id)
   {
     return movieRepository.getAllSimilarMovies(id);
   }

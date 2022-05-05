@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
@@ -25,7 +26,7 @@ public class MovieCastFragment extends Fragment
 {
   private FragmentMovieCastBinding binding;
   private CastViewModel castViewModel;
-  private final ArrayList<Cast> casts = new ArrayList<>();
+  private final List<Cast> casts = new ArrayList<>();
   private RecyclerView recyclerView;
 
   @Nullable
@@ -61,7 +62,7 @@ public class MovieCastFragment extends Fragment
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       MovieCastAdapter adapter = new MovieCastAdapter(casts);
-      Observer<ArrayList<Cast>> update = adapter::updateMovieCastList;
+      Observer<List<Cast>> update = adapter::updateMovieCastList;
       castViewModel.getMovieCast(movieId)
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);

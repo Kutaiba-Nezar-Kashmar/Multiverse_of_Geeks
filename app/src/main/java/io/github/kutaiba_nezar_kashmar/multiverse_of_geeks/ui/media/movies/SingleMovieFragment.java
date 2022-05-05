@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
@@ -37,7 +38,7 @@ public class SingleMovieFragment extends Fragment
   private RecyclerView commentsRecyclerView;
   private MovieReviewsAdapter movieReviewsAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
-  private final ArrayList<Comment> comments = new ArrayList<>();
+  private final List<Comment> comments = new ArrayList<>();
   private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
   private TextView movieTitle;
@@ -174,7 +175,7 @@ public class SingleMovieFragment extends Fragment
   private void setUpAdapterView()
   {
     movieReviewsAdapter = new MovieReviewsAdapter(comments);
-    Observer<ArrayList<Comment>> update = movieReviewsAdapter::updateCommentList;
+    Observer<List<Comment>> update = movieReviewsAdapter::updateCommentList;
     moviesViewModel.getAllComments(movieId)
         .observe(getViewLifecycleOwner(), update);
   }

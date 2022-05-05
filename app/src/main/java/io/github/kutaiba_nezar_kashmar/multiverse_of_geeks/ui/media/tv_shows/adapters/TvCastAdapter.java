@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -20,9 +21,9 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class TvCastAdapter
     extends RecyclerView.Adapter<TvCastAdapter.TvCastViewHolder>
 {
-  private ArrayList<Cast> casts;
+  private List<Cast> casts;
 
-  public TvCastAdapter(ArrayList<Cast> casts)
+  public TvCastAdapter(List<Cast> casts)
   {
     this.casts = casts;
   }
@@ -66,7 +67,7 @@ public class TvCastAdapter
   }
 
   //clear and reassign the cast list every time this method is called
-  public void updateTvCastList(final ArrayList<Cast> casts)
+  public void updateTvCastList(final List<Cast> casts)
   {
     this.casts.clear();
     this.casts = casts;

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
@@ -25,7 +26,7 @@ public class TvShowCastFragment extends Fragment
 {
   private FragmentTvShowCastBinding binding;
   private CastViewModel castViewModel;
-  private final ArrayList<Cast> casts = new ArrayList<>();
+  private final List<Cast> casts = new ArrayList<>();
   private RecyclerView recyclerView;
 
   @Nullable
@@ -61,7 +62,7 @@ public class TvShowCastFragment extends Fragment
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       TvCastAdapter adapter = new TvCastAdapter(casts);
-      Observer<ArrayList<Cast>> update = adapter::updateTvCastList;
+      Observer<List<Cast>> update = adapter::updateTvCastList;
       castViewModel.getTvShowCast(tvId)
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);

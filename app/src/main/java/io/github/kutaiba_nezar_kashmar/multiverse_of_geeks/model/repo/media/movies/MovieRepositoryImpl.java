@@ -35,14 +35,14 @@ public class MovieRepositoryImpl implements MovieRepository
   private final LiveData<List<SingleMovieResponse>> favoritMovies;
   private final LiveData<SingleMovieResponse> singleFavoriteMovie;
   private final MutableLiveData<SingleMovieResponse> singleMovie;
-  private final MutableLiveData<ArrayList<Movie>> popularMovies;
-  private final MutableLiveData<ArrayList<Movie>> topRatedMovies;
-  private final MutableLiveData<ArrayList<Movie>> nowPlayingMovies;
-  private final MutableLiveData<ArrayList<Movie>> latestMovies;
-  private final MutableLiveData<ArrayList<Movie>> upcomingMovies;
-  private final MutableLiveData<ArrayList<Movie>> searchedMoviesMovies;
-  private final MutableLiveData<ArrayList<Movie>> similarMovies;
-  private final MutableLiveData<ArrayList<Comment>> movieReviews;
+  private final MutableLiveData<List<Movie>> popularMovies;
+  private final MutableLiveData<List<Movie>> topRatedMovies;
+  private final MutableLiveData<List<Movie>> nowPlayingMovies;
+  private final MutableLiveData<List<Movie>> latestMovies;
+  private final MutableLiveData<List<Movie>> upcomingMovies;
+  private final MutableLiveData<List<Movie>> searchedMoviesMovies;
+  private final MutableLiveData<List<Movie>> similarMovies;
+  private final MutableLiveData<List<Comment>> movieReviews;
   private final ExecutorService executorService;
   private final MoviesDAO moviesDAO;
 
@@ -129,7 +129,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllPopularMovies(int pageNumber)
+  public MutableLiveData<List<Movie>> getAllPopularMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<MovieResponse> call = movieAPI
@@ -159,7 +159,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllTopRatedMovies(int pageNumber)
+  public MutableLiveData<List<Movie>> getAllTopRatedMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<MovieResponse> call = movieAPI
@@ -189,7 +189,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllNowPlayingMovies(
+  public MutableLiveData<List<Movie>> getAllNowPlayingMovies(
       int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
@@ -220,7 +220,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllLatestMovies(int pageNumber)
+  public MutableLiveData<List<Movie>> getAllLatestMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<MovieResponse> call = movieAPI
@@ -250,7 +250,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllUpcomingMovies(int pageNumber)
+  public MutableLiveData<List<Movie>> getAllUpcomingMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<MovieResponse> call = movieAPI
@@ -280,7 +280,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllSearchedMoviesMovies(
+  public MutableLiveData<List<Movie>> getAllSearchedMoviesMovies(
       String query)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
@@ -311,7 +311,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Movie>> getAllSimilarMovies(int id)
+  public MutableLiveData<List<Movie>> getAllSimilarMovies(int id)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<MovieResponse> call = movieAPI
@@ -341,7 +341,7 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<ArrayList<Comment>> getMovieReviews(int id)
+  public MutableLiveData<List<Comment>> getMovieReviews(int id)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
     Call<CommentResponse> call = movieAPI

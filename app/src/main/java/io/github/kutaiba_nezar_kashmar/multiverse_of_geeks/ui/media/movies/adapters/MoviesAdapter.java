@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -19,10 +20,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class MoviesAdapter
     extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>
 {
-  private ArrayList<Movie> movies;
+  private List<Movie> movies;
   private OnClickListener listener;
 
-  public MoviesAdapter(ArrayList<Movie> movies)
+  public MoviesAdapter(List<Movie> movies)
   {
     this.movies = movies;
   }
@@ -46,7 +47,7 @@ public class MoviesAdapter
   }
 
   //clear and reassign the cast list every time this method is called
-  public void updateMovieList(final ArrayList<Movie> movies)
+  public void updateMovieList(final List<Movie> movies)
   {
     this.movies.clear();
     this.movies = movies;

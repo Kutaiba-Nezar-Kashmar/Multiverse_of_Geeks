@@ -28,7 +28,7 @@ public class FavoriteMoviesFragment extends Fragment
   private FragmentFavoriteMoviesBinding binding;
   private MoviesViewModel viewModel;
   private FavoriteMovieAdapter moviesAdapter;
-  private ArrayList<SingleMovieResponse> movies = new ArrayList<>();
+  private List<SingleMovieResponse> movies = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout refreshLayout;
 
