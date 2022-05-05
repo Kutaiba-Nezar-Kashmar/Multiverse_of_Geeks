@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
@@ -30,7 +31,7 @@ public class SearchedGamesFragment extends Fragment
 {
   private FragmentSearchGamesBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<Game> games = new ArrayList<Game>();
+  private final List<Game> games = new ArrayList<Game>();
   private GamesViewModel viewModel;
   private GamesAdapter gamesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -83,7 +84,7 @@ public class SearchedGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     gamesAdapter = new GamesAdapter(games);
-    Observer<ArrayList<Game>> update = gamesAdapter::updateGameList;
+    Observer<List<Game>> update = gamesAdapter::updateGameList;
     setUpSearchView(update);
   }
 
@@ -94,7 +95,7 @@ public class SearchedGamesFragment extends Fragment
     });
   }
 
-  private void setUpSearchView(Observer<ArrayList<Game>> update)
+  private void setUpSearchView(Observer<List<Game>> update)
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {

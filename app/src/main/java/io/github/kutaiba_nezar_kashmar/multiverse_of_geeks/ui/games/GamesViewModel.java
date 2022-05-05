@@ -23,11 +23,11 @@ public class GamesViewModel extends AndroidViewModel
 {
   private final FreeToPlayGamesRepository freeToPlayGamesRepository;
   private final GamesRepository gamesRepository;
-  private MutableLiveData<ArrayList<AllFreeToPlayGamesResponse>> allFreeGames;
+  private MutableLiveData<List<AllFreeToPlayGamesResponse>> allFreeGames;
   private MutableLiveData<FreeToPlayGameResponse> freeGame;
-  private MutableLiveData<ArrayList<Game>> allGames;
+  private MutableLiveData<List<Game>> allGames;
   private MutableLiveData<Game> gameById;
-  private MutableLiveData<ArrayList<Game>> searchedGames;
+  private MutableLiveData<List<Game>> searchedGames;
 
   public GamesViewModel(@NonNull Application application)
   {
@@ -61,48 +61,28 @@ public class GamesViewModel extends AndroidViewModel
     gamesRepository.deleteFavoriteGame(game);
   }
 
-  public LiveData<ArrayList<AllFreeToPlayGamesResponse>> getAllFreeToPlay()
+  public LiveData<List<AllFreeToPlayGamesResponse>> getAllFreeToPlay()
   {
-    freeToPlayGamesRepository.getAllFreeToPlayGames()
-        .subscribeOn(Schedulers.io()).doOnNext(allFreeToPlayGamesResponses -> {
-      allFreeGames.postValue(allFreeToPlayGamesResponses);
-    }).subscribe();
-    return allFreeGames;
+    return freeToPlayGamesRepository.getAllFreeToPlayGames();
   }
 
   public LiveData<FreeToPlayGameResponse> findFreeToPlayGameById(int id)
   {
-    freeToPlayGamesRepository.findFreeToPlayGame(id)
-        .subscribeOn(Schedulers.io()).doOnNext(freeToPlayGameResponse -> {
-      freeGame.postValue(freeToPlayGameResponse);
-    }).subscribe();
-    return freeGame;
+    return freeToPlayGamesRepository.findFreeToPlayGame(id);
   }
 
-  public LiveData<ArrayList<Game>> getAllGames()
+  public LiveData<List<Game>> getAllGames()
   {
-    gamesRepository.getAllGames().subscribeOn(Schedulers.io())
-        .doOnNext(gamesResponses -> {
-          allGames.postValue(gamesResponses.getResults());
-        }).subscribe();
-    return allGames;
+    return gamesRepository.getAllGames();
   }
 
   public LiveData<Game> getGameById(int id)
   {
-    gamesRepository.getGameById(id).subscribeOn(Schedulers.io())
-        .doOnNext(game -> {
-          gameById.postValue(game);
-        }).subscribe();
-    return gameById;
+    return gamesRepository.getGameById(id);
   }
 
-  public LiveData<ArrayList<Game>> getSearchedGames(String query)
+  public LiveData<List<Game>> getSearchedGames(String query)
   {
-    gamesRepository.getSearchedGames(query).subscribeOn(Schedulers.io())
-        .doOnNext(games -> {
-          searchedGames.postValue(games);
-        }).subscribe();
-    return searchedGames;
+    return gamesRepository.getSearchedGames(query);
   }
 }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
@@ -28,7 +29,7 @@ public class FreeToPlayGamesFragment extends Fragment
 {
   private FragmentFreeToPlayGamesBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames = new ArrayList<>();
+  private final List<AllFreeToPlayGamesResponse> freeToPlayGames = new ArrayList<>();
   private GamesViewModel gamesViewModel;
   private FreeToPlayAdapter freeToPlayAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -68,7 +69,7 @@ public class FreeToPlayGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     freeToPlayAdapter = new FreeToPlayAdapter(freeToPlayGames);
-    Observer<ArrayList<AllFreeToPlayGamesResponse>> update = freeToPlayAdapter::updateFreeToPlayList;
+    Observer<List<AllFreeToPlayGamesResponse>> update = freeToPlayAdapter::updateFreeToPlayList;
     gamesViewModel.getAllFreeToPlay().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(freeToPlayAdapter);
   }

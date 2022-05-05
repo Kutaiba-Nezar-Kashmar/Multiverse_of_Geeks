@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -20,10 +21,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class GamesAdapter
     extends RecyclerView.Adapter<GamesAdapter.GamesViewHolder>
 {
-  private ArrayList<Game> gamesResponses;
+  private List<Game> gamesResponses;
   private OnClickListener listener;
 
-  public GamesAdapter(ArrayList<Game> gamesResponses)
+  public GamesAdapter(List<Game> gamesResponses)
   {
     this.gamesResponses = gamesResponses;
   }
@@ -47,7 +48,7 @@ public class GamesAdapter
     holder.gameTitle.setText(gamesResponses.get(position).getName());
   }
 
-  public void updateGameList(final ArrayList<Game> gamesResponses)
+  public void updateGameList(final List<Game> gamesResponses)
   {
     this.gamesResponses.clear();
     this.gamesResponses = gamesResponses;

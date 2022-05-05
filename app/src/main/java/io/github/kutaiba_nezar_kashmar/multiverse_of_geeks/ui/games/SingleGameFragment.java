@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameGenreResponse;
@@ -35,8 +36,8 @@ public class SingleGameFragment extends Fragment
   private GamesViewModel viewModel;
   private DeveloperAdapter developerAdapter;
   private PlatformAdapter platformAdapter;
-  private ArrayList<GamesDevelopersResponse> developersResponses = new ArrayList<>();
-  private ArrayList<PlatformsResponse> platformsResponses = new ArrayList<>();
+  private List<GamesDevelopersResponse> developersResponses = new ArrayList<>();
+  private List<PlatformsResponse> platformsResponses = new ArrayList<>();
   private int id;
   private TextView title;
   private ImageView poster;

@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,9 @@ import io.reactivex.rxjava3.core.Flowable;
 
 public interface GamesRepository
 {
-  Flowable<GamesResponse> getAllGames();
-  Flowable<ArrayList<Game>> getSearchedGames(String query);
-  Flowable<Game> getGameById(int id);
+  MutableLiveData<List<Game>> getAllGames();
+  MutableLiveData<List<Game>> getSearchedGames(String query);
+  MutableLiveData<Game> getGameById(int id);
   LiveData<List<Game>> getFavoriteGames();
   LiveData<Game> getSingleFavoriteGame(int id);
   void insertFavoriteGame(Game game);

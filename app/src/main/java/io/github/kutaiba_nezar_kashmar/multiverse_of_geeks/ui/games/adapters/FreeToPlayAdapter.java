@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -19,11 +20,11 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class FreeToPlayAdapter
     extends RecyclerView.Adapter<FreeToPlayAdapter.FreeToPlayViewHolder>
 {
-  private ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames;
+  private List<AllFreeToPlayGamesResponse> freeToPlayGames;
   private OnClickListener listener;
 
   public FreeToPlayAdapter(
-      ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames)
+      List<AllFreeToPlayGamesResponse> freeToPlayGames)
   {
     this.freeToPlayGames = freeToPlayGames;
   }
@@ -48,7 +49,7 @@ public class FreeToPlayAdapter
   }
 
   public void updateFreeToPlayList(
-      final ArrayList<AllFreeToPlayGamesResponse> freeToPlayGames)
+      final List<AllFreeToPlayGamesResponse> freeToPlayGames)
   {
     this.freeToPlayGames.clear();
     this.freeToPlayGames = freeToPlayGames;

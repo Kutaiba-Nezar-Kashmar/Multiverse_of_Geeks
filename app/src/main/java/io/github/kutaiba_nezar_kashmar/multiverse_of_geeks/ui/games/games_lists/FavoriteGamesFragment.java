@@ -28,7 +28,7 @@ public class FavoriteGamesFragment extends Fragment
   private FragmentFavoriteGameBinding binding;
   private GamesViewModel viewModel;
   private FavoriteGameAdapter adapter;
-  private ArrayList<Game> games = new ArrayList<>();
+  private List<Game> games = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
 

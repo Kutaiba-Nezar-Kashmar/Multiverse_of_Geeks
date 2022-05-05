@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
@@ -28,7 +29,7 @@ public class AllGamesFragment extends Fragment
 {
   private FragmentAllGamesBinding binding;
   private RecyclerView recyclerView;
-  private ArrayList<Game> gamesResponses = new ArrayList<Game>();
+  private List<Game> gamesResponses = new ArrayList<Game>();
   private GamesViewModel gamesViewModel;
   private GamesAdapter adapter;
 
@@ -66,7 +67,7 @@ public class AllGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new GamesAdapter(gamesResponses);
-    Observer<ArrayList<Game>> update = adapter::updateGameList;
+    Observer<List<Game>> update = adapter::updateGameList;
     gamesViewModel.getAllGames().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);
   }

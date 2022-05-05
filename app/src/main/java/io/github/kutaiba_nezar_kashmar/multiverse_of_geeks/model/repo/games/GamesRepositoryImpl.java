@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,9 +16,13 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.games.GameD
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.GamesClient;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.games_network.GamesAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GamesRepositoryImpl implements GamesRepository
 {
@@ -26,6 +31,9 @@ public class GamesRepositoryImpl implements GamesRepository
   private final GameDAO gameDAO;
   private final LiveData<List<Game>> favoriteGames;
   private final LiveData<Game> singleFavoriteGame;
+  private final MutableLiveData<Game> gameById;
+  private final MutableLiveData<List<Game>> allGames;
+  private final MutableLiveData<List<Game>> searchedGames;
 
   private GamesRepositoryImpl(Application application)
   {
@@ -34,6 +42,9 @@ public class GamesRepositoryImpl implements GamesRepository
     executorService = Executors.newFixedThreadPool(2);
     favoriteGames = gameDAO.getAllFavoriteGames();
     singleFavoriteGame = new MutableLiveData<>();
+    gameById = new MutableLiveData<>();
+    allGames = new MutableLiveData<>();
+    searchedGames = new MutableLiveData<>();
   }
 
   public static synchronized GamesRepositoryImpl getInstance(
@@ -71,31 +82,91 @@ public class GamesRepositoryImpl implements GamesRepository
   }
 
   @Override
-  public Flowable<GamesResponse> getAllGames()
+  public MutableLiveData<List<Game>> getAllGames()
   {
-    return GamesClient.gamesAPI().getAllGames(BuildConfig.RAWG_API_KEY)
-        .subscribeOn(Schedulers.io()).flatMap((GamesResponse item) -> {
-          return Flowable.just(item);
-        });
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
+    Call<GamesResponse> call = gamesAPI.getAllGames(BuildConfig.RAWG_API_KEY);
+    call.enqueue(new Callback<GamesResponse>()
+    {
+      @Override
+      public void onResponse(Call<GamesResponse> call,
+          Response<GamesResponse> response)
+      {
+        if (response.isSuccessful())
+        {
+          if (response.body() != null)
+          {
+            allGames.setValue(response.body().getResults());
+          }
+        }
+      }
 
+      @Override
+      public void onFailure(Call<GamesResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return allGames;
   }
 
   @Override
-  public Flowable<ArrayList<Game>> getSearchedGames(String query)
+  public MutableLiveData<List<Game>> getSearchedGames(String query)
   {
-    return GamesClient.gamesAPI()
-        .getSearchGames(BuildConfig.RAWG_API_KEY, query)
-        .subscribeOn(Schedulers.io()).flatMap(item -> {
-          return Flowable.just(item.getResults());
-        });
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
+    Call<GamesResponse> call = gamesAPI
+        .getSearchGames(BuildConfig.RAWG_API_KEY, query);
+    call.enqueue(new Callback<GamesResponse>()
+    {
+      @Override
+      public void onResponse(Call<GamesResponse> call,
+          Response<GamesResponse> response)
+      {
+        if (response.isSuccessful())
+        {
+          if (response.body() != null)
+          {
+            searchedGames.setValue(response.body().getResults());
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Call<GamesResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return searchedGames;
   }
 
   @Override
-  public Flowable<Game> getGameById(int id)
+  public MutableLiveData<Game> getGameById(int id)
   {
-    return GamesClient.gamesAPI().getGameById(id, BuildConfig.RAWG_API_KEY)
-        .subscribeOn(Schedulers.io()).flatMap(item -> {
-          return Flowable.just(item.getGame());
-        });
+    GamesAPI gamesAPI = GamesClient.gamesAPI();
+    Call<GamesResponse> call = gamesAPI
+        .getGameById(id, BuildConfig.RAWG_API_KEY);
+    call.enqueue(new Callback<GamesResponse>()
+    {
+      @Override
+      public void onResponse(Call<GamesResponse> call,
+          Response<GamesResponse> response)
+      {
+        if (response.isSuccessful())
+        {
+          if (response.body() != null)
+          {
+            gameById.setValue(response.body().getGame());
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Call<GamesResponse> call, Throwable t)
+      {
+        Log.i("Retrofit", "Something went wrong :(");
+      }
+    });
+    return gameById;
   }
 }

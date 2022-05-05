@@ -12,13 +12,13 @@ import retrofit2.http.Query;
 public interface GamesAPI
 {
   @GET("games")
-  Flowable<GamesResponse> getAllGames(@Query("key") String apiKey);
+  Call<GamesResponse> getAllGames(@Query("key") String apiKey);
 
   @GET("games/{id}")
-  Flowable<GamesResponse> getGameById(@Path("id") int id,
+  Call<GamesResponse> getGameById(@Path("id") int id,
       @Query("key") String apiKey);
 
   @GET("games")
-  Flowable<GamesResponse> getSearchGames(@Query("key") String apiKey,
+  Call<GamesResponse> getSearchGames(@Query("key") String apiKey,
       @Query("search") String query);
 }

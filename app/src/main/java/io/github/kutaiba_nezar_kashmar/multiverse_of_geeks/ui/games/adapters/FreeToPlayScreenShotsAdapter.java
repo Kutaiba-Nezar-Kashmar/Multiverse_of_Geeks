@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -19,10 +20,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class FreeToPlayScreenShotsAdapter extends
     RecyclerView.Adapter<FreeToPlayScreenShotsAdapter.FreeToPlayScreenShotsViewHolder>
 {
-  private ArrayList<GameScreenShots> gameScreenShots;
+  private List<GameScreenShots> gameScreenShots;
 
   public FreeToPlayScreenShotsAdapter(
-      ArrayList<GameScreenShots> gameScreenShots)
+      List<GameScreenShots> gameScreenShots)
   {
     this.gameScreenShots = gameScreenShots;
   }
@@ -48,7 +49,7 @@ public class FreeToPlayScreenShotsAdapter extends
   }
 
   public void updateScreenShotList(
-      final ArrayList<GameScreenShots> gameScreenShots)
+      final List<GameScreenShots> gameScreenShots)
   {
     this.gameScreenShots.clear();
     this.gameScreenShots = gameScreenShots;
