@@ -28,18 +28,6 @@
             tools:layout="@layout/fragment_about" />
 
     <!--account-->
-    <fragment
-            android:id="@+id/nav_create_account"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.create_account.CreateAccountFragment"
-            android:label="@string/create_profile_nav"
-            tools:layout="@layout/fragment_create_profile" >
-        <action
-                android:id="@+id/action_nav_create_account_to_nav_home"
-                app:destination="@id/nav_home" />
-        <action
-                android:id="@+id/action_nav_create_account_to_nav_login"
-                app:destination="@id/nav_login" />
-    </fragment>
 
     <fragment
             android:id="@+id/nav_login"
@@ -49,12 +37,6 @@
         <action
                 android:id="@+id/action_nav_login_to_nav_home"
                 app:destination="@id/nav_home" />
-        <action
-                android:id="@+id/action_nav_login_to_nav_create_account"
-                app:destination="@id/nav_create_account" />
-        <action
-                android:id="@+id/action_nav_login_to_logout_nav"
-                app:destination="@id/logout_nav" />
     </fragment>
 
     <fragment
@@ -75,15 +57,6 @@
             android:label="@string/edit_profile_nav"
             tools:layout="@layout/fragment_edit_profile" />
 
-    <fragment
-            android:id="@+id/logout_nav"
-            android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LogoutFragment"
-            android:label="logout"
-            tools:layout="@layout/fragment_logout">
-        <action
-                android:id="@+id/action_logout_nav_to_nav_login"
-                app:destination="@id/nav_login" />
-    </fragment>
 
     <!--MOVIES-->
 

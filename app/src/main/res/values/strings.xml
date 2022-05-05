@@ -28,7 +28,7 @@
     <string name="profile_image_disc">Her goes the profile image</string>
 
     <!--login strings-->
-    <string name="login">Login</string>
+    <string name="login">Sign In</string>
     <string name="not_registered_message">Don\'t you have an account?</string>
     <string name="not_registered_link"><a href="">Create account</a></string>
     <string name="welcome_message">welcome to Multiverse of Geeks</string>

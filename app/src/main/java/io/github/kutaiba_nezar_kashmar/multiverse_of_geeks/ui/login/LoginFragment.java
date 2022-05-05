@@ -26,7 +26,6 @@ public class LoginFragment extends Fragment
 {
   private FragmentLoginBinding binding;
   private SignUnViewModel signUnViewModel;
-  private Button signOut;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -35,9 +34,7 @@ public class LoginFragment extends Fragment
 
     binding = FragmentLoginBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    signOut = root.findViewById(R.id.logout);
     checkIfSignedIn();
-    signOut.setOnClickListener(this::signOut);
     return root;
   }
 
@@ -63,10 +60,5 @@ public class LoginFragment extends Fragment
             startActivity(intent);
           }
         });
-  }
-
-  private void signOut(View view)
-  {
-    signUnViewModel.signOut();
   }
 }

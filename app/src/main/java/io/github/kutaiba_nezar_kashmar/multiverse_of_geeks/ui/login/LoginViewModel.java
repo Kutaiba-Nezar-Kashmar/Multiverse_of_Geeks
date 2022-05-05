@@ -20,19 +20,4 @@ public class LoginViewModel extends AndroidViewModel
     super(application);
     userRepository =  UserRepository.getInstance(application);
   }
-
-  public void login(String email, String password)
-  {
-    userRepository.login(email, password);
-  }
-
-  public LiveData<FirebaseUser> getCurrentUser()
-  {
-    return userRepository.getCurrentUser();
-  }
-
-  public void signOut()
-  {
-    userRepository.signOut();
-  }
 }
