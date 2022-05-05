@@ -11,7 +11,7 @@ class CastResponse
     val name: String = ""
     val profile_path: String = ""
     val character: String = ""
-    val cast: ArrayList<Cast> = ArrayList()
+    val cast: List<Cast> = ArrayList()
 
     fun getCast(): Cast
     {
@@ -20,7 +20,7 @@ class CastResponse
         )
     }
 
-    fun getCastList() : ArrayList<Cast>
+    fun getCastList() : List<Cast>
     {
         return cast
     }

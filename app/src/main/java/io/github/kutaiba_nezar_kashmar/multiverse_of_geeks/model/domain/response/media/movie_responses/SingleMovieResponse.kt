@@ -40,19 +40,19 @@ data class SingleMovieResponse
         MovieCollectionResponse()
 
     @Ignore
-    val genres: ArrayList<MediaGenreResponse> = ArrayList()
+    val genres: List<MediaGenreResponse> = ArrayList()
 
     @Ignore
-    var production_companies: ArrayList<MediaProductionCompaniesResponse> =
+    var production_companies: List<MediaProductionCompaniesResponse> =
         ArrayList()
 
     @Ignore
     var release_date: String = ""
 
     @Ignore
-    var production_countries: ArrayList<MediaProductionCountriesResponse> =
+    var production_countries: List<MediaProductionCountriesResponse> =
         ArrayList()
 
     @Ignore
-    var spoken_languages: ArrayList<MediaSpokenLanguagesResponse> = ArrayList()
+    var spoken_languages: List<MediaSpokenLanguagesResponse> = ArrayList()
 }

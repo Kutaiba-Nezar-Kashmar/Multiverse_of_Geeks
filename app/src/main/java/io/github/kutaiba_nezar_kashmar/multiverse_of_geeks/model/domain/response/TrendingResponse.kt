@@ -15,7 +15,7 @@ class TrendingResponse
     val release_date: String = ""
     val popularity: Float = 0.0F
     val media_type: String = ""
-    val results: ArrayList<Trending> = ArrayList()
+    val results: List<Trending> = ArrayList()
 
     fun getTrending(): Trending
     {

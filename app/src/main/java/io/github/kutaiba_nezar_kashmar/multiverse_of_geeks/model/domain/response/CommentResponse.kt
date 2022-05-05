@@ -11,7 +11,7 @@ class CommentResponse
     val author_details : Commenter = Commenter("")
     val content : String  = ""
     val created_at : String  = ""
-    val results : ArrayList<Comment> = ArrayList()
+    val results : List<Comment> = ArrayList()
 
     fun getComment() : Comment
     {

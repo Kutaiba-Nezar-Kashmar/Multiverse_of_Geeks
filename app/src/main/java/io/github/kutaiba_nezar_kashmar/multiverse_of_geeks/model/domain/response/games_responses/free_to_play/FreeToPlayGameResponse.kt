@@ -18,5 +18,5 @@ class FreeToPlayGameResponse
     val release_date : String = ""
     val freetogame_profile_url : String = ""
     val minimum_system_requirements : FreeToPlayGameRequirementsResponse = FreeToPlayGameRequirementsResponse()
-    val screenshots : ArrayList<GameScreenShots> = ArrayList()
+    val screenshots : List<GameScreenShots> = ArrayList()
 }

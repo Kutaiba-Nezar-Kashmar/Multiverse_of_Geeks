@@ -13,13 +13,13 @@ class GamesResponse
     val rating: Float = 0.0F
     val playtime: Int = 0
     val updated: String = ""
-    val platforms: ArrayList<PlatformsResponse> = ArrayList()
-    val genres: ArrayList<GameGenreResponse> = ArrayList()
-    val tags: ArrayList<GameTageResponse> = ArrayList()
+    val platforms: List<PlatformsResponse> = ArrayList()
+    val genres: List<GameGenreResponse> = ArrayList()
+    val tags: List<GameTageResponse> = ArrayList()
     val esrb_rating: GameAgeRating = GameAgeRating()
-    val short_screenshots: ArrayList<GameScreenShots> = ArrayList()
-    val results: ArrayList<Game> = ArrayList()
-    val developers: ArrayList<GamesDevelopersResponse> = ArrayList()
+    val short_screenshots: List<GameScreenShots> = ArrayList()
+    val results: List<Game> = ArrayList()
+    val developers: List<GamesDevelopersResponse> = ArrayList()
 
     fun getGame(): Game
     {

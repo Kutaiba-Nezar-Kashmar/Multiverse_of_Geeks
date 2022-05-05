@@ -37,38 +37,38 @@ data class SingleTvShowResponse
     val adult: Boolean = false
 
     @Ignore
-    val created_by: ArrayList<TvShowCreatorResponse> = ArrayList()
+    val created_by: List<TvShowCreatorResponse> = ArrayList()
 
     @Ignore
-    val episode_run_time: ArrayList<Integer> = ArrayList()
+    val episode_run_time: List<Integer> = ArrayList()
 
     @Ignore
-    val genres: ArrayList<MediaGenreResponse> = ArrayList()
+    val genres: List<MediaGenreResponse> = ArrayList()
 
     @Ignore
-    val languages: ArrayList<String> = ArrayList()
+    val languages: List<String> = ArrayList()
 
     @Ignore
     val last_episode_to_air: TvShowLastEpisodeToAirResponse =
         TvShowLastEpisodeToAirResponse()
 
     @Ignore
-    val networks: ArrayList<TvShowNetworkResponse> = ArrayList()
+    val networks: List<TvShowNetworkResponse> = ArrayList()
 
     @Ignore
-    val origin_country: ArrayList<String> = ArrayList()
+    val origin_country: List<String> = ArrayList()
 
     @Ignore
-    val production_companies: ArrayList<MediaProductionCompaniesResponse> =
+    val production_companies: List<MediaProductionCompaniesResponse> =
         ArrayList()
 
     @Ignore
-    val production_countries: ArrayList<MediaProductionCountriesResponse> =
+    val production_countries: List<MediaProductionCountriesResponse> =
         ArrayList()
 
     @Ignore
     val seasons: List<TvShowSeasonResponse> = ArrayList()
 
     @Ignore
-    val spoken_languages: ArrayList<MediaSpokenLanguagesResponse> = ArrayList()
+    val spoken_languages: List<MediaSpokenLanguagesResponse> = ArrayList()
 }

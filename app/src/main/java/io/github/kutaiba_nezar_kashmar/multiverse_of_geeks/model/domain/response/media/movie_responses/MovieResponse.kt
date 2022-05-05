@@ -11,7 +11,7 @@ class MovieResponse
     val overview: String = ""
     val vote_average: Float = 0.0F
     val poster_path: String = ""
-    val results: ArrayList<Movie> = ArrayList()
+    val results: List<Movie> = ArrayList()
 
     fun getMovie(): Movie
     {

@@ -39,7 +39,7 @@ public class SingleMovieFragment extends Fragment
   private MovieReviewsAdapter movieReviewsAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private final List<Comment> comments = new ArrayList<>();
-  private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
   private TextView movieTitle;
   private TextView movieTagline;

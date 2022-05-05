@@ -17,17 +17,17 @@ data class Game(
         var playtime: Int = 0,
         var updated: String = "",
 
-        @Ignore val platforms: ArrayList<PlatformsResponse> = ArrayList(),
+        @Ignore val platforms: List<PlatformsResponse> = ArrayList(),
 
-        @Ignore val genres: ArrayList<GameGenreResponse> = ArrayList(),
+        @Ignore val genres: List<GameGenreResponse> = ArrayList(),
 
-        @Ignore val tags: ArrayList<GameTageResponse> = ArrayList(),
+        @Ignore val tags: List<GameTageResponse> = ArrayList(),
 
         @Ignore val esrb_rating: GameAgeRating = GameAgeRating(),
 
-        @Ignore val short_screenshots: ArrayList<GameScreenShots> = ArrayList(),
+        @Ignore val short_screenshots: List<GameScreenShots> = ArrayList(),
 
-        @Ignore val developers: ArrayList<GamesDevelopersResponse> = ArrayList()
+        @Ignore val developers: List<GamesDevelopersResponse> = ArrayList()
 )
 {
 
