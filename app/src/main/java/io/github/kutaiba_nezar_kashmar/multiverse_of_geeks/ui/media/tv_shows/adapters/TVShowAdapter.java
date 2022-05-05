@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -19,10 +20,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class TVShowAdapter
     extends RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>
 {
-  private ArrayList<TvShow> tvShows;
+  private List<TvShow> tvShows;
   private OnClickListener listener;
 
-  public TVShowAdapter(ArrayList<TvShow> tvShows)
+  public TVShowAdapter(List<TvShow> tvShows)
   {
     this.tvShows = tvShows;
   }
@@ -57,7 +58,7 @@ public class TVShowAdapter
   }
 
   //clear and reassign the cast list every time this method is called
-  public void updateTVShowList(final ArrayList<TvShow> tvShows)
+  public void updateTVShowList(final List<TvShow> tvShows)
   {
     this.tvShows.clear();
     this.tvShows = tvShows;

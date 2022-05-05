@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowSeasonResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.SeasonAdapter;
@@ -24,7 +25,7 @@ public class TvShowSeasonsFragment extends Fragment
   private FragmentTvShowSeasonsBinding binding;
   private TVShowsViewModel viewModel;
   private SeasonAdapter adapter;
-  private ArrayList<TvShowSeasonResponse> seasons = new ArrayList<>();
+  private List<TvShowSeasonResponse> seasons = new ArrayList<>();
   private int tvId;
   private RecyclerView seasonRv;
 

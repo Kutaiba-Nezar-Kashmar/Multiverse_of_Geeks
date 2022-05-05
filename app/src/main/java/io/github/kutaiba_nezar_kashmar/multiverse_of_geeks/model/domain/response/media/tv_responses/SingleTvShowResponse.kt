@@ -67,7 +67,7 @@ data class SingleTvShowResponse
         ArrayList()
 
     @Ignore
-    val seasons: ArrayList<TvShowSeasonResponse> = ArrayList()
+    val seasons: List<TvShowSeasonResponse> = ArrayList()
 
     @Ignore
     val spoken_languages: ArrayList<MediaSpokenLanguagesResponse> = ArrayList()

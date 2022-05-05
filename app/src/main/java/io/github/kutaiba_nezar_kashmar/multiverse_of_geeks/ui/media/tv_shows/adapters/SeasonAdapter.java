@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowSeasonResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -20,9 +21,9 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class SeasonAdapter
     extends RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>
 {
-  private ArrayList<TvShowSeasonResponse> seasons;
+  private List<TvShowSeasonResponse> seasons;
 
-  public SeasonAdapter(ArrayList<TvShowSeasonResponse> seasons)
+  public SeasonAdapter(List<TvShowSeasonResponse> seasons)
   {
     this.seasons = seasons;
   }
@@ -62,7 +63,7 @@ public class SeasonAdapter
     return 0;
   }
 
-  public void updateSeasonsList(final ArrayList<TvShowSeasonResponse> seasons)
+  public void updateSeasonsList(final List<TvShowSeasonResponse> seasons)
   {
     this.seasons.clear();
     this.seasons = seasons;

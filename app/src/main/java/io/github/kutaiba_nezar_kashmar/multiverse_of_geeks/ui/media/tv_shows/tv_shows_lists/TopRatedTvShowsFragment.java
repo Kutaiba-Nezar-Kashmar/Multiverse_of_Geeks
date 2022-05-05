@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TVShowsViewModel;
@@ -31,7 +32,7 @@ public class TopRatedTvShowsFragment extends Fragment
   private FragmentTopRatedTvShowsBinding binding;
   private TVShowsViewModel tvShowsViewModel;
   private RecyclerView recyclerView;
-  private final ArrayList<TvShow> tvShows = new ArrayList<>();
+  private final List<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button leftArrow;
@@ -81,7 +82,7 @@ public class TopRatedTvShowsFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new TVShowAdapter(tvShows);
-    Observer<ArrayList<TvShow>> update = adapter::updateTVShowList;
+    Observer<List<TvShow>> update = adapter::updateTVShowList;
     tvShowsViewModel.getAllTopRatedTvShows(pageNum)
         .observe(getViewLifecycleOwner(), update);
   }

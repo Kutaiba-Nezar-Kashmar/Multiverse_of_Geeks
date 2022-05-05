@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.TVShowsViewModel;
@@ -29,7 +30,7 @@ public class SearchTvShowFragment extends Fragment
 {
   private FragmentSearchTvShowBinding binding;
   private RecyclerView recyclerView;
-  private final ArrayList<TvShow> tvShows = new ArrayList<>();
+  private final List<TvShow> tvShows = new ArrayList<>();
   private TVShowsViewModel tvShowsViewModel;
   private TVShowAdapter tvShowAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -82,7 +83,7 @@ public class SearchTvShowFragment extends Fragment
   private void setUpRecyclerView()
   {
     tvShowAdapter = new TVShowAdapter(tvShows);
-    Observer<ArrayList<TvShow>> update = tvShowAdapter::updateTVShowList;
+    Observer<List<TvShow>> update = tvShowAdapter::updateTVShowList;
     setUpSearchView(update);
   }
 
@@ -94,7 +95,7 @@ public class SearchTvShowFragment extends Fragment
     });
   }
 
-  private void setUpSearchView(Observer<ArrayList<TvShow>> update)
+  private void setUpSearchView(Observer<List<TvShow>> update)
   {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
     {

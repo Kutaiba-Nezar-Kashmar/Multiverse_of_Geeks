@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowCreatorResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -20,10 +21,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class TvCreatorAdapter
     extends RecyclerView.Adapter<TvCreatorAdapter.TvCreatorViewHolder>
 {
-  private ArrayList<TvShowCreatorResponse> tvShowCreatorResponses;
+  private List<TvShowCreatorResponse> tvShowCreatorResponses;
 
   public TvCreatorAdapter(
-      ArrayList<TvShowCreatorResponse> tvShowCreatorResponses)
+      List<TvShowCreatorResponse> tvShowCreatorResponses)
   {
     this.tvShowCreatorResponses = tvShowCreatorResponses;
   }
@@ -58,7 +59,7 @@ public class TvCreatorAdapter
     return 0;
   }
 
-  public void updateCreatorList(final ArrayList<TvShowCreatorResponse> tvShowCreatorResponses)
+  public void updateCreatorList(final List<TvShowCreatorResponse> tvShowCreatorResponses)
   {
     this.tvShowCreatorResponses.clear();
     this.tvShowCreatorResponses = tvShowCreatorResponses;

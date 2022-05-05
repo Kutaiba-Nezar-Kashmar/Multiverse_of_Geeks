@@ -21,25 +21,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class TVShowsViewModel extends AndroidViewModel
 {
   private TvShowRepository tvShowRepository;
-  private MutableLiveData<SingleTvShowResponse> singleTvShow;
-  private MutableLiveData<ArrayList<TvShow>> popularTvShows;
-  private MutableLiveData<ArrayList<TvShow>> topRatedTvShows;
-  private MutableLiveData<ArrayList<TvShow>> onAirTvShows;
-  private MutableLiveData<ArrayList<TvShow>> airingTodayTvShows;
-  private MutableLiveData<ArrayList<TvShow>> searchedTvShows;
-  private MutableLiveData<ArrayList<Comment>> tvShowReviews;
 
   public TVShowsViewModel(@NonNull Application application)
   {
     super(application);
     tvShowRepository = TVShowRepositoryImpl.getInstance(application);
-    singleTvShow = new MutableLiveData<>();
-    popularTvShows = new MutableLiveData<>();
-    topRatedTvShows = new MutableLiveData<>();
-    onAirTvShows = new MutableLiveData<>();
-    airingTodayTvShows = new MutableLiveData<>();
-    searchedTvShows = new MutableLiveData<>();
-    tvShowReviews = new MutableLiveData<>();
   }
 
   public LiveData<List<SingleTvShowResponse>> getFavoriteTvShows()
@@ -64,64 +50,36 @@ public class TVShowsViewModel extends AndroidViewModel
 
   public LiveData<SingleTvShowResponse> findTvShowById(int id)
   {
-    tvShowRepository.findTvShowById(id).subscribeOn(Schedulers.io())
-        .doOnNext(singleTvShowResponse -> {
-          singleTvShow.postValue(singleTvShowResponse);
-        }).doOnError(Throwable -> Log.i("errorHttp", "here")).subscribe();
-    return singleTvShow;
+    return tvShowRepository.findTvShowById(id);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllPopularTvShows(int pageNumber)
+  public LiveData<List<TvShow>> getAllPopularTvShows(int pageNumber)
   {
-    tvShowRepository.getAllPopularTvShows(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(tvShows -> {
-      popularTvShows.postValue(tvShows);
-    }).subscribe();
-    return popularTvShows;
+    return tvShowRepository.getAllPopularTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllTopRatedTvShows(int pageNumber)
+  public LiveData<List<TvShow>> getAllTopRatedTvShows(int pageNumber)
   {
-    tvShowRepository.getAllTopRatedTvShows(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(tvShows -> {
-      topRatedTvShows.postValue(tvShows);
-    }).subscribe();
-    return topRatedTvShows;
+    return tvShowRepository.getAllTopRatedTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllOnAirTvShows(int pageNumber)
+  public LiveData<List<TvShow>> getAllOnAirTvShows(int pageNumber)
   {
-    tvShowRepository.getAllOnAirTvShows(pageNumber).subscribeOn(Schedulers.io())
-        .doOnNext(tvShows -> {
-          onAirTvShows.postValue(tvShows);
-        }).subscribe();
-    return onAirTvShows;
+    return tvShowRepository.getAllOnAirTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllAiringTodayTvShows(int pageNumber)
+  public LiveData<List<TvShow>> getAllAiringTodayTvShows(int pageNumber)
   {
-    tvShowRepository.getAllAiringTodayTvShows(pageNumber)
-        .subscribeOn(Schedulers.io()).doOnNext(tvShows -> {
-      airingTodayTvShows.postValue(tvShows);
-    }).subscribe();
-    return airingTodayTvShows;
+    return tvShowRepository.getAllAiringTodayTvShows(pageNumber);
   }
 
-  public LiveData<ArrayList<TvShow>> getAllSearchedTvShows(String arg)
+  public LiveData<List<TvShow>> getAllSearchedTvShows(String arg)
   {
-    tvShowRepository.getAllSearchedTvShows(arg).subscribeOn(Schedulers.io())
-        .doOnNext(tvShows -> {
-          searchedTvShows.postValue(tvShows);
-        }).subscribe();
-    return searchedTvShows;
+    return tvShowRepository.getAllSearchedTvShows(arg);
   }
 
-  public LiveData<ArrayList<Comment>> getAllComments(int id)
+  public LiveData<List<Comment>> getAllComments(int id)
   {
-    tvShowRepository.getTvReviews(id).subscribeOn(Schedulers.io())
-        .doOnNext(comments -> {
-          tvShowReviews.postValue(comments);
-        }).subscribe();
-    return tvShowReviews;
+    return tvShowRepository.getTvReviews(id);
   }
 }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -18,9 +19,9 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class TvShowReviewsAdapter
     extends RecyclerView.Adapter<TvShowReviewsAdapter.TvCommentViewHolder>
 {
-  private ArrayList<Comment> comments;
+  private List<Comment> comments;
 
-  public TvShowReviewsAdapter(ArrayList<Comment> comments)
+  public TvShowReviewsAdapter(List<Comment> comments)
   {
     this.comments = comments;
   }
@@ -55,7 +56,7 @@ public class TvShowReviewsAdapter
   }
 
   //clear and reassign the cast list every time this method is called
-  public void updateCommentList(final ArrayList<Comment> comments)
+  public void updateCommentList(final List<Comment> comments)
   {
     this.comments.clear();
     this.comments = comments;

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -20,10 +21,10 @@ import io.github.kutaiba_nezar_kashmar.newapp.R;
 public class MediaProductionCompanyAdapter extends
     RecyclerView.Adapter<MediaProductionCompanyAdapter.MovieProductionCompanyViewHolder>
 {
-  private ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses;
+  private List<MediaProductionCompaniesResponse> productionCompaniesResponses;
 
   public MediaProductionCompanyAdapter(
-      ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses)
+      List<MediaProductionCompaniesResponse> productionCompaniesResponses)
   {
     this.productionCompaniesResponses = productionCompaniesResponses;
   }
@@ -62,7 +63,7 @@ public class MediaProductionCompanyAdapter extends
     return 0;
   }
 
-  public void updateCompanyList(final ArrayList<MediaProductionCompaniesResponse> productionCompaniesResponses)
+  public void updateCompanyList(final List<MediaProductionCompaniesResponse> productionCompaniesResponses)
   {
     this.productionCompaniesResponses.clear();
     this.productionCompaniesResponses = productionCompaniesResponses;

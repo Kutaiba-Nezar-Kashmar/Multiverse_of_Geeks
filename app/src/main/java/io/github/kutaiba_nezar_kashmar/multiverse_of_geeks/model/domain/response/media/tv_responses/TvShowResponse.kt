@@ -11,7 +11,7 @@ class TvShowResponse
     val overview : String = ""
     val vote_average : Float = 0.0F
     val poster_path : String = ""
-    val results : ArrayList<TvShow> = ArrayList()
+    val results : List<TvShow> = ArrayList()
 
     fun getTvShow() : TvShow
     {

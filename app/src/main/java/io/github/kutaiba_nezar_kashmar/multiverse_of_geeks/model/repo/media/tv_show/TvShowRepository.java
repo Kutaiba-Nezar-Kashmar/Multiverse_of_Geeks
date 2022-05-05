@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,11 @@ public interface TvShowRepository
   void insertFavoriteTvShow(SingleTvShowResponse tv);
   void deleteFavoriteTvShow(SingleTvShowResponse tv);
   LiveData<SingleTvShowResponse> getSingleFavoriteTvShow(int id);
-  Flowable<SingleTvShowResponse> findTvShowById(int id);
-  Flowable<ArrayList<TvShow>> getAllPopularTvShows(int pageNumber);
-  Flowable<ArrayList<TvShow>> getAllTopRatedTvShows(int pageNumber);
-  Flowable<ArrayList<TvShow>> getAllOnAirTvShows(int pageNumber);
-  Flowable<ArrayList<TvShow>> getAllAiringTodayTvShows(int pageNumber);
-  Flowable<ArrayList<TvShow>> getAllSearchedTvShows(String arg);
-  Flowable<ArrayList<Comment>> getTvReviews(int id);
+  MutableLiveData<SingleTvShowResponse> findTvShowById(int id);
+  MutableLiveData<List<TvShow>> getAllPopularTvShows(int pageNumber);
+  MutableLiveData<List<TvShow>> getAllTopRatedTvShows(int pageNumber);
+  MutableLiveData<List<TvShow>> getAllOnAirTvShows(int pageNumber);
+  MutableLiveData<List<TvShow>> getAllAiringTodayTvShows(int pageNumber);
+  MutableLiveData<List<TvShow>> getAllSearchedTvShows(String arg);
+  MutableLiveData<List<Comment>> getTvReviews(int id);
 }

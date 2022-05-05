@@ -20,7 +20,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv show
    */
   @GET("tv/{tv_id}")
-  Flowable<SingleTvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
+  Call<SingleTvShowResponse> getTvShowById(@Path("tv_id") int tv_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -31,7 +31,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/popular?&language=en")
-  Flowable<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<TvShowResponse> getAllPopularTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -41,7 +41,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/top_rated?&language=en")
-  Flowable<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<TvShowResponse> getAllTopRatedTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -51,7 +51,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/on_the_air?&language=en")
-  Flowable<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
+  Call<TvShowResponse> getAllOnAirTvShows(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
    * Retrofit method that returns a response from TMDB webserver. Where the method
@@ -61,7 +61,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv shows
    */
   @GET("tv/airing_today?&language=en")
-  Flowable<TvShowResponse> getAllAiringTodayTvShows(
+  Call<TvShowResponse> getAllAiringTodayTvShows(
       @Query("api_key") String apiKey, @Query("page") int pageNumber);
 
   /**
@@ -74,7 +74,7 @@ public interface TVShowAPI
    * @return Retrofit call with the value of TvShowResponse for the queried tv show/tv shows
    */
   @GET("search/tv")
-  Flowable<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
+  Call<TvShowResponse> searchForTvShow(@Query("api_key") String apiKey,
       @Query("query") String query);
 
   /**
@@ -86,6 +86,6 @@ public interface TVShowAPI
    * @return Retrofit call with the value of CommentResponse for the queried tv show
    */
   @GET("tv/{tv_id}/reviews")
-  Flowable<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
+  Call<CommentResponse> getTvReviews(@Path("tv_id") int tvId,
       @Query("api_key") String apiKey);
 }

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
@@ -42,10 +43,10 @@ public class SingleTvFragment extends Fragment
   private TvCreatorAdapter tvCreatorAdapter;
   private TvNetworkAdapter networkAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
-  private final ArrayList<Comment> comments = new ArrayList<>();
-  private ArrayList<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
-  private ArrayList<TvShowCreatorResponse> creatorResponses = new ArrayList<>();
-  private ArrayList<TvShowNetworkResponse> tvShowNetworkResponses = new ArrayList<>();
+  private final List<Comment> comments = new ArrayList<>();
+  private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private List<TvShowCreatorResponse> creatorResponses = new ArrayList<>();
+  private List<TvShowNetworkResponse> tvShowNetworkResponses = new ArrayList<>();
   private int tvId;
   private TextView tvTitle;
   private TextView tvOverview;
@@ -276,7 +277,7 @@ public class SingleTvFragment extends Fragment
   private void setUpAdapterView()
   {
     adapter = new TvShowReviewsAdapter(comments);
-    Observer<ArrayList<Comment>> update = adapter::updateCommentList;
+    Observer<List<Comment>> update = adapter::updateCommentList;
     tvShowsViewModel.getAllComments(tvId)
         .observe(getViewLifecycleOwner(), update);
   }

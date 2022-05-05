@@ -28,7 +28,7 @@ public class FavoriteTvShowFragment extends Fragment
   private FragmentFavoriteTvShowBinding binding;
   private TVShowsViewModel viewModel;
   private FavoriteTvShowAdapter adapter;
-  private ArrayList<SingleTvShowResponse> tvShows = new ArrayList<>();
+  private List<SingleTvShowResponse> tvShows = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout refreshLayout;
 
