@@ -18,7 +18,7 @@ public interface CastAPI
    * @return Retrofit call with the value of CastResponse for the queried movie
    */
   @GET("movie/{movie_id}/credits")
-  Flowable<CastResponse> getMovieCast(@Path("movie_id") int movie_id,
+  Call<CastResponse> getMovieCast(@Path("movie_id") int movie_id,
       @Query("api_key") String apiKey);
 
   /**
@@ -30,6 +30,6 @@ public interface CastAPI
    * @return Retrofit call with the value of CastResponse for the queried tv show
    */
   @GET("tv/{tv_id}/credits")
-  Flowable<CastResponse> getTvShowCast(@Path("tv_id") int tv_id,
+  Call<CastResponse> getTvShowCast(@Path("tv_id") int tv_id,
       @Query("api_key") String apiKey);
 }

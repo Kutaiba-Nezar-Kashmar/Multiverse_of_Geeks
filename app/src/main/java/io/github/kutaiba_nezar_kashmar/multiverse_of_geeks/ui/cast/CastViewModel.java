@@ -17,32 +17,20 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CastViewModel extends AndroidViewModel
 {
   private final CastRepository castRepository;
-  private MutableLiveData<ArrayList<Cast>> movieCast;
-  private MutableLiveData<ArrayList<Cast>> tvCast;
 
   public CastViewModel(@NonNull Application application)
   {
     super(application);
     castRepository = CastRepositoryImpl.getInstance();
-    movieCast = new MutableLiveData<>();
-    tvCast = new MutableLiveData<>();
   }
 
   public LiveData<ArrayList<Cast>> getMovieCast(int movieId)
   {
-    castRepository.getMovieCast(movieId).subscribeOn(Schedulers.io())
-        .doOnNext(cast -> {
-          movieCast.postValue(cast);
-        }).subscribe();
-    return movieCast;
+    return castRepository.getMovieCast(movieId);
   }
 
   public LiveData<ArrayList<Cast>> getTvShowCast(int tvShowId)
   {
-    castRepository.getMovieCast(tvShowId).subscribeOn(Schedulers.io())
-        .doOnNext(cast -> {
-          tvCast.postValue(cast);
-        }).subscribe();
-    return tvCast;
+    return castRepository.getTvShowCast(tvShowId);
   }
 }
