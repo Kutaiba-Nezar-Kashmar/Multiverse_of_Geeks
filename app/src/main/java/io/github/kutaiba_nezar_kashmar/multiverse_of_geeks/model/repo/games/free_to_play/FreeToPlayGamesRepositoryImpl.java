@@ -1,19 +1,15 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.FreeToPlayGamesClient;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.games_network.FreeToPlayAPI;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

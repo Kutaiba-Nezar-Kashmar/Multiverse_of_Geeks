@@ -6,23 +6,20 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.GeekDatabase;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.tv.TVShowDAO;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.Tv_show_network.TVShowAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

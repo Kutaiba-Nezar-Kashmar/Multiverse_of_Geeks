@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.games.GameDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.movies.MoviesDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.tv.TVShowDAO;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 

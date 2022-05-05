@@ -3,28 +3,23 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.mov
 import android.app.Application;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.movies.MoviesDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.GeekDatabase;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.MediaAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.movie_network.MovieAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

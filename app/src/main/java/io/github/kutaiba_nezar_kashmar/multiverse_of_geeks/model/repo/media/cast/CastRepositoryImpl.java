@@ -1,20 +1,17 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.cast;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

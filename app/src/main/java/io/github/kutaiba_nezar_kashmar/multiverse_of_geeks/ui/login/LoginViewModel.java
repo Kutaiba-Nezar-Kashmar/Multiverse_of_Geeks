@@ -4,11 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
-import com.google.firebase.auth.FirebaseUser;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
 
 public class LoginViewModel extends AndroidViewModel
 {
@@ -18,6 +16,6 @@ public class LoginViewModel extends AndroidViewModel
   public LoginViewModel(@NonNull Application application)
   {
     super(application);
-    userRepository =  UserRepository.getInstance(application);
+    userRepository =  UserRepositoryImpl.getInstance(application);
   }
 }

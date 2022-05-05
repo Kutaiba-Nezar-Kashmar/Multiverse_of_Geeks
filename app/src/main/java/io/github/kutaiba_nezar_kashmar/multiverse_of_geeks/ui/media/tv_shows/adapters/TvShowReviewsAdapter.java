@@ -10,10 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class TvShowReviewsAdapter

@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.ActivityMainBinding;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
   private AppBarConfiguration mAppBarConfiguration;
   private ActivityMainBinding binding;
   private NavController navController;
+  private UserRepository userRepository;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity
 
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
-
+    userRepository = UserRepositoryImpl.getInstance(getApplication());
     setSupportActionBar(binding.appBarMain.toolbar);
 
     DrawerLayout drawer = binding.drawerLayout;
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity
     // menu should be considered as top level destinations.
     //Here goes the nave items, remember adding the relevant ones
     mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home,
-        R.id.nav_my_profile, R.id.nav_main_movies,
-        R.id.nav_tv, R.id.nav_games).setOpenableLayout(drawer).build();
+        R.id.nav_my_profile, R.id.nav_main_movies, R.id.nav_tv, R.id.nav_games)
+        .setOpenableLayout(drawer).build();
     navController = Navigation
         .findNavController(this, R.id.nav_host_fragment_content_main);
     NavigationUI.setupActionBarWithNavController(this, navController,
@@ -62,20 +64,16 @@ public class MainActivity extends AppCompatActivity
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item)
   {
-    switch (item.getItemId())
+    if (item.getItemId() == R.id.action_sign_out)
     {
-      case R.id.action_sign_out:
-        signOut();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+      signOut();
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 
   public void signOut()
   {
-    UserRepository userRepository = UserRepository
-        .getInstance(getApplication());
     userRepository.signOut();
     Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
   }

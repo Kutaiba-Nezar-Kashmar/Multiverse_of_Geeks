@@ -7,17 +7,15 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.FreeToPlayGamesRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepositoryImpl;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GamesViewModel extends AndroidViewModel
 {

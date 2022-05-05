@@ -5,15 +5,12 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.CastRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.CastRepositoryImpl;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Cast;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.cast.CastRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.cast.CastRepositoryImpl;
 
 public class CastViewModel extends AndroidViewModel
 {

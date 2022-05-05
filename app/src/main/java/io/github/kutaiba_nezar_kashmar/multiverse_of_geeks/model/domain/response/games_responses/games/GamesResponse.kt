@@ -1,6 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game
 import java.util.ArrayList
 
 class GamesResponse

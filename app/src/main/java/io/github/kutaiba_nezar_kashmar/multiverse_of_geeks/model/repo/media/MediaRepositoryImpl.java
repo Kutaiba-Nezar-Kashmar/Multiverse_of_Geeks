@@ -4,16 +4,13 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Trending;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Trending;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.TrendingResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.MediaAPI;
 import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

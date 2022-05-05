@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play;
 
 import androidx.lifecycle.MutableLiveData;
 

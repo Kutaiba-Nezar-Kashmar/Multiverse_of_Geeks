@@ -1,22 +1,18 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.TvShow;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TVShowRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TvShowRepository;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TVShowsViewModel extends AndroidViewModel
 {

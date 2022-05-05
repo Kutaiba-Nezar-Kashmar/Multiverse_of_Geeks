@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.google.firebase.auth.FirebaseUser;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
 
 public class SignUnViewModel extends AndroidViewModel
 {
@@ -17,7 +18,7 @@ public class SignUnViewModel extends AndroidViewModel
   public SignUnViewModel(@NonNull Application application)
   {
     super(application);
-    userRepository = UserRepository.getInstance(application);
+    userRepository = UserRepositoryImpl.getInstance(application);
   }
 
   public LiveData<FirebaseUser> getCurrentUser()

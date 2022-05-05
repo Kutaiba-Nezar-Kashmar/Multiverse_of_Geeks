@@ -1,6 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie
 import java.util.ArrayList
 
 class MovieResponse

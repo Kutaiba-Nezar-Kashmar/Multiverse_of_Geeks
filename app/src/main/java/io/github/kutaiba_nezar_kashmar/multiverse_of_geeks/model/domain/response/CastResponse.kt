@@ -1,6 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Cast
 import java.util.ArrayList
 
 class CastResponse

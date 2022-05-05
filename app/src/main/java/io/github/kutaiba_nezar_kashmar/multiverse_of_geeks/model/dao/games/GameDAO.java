@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Game;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 
 @Dao public interface GameDAO
 {

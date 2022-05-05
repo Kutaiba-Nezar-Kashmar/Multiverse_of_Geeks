@@ -3,13 +3,11 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.mov
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Comment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Movie;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
-import io.reactivex.rxjava3.core.Flowable;
 
 public interface MovieRepository
 {

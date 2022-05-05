@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.Cast;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvCastAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
