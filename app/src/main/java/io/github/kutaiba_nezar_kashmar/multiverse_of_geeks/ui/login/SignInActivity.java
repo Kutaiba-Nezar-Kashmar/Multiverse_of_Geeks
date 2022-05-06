@@ -57,10 +57,7 @@ public class SignInActivity extends AppCompatActivity
       }
       else
       {
-        /*FragmentManager fragmentManager = getSupportFragmentManager();
-        LoginFragment loginFragment = new LoginFragment();
-        fragmentManager.beginTransaction()
-            .add(R.id.login_container, loginFragment).commit();*/
+        signIn();
       }
     });
   }
@@ -71,7 +68,7 @@ public class SignInActivity extends AppCompatActivity
     finish();
   }
 
-  public void signIn(View view)
+  public void signIn()
   {
     List<AuthUI.IdpConfig> providers = Arrays
         .asList(new AuthUI.IdpConfig.EmailBuilder().build(),

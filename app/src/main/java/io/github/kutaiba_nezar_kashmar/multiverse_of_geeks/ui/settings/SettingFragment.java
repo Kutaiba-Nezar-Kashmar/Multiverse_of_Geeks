@@ -1,5 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.settings;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,35 +9,46 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.ThemeUtils;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
 
+import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSettingsBinding;
 
-public class SettingFragment extends Fragment
+public class SettingFragment extends PreferenceFragmentCompat
 {
-  private FragmentSettingsBinding binding;
+  private SettingsViewModel settingsViewModel;
 
-  @Nullable
   @Override
-  public View onCreateView(@NonNull LayoutInflater inflater,
-      @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+  public void onCreate(@Nullable Bundle savedInstanceState)
   {
-    binding = FragmentSettingsBinding.inflate(inflater, container, false);
-    View root = binding.getRoot();
-    return root;
+    settingsViewModel = new ViewModelProvider(this)
+        .get(SettingsViewModel.class);
+    super.onCreate(savedInstanceState);
+    settingsViewModel.setUpDarkMode()
+        .observe(this, aBoolean -> {
+          if (aBoolean)
+          {
+            AppCompatDelegate
+                .setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+          }
+          else
+          {
+            AppCompatDelegate
+                .setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+          }
+        });
   }
 
   @Override
-  public void onDestroy()
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState,
+      @Nullable String rootKey)
   {
-    super.onDestroy();
-    binding = null;
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view,
-      @Nullable Bundle savedInstanceState)
-  {
-    super.onViewCreated(view, savedInstanceState);
+    setPreferencesFromResource(R.xml.preferences, rootKey);
   }
 }
