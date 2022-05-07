@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +24,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.media.movie.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
@@ -41,6 +44,7 @@ public class SingleMovieFragment extends Fragment
   private final List<Comment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
+  private MovieReview review;
   private TextView movieTitle;
   private TextView movieTagline;
   private TextView budget;
@@ -56,6 +60,9 @@ public class SingleMovieFragment extends Fragment
   private TextView movieRatting;
   private ImageView moviePoster;
   private Button favButton;
+  private RatingBar ratingBar;
+  private TextView geekRating;
+  private Button submitRatingButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -64,6 +71,7 @@ public class SingleMovieFragment extends Fragment
 
     binding = FragmentSingleMovieBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+    checkIfSignedIn();
     favButton = root.findViewById(R.id.movie_fav_button_id);
     movieTitle = root.findViewById(R.id.single_movie_title);
     movieOverview = root.findViewById(R.id.movie_overview);
@@ -81,6 +89,9 @@ public class SingleMovieFragment extends Fragment
     collectionHeader = root.findViewById(R.id.movie_collection_header);
     collectionPoster = root.findViewById(R.id.movie_collection_poster);
     companyRv = root.findViewById(R.id.movie_production_companies_rv);
+    ratingBar = root.findViewById(R.id.movie_rating_bar);
+    geekRating = root.findViewById(R.id.single_movie_rating_geek);
+    submitRatingButton = root.findViewById(R.id.submit_rating_button_movie);
     toCastButton.setOnClickListener(view -> {
       SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
           .actionNavSingleMovieToNavMovieCast();
@@ -96,7 +107,32 @@ public class SingleMovieFragment extends Fragment
       Navigation.findNavController(view).navigate(action);
     });
 
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      review = new MovieReview(ratingBar.getRating(), movieId, true);
+      moviesViewModel.postReview(review);
+    });
+
+    submitRatingButton.setOnClickListener(view -> {
+      Toast.makeText(root.getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
+    });
+
     return root;
+  }
+
+  private void checkIfSignedIn()
+  {
+    moviesViewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            ratingBar.setVisibility(View.VISIBLE);
+            moviesViewModel.init();
+          }
+          else
+          {
+            ratingBar.setVisibility(View.INVISIBLE);
+          }
+        });
   }
 
   @Override

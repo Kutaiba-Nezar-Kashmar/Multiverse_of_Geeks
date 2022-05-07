@@ -30,10 +30,27 @@
                 android:id="@+id/single_movie_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mog_log_background"
+                android:src="@drawable/place_holder_pic"
                 android:contentDescription="@string/movie_image_desc"
                 android:layout_gravity="center"
                 android:minHeight="500dp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <RatingBar
+                    android:id="@+id/movie_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/submit_rating_button_movie"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/send_ic"
+                    android:layout_marginStart="@dimen/edit_text_margin"/>
 
 
         <Button
@@ -41,12 +58,16 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/fav_border_ic"
-                android:layout_gravity="end" />
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_margin">
 
             <TextView
                     android:layout_width="0dp"
@@ -61,8 +82,31 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/home_text"
                     app:drawableStartCompat="@drawable/ratting_ic"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/myapp_ratting"
+                    android:paddingTop="4dp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/single_movie_rating_geek"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:drawableStartCompat="@drawable/my_rating_ic"/>
 
         </LinearLayout>
 
