@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "282353711889",
+    "firebase_url": "https://multiverse-of-geeks-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "multiverse-of-geeks",
     "storage_bucket": "multiverse-of-geeks.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "282353711889-smq2m16eor1foqdih5sqsndl3k03s0g7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.kutaiba_nezar_kashmar.multiverse_of_geeks",
+            "certificate_hash": "4fd8f7893f1f8e3fa288db6a7e21d21577f157a5"
+          }
+        },
         {
           "client_id": "282353711889-ot0o1l7pvb3f2f67kjb52brd15m12jeq.apps.googleusercontent.com",
           "client_type": 3
