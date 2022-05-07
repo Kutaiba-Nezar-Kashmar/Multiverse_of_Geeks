@@ -120,6 +120,8 @@ public class SingleMovieFragment extends Fragment
       }
     });
 
+
+
     return root;
   }
 
@@ -138,6 +140,13 @@ public class SingleMovieFragment extends Fragment
           {
             ratingBar.setVisibility(View.VISIBLE);
             moviesViewModel.init();
+            moviesViewModel.getMovieReview().observe(getViewLifecycleOwner(), movieReview -> {
+              if (movieReview != null)
+              {
+                System.out.println("+++++++++++++++++++++++++++++++++++++" + movieReview.getRating());
+                geekRating.setText(String.valueOf(movieReview.getRating()));
+              }
+            });
           }
           else
           {

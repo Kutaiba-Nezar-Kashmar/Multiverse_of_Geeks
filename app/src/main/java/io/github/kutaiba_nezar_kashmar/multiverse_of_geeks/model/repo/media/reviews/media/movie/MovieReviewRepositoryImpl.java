@@ -46,14 +46,14 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   public void init(String userId)
   {
     reference = firebaseDatabase.getReference().child("users")
-        .child(userId).child("movieReview");
+        .child(userId);
     review = new MovieReviewLiveData(reference);
   }
 
   @Override
   public void postReview(MovieReview movieReview)
   {
-    reference.push().setValue(movieReview);
+    reference.setValue(movieReview);
     isReviewed.setValue(true);
   }
 
