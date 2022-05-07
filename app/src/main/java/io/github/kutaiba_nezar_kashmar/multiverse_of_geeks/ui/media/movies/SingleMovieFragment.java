@@ -44,6 +44,7 @@ public class SingleMovieFragment extends Fragment
   private final List<Comment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
+  private boolean isReviewed = false;
   private MovieReview review;
   private TextView movieTitle;
   private TextView movieTagline;
@@ -62,7 +63,6 @@ public class SingleMovieFragment extends Fragment
   private Button favButton;
   private RatingBar ratingBar;
   private TextView geekRating;
-  private Button submitRatingButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -91,7 +91,6 @@ public class SingleMovieFragment extends Fragment
     companyRv = root.findViewById(R.id.movie_production_companies_rv);
     ratingBar = root.findViewById(R.id.movie_rating_bar);
     geekRating = root.findViewById(R.id.single_movie_rating_geek);
-    submitRatingButton = root.findViewById(R.id.submit_rating_button_movie);
     toCastButton.setOnClickListener(view -> {
       SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
           .actionNavSingleMovieToNavMovieCast();
@@ -107,16 +106,28 @@ public class SingleMovieFragment extends Fragment
       Navigation.findNavController(view).navigate(action);
     });
 
-    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
-      review = new MovieReview(ratingBar.getRating(), movieId, true);
-      moviesViewModel.postReview(review);
-    });
+    checkReview();
 
-    submitRatingButton.setOnClickListener(view -> {
-      Toast.makeText(root.getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      review = new MovieReview(ratingBar.getRating(), movieId);
+      if (!isReviewed)
+      {
+        moviesViewModel.postReview(review);
+      }
+      else
+      {
+        moviesViewModel.updateReview(review);
+      }
     });
 
     return root;
+  }
+
+  private void checkReview()
+  {
+    moviesViewModel.isReviewed().observe(getViewLifecycleOwner(), aBoolean -> {
+      isReviewed = aBoolean;
+    });
   }
 
   private void checkIfSignedIn()

@@ -4,17 +4,20 @@ public class MovieReview
 {
   private float rating;
   private int movieId;
-  private boolean isReviewed;
 
   public MovieReview()
   {
   }
 
-  public MovieReview(float rating, int movieId, boolean isReviewed)
+  public MovieReview(float rating, int movieId)
   {
     this.rating = rating;
     this.movieId = movieId;
-    this.isReviewed = isReviewed;
+  }
+
+  public MovieReview(float rating)
+  {
+    this.rating = rating;
   }
 
   public float getRating()
@@ -35,15 +38,5 @@ public class MovieReview
   public void setMovieId(int movieId)
   {
     this.movieId = movieId;
-  }
-
-  public boolean isReviewed()
-  {
-    return isReviewed;
-  }
-
-  public void setReviewed(boolean reviewed)
-  {
-    isReviewed = reviewed;
   }
 }
