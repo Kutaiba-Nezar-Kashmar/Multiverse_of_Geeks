@@ -10,13 +10,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.TvReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.tv.TvReviewRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.tv.TvReviewRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.tv.TvReviewRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.tv.TvReviewRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TVShowRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TvShowRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;

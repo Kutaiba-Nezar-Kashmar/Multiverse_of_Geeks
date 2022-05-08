@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.GameReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.FreeToPlayScreenShotsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
@@ -30,6 +32,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private FreeToPlayScreenShotsAdapter screenShotsAdapter;
   private GamesViewModel gamesViewModel;
   private List<GameScreenShots> screenShots = new ArrayList<>();
+  private GameReview gameReview;
   private int gameId;
   private TextView title;
   private ImageView poster;
@@ -47,6 +50,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private TextView graphics;
   private TextView memory;
   private TextView storage;
+  private RatingBar ratingBar;
+  private TextView geekRating;
 
   @Nullable
   @Override
@@ -73,6 +78,11 @@ public class SingleFreeToPlayGameFragment extends Fragment
     graphics = root.findViewById(R.id.free_to_play_graphics);
     memory = root.findViewById(R.id.free_to_play_memory);
     storage = root.findViewById(R.id.free_to_play_storage);
+    ratingBar = root.findViewById(R.id.free_game_rating_bar);
+    geekRating = root.findViewById(R.id.free_to_play_rating);
+    setUpRatingBar();
+    getGeekAverageRating();
+    checkIfSignedIn();
     return root;
   }
 
@@ -135,5 +145,44 @@ public class SingleFreeToPlayGameFragment extends Fragment
         LinearLayoutManager.HORIZONTAL, false));
     screenShotsAdapter = new FreeToPlayScreenShotsAdapter(screenShots);
     screenShotRv.setAdapter(screenShotsAdapter);
+  }
+
+  private void setUpRatingBar()
+  {
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      gameReview = new GameReview(gameId, ratingBar.getRating());
+      gamesViewModel.postReview(gameReview);
+    });
+  }
+
+  private void getGeekAverageRating()
+  {
+    List<GameReview> gr = new ArrayList<>();
+    gamesViewModel.getGameReviews().observe(getViewLifecycleOwner(), gameReviews -> {
+      for (GameReview review : gameReviews)
+      {
+        if (review.getGameId() == gameId)
+        {
+          gr.add(review);
+        }
+      }
+      String averageValue = String.valueOf(gamesViewModel.calculateAverage(gr));
+      geekRating.setText(averageValue);
+    });
+  }
+
+  private void checkIfSignedIn()
+  {
+    gamesViewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            ratingBar.setVisibility(View.VISIBLE);
+          }
+          else
+          {
+            ratingBar.setVisibility(View.GONE);
+          }
+        });
   }
 }

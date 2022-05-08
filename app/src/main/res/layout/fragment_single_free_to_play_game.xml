@@ -24,9 +24,14 @@
                 android:id="@+id/single_free_to_play_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/mog_log_background"
+                android:src="@drawable/place_holder_pic"
                 android:layout_gravity="center"
                 android:minHeight="350dp" />
+
+        <RatingBar
+                android:id="@+id/free_game_rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         <TextView
                 android:layout_width="match_parent"
@@ -39,6 +44,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/home_text" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/myapp_ratting"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
+
+        <TextView
+                android:id="@+id/free_to_play_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_text"
+                android:drawableStart="@drawable/my_rating_ic"/>
 
         <TextView
                 android:layout_width="match_parent"

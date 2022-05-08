@@ -228,7 +228,7 @@ public class SingleMovieFragment extends Fragment
           }
           else
           {
-            ratingBar.setVisibility(View.INVISIBLE);
+            ratingBar.setVisibility(View.GONE);
           }
         });
   }

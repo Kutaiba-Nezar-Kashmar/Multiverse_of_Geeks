@@ -180,6 +180,7 @@ Kutaiba></string>
     <string name="tags">Tags</string>
     <string name="age">Ratted</string>
     <string name="dev_title">Developer</string>
+    <string name="rawg_ratings">RAWG Rating</string>
 
     <!--Error-->
     <string name="not_found">SOMETHING WENT WRONG; TRY LATER</string>

@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.tv;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.tv;
 
 import androidx.lifecycle.LiveData;
 

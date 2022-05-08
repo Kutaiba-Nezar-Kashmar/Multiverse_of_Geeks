@@ -1,4 +1,4 @@
-package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.movie;
+package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.game;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -13,51 +13,52 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.GameReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
 
-public class MovieReviewRepositoryImpl implements MovieReviewRepository
+public class GameReviewRepositoryImpl implements GameReviewRepository
 {
-  private static MovieReviewRepository instance;
+  private static GameReviewRepository instance;
   private final FirebaseDatabase firebaseDatabase;
   private DatabaseReference reference;
-  private final MutableLiveData<MovieReview> myMovieReview;
-  private final MutableLiveData<List<MovieReview>> movieReviews;
+  private final MutableLiveData<GameReview> myGameReview;
+  private final MutableLiveData<List<GameReview>> gameReviews;
 
-  private MovieReviewRepositoryImpl()
+  private GameReviewRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference();
-    movieReviews = new MutableLiveData<>();
-    myMovieReview = new MutableLiveData<>();
+    gameReviews = new MutableLiveData<>();
+    myGameReview = new MutableLiveData<>();
   }
 
-  public static synchronized MovieReviewRepository getInstance()
+  public static synchronized GameReviewRepository getInstance()
   {
     if (instance == null)
     {
-      instance = new MovieReviewRepositoryImpl();
+      instance = new GameReviewRepositoryImpl();
     }
     return instance;
   }
 
   @Override
-  public void postReview(MovieReview movieReview, String userId)
+  public void postReview(GameReview gameReview, String userId)
   {
     reference.child("users").child(userId)
-        .child("movieReview" + movieReview.getMovieId()).setValue(movieReview);
+        .child("gameReview" + gameReview.getGameId()).setValue(gameReview);
   }
 
   @Override
-  public void deleteReview(MovieReview movieReview)
+  public void deleteReview(GameReview gameReview)
   {
 
   }
 
   @Override
-  public LiveData<List<MovieReview>> getMovieReviews()
+  public LiveData<List<GameReview>> getGameReviews()
   {
     reference.child("users");
-    List<MovieReview> reviewList = new ArrayList<>();
+    List<GameReview> reviewList = new ArrayList<>();
     ValueEventListener listener = new ValueEventListener()
     {
       @Override
@@ -69,12 +70,12 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
           {
             for (DataSnapshot dsst : dss.getChildren())
             {
-              MovieReview movieReview = dsst.getValue(MovieReview.class);
-              reviewList.add(movieReview);
+              GameReview gameReview = dsst.getValue(GameReview.class);
+              reviewList.add(gameReview);
             }
           }
         }
-        movieReviews.postValue(reviewList);
+        gameReviews.postValue(reviewList);
       }
 
       @Override
@@ -84,6 +85,6 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
       }
     };
     reference.addListenerForSingleValueEvent(listener);
-    return movieReviews;
+    return gameReviews;
   }
 }

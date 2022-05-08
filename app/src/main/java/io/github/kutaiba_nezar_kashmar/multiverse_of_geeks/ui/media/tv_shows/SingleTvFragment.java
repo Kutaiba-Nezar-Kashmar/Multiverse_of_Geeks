@@ -186,7 +186,7 @@ public class SingleTvFragment extends Fragment
           }
           else
           {
-            ratingBar.setVisibility(View.INVISIBLE);
+            ratingBar.setVisibility(View.GONE);
           }
         });
   }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.GameReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameTageResponse;
@@ -38,6 +41,7 @@ public class SingleGameFragment extends Fragment
   private PlatformAdapter platformAdapter;
   private List<GamesDevelopersResponse> developersResponses = new ArrayList<>();
   private List<PlatformsResponse> platformsResponses = new ArrayList<>();
+  private GameReview gameReview;
   private int id;
   private TextView title;
   private ImageView poster;
@@ -51,6 +55,8 @@ public class SingleGameFragment extends Fragment
   private RecyclerView developersRv;
   private RecyclerView platformRv;
   private Button favButton;
+  private RatingBar ratingBar;
+  private TextView geekRating;
 
   @Nullable
   @Override
@@ -72,6 +78,11 @@ public class SingleGameFragment extends Fragment
     age = root.findViewById(R.id.single_game_age);
     developersRv = root.findViewById(R.id.single_game_developers_rv);
     platformRv = root.findViewById(R.id.game_platform_rv);
+    ratingBar = root.findViewById(R.id.game_rating_bar);
+    geekRating = root.findViewById(R.id.geek_game_rating);
+    setUpRatingBar();
+    getGeekAverageRating();
+    checkIfSignedIn();
     return root;
   }
 
@@ -154,6 +165,45 @@ public class SingleGameFragment extends Fragment
             favButton.setOnClickListener(view -> {
               viewModel.insertFavoriteGame(game);
             });
+          }
+        });
+  }
+
+  private void setUpRatingBar()
+  {
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      gameReview = new GameReview(id, ratingBar.getRating());
+      viewModel.postReview(gameReview);
+    });
+  }
+
+  private void getGeekAverageRating()
+  {
+    List<GameReview> gr = new ArrayList<>();
+    viewModel.getGameReviews().observe(getViewLifecycleOwner(), gameReviews -> {
+      for (GameReview review : gameReviews)
+      {
+        if (review.getGameId() == id)
+        {
+          gr.add(review);
+        }
+      }
+      String averageValue = String.valueOf(viewModel.calculateAverage(gr));
+      geekRating.setText(averageValue);
+    });
+  }
+
+  private void checkIfSignedIn()
+  {
+    viewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            ratingBar.setVisibility(View.VISIBLE);
+          }
+          else
+          {
+            ratingBar.setVisibility(View.GONE);
           }
         });
   }

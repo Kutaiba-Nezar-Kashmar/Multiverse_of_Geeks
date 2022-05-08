@@ -22,16 +22,28 @@
                 android:id="@+id/single_game_poster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mog_log_background"
+                android:src="@drawable/place_holder_pic"
                 android:minHeight="500dp"
                 android:layout_marginTop="@dimen/edit_text_margin" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <RatingBar
+                    android:id="@+id/game_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
         <Button
                 android:id="@+id/game_fav_button_id"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/fav_border_ic"
-                android:layout_gravity="end" />
+                android:layout_marginStart="@dimen/edit_text_top_margin"/>
+        </LinearLayout>
+
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +76,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/ratting"
+                    android:text="@string/rawg_ratings"
                     android:textStyle="bold" />
 
             <TextView
@@ -74,6 +86,29 @@
                     android:layout_weight="1"
                     android:text="@string/home_text"
                     app:drawableStartCompat="@drawable/ratting_ic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/edit_text_margin">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/myapp_ratting"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/geek_game_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"
+                    app:drawableStartCompat="@drawable/my_rating_ic" />
 
         </LinearLayout>
 

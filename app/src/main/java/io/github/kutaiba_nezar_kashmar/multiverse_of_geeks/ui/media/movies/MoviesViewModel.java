@@ -17,8 +17,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Mo
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepositoryImpl;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.movie.MovieReviewRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.media.movie.MovieReviewRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.movie.MovieReviewRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.movie.MovieReviewRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
 
@@ -48,7 +48,7 @@ public class MoviesViewModel extends AndroidViewModel
     movieReviewRepository.postReview(movieReview, userId);
   }
 
-  LiveData<List<MovieReview>> getMovieReviews()
+  public LiveData<List<MovieReview>> getMovieReviews()
   {
     return movieReviewRepository.getMovieReviews();
   }
