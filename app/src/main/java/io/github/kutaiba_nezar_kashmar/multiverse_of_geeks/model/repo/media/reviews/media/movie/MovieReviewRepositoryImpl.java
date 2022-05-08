@@ -20,19 +20,15 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   private static MovieReviewRepositoryImpl instance;
   private final FirebaseDatabase firebaseDatabase;
   private DatabaseReference reference;
-  private final MutableLiveData<Boolean> isReviewed;
-  private final MutableLiveData<MovieReview> movieReview;
-  private final MutableLiveData<Float> averageReviews;
+  private final MutableLiveData<MovieReview> myMovieReview;
   private final MutableLiveData<List<MovieReview>> movieReviews;
 
   private MovieReviewRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference();
-    isReviewed = new MutableLiveData<>();
-    movieReview = new MutableLiveData<>();
-    averageReviews = new MutableLiveData<>();
     movieReviews = new MutableLiveData<>();
+    myMovieReview = new MutableLiveData<>();
   }
 
   public static synchronized MovieReviewRepositoryImpl getInstance()
@@ -49,7 +45,6 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   {
     reference.child("users").child(userId)
         .child("movieReview" + movieReview.getMovieId()).setValue(movieReview);
-    isReviewed.setValue(true);
   }
 
   @Override

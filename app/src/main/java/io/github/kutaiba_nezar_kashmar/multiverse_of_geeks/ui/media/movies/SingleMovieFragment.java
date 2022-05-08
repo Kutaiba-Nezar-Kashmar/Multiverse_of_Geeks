@@ -234,7 +234,6 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
-
   private void setUpAdapterView()
   {
     movieReviewsAdapter = new MovieReviewsAdapter(comments);
