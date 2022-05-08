@@ -53,20 +53,20 @@ public class MoviesViewModel extends AndroidViewModel
     movieReviewRepository.postReview(movieReview);
   }
 
-  public void updateReview(MovieReview movieReview)
+  /*public void updateReview(MovieReview movieReview)
   {
     movieReviewRepository.updateReview(movieReview);
-  }
+  }*/
 
-  public LiveData<MovieReview> getMovieReview()
+  public LiveData<MovieReview> getMovieReview(int movieId)
   {
-    return movieReviewRepository.getReviews();
+    return movieReviewRepository.getReviews(movieId);
   }
 
-  public LiveData<Boolean> isReviewed()
+ /* public LiveData<Boolean> isReviewed()
   {
     return movieReviewRepository.getIsReviewed();
-  }
+  }*/
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
   {

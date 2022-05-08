@@ -106,30 +106,12 @@ public class SingleMovieFragment extends Fragment
       Navigation.findNavController(view).navigate(action);
     });
 
-    checkReview();
-
     ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
       review = new MovieReview(ratingBar.getRating(), movieId);
-      if (!isReviewed)
-      {
-        moviesViewModel.postReview(review);
-      }
-      else
-      {
-        moviesViewModel.updateReview(review);
-      }
+      moviesViewModel.postReview(review);
     });
-
-
 
     return root;
-  }
-
-  private void checkReview()
-  {
-    moviesViewModel.isReviewed().observe(getViewLifecycleOwner(), aBoolean -> {
-      isReviewed = aBoolean;
-    });
   }
 
   private void checkIfSignedIn()
@@ -140,13 +122,16 @@ public class SingleMovieFragment extends Fragment
           {
             ratingBar.setVisibility(View.VISIBLE);
             moviesViewModel.init();
-            moviesViewModel.getMovieReview().observe(getViewLifecycleOwner(), movieReview -> {
-              if (movieReview != null)
-              {
-                System.out.println("+++++++++++++++++++++++++++++++++++++" + movieReview.getRating());
-                geekRating.setText(String.valueOf(movieReview.getRating()));
-              }
-            });
+            moviesViewModel.getMovieReview(movieId)
+                .observe(getViewLifecycleOwner(), movieReview -> {
+                  if (movieReview != null)
+                  {
+                    System.out.println(
+                        "+++++++++++++++++++++++++++++++++++++" + movieReview
+                            .getRating());
+                    geekRating.setText(String.valueOf(movieReview.getRating()));
+                  }
+                });
           }
           else
           {

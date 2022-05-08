@@ -9,8 +9,7 @@ public interface MovieReviewRepository
 {
   void init(String userId);
   void postReview(MovieReview movieReview);
-  void updateReview(MovieReview movieReview);
   void deleteReview(MovieReview movieReview);
-  MovieReviewLiveData getReviews();
-  LiveData<Boolean> getIsReviewed();
+  MovieReviewLiveData getReviews(int movieId);
+  LiveData<Float> getAverageRating(int MovieId);
 }

@@ -25,12 +25,14 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   private MovieReviewLiveData review;
   private final MutableLiveData<Boolean> isReviewed;
   private final MutableLiveData<MovieReview> movieReview;
+  private final MutableLiveData<Float> average;
 
   private MovieReviewRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
     isReviewed = new MutableLiveData<>();
     movieReview = new MutableLiveData<>();
+    average = new MutableLiveData<>();
   }
 
   public static synchronized MovieReviewRepositoryImpl getInstance()
@@ -46,52 +48,17 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   public void init(String userId)
   {
     reference = firebaseDatabase.getReference().child("users")
-        .child(userId);
-    review = new MovieReviewLiveData(reference);
+        .child(userId).child("movieReview");
   }
 
   @Override
   public void postReview(MovieReview movieReview)
   {
-    reference.setValue(movieReview);
+    reference.child("movieReview" + movieReview.getMovieId()).setValue(movieReview);
     isReviewed.setValue(true);
   }
 
   //TODO: avoid duplicate on update and create
-  @Override
-  public void updateReview(MovieReview movieReview)
-  {
-    reference.orderByChild("rating").equalTo(String.valueOf(movieReview.getRating()))
-        .addListenerForSingleValueEvent(new ValueEventListener()
-        {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot snapshot)
-          {
-            if (snapshot.exists())
-            {
-              isReviewed.setValue(true);
-              for (DataSnapshot ds : snapshot.getChildren())
-              {
-                String key = ds.getKey();
-                int movieId = Integer
-                    .parseInt(ds.child("movieId").getValue().toString());
-                float rating = Float
-                    .parseFloat(ds.child("rating").getValue().toString());
-                reference.child(key).child("movieId").setValue(movieId);
-                reference.child(key).child("rating")
-                    .setValue(movieReview.getRating());
-              }
-            }
-            isReviewed.setValue(false);
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError error)
-          {
-
-          }
-        });
-  }
 
   @Override
   public void deleteReview(MovieReview movieReview)
@@ -100,14 +67,16 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   }
 
   @Override
-  public MovieReviewLiveData getReviews()
+  public MovieReviewLiveData getReviews(int movieId)
   {
+    review = new MovieReviewLiveData(reference.child("movieReview" + movieId));
     return review;
   }
 
+
   @Override
-  public LiveData<Boolean> getIsReviewed()
+  public LiveData<Float> getAverageRating(int MovieId)
   {
-    return isReviewed;
+    return null;
   }
 }
