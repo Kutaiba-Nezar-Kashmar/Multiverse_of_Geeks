@@ -111,6 +111,11 @@ public class SingleMovieFragment extends Fragment
       moviesViewModel.postReview(review);
     });
 
+    moviesViewModel.getMovieReview(movieId).observe(getViewLifecycleOwner(), aFloat -> {
+      String average = String.valueOf(aFloat);
+      geekRating.setText(average);
+    });
+
     return root;
   }
 
@@ -121,8 +126,7 @@ public class SingleMovieFragment extends Fragment
           if (firebaseUser != null)
           {
             ratingBar.setVisibility(View.VISIBLE);
-            moviesViewModel.init();
-            moviesViewModel.getMovieReview(movieId)
+           /* moviesViewModel.getMovieReview(movieId)
                 .observe(getViewLifecycleOwner(), movieReview -> {
                   if (movieReview != null)
                   {
@@ -131,7 +135,7 @@ public class SingleMovieFragment extends Fragment
                             .getRating());
                     geekRating.setText(String.valueOf(movieReview.getRating()));
                   }
-                });
+                });*/
           }
           else
           {

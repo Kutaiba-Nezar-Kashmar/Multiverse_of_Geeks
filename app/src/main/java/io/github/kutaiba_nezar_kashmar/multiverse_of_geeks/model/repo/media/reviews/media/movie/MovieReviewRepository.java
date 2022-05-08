@@ -3,13 +3,10 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.rev
 import androidx.lifecycle.LiveData;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.media.movie.MovieReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.media.movie.MovieReviewLiveData;
 
 public interface MovieReviewRepository
 {
-  void init(String userId);
-  void postReview(MovieReview movieReview);
+  void postReview(MovieReview movieReview, String userId);
   void deleteReview(MovieReview movieReview);
-  MovieReviewLiveData getReviews(int movieId);
-  LiveData<Float> getAverageRating(int MovieId);
+  LiveData<Float> getReviews(int movieId);
 }

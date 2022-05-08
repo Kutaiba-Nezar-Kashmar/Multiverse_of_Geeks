@@ -37,11 +37,6 @@ public class MoviesViewModel extends AndroidViewModel
     movieReviewRepository = MovieReviewRepositoryImpl.getInstance();
   }
 
-  public void init()
-  {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
-    movieReviewRepository.init(userId);
-  }
 
   public LiveData<FirebaseUser> getCurrentUser()
   {
@@ -50,23 +45,14 @@ public class MoviesViewModel extends AndroidViewModel
 
   public void postReview(MovieReview movieReview)
   {
-    movieReviewRepository.postReview(movieReview);
+    String userId = userRepository.getCurrentUser().getValue().getUid();
+    movieReviewRepository.postReview(movieReview, userId);
   }
 
-  /*public void updateReview(MovieReview movieReview)
-  {
-    movieReviewRepository.updateReview(movieReview);
-  }*/
-
-  public LiveData<MovieReview> getMovieReview(int movieId)
+  public LiveData<Float> getMovieReview(int movieId)
   {
     return movieReviewRepository.getReviews(movieId);
   }
-
- /* public LiveData<Boolean> isReviewed()
-  {
-    return movieReviewRepository.getIsReviewed();
-  }*/
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
   {
