@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -23,7 +24,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
@@ -40,6 +42,7 @@ public class SingleMovieFragment extends Fragment
   private MovieReviewsAdapter movieReviewsAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private MovieReview review;
+  private MovieComment comment;
   private final List<Comment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
@@ -63,6 +66,8 @@ public class SingleMovieFragment extends Fragment
   private Button toSimilarButton;
   private Button toCastButton;
   private RatingBar ratingBar;
+  private Button commentButton;
+  private EditText commentField;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -92,10 +97,13 @@ public class SingleMovieFragment extends Fragment
     ratingBar = root.findViewById(R.id.movie_rating_bar);
     geekRating = root.findViewById(R.id.single_movie_rating_geek);
     toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
+    commentButton = root.findViewById(R.id.post_comment_button);
+    commentField = root.findViewById(R.id.movie_comment_field);
     setUpToCastButton();
     setUpSimilarButton();
     setUpRatingBar();
     getGeekAverageRating();
+    setUpCommentButton();
     return root;
   }
 
@@ -218,6 +226,15 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
+  private void setUpCommentButton()
+  {
+    commentButton.setOnClickListener(view -> {
+      comment = new MovieComment(movieId, commentField.getText().toString());
+      moviesViewModel.postComment(comment);
+      commentField.getText().clear();
+    });
+  }
+
   private void checkIfSignedIn()
   {
     moviesViewModel.getCurrentUser()
@@ -225,10 +242,14 @@ public class SingleMovieFragment extends Fragment
           if (firebaseUser != null)
           {
             ratingBar.setVisibility(View.VISIBLE);
+            commentField.setVisibility(View.VISIBLE);
+            commentButton.setVisibility(View.VISIBLE);
           }
           else
           {
             ratingBar.setVisibility(View.GONE);
+            commentField.setVisibility(View.GONE);
+            commentButton.setVisibility(View.GONE);
           }
         });
   }
