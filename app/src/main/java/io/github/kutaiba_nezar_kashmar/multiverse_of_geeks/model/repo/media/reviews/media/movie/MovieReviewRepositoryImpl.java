@@ -23,6 +23,7 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   private final MutableLiveData<Boolean> isReviewed;
   private final MutableLiveData<MovieReview> movieReview;
   private final MutableLiveData<Float> averageReviews;
+  private final MutableLiveData<List<MovieReview>> movieReviews;
 
   private MovieReviewRepositoryImpl()
   {
@@ -31,6 +32,7 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
     isReviewed = new MutableLiveData<>();
     movieReview = new MutableLiveData<>();
     averageReviews = new MutableLiveData<>();
+    movieReviews = new MutableLiveData<>();
   }
 
   public static synchronized MovieReviewRepositoryImpl getInstance()
@@ -56,18 +58,16 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
 
   }
 
-  //TODO: Find a way to return results for only one movie
   @Override
-  public LiveData<Float> getReviews(int movieId)
+  public LiveData<List<MovieReview>> getMovieReviews()
   {
     reference.child("users");
+    List<MovieReview> reviewList = new ArrayList<>();
     ValueEventListener listener = new ValueEventListener()
     {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot)
       {
-        List<Float> ratings = new ArrayList<>();
-        List<String> users = new ArrayList<>();
         Float average = 0.0F;
         for (DataSnapshot ds : snapshot.getChildren())
         {
@@ -75,18 +75,12 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
           {
             for (DataSnapshot dsst : dss.getChildren())
             {
-              Float rating = dsst.child("rating").getValue(Float.class);
-              ratings.add(rating);
+              MovieReview movieReview = dsst.getValue(MovieReview.class);
+              reviewList.add(movieReview);
             }
           }
         }
-        float sum = 0;
-        for (Float f : ratings)
-        {
-          sum += f;
-        }
-        average = (sum / ratings.size() * 2);
-        averageReviews.postValue(average);
+        movieReviews.postValue(reviewList);
       }
 
       @Override
@@ -96,6 +90,6 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
       }
     };
     reference.addListenerForSingleValueEvent(listener);
-    return averageReviews;
+    return movieReviews;
   }
 }

@@ -37,7 +37,6 @@ public class MoviesViewModel extends AndroidViewModel
     movieReviewRepository = MovieReviewRepositoryImpl.getInstance();
   }
 
-
   public LiveData<FirebaseUser> getCurrentUser()
   {
     return userRepository.getCurrentUser();
@@ -49,9 +48,19 @@ public class MoviesViewModel extends AndroidViewModel
     movieReviewRepository.postReview(movieReview, userId);
   }
 
-  public LiveData<Float> getMovieReview(int movieId)
+  LiveData<List<MovieReview>> getMovieReviews()
   {
-    return movieReviewRepository.getReviews(movieId);
+    return movieReviewRepository.getMovieReviews();
+  }
+
+  public float calculateAverage(List<MovieReview> movieReviews)
+  {
+    float total = 0;
+    for (MovieReview mr : movieReviews)
+    {
+      total += mr.getRating();
+    }
+    return total / movieReviews.size();
   }
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()

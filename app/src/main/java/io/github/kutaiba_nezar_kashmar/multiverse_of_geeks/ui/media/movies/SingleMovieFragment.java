@@ -38,14 +38,14 @@ public class SingleMovieFragment extends Fragment
 {
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
-  private RecyclerView commentsRecyclerView;
   private MovieReviewsAdapter movieReviewsAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
+  private MovieReview review;
   private final List<Comment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
-  private boolean isReviewed = false;
-  private MovieReview review;
+  private RecyclerView commentsRecyclerView;
+  private RecyclerView companyRv;
   private TextView movieTitle;
   private TextView movieTagline;
   private TextView budget;
@@ -54,15 +54,16 @@ public class SingleMovieFragment extends Fragment
   private TextView homePage;
   private TextView collectionName;
   private TextView collectionHeader;
-  private ImageView collectionPoster;
-  private RecyclerView companyRv;
   private TextView movieOverview;
   private TextView movieReleaseYear;
   private TextView movieRatting;
+  private TextView geekRating;
+  private ImageView collectionPoster;
   private ImageView moviePoster;
   private Button favButton;
+  private Button toSimilarButton;
+  private Button toCastButton;
   private RatingBar ratingBar;
-  private TextView geekRating;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -79,7 +80,7 @@ public class SingleMovieFragment extends Fragment
     movieRatting = root.findViewById(R.id.single_movie_rating);
     moviePoster = root.findViewById(R.id.single_movie_image);
     commentsRecyclerView = root.findViewById(R.id.movie_coming_rv_id);
-    Button toCastButton = root.findViewById(R.id.to_movie_cast_button);
+    toCastButton = root.findViewById(R.id.to_movie_cast_button);
     movieTagline = root.findViewById(R.id.single_movie_tagline);
     budget = root.findViewById(R.id.movie_budget);
     revenue = root.findViewById(R.id.movie_revenue);
@@ -91,57 +92,12 @@ public class SingleMovieFragment extends Fragment
     companyRv = root.findViewById(R.id.movie_production_companies_rv);
     ratingBar = root.findViewById(R.id.movie_rating_bar);
     geekRating = root.findViewById(R.id.single_movie_rating_geek);
-    toCastButton.setOnClickListener(view -> {
-      SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
-          .actionNavSingleMovieToNavMovieCast();
-      action.setMovieId(String.valueOf(movieId));
-      Navigation.findNavController(view).navigate(action);
-    });
-
-    Button toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
-    toSimilarButton.setOnClickListener(view -> {
-      SingleMovieFragmentDirections.ActionNavSingleMovieToNavSimilarMovies action = SingleMovieFragmentDirections
-          .actionNavSingleMovieToNavSimilarMovies()
-          .setMovieId(String.valueOf(movieId));
-      Navigation.findNavController(view).navigate(action);
-    });
-
-    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
-      review = new MovieReview(ratingBar.getRating(), movieId);
-      moviesViewModel.postReview(review);
-    });
-
-    moviesViewModel.getMovieReview(movieId).observe(getViewLifecycleOwner(), aFloat -> {
-      String average = String.valueOf(aFloat);
-      geekRating.setText(average);
-    });
-
+    toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
+    setUpToCastButton();
+    setUpSimilarButton();
+    setUpRatingBar();
+    getGeekAverageRating();
     return root;
-  }
-
-  private void checkIfSignedIn()
-  {
-    moviesViewModel.getCurrentUser()
-        .observe(getViewLifecycleOwner(), firebaseUser -> {
-          if (firebaseUser != null)
-          {
-            ratingBar.setVisibility(View.VISIBLE);
-           /* moviesViewModel.getMovieReview(movieId)
-                .observe(getViewLifecycleOwner(), movieReview -> {
-                  if (movieReview != null)
-                  {
-                    System.out.println(
-                        "+++++++++++++++++++++++++++++++++++++" + movieReview
-                            .getRating());
-                    geekRating.setText(String.valueOf(movieReview.getRating()));
-                  }
-                });*/
-          }
-          else
-          {
-            ratingBar.setVisibility(View.INVISIBLE);
-          }
-        });
   }
 
   @Override
@@ -216,6 +172,68 @@ public class SingleMovieFragment extends Fragment
     super.onDestroyView();
     binding = null;
   }
+
+  private void setUpToCastButton()
+  {
+    toCastButton.setOnClickListener(view -> {
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
+          .actionNavSingleMovieToNavMovieCast();
+      action.setMovieId(String.valueOf(movieId));
+      Navigation.findNavController(view).navigate(action);
+    });
+  }
+
+  private void setUpSimilarButton()
+  {
+    toSimilarButton.setOnClickListener(view -> {
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavSimilarMovies action = SingleMovieFragmentDirections
+          .actionNavSingleMovieToNavSimilarMovies()
+          .setMovieId(String.valueOf(movieId));
+      Navigation.findNavController(view).navigate(action);
+    });
+  }
+
+  private void setUpRatingBar()
+  {
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      review = new MovieReview(ratingBar.getRating(), movieId);
+      moviesViewModel.postReview(review);
+    });
+  }
+
+  private void getGeekAverageRating()
+  {
+    List<MovieReview> mr = new ArrayList<>();
+    moviesViewModel.getMovieReviews()
+        .observe(getViewLifecycleOwner(), movieReviews -> {
+          for (MovieReview movieReview : movieReviews)
+          {
+            if (movieReview.getMovieId() == movieId)
+            {
+              mr.add(movieReview);
+            }
+          }
+          String averageValue = String
+              .valueOf(moviesViewModel.calculateAverage(mr));
+          geekRating.setText(averageValue);
+        });
+  }
+
+  private void checkIfSignedIn()
+  {
+    moviesViewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            ratingBar.setVisibility(View.VISIBLE);
+          }
+          else
+          {
+            ratingBar.setVisibility(View.INVISIBLE);
+          }
+        });
+  }
+
 
   private void setUpAdapterView()
   {
