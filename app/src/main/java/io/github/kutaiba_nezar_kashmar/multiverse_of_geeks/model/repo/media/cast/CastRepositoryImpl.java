@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class CastRepositoryImpl implements CastRepository
 {
-  private static CastRepositoryImpl instance;
+  private static CastRepository instance;
   private final MutableLiveData<List<Cast>> movieCast;
   private final MutableLiveData<List<Cast>> tvCast;
 
@@ -28,7 +28,7 @@ public class CastRepositoryImpl implements CastRepository
     tvCast = new MutableLiveData<>();
   }
 
-  public static synchronized CastRepositoryImpl getInstance()
+  public static synchronized CastRepository getInstance()
   {
     if (instance == null)
     {

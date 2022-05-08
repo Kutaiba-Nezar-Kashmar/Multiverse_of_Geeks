@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class TVShowRepositoryImpl implements TvShowRepository
 {
-  private static TVShowRepositoryImpl instance;
+  private static TvShowRepository instance;
   private final ExecutorService executorService;
   private final TVShowDAO tvShowDAO;
   private final LiveData<List<SingleTvShowResponse>> favoriteTvShows;
@@ -55,7 +55,7 @@ public class TVShowRepositoryImpl implements TvShowRepository
     tvReviews = new MutableLiveData<>();
   }
 
-  public static synchronized TVShowRepositoryImpl getInstance(
+  public static synchronized TvShowRepository getInstance(
       Application application)
   {
     if (instance == null)

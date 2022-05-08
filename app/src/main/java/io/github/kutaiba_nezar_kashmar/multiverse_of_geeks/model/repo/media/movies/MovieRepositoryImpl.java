@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class MovieRepositoryImpl implements MovieRepository
 {
-  private static MovieRepositoryImpl instance;
+  private static MovieRepository instance;
   private final LiveData<List<SingleMovieResponse>> favoritMovies;
   private final LiveData<SingleMovieResponse> singleFavoriteMovie;
   private final MutableLiveData<SingleMovieResponse> singleMovie;
@@ -59,7 +59,7 @@ public class MovieRepositoryImpl implements MovieRepository
     movieReviews = new MutableLiveData<>();
   }
 
-  public static synchronized MovieRepositoryImpl getInstance(
+  public static synchronized MovieRepository getInstance(
       Application application)
   {
     if (instance == null)

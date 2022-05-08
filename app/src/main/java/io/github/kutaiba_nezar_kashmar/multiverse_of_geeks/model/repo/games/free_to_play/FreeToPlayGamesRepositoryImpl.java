@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
 {
-  private static FreeToPlayGamesRepositoryImpl instance;
+  private static FreeToPlayGamesRepository instance;
   private FreeToPlayGamesClient client;
   private final MutableLiveData<FreeToPlayGameResponse> freeToPlayGame;
   private final MutableLiveData<List<AllFreeToPlayGamesResponse>> freeToPlayGames;
@@ -28,7 +28,7 @@ public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
     freeToPlayGames = new MutableLiveData<>();
   }
 
-  public static synchronized FreeToPlayGamesRepositoryImpl getInstance()
+  public static synchronized FreeToPlayGamesRepository getInstance()
   {
     if (instance == null)
     {

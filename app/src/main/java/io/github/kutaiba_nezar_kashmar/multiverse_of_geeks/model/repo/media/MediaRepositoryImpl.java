@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class MediaRepositoryImpl implements MediaRepository
 {
-  private static MediaRepositoryImpl instance;
+  private static MediaRepository instance;
   private final MutableLiveData<List<Trending>> trending;
 
   private MediaRepositoryImpl()
@@ -25,7 +25,7 @@ public class MediaRepositoryImpl implements MediaRepository
     trending = new MutableLiveData<>();
   }
 
-  public static synchronized MediaRepositoryImpl getInstance()
+  public static synchronized MediaRepository getInstance()
   {
     if (instance == null)
     {

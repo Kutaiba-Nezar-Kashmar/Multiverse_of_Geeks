@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.TvReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
@@ -47,6 +50,7 @@ public class SingleTvFragment extends Fragment
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private List<TvShowCreatorResponse> creatorResponses = new ArrayList<>();
   private List<TvShowNetworkResponse> tvShowNetworkResponses = new ArrayList<>();
+  private TvReview review;
   private int tvId;
   private TextView tvTitle;
   private TextView tvOverview;
@@ -71,6 +75,9 @@ public class SingleTvFragment extends Fragment
   private RecyclerView networkRv;
   private RecyclerView productionCompanyRv;
   private Button favButton;
+  private RatingBar ratingBar;
+  private TextView geekRating;
+
 
   @Nullable
   @Override
@@ -81,6 +88,7 @@ public class SingleTvFragment extends Fragment
 
     binding = FragmentSingleTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+    checkIfSignedIn();
     favButton = root.findViewById(R.id.tv_fav_button_id);
     tvTitle = root.findViewById(R.id.single_tv_title);
     tvOverview = root.findViewById(R.id.tv_overview);
@@ -104,6 +112,8 @@ public class SingleTvFragment extends Fragment
     creatorRv = root.findViewById(R.id.tv_creator_rv);
     networkRv = root.findViewById(R.id.tv_network_rv);
     productionCompanyRv = root.findViewById(R.id.tv_production_company_rv);
+    ratingBar = root.findViewById(R.id.tv_ratting_bar);
+    geekRating = root.findViewById(R.id.geek_tv_rating);
     return root;
   }
 
@@ -162,6 +172,49 @@ public class SingleTvFragment extends Fragment
       setUpNetworkRv(view);
     }
     setCommentRv(view);
+    setUpRatingBar();
+    getGeekAverageRating();
+  }
+
+  private void checkIfSignedIn()
+  {
+    tvShowsViewModel.getCurrentUser()
+        .observe(getViewLifecycleOwner(), firebaseUser -> {
+          if (firebaseUser != null)
+          {
+            ratingBar.setVisibility(View.VISIBLE);
+          }
+          else
+          {
+            ratingBar.setVisibility(View.INVISIBLE);
+          }
+        });
+  }
+
+  private void setUpRatingBar()
+  {
+    ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+      review = new TvReview(ratingBar.getRating(), tvId);
+      tvShowsViewModel.postReview(review);
+    });
+  }
+
+  private void getGeekAverageRating()
+  {
+    List<TvReview> mr = new ArrayList<>();
+    tvShowsViewModel.getTvReviews()
+        .observe(getViewLifecycleOwner(), tvReviews -> {
+          for (TvReview tvReview : tvReviews)
+          {
+            if (tvReview.getTvId() == tvId)
+            {
+              mr.add(tvReview);
+            }
+          }
+          String averageValue = String
+              .valueOf(tvShowsViewModel.calculateAverage(mr));
+          geekRating.setText(averageValue);
+        });
   }
 
   private void setCommentRv(@NonNull View view)

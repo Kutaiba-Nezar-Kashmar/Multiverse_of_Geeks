@@ -12,10 +12,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Us
 
 public class UserRepositoryImpl implements UserRepository
 {
+  private static UserRepository instance;
   private FirebaseAuth firebaseAuth;
   private final Application application;
   private final UserLiveData user;
-  private static UserRepositoryImpl instance;
 
   private UserRepositoryImpl(Application application)
   {
@@ -24,7 +24,7 @@ public class UserRepositoryImpl implements UserRepository
     this.firebaseAuth = FirebaseAuth.getInstance();
   }
 
-  public static synchronized UserRepositoryImpl getInstance(
+  public static synchronized UserRepository getInstance(
       Application application)
   {
     if (instance == null)

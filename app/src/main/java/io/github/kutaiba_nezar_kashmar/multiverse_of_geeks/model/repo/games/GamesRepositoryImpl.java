@@ -23,7 +23,7 @@ import retrofit2.Response;
 
 public class GamesRepositoryImpl implements GamesRepository
 {
-  private static GamesRepositoryImpl instance;
+  private static GamesRepository instance;
   private final ExecutorService executorService;
   private final GameDAO gameDAO;
   private final LiveData<List<Game>> favoriteGames;
@@ -44,7 +44,7 @@ public class GamesRepositoryImpl implements GamesRepository
     searchedGames = new MutableLiveData<>();
   }
 
-  public static synchronized GamesRepositoryImpl getInstance(
+  public static synchronized GamesRepository getInstance(
       Application application)
   {
     if (instance == null)

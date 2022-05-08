@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="35sp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
         <TextView
                 android:id="@+id/single_movie_tagline"
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="25sp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
         <ImageView
                 android:id="@+id/single_movie_image"
@@ -45,12 +45,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-        <Button
-                android:id="@+id/movie_fav_button_id"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/fav_border_ic"
-                android:layout_marginStart="@dimen/edit_text_top_margin"/>
+            <Button
+                    android:id="@+id/movie_fav_button_id"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/fav_border_ic"
+                    android:layout_marginStart="@dimen/edit_text_top_margin" />
 
         </LinearLayout>
 
@@ -67,14 +67,14 @@
                     android:layout_weight="1"
                     android:text="@string/tmdp_ratting"
                     android:paddingTop="4dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_movie_rating"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:drawableStartCompat="@drawable/ratting_ic"/>
+                    app:drawableStartCompat="@drawable/ratting_ic" />
 
         </LinearLayout>
 
@@ -91,14 +91,14 @@
                     android:layout_weight="1"
                     android:text="@string/myapp_ratting"
                     android:paddingTop="4dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_movie_rating_geek"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:drawableStartCompat="@drawable/my_rating_ic"/>
+                    app:drawableStartCompat="@drawable/my_rating_ic" />
 
         </LinearLayout>
 
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/r_year"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/movie_release_year"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/movie_budget"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/movie_budget"
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/movie_revenue"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/movie_revenue"
@@ -179,13 +179,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/game_genre"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/movie_genre"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -195,7 +195,7 @@
                 android:text="@string/home_page"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <TextView
                 android:id="@+id/movie_home_page"
@@ -212,13 +212,13 @@
                 android:text="@string/movie_collection"
                 android:textSize="25sp"
                 android:layout_marginTop="@dimen/edit_text_margin"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         <TextView
                 android:id="@+id/movie_collection_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_text"/>
+                android:text="@string/home_text" />
 
         <ImageView
                 android:id="@+id/movie_collection_poster"
@@ -226,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/mog_log_background"
                 android:layout_gravity="center"
-                android:minHeight="400dp"/>
+                android:minHeight="400dp" />
 
         <TextView
                 android:layout_width="match_parent"
@@ -234,12 +234,12 @@
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:text="@string/production_companies"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_production_companies_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         <Button
                 android:id="@+id/to_movie_cast_button"
@@ -247,14 +247,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cast_button"
                 android:drawableEnd="@drawable/arrow_circle_right_ic"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <Button
                 android:id="@+id/to_similar_movie_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/to_similar"
-                android:drawableEnd="@drawable/arrow_circle_right_ic"/>
+                android:drawableEnd="@drawable/arrow_circle_right_ic" />
 
         <TextView
                 android:layout_width="match_parent"
@@ -262,7 +262,7 @@
                 android:text="@string/season_overview"
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         <TextView
                 android:id="@+id/movie_overview"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="35sp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
         <TextView
                 android:id="@+id/single_tv_tagline"
@@ -24,23 +24,35 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_text"
                 android:textSize="25sp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
-            <ImageView
-                    android:id="@+id/single_tv_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mog_log_background"
-                    android:contentDescription="@string/movie_image_desc"
-                    android:layout_gravity="center"
-                    android:minHeight="500dp" />
+        <ImageView
+                android:id="@+id/single_tv_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/place_holder_pic"
+                android:contentDescription="@string/movie_image_desc"
+                android:layout_gravity="center"
+                android:minHeight="500dp" />
 
-        <Button
-                android:id="@+id/tv_fav_button_id"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/fav_border_ic"
-                android:layout_gravity="end" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <RatingBar
+                    android:id="@+id/tv_ratting_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/tv_fav_button_id"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/fav_border_ic"
+                    android:layout_marginStart="@dimen/edit_text_top_margin" />
+        </LinearLayout>
+
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -51,9 +63,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/ratting"
+                    android:text="@string/tmdp_ratting"
                     android:paddingTop="4dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/single_tv_rating"
@@ -61,7 +73,31 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/home_text"
-                    app:drawableStartCompat="@drawable/ratting_ic"/>
+                    app:drawableStartCompat="@drawable/ratting_ic" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/myapp_ratting"
+                    android:paddingTop="4dp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/geek_tv_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_text"
+                    app:drawableStartCompat="@drawable/my_rating_ic" />
 
         </LinearLayout>
 
@@ -76,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/r_year"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_release_year"
@@ -98,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/episode_runtime"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_episode_runtime"
@@ -120,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/game_genre"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_genre"
@@ -142,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_episode_num"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_episode_count"
@@ -164,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_season_num"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_season_count"
@@ -186,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_status"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_status"
@@ -208,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_type"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/tv_type"
@@ -225,14 +261,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cast_button"
                 android:drawableEnd="@drawable/arrow_circle_right_ic"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <Button
                 android:id="@+id/to_tv_seasons_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/seasons_button"
-                android:drawableEnd="@drawable/arrow_circle_right_ic"/>
+                android:drawableEnd="@drawable/arrow_circle_right_ic" />
 
         <TextView
                 android:layout_width="match_parent"
@@ -240,13 +276,13 @@
                 android:text="@string/season_overview"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <TextView
                 android:id="@+id/tv_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_text"/>
+                android:text="@string/home_text" />
 
         <TextView
                 android:layout_width="match_parent"
@@ -254,7 +290,7 @@
                 android:text="@string/home_page"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <TextView
                 android:id="@+id/tv_homepage"
@@ -271,12 +307,12 @@
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="@string/created_by"/>
+                android:text="@string/created_by" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tv_creator_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         <TextView
                 android:id="@+id/tv_network_heading"
@@ -285,12 +321,12 @@
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:textSize="25sp"
                 android:text="@string/tv_network"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tv_network_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         <TextView
                 android:id="@+id/tv_production_company_heading"
@@ -299,12 +335,12 @@
                 android:layout_marginTop="@dimen/edit_text_margin"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="@string/tv_production_company_heading"/>
+                android:text="@string/tv_production_company_heading" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tv_production_company_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
