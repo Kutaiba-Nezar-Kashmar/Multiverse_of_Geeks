@@ -13,25 +13,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.adapters.MediaProductionCompanyAdapter;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MovieReviewsAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MovieCommentAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
 
@@ -39,11 +40,11 @@ public class SingleMovieFragment extends Fragment
 {
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
-  private MovieReviewsAdapter movieReviewsAdapter;
+  private MovieCommentAdapter commentAdapter;
+  private FirebaseRecyclerOptions<MovieComment> options;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private MovieReview review;
   private MovieComment comment;
-  private final List<Comment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private int movieId;
   private RecyclerView commentsRecyclerView;
@@ -104,6 +105,7 @@ public class SingleMovieFragment extends Fragment
     setUpRatingBar();
     getGeekAverageRating();
     setUpCommentButton();
+    setUpCommentRV();
     return root;
   }
 
@@ -166,11 +168,12 @@ public class SingleMovieFragment extends Fragment
       setUpCompanyRv(view);
     }
 
-    commentsRecyclerView.hasFixedSize();
-    commentsRecyclerView
-        .setLayoutManager(new LinearLayoutManager(view.getContext()));
-    setUpAdapterView();
-    commentsRecyclerView.setAdapter(movieReviewsAdapter);
+    commentsRecyclerView.setHasFixedSize(false);
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+        view.getContext());
+    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+    commentsRecyclerView.setLayoutManager(linearLayoutManager);
+    commentsRecyclerView.setAdapter(commentAdapter);
   }
 
   @Override
@@ -254,12 +257,31 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
-  private void setUpAdapterView()
+  private void setUpCommentRV()
   {
-    movieReviewsAdapter = new MovieReviewsAdapter(comments);
-    Observer<List<Comment>> update = movieReviewsAdapter::updateCommentList;
-    moviesViewModel.getAllComments(movieId)
-        .observe(getViewLifecycleOwner(), update);
+    options = new FirebaseRecyclerOptions.Builder<MovieComment>()
+        .setQuery(moviesViewModel.getMovieComments(movieId),
+            new SnapshotParser<MovieComment>()
+            {
+              MovieComment movieComment = new MovieComment();
+
+              @NonNull
+              @Override
+              public MovieComment parseSnapshot(@NonNull DataSnapshot snapshot)
+              {
+                for (DataSnapshot d : snapshot.getChildren())
+                {
+                  for (DataSnapshot ds : d.getChildren())
+                  {
+                    System.out
+                        .println("/////////////\\\\\\\\\\\\" + ds.getKey());
+                    movieComment = ds.getValue(MovieComment.class);
+                  }
+                }
+                return movieComment;
+              }
+            }).setLifecycleOwner(this).build();
+    commentAdapter = new MovieCommentAdapter(options);
   }
 
   private void setUpCompanyRv(View view)

@@ -26,7 +26,7 @@ public class TvReviewRepositoryImpl implements TvReviewRepository
   private TvReviewRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
-    reference = firebaseDatabase.getReference();
+    reference = firebaseDatabase.getReference().child("tvReview");
     tvReviews = new MutableLiveData<>();
     myTvReview = new MutableLiveData<>();
   }
@@ -43,8 +43,8 @@ public class TvReviewRepositoryImpl implements TvReviewRepository
   @Override
   public void postReview(TvReview review, String userId)
   {
-    reference.child("users").child(userId).child("tvReviews" + review.getTvId())
-        .setValue(review);
+    reference.child("users").child(userId)
+        .child(String.valueOf(review.getTvId())).setValue(review);
   }
 
   @Override
@@ -63,17 +63,18 @@ public class TvReviewRepositoryImpl implements TvReviewRepository
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot)
       {
-        for (DataSnapshot ds : snapshot.getChildren())
+        for (DataSnapshot d : snapshot.getChildren())
         {
-          for (DataSnapshot dss : ds.getChildren())
+          for (DataSnapshot ds : d.getChildren())
           {
-            for (DataSnapshot dsst : dss.getChildren())
+            for (DataSnapshot dss : ds.getChildren())
             {
-              TvReview tvReview = dsst.getValue(TvReview.class);
+              TvReview tvReview = dss.getValue(TvReview.class);
               reviewList.add(tvReview);
             }
           }
         }
+
         tvReviews.postValue(reviewList);
       }
 

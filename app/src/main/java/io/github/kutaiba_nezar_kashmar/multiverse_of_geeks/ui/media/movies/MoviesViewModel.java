@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.Query;
 
 import java.util.List;
 
@@ -74,6 +75,11 @@ public class MoviesViewModel extends AndroidViewModel
     movieCommentRepository.postComment(comment, userId);
   }
 
+  public Query getMovieComments(int movieId)
+  {
+    return movieCommentRepository.getMovieComments(movieId);
+  }
+
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
   {
     return movieRepository.getFavoriteMovies();
@@ -124,10 +130,10 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getAllSearchedMoviesMovies(arg);
   }
 
-  public LiveData<List<Comment>> getAllComments(int id)
+  /*public LiveData<List<Comment>> getAllComments(int id)
   {
     return movieRepository.getMovieReviews(id);
-  }
+  }*/
 
   public LiveData<List<Movie>> getAllSimilarMovies(int id)
   {
