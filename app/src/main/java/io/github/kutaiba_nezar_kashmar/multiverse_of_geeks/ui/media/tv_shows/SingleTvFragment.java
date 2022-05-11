@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -23,8 +24,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.TvReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
@@ -32,9 +33,9 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowCreatorResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowNetworkResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.adapters.MediaProductionCompanyAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvCommentAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvCreatorAdapter;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvNetworkAdapter;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvShowReviewsAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleTvShowBinding;
 
@@ -42,11 +43,12 @@ public class SingleTvFragment extends Fragment
 {
   private FragmentSingleTvShowBinding binding;
   private TVShowsViewModel tvShowsViewModel;
-  private TvShowReviewsAdapter adapter;
+  private TvCommentAdapter adapter;
   private TvCreatorAdapter tvCreatorAdapter;
   private TvNetworkAdapter networkAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
-  private final List<Comment> comments = new ArrayList<>();
+  private TvComment comment;
+  private final List<TvComment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private List<TvShowCreatorResponse> creatorResponses = new ArrayList<>();
   private List<TvShowNetworkResponse> tvShowNetworkResponses = new ArrayList<>();
@@ -77,7 +79,8 @@ public class SingleTvFragment extends Fragment
   private Button favButton;
   private RatingBar ratingBar;
   private TextView geekRating;
-
+  private Button commentButton;
+  private EditText commentField;
 
   @Nullable
   @Override
@@ -114,7 +117,19 @@ public class SingleTvFragment extends Fragment
     productionCompanyRv = root.findViewById(R.id.tv_production_company_rv);
     ratingBar = root.findViewById(R.id.tv_ratting_bar);
     geekRating = root.findViewById(R.id.geek_tv_rating);
+    commentButton = root.findViewById(R.id.tv_post_comment_button);
+    commentField = root.findViewById(R.id.comment_edit_text_id_tv);
+    setUpCommentButton();
     return root;
+  }
+
+  private void setUpCommentButton()
+  {
+    commentButton.setOnClickListener(view -> {
+      comment = new TvComment(tvId, commentField.getText().toString());
+      tvShowsViewModel.postComment(comment);
+      commentField.getText().clear();
+    });
   }
 
   @Override
@@ -183,10 +198,14 @@ public class SingleTvFragment extends Fragment
           if (firebaseUser != null)
           {
             ratingBar.setVisibility(View.VISIBLE);
+            commentField.setVisibility(View.VISIBLE);
+            commentButton.setVisibility(View.VISIBLE);
           }
           else
           {
-            ratingBar.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.INVISIBLE);
+            commentField.setVisibility(View.GONE);
+            commentButton.setVisibility(View.GONE);
           }
         });
   }
@@ -329,9 +348,9 @@ public class SingleTvFragment extends Fragment
 
   private void setUpAdapterView()
   {
-    adapter = new TvShowReviewsAdapter(comments);
-    Observer<List<Comment>> update = adapter::updateCommentList;
-    tvShowsViewModel.getAllComments(tvId)
+    adapter = new TvCommentAdapter(comments);
+    Observer<List<TvComment>> update = adapter::updateTvCommentList;
+    tvShowsViewModel.getTvComments(tvId)
         .observe(getViewLifecycleOwner(), update);
   }
 

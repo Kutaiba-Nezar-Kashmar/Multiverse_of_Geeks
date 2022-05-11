@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,17 +20,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.adapters.MediaProductionCompanyAdapter;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MovieReviewsAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MovieCommentAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleMovieBinding;
 
@@ -37,11 +39,13 @@ public class SingleMovieFragment extends Fragment
 {
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
-  private MovieReviewsAdapter movieReviewsAdapter;
+  private MovieCommentAdapter commentAdapter;
+  private FirebaseRecyclerOptions<MovieComment> options;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private MovieReview review;
-  private final List<Comment> comments = new ArrayList<>();
+  private MovieComment comment;
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private List<MovieComment> comments = new ArrayList<>();
   private int movieId;
   private RecyclerView commentsRecyclerView;
   private RecyclerView companyRv;
@@ -63,6 +67,8 @@ public class SingleMovieFragment extends Fragment
   private Button toSimilarButton;
   private Button toCastButton;
   private RatingBar ratingBar;
+  private Button commentButton;
+  private EditText commentField;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -92,10 +98,13 @@ public class SingleMovieFragment extends Fragment
     ratingBar = root.findViewById(R.id.movie_rating_bar);
     geekRating = root.findViewById(R.id.single_movie_rating_geek);
     toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
+    commentButton = root.findViewById(R.id.post_comment_button);
+    commentField = root.findViewById(R.id.movie_comment_field);
     setUpToCastButton();
     setUpSimilarButton();
     setUpRatingBar();
     getGeekAverageRating();
+    setUpCommentButton();
     return root;
   }
 
@@ -156,13 +165,8 @@ public class SingleMovieFragment extends Fragment
             setUpFavorite(movie);
           });
       setUpCompanyRv(view);
+      setUpCommentRV(view);
     }
-
-    commentsRecyclerView.hasFixedSize();
-    commentsRecyclerView
-        .setLayoutManager(new LinearLayoutManager(view.getContext()));
-    setUpAdapterView();
-    commentsRecyclerView.setAdapter(movieReviewsAdapter);
   }
 
   @Override
@@ -218,6 +222,15 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
+  private void setUpCommentButton()
+  {
+    commentButton.setOnClickListener(view -> {
+      comment = new MovieComment(movieId, commentField.getText().toString());
+      moviesViewModel.postComment(comment);
+      commentField.getText().clear();
+    });
+  }
+
   private void checkIfSignedIn()
   {
     moviesViewModel.getCurrentUser()
@@ -225,20 +238,29 @@ public class SingleMovieFragment extends Fragment
           if (firebaseUser != null)
           {
             ratingBar.setVisibility(View.VISIBLE);
+            commentField.setVisibility(View.VISIBLE);
+            commentButton.setVisibility(View.VISIBLE);
           }
           else
           {
-            ratingBar.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.INVISIBLE);
+            commentField.setVisibility(View.GONE);
+            commentButton.setVisibility(View.GONE);
           }
         });
   }
 
-  private void setUpAdapterView()
+  private void setUpCommentRV(View view)
   {
-    movieReviewsAdapter = new MovieReviewsAdapter(comments);
-    Observer<List<Comment>> update = movieReviewsAdapter::updateCommentList;
-    moviesViewModel.getAllComments(movieId)
+    commentAdapter = new MovieCommentAdapter(comments);
+    Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
+    moviesViewModel.getMovieComments(movieId)
         .observe(getViewLifecycleOwner(), update);
+    commentsRecyclerView.hasFixedSize();
+    commentsRecyclerView.setLayoutManager(
+        new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,
+            false));
+    commentsRecyclerView.setAdapter(commentAdapter);
   }
 
   private void setUpCompanyRv(View view)

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class TvShowReviewsAdapter
-    extends RecyclerView.Adapter<TvShowReviewsAdapter.TvCommentViewHolder>
+public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCommentViewHolder>
 {
-  private List<Comment> comments;
+  private List<TvComment> comments;
 
-  public TvShowReviewsAdapter(List<Comment> comments)
+  public TvCommentAdapter(List<TvComment> comments)
   {
     this.comments = comments;
   }
@@ -31,7 +30,7 @@ public class TvShowReviewsAdapter
       int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater.inflate(R.layout.tv_comment_item, parent, false);
+    View view = inflater.inflate(R.layout.comment_item, parent, false);
     return new TvCommentViewHolder(view);
   }
 
@@ -39,9 +38,7 @@ public class TvShowReviewsAdapter
   public void onBindViewHolder(@NonNull TvCommentViewHolder holder,
       int position)
   {
-    holder.comment.setText(comments.get(position).getContent());
-    holder.senderName.setText(comments.get(position).getAuthor());
-    holder.timeStamp.setText(comments.get(position).getCreated_at());
+    holder.commentBody.setText(comments.get(position).getComment());
   }
 
   @Override
@@ -54,8 +51,7 @@ public class TvShowReviewsAdapter
     return 0;
   }
 
-  //clear and reassign the cast list every time this method is called
-  public void updateCommentList(final List<Comment> comments)
+  public void updateTvCommentList(final List<TvComment> comments)
   {
     this.comments.clear();
     this.comments = comments;
@@ -64,19 +60,14 @@ public class TvShowReviewsAdapter
 
   class TvCommentViewHolder extends RecyclerView.ViewHolder
   {
-    private final TextView comment;
-    private final TextView senderName;
-    private final TextView timeStamp;
-    private ImageView avatar;
+    private TextView commentBody;
     private Context context;
 
     public TvCommentViewHolder(@NonNull View itemView)
     {
       super(itemView);
-      comment = itemView.findViewById(R.id.tv_comment_id);
-      senderName = itemView.findViewById(R.id.tv_sender_name_id);
-      timeStamp = itemView.findViewById(R.id.tv_comment_timestamp_id);
       context = itemView.getContext();
+      commentBody = itemView.findViewById(R.id.comment_id);
     }
   }
 }

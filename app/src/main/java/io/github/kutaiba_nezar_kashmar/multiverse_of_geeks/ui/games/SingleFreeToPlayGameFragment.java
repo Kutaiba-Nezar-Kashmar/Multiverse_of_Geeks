@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +23,11 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.GameReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GameScreenShots;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.FreeToPlayScreenShotsAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.GameCommentAdapter;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSingleFreeToPlayGameBinding;
 
@@ -31,6 +36,9 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private FragmentSingleFreeToPlayGameBinding binding;
   private FreeToPlayScreenShotsAdapter screenShotsAdapter;
   private GamesViewModel gamesViewModel;
+  private GameCommentAdapter commentAdapter;
+  private GameComment gameComment;
+  private List<GameComment> comments = new ArrayList<>();
   private List<GameScreenShots> screenShots = new ArrayList<>();
   private GameReview gameReview;
   private int gameId;
@@ -52,6 +60,9 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private TextView storage;
   private RatingBar ratingBar;
   private TextView geekRating;
+  private RecyclerView commentRV;
+  private Button commentButton;
+  private EditText commentField;
 
   @Nullable
   @Override
@@ -80,10 +91,24 @@ public class SingleFreeToPlayGameFragment extends Fragment
     storage = root.findViewById(R.id.free_to_play_storage);
     ratingBar = root.findViewById(R.id.free_game_rating_bar);
     geekRating = root.findViewById(R.id.free_to_play_rating);
+    commentButton = root.findViewById(R.id.free_game_post_comment_button);
+    commentField = root.findViewById(R.id.free_game_comment_field);
+    commentRV = root.findViewById(R.id.free_game_coming_rv_id);
+
     setUpRatingBar();
     getGeekAverageRating();
     checkIfSignedIn();
+    setUpCommentButton();
     return root;
+  }
+
+  private void setUpCommentButton()
+  {
+    commentButton.setOnClickListener(view -> {
+      gameComment = new GameComment(gameId, commentField.getText().toString());
+      gamesViewModel.postComment(gameComment);
+      commentField.getText().clear();
+    });
   }
 
   @Override
@@ -136,6 +161,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
           });
     }
     setUpRecyclerView(view);
+    setUpCommentRV(view);
   }
 
   private void setUpRecyclerView(View view)
@@ -158,17 +184,19 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private void getGeekAverageRating()
   {
     List<GameReview> gr = new ArrayList<>();
-    gamesViewModel.getGameReviews().observe(getViewLifecycleOwner(), gameReviews -> {
-      for (GameReview review : gameReviews)
-      {
-        if (review.getGameId() == gameId)
-        {
-          gr.add(review);
-        }
-      }
-      String averageValue = String.valueOf(gamesViewModel.calculateAverage(gr));
-      geekRating.setText(averageValue);
-    });
+    gamesViewModel.getGameReviews()
+        .observe(getViewLifecycleOwner(), gameReviews -> {
+          for (GameReview review : gameReviews)
+          {
+            if (review.getGameId() == gameId)
+            {
+              gr.add(review);
+            }
+          }
+          String averageValue = String
+              .valueOf(gamesViewModel.calculateAverage(gr));
+          geekRating.setText(averageValue);
+        });
   }
 
   private void checkIfSignedIn()
@@ -178,11 +206,28 @@ public class SingleFreeToPlayGameFragment extends Fragment
           if (firebaseUser != null)
           {
             ratingBar.setVisibility(View.VISIBLE);
+            commentField.setVisibility(View.VISIBLE);
+            commentButton.setVisibility(View.VISIBLE);
           }
           else
           {
-            ratingBar.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.INVISIBLE);
+            commentField.setVisibility(View.GONE);
+            commentButton.setVisibility(View.GONE);
           }
         });
+  }
+
+  private void setUpCommentRV(View view)
+  {
+    commentAdapter = new GameCommentAdapter(comments);
+    Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
+    gamesViewModel.getGameComments(gameId)
+        .observe(getViewLifecycleOwner(), update);
+    commentRV.hasFixedSize();
+    commentRV.setLayoutManager(
+        new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,
+            false));
+    commentRV.setAdapter(commentAdapter);
   }
 }

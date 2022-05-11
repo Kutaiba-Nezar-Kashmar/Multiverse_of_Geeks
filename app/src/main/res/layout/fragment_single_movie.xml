@@ -224,7 +224,7 @@
                 android:id="@+id/movie_collection_poster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mog_log_background"
+                android:src="@drawable/place_holder_pic"
                 android:layout_gravity="center"
                 android:minHeight="400dp" />
 
@@ -285,14 +285,28 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-            <EditText
-                    android:id="@+id/comment_edit_text_id"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_coming_rv_id">
+
+            <EditText
+                    android:id="@+id/movie_comment_field"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
                     android:importantForAutofill="yes"
                     android:hint="@string/comment"
-                    app:layout_constraintTop_toBottomOf="@+id/movie_coming_rv_id"
                     android:minHeight="48dp" />
+
+                <Button
+                        android:id="@+id/post_comment_button"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/send_ic"/>
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

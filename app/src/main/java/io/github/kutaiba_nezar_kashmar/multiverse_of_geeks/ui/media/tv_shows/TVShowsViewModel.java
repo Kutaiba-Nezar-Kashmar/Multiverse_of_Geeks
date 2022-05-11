@@ -10,10 +10,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.TvReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.tv.TvCommentRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.tv.TvCommentRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.tv.TvReviewRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.tv.TvReviewRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TVShowRepositoryImpl;
@@ -26,6 +29,7 @@ public class TVShowsViewModel extends AndroidViewModel
   private TvShowRepository tvShowRepository;
   private UserRepository userRepository;
   private TvReviewRepository tvReviewRepository;
+  private TvCommentRepository tvCommentRepository;
 
   public TVShowsViewModel(@NonNull Application application)
   {
@@ -33,6 +37,7 @@ public class TVShowsViewModel extends AndroidViewModel
     tvShowRepository = TVShowRepositoryImpl.getInstance(application);
     userRepository = UserRepositoryImpl.getInstance(application);
     tvReviewRepository = TvReviewRepositoryImpl.getInstance();
+    tvCommentRepository = TvCommentRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -59,6 +64,17 @@ public class TVShowsViewModel extends AndroidViewModel
       total += mr.getRating();
     }
     return total / tvReviews.size();
+  }
+
+  public void postComment(TvComment tvComment)
+  {
+    String userId = userRepository.getCurrentUser().getValue().getUid();
+    tvCommentRepository.postComment(tvComment, userId);
+  }
+
+  public LiveData<List<TvComment>> getTvComments(int tvId)
+  {
+    return tvCommentRepository.tvComments(tvId);
   }
 
   public LiveData<List<SingleTvShowResponse>> getFavoriteTvShows()
@@ -109,10 +125,5 @@ public class TVShowsViewModel extends AndroidViewModel
   public LiveData<List<TvShow>> getAllSearchedTvShows(String arg)
   {
     return tvShowRepository.getAllSearchedTvShows(arg);
-  }
-
-  public LiveData<List<Comment>> getAllComments(int id)
-  {
-    return tvShowRepository.getTvReviews(id);
   }
 }

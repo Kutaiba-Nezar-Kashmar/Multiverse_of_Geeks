@@ -8,13 +8,17 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.Query;
 
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.movie.MovieCommentRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.movie.MovieCommentRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.movies.MovieRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.movie.MovieReviewRepository;
@@ -27,6 +31,7 @@ public class MoviesViewModel extends AndroidViewModel
   private final MovieRepository movieRepository;
   private final UserRepository userRepository;
   private final MovieReviewRepository movieReviewRepository;
+  private final MovieCommentRepository movieCommentRepository;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)
@@ -35,6 +40,7 @@ public class MoviesViewModel extends AndroidViewModel
     movieRepository = MovieRepositoryImpl.getInstance(application);
     userRepository = UserRepositoryImpl.getInstance(application);
     movieReviewRepository = MovieReviewRepositoryImpl.getInstance();
+    movieCommentRepository = MovieCommentRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -61,6 +67,17 @@ public class MoviesViewModel extends AndroidViewModel
       total += mr.getRating();
     }
     return total / movieReviews.size();
+  }
+
+  public void postComment(MovieComment comment)
+  {
+    String userId = userRepository.getCurrentUser().getValue().getUid();
+    movieCommentRepository.postComment(comment, userId);
+  }
+
+  public LiveData<List<MovieComment>> getMovieComments(int movieId)
+  {
+    return movieCommentRepository.movieComments(movieId);
   }
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
@@ -113,10 +130,10 @@ public class MoviesViewModel extends AndroidViewModel
     return movieRepository.getAllSearchedMoviesMovies(arg);
   }
 
-  public LiveData<List<Comment>> getAllComments(int id)
+  /*public LiveData<List<Comment>> getAllComments(int id)
   {
     return movieRepository.getMovieReviews(id);
-  }
+  }*/
 
   public LiveData<List<Movie>> getAllSimilarMovies(int id)
   {

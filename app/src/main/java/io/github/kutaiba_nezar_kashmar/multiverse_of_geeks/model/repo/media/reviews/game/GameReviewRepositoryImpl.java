@@ -13,8 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.GameReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.MovieReview;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameReview;
 
 public class GameReviewRepositoryImpl implements GameReviewRepository
 {
@@ -27,7 +26,7 @@ public class GameReviewRepositoryImpl implements GameReviewRepository
   private GameReviewRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
-    reference = firebaseDatabase.getReference();
+    reference = firebaseDatabase.getReference().child("gameReview");
     gameReviews = new MutableLiveData<>();
     myGameReview = new MutableLiveData<>();
   }
@@ -45,7 +44,7 @@ public class GameReviewRepositoryImpl implements GameReviewRepository
   public void postReview(GameReview gameReview, String userId)
   {
     reference.child("users").child(userId)
-        .child("gameReview" + gameReview.getGameId()).setValue(gameReview);
+        .child(String.valueOf(gameReview.getGameId())).setValue(gameReview);
   }
 
   @Override
@@ -64,13 +63,13 @@ public class GameReviewRepositoryImpl implements GameReviewRepository
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot)
       {
-        for (DataSnapshot ds : snapshot.getChildren())
+        for (DataSnapshot d : snapshot.getChildren())
         {
-          for (DataSnapshot dss : ds.getChildren())
+          for (DataSnapshot ds : d.getChildren())
           {
-            for (DataSnapshot dsst : dss.getChildren())
+            for (DataSnapshot dss : ds.getChildren())
             {
-              GameReview gameReview = dsst.getValue(GameReview.class);
+              GameReview gameReview = dss.getValue(GameReview.class);
               reviewList.add(gameReview);
             }
           }
