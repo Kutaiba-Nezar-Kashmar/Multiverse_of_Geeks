@@ -28,21 +28,21 @@ This app was made as to the mandatory assignment for AND1 (Android development) 
 - [x] As a user, I would like to be able to create an account.
 - [x] As a user, I would like to be able to login into my account.
 - [x] As a user, I would like to be able to view a list of movies.
-- [x] As a user, I would like to be able to view detales of chosen move.
+- [x] As a user, I would like to be able to view details of chosen move.
 - [x] As a user, I would like to be able to search for a movie.
 - [x] As a user, I would like to be able to add a movie to my favorite movie list.
 - [x] As a user, I would like to se comment on a movie.
 - [x] As a user, I would like to be able to leave a comment on a movie
 - [x] As a user, I would like to be able to rate a movie.
 - [x] As a user, I would like to be able to view a list of tv shows.
-- [x] As a user, I would like to be able to view detales of chosen tv show.
+- [x] As a user, I would like to be able to view details of chosen tv show.
 - [x] As a user, I would like to be able to search for a tv show.
 - [x] As a user, I would like to be able to add a tv show to my favorite tv show list.
 - [x] As a user, I would like to se comment on a tv show.
 - [x] As a user, I would like to be able to leave a comment on a tv show.
 - [x] As a user, I would like to be able to rate a tv show.
 - [x] As a user, I would like to be able to view a list of games.
-- [x] As a user, I would like to be able to view detales of chosen game.
+- [x] As a user, I would like to be able to view details of chosen game.
 - [x] As a user, I would like to be able to search for a game.
 - [x] As a user, I would like to be able to add a game to my favorite game list.
 - [x] As a user, I would like to be able to rate a game.
