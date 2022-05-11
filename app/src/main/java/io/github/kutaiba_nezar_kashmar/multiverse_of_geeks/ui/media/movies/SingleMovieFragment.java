@@ -254,9 +254,12 @@ public class SingleMovieFragment extends Fragment
   {
     commentAdapter = new MovieCommentAdapter(comments);
     Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
-    moviesViewModel.getMovieComments(movieId).observe(getViewLifecycleOwner(), update);
+    moviesViewModel.getMovieComments(movieId)
+        .observe(getViewLifecycleOwner(), update);
     commentsRecyclerView.hasFixedSize();
-    commentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+    commentsRecyclerView.setLayoutManager(
+        new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,
+            false));
     commentsRecyclerView.setAdapter(commentAdapter);
   }
 
