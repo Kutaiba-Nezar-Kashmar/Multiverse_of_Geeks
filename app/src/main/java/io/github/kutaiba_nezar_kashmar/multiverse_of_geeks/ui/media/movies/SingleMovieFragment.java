@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +47,7 @@ public class SingleMovieFragment extends Fragment
   private MovieReview review;
   private MovieComment comment;
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
+  private List<MovieComment> comments = new ArrayList<>();
   private int movieId;
   private RecyclerView commentsRecyclerView;
   private RecyclerView companyRv;
@@ -105,7 +107,6 @@ public class SingleMovieFragment extends Fragment
     setUpRatingBar();
     getGeekAverageRating();
     setUpCommentButton();
-    setUpCommentRV();
     return root;
   }
 
@@ -166,14 +167,8 @@ public class SingleMovieFragment extends Fragment
             setUpFavorite(movie);
           });
       setUpCompanyRv(view);
+      setUpCommentRV(view);
     }
-
-    commentsRecyclerView.hasFixedSize();
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-        view.getContext());
-    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-    commentsRecyclerView.setLayoutManager(linearLayoutManager);
-    commentsRecyclerView.setAdapter(commentAdapter);
   }
 
   @Override
@@ -257,38 +252,14 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
-  private void setUpCommentRV()
+  private void setUpCommentRV(View view)
   {
-    options = new FirebaseRecyclerOptions.Builder<MovieComment>()
-        .setQuery(moviesViewModel.getMovieComments(movieId),
-            new SnapshotParser<MovieComment>()
-            {
-              MovieComment movieComment = new MovieComment();
-
-              @NonNull
-              @Override
-              public MovieComment parseSnapshot(@NonNull DataSnapshot snapshot)
-              {
-                for (DataSnapshot d : snapshot.getChildren())
-                {
-                  for (DataSnapshot ds : d.getChildren())
-                  {
-                    MovieComment mc = ds.getValue(MovieComment.class);
-                    if (mc != null)
-                    {
-                      if (mc.getMovieId() == movieId)
-                      {
-                        System.out
-                            .println("/////////////\\\\\\\\\\\\" + ds.getKey());
-                        movieComment = mc;
-                      }
-                    }
-                  }
-                }
-                return movieComment;
-              }
-            }).setLifecycleOwner(getViewLifecycleOwner()).build();
-    commentAdapter = new MovieCommentAdapter(options);
+    commentAdapter = new MovieCommentAdapter(comments);
+    Observer<List<MovieComment>> update = commentAdapter::updateMovieList;
+    moviesViewModel.getMovieComments(movieId).observe(getViewLifecycleOwner(), update);
+    commentsRecyclerView.hasFixedSize();
+    commentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+    commentsRecyclerView.setAdapter(commentAdapter);
   }
 
   private void setUpCompanyRv(View view)

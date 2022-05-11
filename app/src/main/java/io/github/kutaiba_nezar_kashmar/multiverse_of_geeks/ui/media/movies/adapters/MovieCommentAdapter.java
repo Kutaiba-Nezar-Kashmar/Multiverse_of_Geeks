@@ -12,29 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import java.util.List;
+
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
-public class MovieCommentAdapter extends FirebaseRecyclerAdapter<MovieComment, MovieCommentAdapter.CommentViewHolder>
+public class MovieCommentAdapter
+    extends RecyclerView.Adapter<MovieCommentAdapter.CommentViewHolder>
 {
+  private List<MovieComment> comments;
 
-  /**
-   * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-   * {@link FirebaseRecyclerOptions} for configuration options.
-   *
-   * @param options
-   */
-  public MovieCommentAdapter(
-      @NonNull FirebaseRecyclerOptions<MovieComment> options)
+  public MovieCommentAdapter(List<MovieComment> comments)
   {
-    super(options);
-  }
-
-  @Override
-  protected void onBindViewHolder(@NonNull CommentViewHolder holder,
-      int position, @NonNull MovieComment model)
-  {
-    holder.commentBody.setText(model.getComment());
+    this.comments = comments;
   }
 
   @NonNull
@@ -42,20 +33,44 @@ public class MovieCommentAdapter extends FirebaseRecyclerAdapter<MovieComment, M
   public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
       int viewType)
   {
-    View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.movie_comment_item, parent, false);
-
+    LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    View view = inflater.inflate(R.layout.movie_comment_item, parent, false);
     return new CommentViewHolder(view);
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull CommentViewHolder holder, int position)
+  {
+    holder.commentBody.setText(comments.get(position).getComment());
+  }
+
+  @Override
+  public int getItemCount()
+  {
+    if (comments != null)
+    {
+      return comments.size();
+    }
+    return 0;
+  }
+
+  public void updateMovieList(final List<MovieComment> comments)
+  {
+    this.comments.clear();
+    this.comments = comments;
+    notifyDataSetChanged();
   }
 
   class CommentViewHolder extends RecyclerView.ViewHolder
   {
     private TextView commentBody;
     private Context context;
+
     public CommentViewHolder(@NonNull View itemView)
     {
       super(itemView);
-      context = itemView.getContext();;
+      context = itemView.getContext();
+      ;
       commentBody = itemView.findViewById(R.id.comment_id);
     }
   }

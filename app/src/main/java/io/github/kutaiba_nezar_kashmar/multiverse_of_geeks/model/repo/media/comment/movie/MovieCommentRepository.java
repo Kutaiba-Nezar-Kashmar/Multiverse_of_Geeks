@@ -12,5 +12,5 @@ public interface MovieCommentRepository
 {
   void postComment(MovieComment movieComment, String userId);
   void deleteComment(MovieComment movieComment);
-  Query getMovieComments(int movieId);
+  LiveData<List<MovieComment>> movieComments(int movieId);
 }

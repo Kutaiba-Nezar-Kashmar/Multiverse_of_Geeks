@@ -75,9 +75,9 @@ public class MoviesViewModel extends AndroidViewModel
     movieCommentRepository.postComment(comment, userId);
   }
 
-  public Query getMovieComments(int movieId)
+  public LiveData<List<MovieComment>> getMovieComments(int movieId)
   {
-    return movieCommentRepository.getMovieComments(movieId);
+    return movieCommentRepository.movieComments(movieId);
   }
 
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()

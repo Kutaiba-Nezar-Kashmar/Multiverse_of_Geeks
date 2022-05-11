@@ -56,8 +56,48 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
   }
 
   @Override
-  public Query getMovieComments(int movieId)
+  public LiveData<List<MovieComment>> movieComments(int movieId)
   {
-    return reference.child("users");
+    reference.child("users");
+    List<MovieComment> commentList = new ArrayList<>();
+    ValueEventListener listener = new ValueEventListener()
+    {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot)
+      {
+        for (DataSnapshot d : snapshot.getChildren())
+        {
+          for (DataSnapshot ds : d.getChildren())
+          {
+            for (DataSnapshot dss : ds.getChildren())
+            {
+              for (DataSnapshot dsst : dss.getChildren())
+              {
+                System.out.println(
+                    "//////////////////////////////////////////" + dsst
+                        .getKey());
+                MovieComment movieComment = dsst.getValue(MovieComment.class);
+                if (movieComment != null)
+                {
+                  if (movieComment.getMovieId() == movieId)
+                  {
+                    commentList.add(movieComment);
+                  }
+                }
+              }
+            }
+          }
+        }
+        movieComments.postValue(commentList);
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError error)
+      {
+
+      }
+    };
+    reference.addListenerForSingleValueEvent(listener);
+    return movieComments;
   }
 }
