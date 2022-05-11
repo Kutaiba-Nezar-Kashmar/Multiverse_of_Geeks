@@ -17,11 +17,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentFavoriteGameBinding;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.FavoriteGameAdapter;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentFavoriteGameBinding;
+
 
 public class FavoriteGamesFragment extends Fragment
 {

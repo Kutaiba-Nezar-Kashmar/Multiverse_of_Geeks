@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCommentViewHolder>
 {

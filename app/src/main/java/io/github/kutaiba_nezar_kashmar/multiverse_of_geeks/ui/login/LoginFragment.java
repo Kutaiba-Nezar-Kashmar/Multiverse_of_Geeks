@@ -19,8 +19,7 @@ import androidx.navigation.Navigation;
 import com.google.firebase.auth.FirebaseAuth;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentLoginBinding;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment
 {

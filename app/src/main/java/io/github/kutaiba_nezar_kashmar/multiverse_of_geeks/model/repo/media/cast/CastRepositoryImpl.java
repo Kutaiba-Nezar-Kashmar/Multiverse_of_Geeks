@@ -7,11 +7,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.BuildConfig;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Cast;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
-import io.github.kutaiba_nezar_kashmar.newapp.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

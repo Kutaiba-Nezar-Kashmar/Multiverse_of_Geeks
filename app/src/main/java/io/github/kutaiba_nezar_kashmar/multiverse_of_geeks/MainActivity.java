@@ -15,10 +15,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.ActivityMainBinding;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity
 {

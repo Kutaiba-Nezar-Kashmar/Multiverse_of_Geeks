@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentEditProfileBinding;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentEditProfileBinding;
 
 public class EditProfileFragment extends Fragment
 {

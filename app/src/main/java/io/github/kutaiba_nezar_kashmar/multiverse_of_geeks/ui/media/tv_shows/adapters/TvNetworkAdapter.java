@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.TvShowNetworkResponse;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class TvNetworkAdapter
     extends RecyclerView.Adapter<TvNetworkAdapter.TvNetworkHolder>

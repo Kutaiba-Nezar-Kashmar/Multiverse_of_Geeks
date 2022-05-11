@@ -2,8 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
-    id 'com.google.secrets_gradle_plugin' version '0.4'
+    /*id 'com.google.secrets_gradle_plugin' version '0.4'*/
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -35,6 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'io.github.kutaiba_nezar_kashmar.multiverse_of_geeks'
 }
 
 dependencies {

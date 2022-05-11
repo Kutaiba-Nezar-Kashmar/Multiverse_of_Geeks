@@ -17,8 +17,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
-import io.github.kutaiba_nezar_kashmar.newapp.R;
-import io.github.kutaiba_nezar_kashmar.newapp.databinding.FragmentSettingsBinding;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 
 public class SettingFragment extends PreferenceFragmentCompat
 {

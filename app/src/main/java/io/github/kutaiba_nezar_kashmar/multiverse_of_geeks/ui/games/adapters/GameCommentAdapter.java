@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameComment;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class GameCommentAdapter extends RecyclerView.Adapter<GameCommentAdapter.CommentViewHolder>
 {

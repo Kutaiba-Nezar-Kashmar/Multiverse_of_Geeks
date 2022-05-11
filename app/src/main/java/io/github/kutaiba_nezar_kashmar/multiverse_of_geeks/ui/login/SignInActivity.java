@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 
 public class SignInActivity extends AppCompatActivity
 {

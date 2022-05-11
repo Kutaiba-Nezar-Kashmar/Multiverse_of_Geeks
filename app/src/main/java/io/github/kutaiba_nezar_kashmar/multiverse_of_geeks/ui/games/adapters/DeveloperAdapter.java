@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.games.GamesDevelopersResponse;
-import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class DeveloperAdapter
     extends RecyclerView.Adapter<DeveloperAdapter.DeveloperViewHolder>
