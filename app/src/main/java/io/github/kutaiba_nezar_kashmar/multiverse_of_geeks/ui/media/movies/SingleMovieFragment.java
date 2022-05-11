@@ -168,7 +168,7 @@ public class SingleMovieFragment extends Fragment
       setUpCompanyRv(view);
     }
 
-    commentsRecyclerView.setHasFixedSize(false);
+    commentsRecyclerView.hasFixedSize();
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
         view.getContext());
     linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -250,7 +250,7 @@ public class SingleMovieFragment extends Fragment
           }
           else
           {
-            ratingBar.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
           }
@@ -273,14 +273,21 @@ public class SingleMovieFragment extends Fragment
                 {
                   for (DataSnapshot ds : d.getChildren())
                   {
-                    System.out
-                        .println("/////////////\\\\\\\\\\\\" + ds.getKey());
-                    movieComment = ds.getValue(MovieComment.class);
+                    MovieComment mc = ds.getValue(MovieComment.class);
+                    if (mc != null)
+                    {
+                      if (mc.getMovieId() == movieId)
+                      {
+                        System.out
+                            .println("/////////////\\\\\\\\\\\\" + ds.getKey());
+                        movieComment = mc;
+                      }
+                    }
                   }
                 }
                 return movieComment;
               }
-            }).setLifecycleOwner(this).build();
+            }).setLifecycleOwner(getViewLifecycleOwner()).build();
     commentAdapter = new MovieCommentAdapter(options);
   }
 
