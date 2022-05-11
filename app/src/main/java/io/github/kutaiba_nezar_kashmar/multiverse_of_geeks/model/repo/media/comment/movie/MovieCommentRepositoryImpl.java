@@ -27,7 +27,8 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
   private MovieCommentRepositoryImpl()
   {
     firebaseDatabase = FirebaseDatabase.getInstance();
-    reference = firebaseDatabase.getReference().child("movieComment");
+    reference = firebaseDatabase.getReference().child("movieComment")
+        .child("users");
     myComments = new MutableLiveData<>();
     movieComments = new MutableLiveData<>();
   }
@@ -44,9 +45,8 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
   @Override
   public void postComment(MovieComment movieComment, String userId)
   {
-    reference.child("users").child(userId)
-        .child(String.valueOf(movieComment.getMovieId())).push()
-        .setValue(movieComment);
+    reference.child(userId).child(String.valueOf(movieComment.getMovieId()))
+        .push().setValue(movieComment);
   }
 
   @Override
@@ -58,7 +58,6 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
   @Override
   public LiveData<List<MovieComment>> movieComments(int movieId)
   {
-    reference.child("users");
     List<MovieComment> commentList = new ArrayList<>();
     ValueEventListener listener = new ValueEventListener()
     {
@@ -71,18 +70,12 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
           {
             for (DataSnapshot dss : ds.getChildren())
             {
-              for (DataSnapshot dsst : dss.getChildren())
+              MovieComment movieComment = dss.getValue(MovieComment.class);
+              if (movieComment != null)
               {
-                System.out.println(
-                    "//////////////////////////////////////////" + dsst
-                        .getKey());
-                MovieComment movieComment = dsst.getValue(MovieComment.class);
-                if (movieComment != null)
+                if (movieComment.getMovieId() == movieId)
                 {
-                  if (movieComment.getMovieId() == movieId)
-                  {
-                    commentList.add(movieComment);
-                  }
+                  commentList.add(movieComment);
                 }
               }
             }

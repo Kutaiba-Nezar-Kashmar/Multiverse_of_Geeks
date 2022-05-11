@@ -9,13 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.newapp.R;
 
 public class MovieCommentAdapter
@@ -34,7 +30,7 @@ public class MovieCommentAdapter
       int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater.inflate(R.layout.movie_comment_item, parent, false);
+    View view = inflater.inflate(R.layout.comment_item, parent, false);
     return new CommentViewHolder(view);
   }
 
@@ -54,7 +50,7 @@ public class MovieCommentAdapter
     return 0;
   }
 
-  public void updateMovieList(final List<MovieComment> comments)
+  public void updateMovieCommentList(final List<MovieComment> comments)
   {
     this.comments.clear();
     this.comments = comments;
@@ -70,7 +66,6 @@ public class MovieCommentAdapter
     {
       super(itemView);
       context = itemView.getContext();
-      ;
       commentBody = itemView.findViewById(R.id.comment_id);
     }
   }

@@ -21,8 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.firebase.ui.database.SnapshotParser;
-import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -255,7 +253,7 @@ public class SingleMovieFragment extends Fragment
   private void setUpCommentRV(View view)
   {
     commentAdapter = new MovieCommentAdapter(comments);
-    Observer<List<MovieComment>> update = commentAdapter::updateMovieList;
+    Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
     moviesViewModel.getMovieComments(movieId).observe(getViewLifecycleOwner(), update);
     commentsRecyclerView.hasFixedSize();
     commentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
