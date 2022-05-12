@@ -51,20 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone"
-                app:drawableStartCompat="@drawable/phone_ic"
-                android:layout_marginTop="@dimen/edit_text_margin" />
-
-        <TextView
-                android:id="@+id/person_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
-
-
         <com.google.android.material.divider.MaterialDivider
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

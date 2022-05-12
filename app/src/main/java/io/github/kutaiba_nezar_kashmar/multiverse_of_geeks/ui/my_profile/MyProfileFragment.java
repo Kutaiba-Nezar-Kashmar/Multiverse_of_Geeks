@@ -30,7 +30,6 @@ public class MyProfileFragment extends Fragment
   private ImageView myProfileImage;
   private TextView name;
   private TextView email;
-  private TextView phone;
   private Button toEditFragButton;
   private Button signOutButton;
 
@@ -49,7 +48,6 @@ public class MyProfileFragment extends Fragment
     myProfileImage = root.findViewById(R.id.my_profile_image);
     name = root.findViewById(R.id.person_name);
     email = root.findViewById(R.id.person_email);
-    phone = root.findViewById(R.id.person_phone);
     toEditFragButton = root.findViewById(R.id.to_edit_frag);
     signOutButton = root.findViewById(R.id.sign_out_but);
     checkIfSignedIn(root);
@@ -86,7 +84,6 @@ public class MyProfileFragment extends Fragment
             System.out.println("+++++++++++++++++++///////////////////++++++++++++" + firebaseUser.getDisplayName());
             name.setText(firebaseUser.getDisplayName());
             email.setText(firebaseUser.getEmail());
-            phone.setText(firebaseUser.getPhoneNumber());
             Glide.with(view.getContext()).load(firebaseUser.getPhotoUrl())
                 .into(myProfileImage);
           }

@@ -13,7 +13,8 @@
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/new_profile_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/image_view_dims"
+                    android:layout_height="wrap_content"
+                    android:minHeight="250dp"
                     android:contentDescription="@string/my_profile_image_disc"
                     android:src="@drawable/avatar_placeholder" />
 
@@ -34,17 +35,12 @@
                 android:inputType="text"
                 android:minHeight="48dp" />
 
-        <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:layout_marginBottom="@dimen/edit_text_margin" />
-
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                app:drawableStartCompat="@drawable/email_ic" />
+                app:drawableStartCompat="@drawable/email_ic"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
 
         <EditText
                 android:id="@+id/new_email_field_button"
@@ -54,28 +50,6 @@
                 android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
-
-        <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin"
-                android:layout_marginBottom="@dimen/edit_text_margin" />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone"
-                app:drawableStartCompat="@drawable/phone_ic" />
-
-        <EditText
-                android:id="@+id/new_phone_field_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="phone"
-                android:hint="@string/phone_hint"
-                android:inputType="phone"
-                android:minHeight="48dp" />
-
 
         <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"

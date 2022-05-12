@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -34,7 +35,6 @@ public class EditProfileFragment extends Fragment
   private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
   private EditText userName;
   private EditText email;
-  private EditText phone;
   private Button saveButton;
   private Button resetButton;
   private Button deleteButton;
@@ -50,7 +50,6 @@ public class EditProfileFragment extends Fragment
     profileImage = root.findViewById(R.id.new_profile_image);
     userName = root.findViewById(R.id.new_name_field);
     email = root.findViewById(R.id.new_email_field_button);
-    phone = root.findViewById(R.id.new_phone_field_button);
     saveButton = root.findViewById(R.id.save_changes_account_button);
     resetButton = root.findViewById(R.id.reset_password_button);
     deleteButton = root.findViewById(R.id.delete_account_button);
@@ -78,20 +77,20 @@ public class EditProfileFragment extends Fragment
           }
           else
           {
+            Glide.with(view.getContext()).load(firebaseUser.getPhotoUrl())
+                .into(profileImage);
             saveButton.setOnClickListener(v -> {
               String emailInput = email.getText().toString().trim();
               String nameInput = userName.getText().toString();
-              String phoneInput = email.getText().toString().trim();
-/*
-              if (emailInput.matches(emailInput) && emailInput.isEmpty())
-              {
-                Toast.makeText(getContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
-              }
-*/
               UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(
                   nameInput).build();
               firebaseUser.updateProfile(request);
+              if (emailInput.matches(emailPattern) && !emailInput.isEmpty())
+              {
+                firebaseUser.updateEmail(emailInput);
+              }
               userName.getText().clear();
+              email.getText().clear();
             });
           }
         });
