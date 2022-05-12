@@ -49,13 +49,20 @@
                 app:destination="@id/edit_profile_nav"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+                android:id="@+id/action_nav_my_profile_to_nav_home"
+                app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
             android:id="@+id/edit_profile_nav"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileFragment"
             android:label="@string/edit_profile_nav"
-            tools:layout="@layout/fragment_edit_profile" />
+            tools:layout="@layout/fragment_edit_profile" >
+        <action
+                android:id="@+id/action_edit_profile_nav_to_nav_home"
+                app:destination="@id/nav_home" />
+    </fragment>
 
 
     <!--MOVIES-->

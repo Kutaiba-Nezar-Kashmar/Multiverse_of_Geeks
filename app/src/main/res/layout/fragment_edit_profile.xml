@@ -1,153 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/edit_text_margin">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/edit_text_margin"
-            android:layout_marginBottom="@dimen/edit_text_margin"
-            app:cardCornerRadius="@dimen/card_view_radius">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/profile_image_edit"
-                android:layout_width="@dimen/image_view_dims"
-                android:layout_height="@dimen/image_view_dims"
-                android:contentDescription="@string/my_profile_image_disc"
-                android:src="@drawable/ic_launcher_background" />
-
-        </androidx.cardview.widget.CardView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/new_profile_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/image_view_dims"
+                    android:contentDescription="@string/my_profile_image_disc"
+                    android:src="@drawable/avatar_placeholder" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:text="@string/name_info_header"
-            app:drawableStartCompat="@drawable/person_ic" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_info_header"
+                app:drawableStartCompat="@drawable/person_ic"
+                android:layout_marginTop="@dimen/edit_text_margin"/>
 
         <EditText
-            android:id="@+id/first_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:layout_marginTop="@dimen/edit_text_margin"
-            android:layout_marginEnd="@dimen/edit_text_margin"
-            android:autofillHints="name"
-            android:hint="@string/f_name"
-            android:inputType="text"
-            android:minHeight="48dp" />
+                android:id="@+id/new_name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="name"
+                android:hint="@string/f_name"
+                android:inputType="text"
+                android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:layout_marginTop="@dimen/edit_text_margin"
-            android:layout_marginEnd="@dimen/edit_text_margin"
-            android:autofillHints="name"
-            android:hint="@string/l_name"
-            android:inputType="text"
-            android:minHeight="48dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="@dimen/edit_text_margin"
-            android:background="@color/black" />
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:text="@string/optional_header" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                app:drawableStartCompat="@drawable/email_ic" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:layout_marginTop="@dimen/edit_text_margin"
-            android:layout_marginEnd="@dimen/edit_text_margin"
-            android:autofillHints="phone"
-            android:hint="@string/phone_hint"
-            android:inputType="phone"
-            android:minHeight="48dp" />
+                android:id="@+id/new_email_field_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="phone"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/edit_text_margin">
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin" />
 
-            <TextView
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gender_header"
-                android:layout_marginEnd="@dimen/edit_text_margin"/>
+                android:text="@string/phone"
+                app:drawableStartCompat="@drawable/phone_ic" />
 
-            <EditText
-                android:id="@+id/gender_field"
-                android:layout_width="wrap_content"
+        <EditText
+                android:id="@+id/new_phone_field_button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:hint="@string/gender_hint"
-                android:autofillHints=""
-                android:inputType="textFilter"/>
+                android:autofillHints="phone"
+                android:hint="@string/phone_hint"
+                android:inputType="phone"
+                android:minHeight="48dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/age_header"
-                android:layout_marginStart="@dimen/birth_header_margin"/>
-
-            <EditText
-                android:id="@+id/age_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:layout_marginStart="@dimen/edit_text_margin"
-                android:inputType="number"
-                android:autofillHints=""
-                android:hint="@string/age_header"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="@dimen/edit_text_margin"
-            android:background="@color/black" />
+                android:layout_marginTop="@dimen/edit_text_margin"
+                android:layout_marginBottom="@dimen/edit_text_margin" />
 
         <Button
-            android:id="@+id/save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="@string/save_button"
-            android:layout_marginStart="@dimen/edit_text_margin"
-            android:layout_marginEnd="@dimen/edit_text_margin"
-            android:backgroundTint="@color/green"
-            android:textColor="@color/black"/>
+                android:id="@+id/save_changes_account_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/save_button"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/save_ic"/>
 
         <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/edit_text_margin"
-            android:text="@string/cancel_button"
-            android:backgroundTint="@color/red"
-            android:textColor="@color/black"/>
+                android:id="@+id/reset_password_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/reset_button"
+                android:backgroundTint="@color/teal_200"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/reset_ic"/>
+
+        <Button
+                android:id="@+id/delete_account_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_button"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/delete_ic"/>
 
     </LinearLayout>
 
