@@ -5,5 +5,6 @@
             android:id="@+id/action_sign_out"
             android:title="@string/action_sign_out"
             android:orderInCategory="100"
-            app:showAsAction="ifRoom|collapseActionView" android:icon="@drawable/sign_out_ic"/>
+            app:showAsAction="collapseActionView"
+            android:icon="@drawable/sign_out_ic" />
 </menu>
