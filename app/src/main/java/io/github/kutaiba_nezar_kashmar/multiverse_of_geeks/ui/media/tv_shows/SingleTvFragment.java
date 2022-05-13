@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -119,17 +120,7 @@ public class SingleTvFragment extends Fragment
     geekRating = root.findViewById(R.id.geek_tv_rating);
     commentButton = root.findViewById(R.id.tv_post_comment_button);
     commentField = root.findViewById(R.id.comment_edit_text_id_tv);
-    setUpCommentButton();
     return root;
-  }
-
-  private void setUpCommentButton()
-  {
-    commentButton.setOnClickListener(view -> {
-      comment = new TvComment(tvId, commentField.getText().toString());
-      tvShowsViewModel.postComment(comment);
-      commentField.getText().clear();
-    });
   }
 
   @Override
@@ -138,15 +129,13 @@ public class SingleTvFragment extends Fragment
   {
     super.onViewCreated(view, savedInstanceState);
     toCastButton.setOnClickListener(view1 -> {
-      SingleTvFragmentDirections.ActionNavSingleTvToNavTvCast action = SingleTvFragmentDirections
-          .actionNavSingleTvToNavTvCast();
+      SingleTvFragmentDirections.ActionNavSingleTvToNavTvCast action = SingleTvFragmentDirections.actionNavSingleTvToNavTvCast();
       action.setTvId(String.valueOf(tvId));
       Navigation.findNavController(view1).navigate(action);
     });
 
     toSeasonsButton.setOnClickListener(view1 -> {
-      SingleTvFragmentDirections.ActionNavSingleTvToNavTvSeasons action = SingleTvFragmentDirections
-          .actionNavSingleTvToNavTvSeasons();
+      SingleTvFragmentDirections.ActionNavSingleTvToNavTvSeasons action = SingleTvFragmentDirections.actionNavSingleTvToNavTvSeasons();
       action.setTvShowId(String.valueOf(tvId));
       Navigation.findNavController(view1).navigate(action);
     });
@@ -163,13 +152,13 @@ public class SingleTvFragment extends Fragment
             tvRating.setText(String.valueOf(tvShow.getVote_average()));
             setTvPoster(view, tvShow);
             setTvTagLine(tvShow);
-            tvEpisodeRunTime
-                .setText(String.valueOf(tvShow.getEpisode_run_time()));
+            tvEpisodeRunTime.setText(
+                String.valueOf(tvShow.getEpisode_run_time()));
             setTvGenre(tvShow);
-            tvEpisodeCount
-                .setText(String.valueOf(tvShow.getNumber_of_episodes()));
-            tvSeasonCount
-                .setText(String.valueOf(tvShow.getNumber_of_seasons()));
+            tvEpisodeCount.setText(
+                String.valueOf(tvShow.getNumber_of_episodes()));
+            tvSeasonCount.setText(
+                String.valueOf(tvShow.getNumber_of_seasons()));
             setTvStatus(tvShow);
             setTvType(tvShow);
             setTvHomePage(tvShow);
@@ -200,6 +189,14 @@ public class SingleTvFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentButton.setOnClickListener(view -> {
+              comment = new TvComment(tvId, commentField.getText().toString(),
+                  firebaseUser.getDisplayName(),
+                  String.valueOf(firebaseUser.getPhotoUrl()),
+                  String.valueOf(Calendar.getInstance().getTime()));
+              tvShowsViewModel.postComment(comment);
+              commentField.getText().clear();
+            });
           }
           else
           {
@@ -230,8 +227,8 @@ public class SingleTvFragment extends Fragment
               mr.add(tvReview);
             }
           }
-          String averageValue = String
-              .valueOf(tvShowsViewModel.calculateAverage(mr));
+          String averageValue = String.valueOf(
+              tvShowsViewModel.calculateAverage(mr));
           geekRating.setText(averageValue);
         });
   }

@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -70,8 +71,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     gamesViewModel = new ViewModelProvider(this).get(GamesViewModel.class);
-    binding = FragmentSingleFreeToPlayGameBinding
-        .inflate(inflater, container, false);
+    binding = FragmentSingleFreeToPlayGameBinding.inflate(inflater, container,
+        false);
     View root = binding.getRoot();
     title = root.findViewById(R.id.single_free_to_play_title);
     poster = root.findViewById(R.id.single_free_to_play_poster);
@@ -98,17 +99,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
     setUpRatingBar();
     getGeekAverageRating();
     checkIfSignedIn();
-    setUpCommentButton();
     return root;
-  }
-
-  private void setUpCommentButton()
-  {
-    commentButton.setOnClickListener(view -> {
-      gameComment = new GameComment(gameId, commentField.getText().toString());
-      gamesViewModel.postComment(gameComment);
-      commentField.getText().clear();
-    });
   }
 
   @Override
@@ -134,8 +125,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
             Glide.with(view.getContext())
                 .load(freeToPlayGameResponse.getThumbnail()).into(poster);
             releaseDate.setText(freeToPlayGameResponse.getRelease_date());
-            shortDescription
-                .setText(freeToPlayGameResponse.getShort_description());
+            shortDescription.setText(
+                freeToPlayGameResponse.getShort_description());
             description.setText(freeToPlayGameResponse.getDescription());
             url.setText(freeToPlayGameResponse.getGame_url());
             status.setText(freeToPlayGameResponse.getStatus());
@@ -193,8 +184,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
               gr.add(review);
             }
           }
-          String averageValue = String
-              .valueOf(gamesViewModel.calculateAverage(gr));
+          String averageValue = String.valueOf(
+              gamesViewModel.calculateAverage(gr));
           geekRating.setText(averageValue);
         });
   }
@@ -208,6 +199,15 @@ public class SingleFreeToPlayGameFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentButton.setOnClickListener(view -> {
+              gameComment = new GameComment(gameId,
+                  commentField.getText().toString(),
+                  firebaseUser.getDisplayName(),
+                  String.valueOf(firebaseUser.getPhotoUrl()),
+                  String.valueOf(Calendar.getInstance().getTime()));
+              gamesViewModel.postComment(gameComment);
+              commentField.getText().clear();
+            });
           }
           else
           {

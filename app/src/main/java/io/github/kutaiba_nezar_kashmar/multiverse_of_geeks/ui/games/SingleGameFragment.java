@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -95,17 +96,7 @@ public class SingleGameFragment extends Fragment
     setUpRatingBar();
     getGeekAverageRating();
     checkIfSignedIn();
-    setUpCommentButton();
     return root;
-  }
-
-  private void setUpCommentButton()
-  {
-    commentButton.setOnClickListener(view -> {
-      gameComment = new GameComment(gameId, commentField.getText().toString());
-      viewModel.postComment(gameComment);
-      commentField.getText().clear();
-    });
   }
 
   @Override
@@ -226,6 +217,15 @@ public class SingleGameFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentButton.setOnClickListener(view -> {
+              gameComment = new GameComment(gameId,
+                  commentField.getText().toString(),
+                  firebaseUser.getDisplayName(),
+                  String.valueOf(firebaseUser.getPhotoUrl()),
+                  String.valueOf(Calendar.getInstance().getTime()));
+              viewModel.postComment(gameComment);
+              commentField.getText().clear();
+            });
           }
           else
           {

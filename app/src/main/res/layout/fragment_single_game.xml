@@ -264,10 +264,17 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/edit_text_margin">
+                android:text="@string/comment_header"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/edit_text_margin" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
             <androidx.recyclerview.widget.RecyclerView

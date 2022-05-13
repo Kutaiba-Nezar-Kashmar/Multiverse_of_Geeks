@@ -1,5 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,7 +24,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -104,7 +109,7 @@ public class SingleMovieFragment extends Fragment
     setUpSimilarButton();
     setUpRatingBar();
     getGeekAverageRating();
-    setUpCommentButton();
+    //setUpCommentButton();
     return root;
   }
 
@@ -125,7 +130,7 @@ public class SingleMovieFragment extends Fragment
             movieReleaseYear.setText(movie.getRelease_date());
             movieRatting.setText(String.valueOf(movie.getVote_average()));
             Glide.with(view.getContext()).load(
-                "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
+                    "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(moviePoster);
             movieTagline.setText(movie.getTagline());
             budget.setText(String.valueOf(movie.getBudget()));
@@ -145,11 +150,11 @@ public class SingleMovieFragment extends Fragment
               collectionName.setVisibility(View.VISIBLE);
               collectionPoster.setVisibility(View.VISIBLE);
               collectionName.setText("");
-              collectionName
-                  .setText(movie.getBelongs_to_collection().getName());
+              collectionName.setText(
+                  movie.getBelongs_to_collection().getName());
               Glide.with(view.getContext()).load(
-                  "https://image.tmdb.org/t/p/w500" + movie
-                      .getBelongs_to_collection().getPoster_path())
+                      "https://image.tmdb.org/t/p/w500"
+                          + movie.getBelongs_to_collection().getPoster_path())
                   .into(collectionPoster);
             }
             else
@@ -179,8 +184,7 @@ public class SingleMovieFragment extends Fragment
   private void setUpToCastButton()
   {
     toCastButton.setOnClickListener(view -> {
-      SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections
-          .actionNavSingleMovieToNavMovieCast();
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavMovieCast action = SingleMovieFragmentDirections.actionNavSingleMovieToNavMovieCast();
       action.setMovieId(String.valueOf(movieId));
       Navigation.findNavController(view).navigate(action);
     });
@@ -189,8 +193,7 @@ public class SingleMovieFragment extends Fragment
   private void setUpSimilarButton()
   {
     toSimilarButton.setOnClickListener(view -> {
-      SingleMovieFragmentDirections.ActionNavSingleMovieToNavSimilarMovies action = SingleMovieFragmentDirections
-          .actionNavSingleMovieToNavSimilarMovies()
+      SingleMovieFragmentDirections.ActionNavSingleMovieToNavSimilarMovies action = SingleMovieFragmentDirections.actionNavSingleMovieToNavSimilarMovies()
           .setMovieId(String.valueOf(movieId));
       Navigation.findNavController(view).navigate(action);
     });
@@ -216,12 +219,13 @@ public class SingleMovieFragment extends Fragment
               mr.add(movieReview);
             }
           }
-          String averageValue = String
-              .valueOf(moviesViewModel.calculateAverage(mr));
+          String averageValue = String.valueOf(
+              moviesViewModel.calculateAverage(mr));
           geekRating.setText(averageValue);
         });
   }
 
+/*
   private void setUpCommentButton()
   {
     commentButton.setOnClickListener(view -> {
@@ -230,6 +234,7 @@ public class SingleMovieFragment extends Fragment
       commentField.getText().clear();
     });
   }
+*/
 
   private void checkIfSignedIn()
   {
@@ -240,6 +245,15 @@ public class SingleMovieFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentButton.setOnClickListener(view -> {
+              comment = new MovieComment(movieId,
+                  commentField.getText().toString(),
+                  firebaseUser.getDisplayName(),
+                  String.valueOf(firebaseUser.getPhotoUrl()),
+                  String.valueOf(Calendar.getInstance().getTime()));
+              moviesViewModel.postComment(comment);
+              commentField.getText().clear();
+            });
           }
           else
           {

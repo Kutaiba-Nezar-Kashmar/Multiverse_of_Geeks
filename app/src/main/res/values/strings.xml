@@ -123,6 +123,7 @@ Kutaiba></string>
     <string name="popularity">Popularity</string>
     <string name="r_year">Release Year</string>
     <string name="comment">Leave a comment</string>
+    <string name="comment_header">Comments</string>
     <string name="to_similar">More like this</string>
     <string name="similar_movies">Similar Movies</string>
     <string name="page">Page: </string>

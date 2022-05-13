@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -15,7 +18,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
 
-public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCommentViewHolder>
+public class TvCommentAdapter
+    extends RecyclerView.Adapter<TvCommentAdapter.TvCommentViewHolder>
 {
   private List<TvComment> comments;
 
@@ -38,7 +42,11 @@ public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCo
   public void onBindViewHolder(@NonNull TvCommentViewHolder holder,
       int position)
   {
+    holder.username.setText(comments.get(position).getUsername());
     holder.commentBody.setText(comments.get(position).getComment());
+    holder.timestamp.setText(comments.get(position).getTimeStamp());
+    Glide.with(holder.context).load(comments.get(position).getUserImage())
+        .into(holder.userImage);
   }
 
   @Override
@@ -61,6 +69,9 @@ public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCo
   class TvCommentViewHolder extends RecyclerView.ViewHolder
   {
     private TextView commentBody;
+    private TextView username;
+    private TextView timestamp;
+    private ImageView userImage;
     private Context context;
 
     public TvCommentViewHolder(@NonNull View itemView)
@@ -68,6 +79,9 @@ public class TvCommentAdapter extends RecyclerView.Adapter<TvCommentAdapter.TvCo
       super(itemView);
       context = itemView.getContext();
       commentBody = itemView.findViewById(R.id.comment_id);
+      timestamp = itemView.findViewById(R.id.comment_timestamp_id);
+      username = itemView.findViewById(R.id.sender_name_id);
+      userImage = itemView.findViewById(R.id.commenter_avatar);
     }
   }
 }
