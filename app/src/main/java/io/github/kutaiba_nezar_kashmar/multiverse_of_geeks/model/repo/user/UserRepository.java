@@ -17,4 +17,9 @@ public interface UserRepository
    * Sign out user
    */
   void signOut();
+
+  /**
+   * reset password
+   * */
+  void resetPassword(String email);
 }

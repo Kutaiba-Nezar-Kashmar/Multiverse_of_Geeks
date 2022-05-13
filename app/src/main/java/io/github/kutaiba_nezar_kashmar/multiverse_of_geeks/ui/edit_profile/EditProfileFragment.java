@@ -29,6 +29,8 @@ public class EditProfileFragment extends Fragment
   private EditText userName;
   private EditText email;
   private Button saveButton;
+  private Button deleteButton;
+  private Button resetButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -42,6 +44,8 @@ public class EditProfileFragment extends Fragment
     userName = root.findViewById(R.id.new_name_field);
     email = root.findViewById(R.id.new_email_field_button);
     saveButton = root.findViewById(R.id.save_changes_account_button);
+    deleteButton = root.findViewById(R.id.delete_account_button);
+    resetButton = root.findViewById(R.id.reset_password_button);
     checkIfSignedIn(root);
     return root;
   }
@@ -81,6 +85,14 @@ public class EditProfileFragment extends Fragment
               userName.getText().clear();
               email.getText().clear();
             });
+            deleteButton.setOnClickListener(view1 -> {
+              editProfileViewModel.deleteAccount();
+              Toast.makeText(getContext(),
+                      editProfileViewModel.getNotification(), Toast.LENGTH_SHORT)
+                  .show();
+            });
+            resetButton.setOnClickListener(
+                view1 -> editProfileViewModel.resetPassword());
           }
         });
   }

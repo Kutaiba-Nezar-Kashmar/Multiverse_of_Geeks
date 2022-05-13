@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.UserLiveData;
@@ -40,5 +41,12 @@ public class UserRepositoryImpl implements UserRepository
   public void signOut()
   {
     AuthUI.getInstance().signOut(application.getApplicationContext());
+  }
+
+  @Override
+  public void resetPassword(String email)
+  {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    auth.sendPasswordResetEmail(email);
   }
 }
