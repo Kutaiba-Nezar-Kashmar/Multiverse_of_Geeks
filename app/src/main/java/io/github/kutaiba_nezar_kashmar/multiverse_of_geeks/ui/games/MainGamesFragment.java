@@ -20,10 +20,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.Gam
 public class MainGamesFragment extends Fragment
 {
   private FragmentGamesMainBinding binding;
-  private TabLayout tabLayout;
-  private ViewPager2 viewPager;
-  private GamesPagerAdapter adapter;
-  private final String[] titles = new String[] {"Free to play", "ALL GAMES", "Favorite", "Search"};
+  private final String[] titles = new String[] {"Free to play", "ALL GAMES",
+      "Favorite", "Search"};
   public static final int PAGE_NUM = 4;
 
   @Nullable
@@ -33,9 +31,9 @@ public class MainGamesFragment extends Fragment
   {
     binding = FragmentGamesMainBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    tabLayout = root.findViewById(R.id.games_tab_layout);
-    viewPager = root.findViewById(R.id.games_view_pager);
-    adapter = new GamesPagerAdapter(this);
+    TabLayout tabLayout = root.findViewById(R.id.games_tab_layout);
+    ViewPager2 viewPager = root.findViewById(R.id.games_view_pager);
+    GamesPagerAdapter adapter = new GamesPagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,
         (tab, position) -> tab.setText(titles[position])).attach();

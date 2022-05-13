@@ -30,7 +30,7 @@ public class SearchedGamesFragment extends Fragment
 {
   private FragmentSearchGamesBinding binding;
   private RecyclerView recyclerView;
-  private final List<Game> games = new ArrayList<Game>();
+  private final List<Game> games = new ArrayList<>();
   private GamesViewModel viewModel;
   private GamesAdapter gamesAdapter;
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -73,8 +73,7 @@ public class SearchedGamesFragment extends Fragment
   {
     recyclerView.setAdapter(gamesAdapter);
     gamesAdapter.setListener(game -> {
-      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections
-          .actionNavGamesToSingleGameNave();
+      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections.actionNavGamesToSingleGameNave();
       action.setGameId(String.valueOf(game.getId()));
       Navigation.findNavController(view).navigate(action);
     });
@@ -89,9 +88,8 @@ public class SearchedGamesFragment extends Fragment
 
   private void refresh()
   {
-    swipeRefreshLayout.setOnRefreshListener(() -> {
-      swipeRefreshLayout.setRefreshing(false);
-    });
+    swipeRefreshLayout.setOnRefreshListener(
+        () -> swipeRefreshLayout.setRefreshing(false));
   }
 
   private void setUpSearchView(Observer<List<Game>> update)

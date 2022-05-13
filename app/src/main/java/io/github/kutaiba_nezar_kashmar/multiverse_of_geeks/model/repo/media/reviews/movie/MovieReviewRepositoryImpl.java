@@ -18,17 +18,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 public class MovieReviewRepositoryImpl implements MovieReviewRepository
 {
   private static MovieReviewRepository instance;
-  private final FirebaseDatabase firebaseDatabase;
-  private DatabaseReference reference;
-  private final MutableLiveData<MovieReview> myMovieReview;
+  private final DatabaseReference reference;
   private final MutableLiveData<List<MovieReview>> movieReviews;
 
   private MovieReviewRepositoryImpl()
   {
-    firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference().child("movieReview");
     movieReviews = new MutableLiveData<>();
-    myMovieReview = new MutableLiveData<>();
   }
 
   public static synchronized MovieReviewRepository getInstance()
@@ -45,12 +42,6 @@ public class MovieReviewRepositoryImpl implements MovieReviewRepository
   {
     reference.child("users").child(userId)
         .child(String.valueOf(movieReview.getMovieId())).setValue(movieReview);
-  }
-
-  @Override
-  public void deleteReview(MovieReview movieReview)
-  {
-
   }
 
   @Override

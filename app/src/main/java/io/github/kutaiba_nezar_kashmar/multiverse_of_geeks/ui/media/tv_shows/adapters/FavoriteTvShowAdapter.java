@@ -63,8 +63,8 @@ public class FavoriteTvShowAdapter
 
   class FavTvViewHolder extends RecyclerView.ViewHolder
   {
-    private ImageView poster;
-    private Context context;
+    private final ImageView poster;
+    private final Context context;
 
     public FavTvViewHolder(@NonNull View itemView)
     {

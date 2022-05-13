@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.UserLiveData;
@@ -13,7 +12,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Us
 public class UserRepositoryImpl implements UserRepository
 {
   private static UserRepository instance;
-  private FirebaseAuth firebaseAuth;
   private final Application application;
   private final UserLiveData user;
 
@@ -21,11 +19,9 @@ public class UserRepositoryImpl implements UserRepository
   {
     this.application = application;
     user = new UserLiveData();
-    this.firebaseAuth = FirebaseAuth.getInstance();
   }
 
-  public static synchronized UserRepository getInstance(
-      Application application)
+  public static synchronized UserRepository getInstance(Application application)
   {
     if (instance == null)
     {

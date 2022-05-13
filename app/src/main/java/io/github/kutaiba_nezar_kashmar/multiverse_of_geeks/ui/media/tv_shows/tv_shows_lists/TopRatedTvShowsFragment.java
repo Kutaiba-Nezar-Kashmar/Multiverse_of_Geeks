@@ -46,8 +46,8 @@ public class TopRatedTvShowsFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
-    binding = FragmentTopRatedTvShowsBinding
-        .inflate(inflater, container, false);
+    binding = FragmentTopRatedTvShowsBinding.inflate(inflater, container,
+        false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.top_rated_tv_refresh_view);
     leftArrow = root.findViewById(R.id.top_rated_tv_left_arrow);
@@ -91,8 +91,7 @@ public class TopRatedTvShowsFragment extends Fragment
   {
     recyclerView.setAdapter(adapter);
     adapter.setListener(tvShow -> {
-      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
-          .actionNavTvToNavSingleTv();
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections.actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });

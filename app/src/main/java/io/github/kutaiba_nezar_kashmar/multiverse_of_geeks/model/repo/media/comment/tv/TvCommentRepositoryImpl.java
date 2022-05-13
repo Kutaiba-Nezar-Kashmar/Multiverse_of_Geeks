@@ -18,17 +18,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 public class TvCommentRepositoryImpl implements TvCommentRepository
 {
   private static TvCommentRepository instance;
-  private final FirebaseDatabase firebaseDatabase;
-  private DatabaseReference reference;
-  private final MutableLiveData<TvComment> myTvComment;
+  private final DatabaseReference reference;
   private final MutableLiveData<List<TvComment>> tvComments;
 
   private TvCommentRepositoryImpl()
   {
-    firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference().child("tvComment")
         .child("users");
-    myTvComment = new MutableLiveData<>();
     tvComments = new MutableLiveData<>();
   }
 
@@ -46,12 +43,6 @@ public class TvCommentRepositoryImpl implements TvCommentRepository
   {
     reference.child(userId).child(String.valueOf(tvComment.getTvId())).push()
         .setValue(tvComment);
-  }
-
-  @Override
-  public void deleteComment(TvComment tvComment)
-  {
-
   }
 
   @Override

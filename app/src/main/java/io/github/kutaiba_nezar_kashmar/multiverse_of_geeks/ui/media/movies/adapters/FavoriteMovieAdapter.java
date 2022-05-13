@@ -63,7 +63,7 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
   class FavMovieViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
-    private Context context;
+    private final Context context;
     public FavMovieViewHolder(@NonNull View itemView)
     {
       super(itemView);

@@ -73,8 +73,7 @@ public class SearchTvShowFragment extends Fragment
   {
     recyclerView.setAdapter(tvShowAdapter);
     tvShowAdapter.setListener(tvShow -> {
-      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
-          .actionNavTvToNavSingleTv();
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections.actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });

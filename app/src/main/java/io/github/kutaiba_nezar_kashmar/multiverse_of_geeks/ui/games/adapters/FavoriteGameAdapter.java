@@ -64,13 +64,12 @@ public class FavoriteGameAdapter
   class FavGamesViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
-    private Context context;
+    private final Context context;
 
     public FavGamesViewHolder(@NonNull View itemView)
     {
       super(itemView);
       context = itemView.getContext();
-      ;
       poster = itemView.findViewById(R.id.game_poster);
     }
   }

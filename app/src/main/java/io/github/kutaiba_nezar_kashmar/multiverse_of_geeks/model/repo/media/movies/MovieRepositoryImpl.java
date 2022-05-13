@@ -3,6 +3,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.mov
 import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,11 +12,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.BuildConfig;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.movies.MoviesDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.GeekDatabase;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.dao.movies.MoviesDAO;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CommentResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.MovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client.MediaClient;
@@ -27,17 +26,14 @@ import retrofit2.Response;
 public class MovieRepositoryImpl implements MovieRepository
 {
   private static MovieRepository instance;
-  private final LiveData<List<SingleMovieResponse>> favoritMovies;
-  private final LiveData<SingleMovieResponse> singleFavoriteMovie;
+  private final LiveData<List<SingleMovieResponse>> favoriteMovies;
   private final MutableLiveData<SingleMovieResponse> singleMovie;
   private final MutableLiveData<List<Movie>> popularMovies;
   private final MutableLiveData<List<Movie>> topRatedMovies;
   private final MutableLiveData<List<Movie>> nowPlayingMovies;
-  private final MutableLiveData<List<Movie>> latestMovies;
   private final MutableLiveData<List<Movie>> upcomingMovies;
   private final MutableLiveData<List<Movie>> searchedMoviesMovies;
   private final MutableLiveData<List<Movie>> similarMovies;
-  private final MutableLiveData<List<Comment>> movieReviews;
   private final ExecutorService executorService;
   private final MoviesDAO moviesDAO;
 
@@ -46,17 +42,14 @@ public class MovieRepositoryImpl implements MovieRepository
     GeekDatabase database = GeekDatabase.getInstance(application);
     moviesDAO = database.moviesDAO();
     executorService = Executors.newFixedThreadPool(2);
-    favoritMovies = moviesDAO.getAllFavoriteMovies();
-    singleFavoriteMovie = new MutableLiveData<>();
+    favoriteMovies = moviesDAO.getAllFavoriteMovies();
     singleMovie = new MutableLiveData<>();
     popularMovies = new MutableLiveData<>();
     topRatedMovies = new MutableLiveData<>();
     nowPlayingMovies = new MutableLiveData<>();
-    latestMovies = new MutableLiveData<>();
     upcomingMovies = new MutableLiveData<>();
     searchedMoviesMovies = new MutableLiveData<>();
     similarMovies = new MutableLiveData<>();
-    movieReviews = new MutableLiveData<>();
   }
 
   public static synchronized MovieRepository getInstance(
@@ -72,7 +65,7 @@ public class MovieRepositoryImpl implements MovieRepository
   @Override
   public LiveData<List<SingleMovieResponse>> getFavoriteMovies()
   {
-    return favoritMovies;
+    return favoriteMovies;
   }
 
   @Override
@@ -97,13 +90,13 @@ public class MovieRepositoryImpl implements MovieRepository
   public MutableLiveData<SingleMovieResponse> findMovie(int id)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<SingleMovieResponse> call = movieAPI
-        .getMovieById(id, BuildConfig.API_KEY);
+    Call<SingleMovieResponse> call = movieAPI.getMovieById(id,
+        BuildConfig.API_KEY);
     call.enqueue(new Callback<SingleMovieResponse>()
     {
       @Override
-      public void onResponse(Call<SingleMovieResponse> call,
-          Response<SingleMovieResponse> response)
+      public void onResponse(@NonNull Call<SingleMovieResponse> call,
+          @NonNull Response<SingleMovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -115,7 +108,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<SingleMovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<SingleMovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -127,13 +121,13 @@ public class MovieRepositoryImpl implements MovieRepository
   public MutableLiveData<List<Movie>> getAllPopularMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllPopularMovies(BuildConfig.API_KEY, pageNumber);
+    Call<MovieResponse> call = movieAPI.getAllPopularMovies(BuildConfig.API_KEY,
+        pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -145,7 +139,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -157,13 +152,13 @@ public class MovieRepositoryImpl implements MovieRepository
   public MutableLiveData<List<Movie>> getAllTopRatedMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllTopRatedMovies(BuildConfig.API_KEY, pageNumber);
+    Call<MovieResponse> call = movieAPI.getAllTopRatedMovies(
+        BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -175,7 +170,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -184,17 +180,16 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<List<Movie>> getAllNowPlayingMovies(
-      int pageNumber)
+  public MutableLiveData<List<Movie>> getAllNowPlayingMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllNowPlayingMovies(BuildConfig.API_KEY, pageNumber);
+    Call<MovieResponse> call = movieAPI.getAllNowPlayingMovies(
+        BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -206,7 +201,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -215,46 +211,16 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<List<Movie>> getAllLatestMovies(int pageNumber)
-  {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllLatestMovies(BuildConfig.API_KEY, pageNumber);
-    call.enqueue(new Callback<MovieResponse>()
-    {
-      @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
-      {
-        if (response.isSuccessful())
-        {
-          if (response.body() != null)
-          {
-            latestMovies.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return latestMovies;
-  }
-
-  @Override
   public MutableLiveData<List<Movie>> getAllUpcomingMovies(int pageNumber)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getAllUpComingsMovies(BuildConfig.API_KEY, pageNumber);
+    Call<MovieResponse> call = movieAPI.getAllUpComingsMovies(
+        BuildConfig.API_KEY, pageNumber);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -266,7 +232,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -275,17 +242,16 @@ public class MovieRepositoryImpl implements MovieRepository
   }
 
   @Override
-  public MutableLiveData<List<Movie>> getAllSearchedMoviesMovies(
-      String query)
+  public MutableLiveData<List<Movie>> getAllSearchedMoviesMovies(String query)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .searchForMovie(BuildConfig.API_KEY, query);
+    Call<MovieResponse> call = movieAPI.searchForMovie(BuildConfig.API_KEY,
+        query);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -297,7 +263,8 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -309,13 +276,13 @@ public class MovieRepositoryImpl implements MovieRepository
   public MutableLiveData<List<Movie>> getAllSimilarMovies(int id)
   {
     MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<MovieResponse> call = movieAPI
-        .getSimilarMovies(id, BuildConfig.API_KEY);
+    Call<MovieResponse> call = movieAPI.getSimilarMovies(id,
+        BuildConfig.API_KEY);
     call.enqueue(new Callback<MovieResponse>()
     {
       @Override
-      public void onResponse(Call<MovieResponse> call,
-          Response<MovieResponse> response)
+      public void onResponse(@NonNull Call<MovieResponse> call,
+          @NonNull Response<MovieResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -327,42 +294,12 @@ public class MovieRepositoryImpl implements MovieRepository
       }
 
       @Override
-      public void onFailure(Call<MovieResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<MovieResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
     });
     return similarMovies;
   }
-
-  @Override
-  public MutableLiveData<List<Comment>> getMovieReviews(int id)
-  {
-    MovieAPI movieAPI = MediaClient.getMovieAPI();
-    Call<CommentResponse> call = movieAPI
-        .getMovieReviews(id, BuildConfig.API_KEY);
-    call.enqueue(new Callback<CommentResponse>()
-    {
-      @Override
-      public void onResponse(Call<CommentResponse> call,
-          Response<CommentResponse> response)
-      {
-        if (response.isSuccessful())
-        {
-          if (response.body() != null)
-          {
-            movieReviews.setValue(response.body().getResults());
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(Call<CommentResponse> call, Throwable t)
-      {
-        Log.i("Retrofit", "Something went wrong :(");
-      }
-    });
-    return movieReviews;
-  }
-
 }

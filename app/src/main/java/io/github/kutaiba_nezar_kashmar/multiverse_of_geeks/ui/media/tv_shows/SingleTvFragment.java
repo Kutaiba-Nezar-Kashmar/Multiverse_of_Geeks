@@ -29,7 +29,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentSingleTvShowBinding;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaGenreResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.MediaProductionCompaniesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
@@ -66,9 +65,6 @@ public class SingleTvFragment extends Fragment
   private TextView tvStatus;
   private TextView tvType;
   private TextView tvHomePage;
-  private TextView tvCreator;
-  private TextView tvNetwork;
-  private TextView tvProductionCompany;
   private Button toCastButton;
   private Button toSeasonsButton;
   private TextView tvRating;
@@ -109,9 +105,6 @@ public class SingleTvFragment extends Fragment
     tvStatus = root.findViewById(R.id.tv_status);
     tvType = root.findViewById(R.id.tv_type);
     tvHomePage = root.findViewById(R.id.tv_homepage);
-    tvCreator = root.findViewById(R.id.tv_creator_heading);
-    tvNetwork = root.findViewById(R.id.tv_network_heading);
-    tvProductionCompany = root.findViewById(R.id.tv_production_company_heading);
     toSeasonsButton = root.findViewById(R.id.to_tv_seasons_button);
     creatorRv = root.findViewById(R.id.tv_creator_rv);
     networkRv = root.findViewById(R.id.tv_network_rv);
@@ -388,16 +381,14 @@ public class SingleTvFragment extends Fragment
           if (singleTvShowResponse != null)
           {
             favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
-            favButton.setOnClickListener(view -> {
-              tvShowsViewModel.deleteFavoriteTvShow(tv);
-            });
+            favButton.setOnClickListener(
+                view -> tvShowsViewModel.deleteFavoriteTvShow(tv));
           }
           else
           {
             favButton.setBackgroundResource(R.drawable.fav_border_ic);
-            favButton.setOnClickListener(view -> {
-              tvShowsViewModel.insertFavoriteTvShow(tv);
-            });
+            favButton.setOnClickListener(
+                view -> tvShowsViewModel.insertFavoriteTvShow(tv));
           }
         });
   }

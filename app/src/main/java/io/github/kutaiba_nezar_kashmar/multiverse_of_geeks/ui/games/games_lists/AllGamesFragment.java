@@ -28,7 +28,7 @@ public class AllGamesFragment extends Fragment
 {
   private FragmentAllGamesBinding binding;
   private RecyclerView recyclerView;
-  private List<Game> gamesResponses = new ArrayList<Game>();
+  private final List<Game> gamesResponses = new ArrayList<>();
   private GamesViewModel gamesViewModel;
   private GamesAdapter adapter;
 
@@ -74,8 +74,7 @@ public class AllGamesFragment extends Fragment
   private void setOnClickListener(View view)
   {
     adapter.setListener(game -> {
-      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections
-          .actionNavGamesToSingleGameNave();
+      MainGamesFragmentDirections.ActionNavGamesToSingleGameNave action = MainGamesFragmentDirections.actionNavGamesToSingleGameNave();
       action.setGameId(String.valueOf(game.getId()));
       Navigation.findNavController(view).navigate(action);
     });

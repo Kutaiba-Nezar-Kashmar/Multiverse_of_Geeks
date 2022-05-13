@@ -1,10 +1,9 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.client;
 
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.MediaAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.Tv_show_network.TVShowAPI;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network.CastAPI;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.media.movie_network.MovieAPI;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -14,9 +13,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MediaClient
 {
   //client
-  private static HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
+  private static final HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
       .setLevel(HttpLoggingInterceptor.Level.BODY);
-  private static OkHttpClient client = new OkHttpClient.Builder()
+  private static final OkHttpClient client = new OkHttpClient.Builder()
       .addInterceptor(logging).build();
 
   //instance of retrofit to specify the base URL for the service

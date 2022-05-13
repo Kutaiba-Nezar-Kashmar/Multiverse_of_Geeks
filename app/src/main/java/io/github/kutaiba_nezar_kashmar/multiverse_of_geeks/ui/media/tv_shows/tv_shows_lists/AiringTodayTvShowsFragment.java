@@ -46,8 +46,8 @@ public class AiringTodayTvShowsFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
-    binding = FragmentAiringTodayTvShowsBinding
-        .inflate(inflater, container, false);
+    binding = FragmentAiringTodayTvShowsBinding.inflate(inflater, container,
+        false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.airing_today_tv_refresh_view);
     leftArrow = root.findViewById(R.id.airing_today_tv_left_arrow);
@@ -90,8 +90,7 @@ public class AiringTodayTvShowsFragment extends Fragment
   {
     recyclerView.setAdapter(adapter);
     adapter.setListener(tvShow -> {
-      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
-          .actionNavTvToNavSingleTv();
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections.actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });

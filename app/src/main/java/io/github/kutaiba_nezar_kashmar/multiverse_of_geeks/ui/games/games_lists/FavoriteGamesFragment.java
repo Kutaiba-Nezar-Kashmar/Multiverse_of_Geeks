@@ -23,13 +23,11 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Ga
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.GamesViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.FavoriteGameAdapter;
 
-
 public class FavoriteGamesFragment extends Fragment
 {
   private FragmentFavoriteGameBinding binding;
   private GamesViewModel viewModel;
-  private FavoriteGameAdapter adapter;
-  private List<Game> games = new ArrayList<>();
+  private final List<Game> games = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -66,7 +64,7 @@ public class FavoriteGamesFragment extends Fragment
 
   private void setUpRecyclerView()
   {
-    adapter = new FavoriteGameAdapter(games);
+    FavoriteGameAdapter adapter = new FavoriteGameAdapter(games);
     Observer<List<Game>> update = adapter::updateGameList;
     viewModel.getFavoriteGames().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);

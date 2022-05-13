@@ -23,9 +23,6 @@ public class AboutFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
   {
-    EditProfileViewModel editProfileViewModel = new ViewModelProvider(this)
-        .get(EditProfileViewModel.class);
-
     binding = FragmentAboutBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     String action = Intent.ACTION_VIEW;

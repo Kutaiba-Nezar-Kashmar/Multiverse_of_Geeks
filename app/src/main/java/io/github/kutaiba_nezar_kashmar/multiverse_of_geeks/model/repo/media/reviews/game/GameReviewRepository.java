@@ -8,7 +8,18 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 
 public interface GameReviewRepository
 {
+  /**
+   * Add a GameReview object to database
+   *
+   * @param gameReview The review to be added
+   * @param userId     The id of the review owner
+   */
   void postReview(GameReview gameReview, String userId);
-  void deleteReview(GameReview gameReview);
+
+  /**
+   * Hold a list of GameReview
+   *
+   * @return LiveData of al list of GameReview object
+   */
   LiveData<List<GameReview>> getGameReviews();
 }

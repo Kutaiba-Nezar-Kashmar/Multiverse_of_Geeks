@@ -87,8 +87,7 @@ public class PopularTvShowsFragment extends Fragment
   {
     recyclerView.setAdapter(adapter);
     adapter.setListener(tvShow -> {
-      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections
-          .actionNavTvToNavSingleTv();
+      TvShowsMainFragmentDirections.ActionNavTvToNavSingleTv action = TvShowsMainFragmentDirections.actionNavTvToNavSingleTv();
       action.setTvShowId(String.valueOf(tvShow.getId()));
       Navigation.findNavController(view).navigate(action);
     });

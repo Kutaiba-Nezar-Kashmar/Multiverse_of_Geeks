@@ -73,8 +73,7 @@ public class SearchedMoviesFragment extends Fragment
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
+      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections.actionNavMainMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
     });
@@ -89,9 +88,8 @@ public class SearchedMoviesFragment extends Fragment
 
   private void refresh()
   {
-    swipeRefreshLayout.setOnRefreshListener(() -> {
-      swipeRefreshLayout.setRefreshing(false);
-    });
+    swipeRefreshLayout.setOnRefreshListener(
+        () -> swipeRefreshLayout.setRefreshing(false));
   }
 
   public void setUpSearchView(Observer<List<Movie>> update)

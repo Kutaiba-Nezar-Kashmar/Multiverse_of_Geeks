@@ -18,17 +18,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 public class TvReviewRepositoryImpl implements TvReviewRepository
 {
   private static TvReviewRepository instance;
-  private final FirebaseDatabase firebaseDatabase;
-  private DatabaseReference reference;
-  private final MutableLiveData<TvReview> myTvReview;
+  private final DatabaseReference reference;
   private final MutableLiveData<List<TvReview>> tvReviews;
 
   private TvReviewRepositoryImpl()
   {
-    firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference().child("tvReview");
     tvReviews = new MutableLiveData<>();
-    myTvReview = new MutableLiveData<>();
   }
 
   public static synchronized TvReviewRepository getInstance()
@@ -45,12 +42,6 @@ public class TvReviewRepositoryImpl implements TvReviewRepository
   {
     reference.child("users").child(userId)
         .child(String.valueOf(review.getTvId())).setValue(review);
-  }
-
-  @Override
-  public void deleteReview(TvReview tvReview)
-  {
-
   }
 
   @Override

@@ -6,6 +6,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public interface UserRepository
 {
+  /**
+   * Hold the currently logged in user
+   *
+   * @return LiveData that holds the current logged in FirebaseUser
+   */
   LiveData<FirebaseUser> getCurrentUser();
+
+  /**
+   * Sign out user
+   */
   void signOut();
 }

@@ -25,9 +25,4 @@ public class SignUnViewModel extends AndroidViewModel
   {
     return userRepository.getCurrentUser();
   }
-
-  public void signOut()
-  {
-    userRepository.signOut();
-  }
 }

@@ -9,10 +9,10 @@ import androidx.lifecycle.LiveData;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv.TvReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.TvShow;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.tv_responses.SingleTvShowResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.tv.TvCommentRepository;
@@ -26,10 +26,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserR
 
 public class TVShowsViewModel extends AndroidViewModel
 {
-  private TvShowRepository tvShowRepository;
-  private UserRepository userRepository;
-  private TvReviewRepository tvReviewRepository;
-  private TvCommentRepository tvCommentRepository;
+  private final TvShowRepository tvShowRepository;
+  private final UserRepository userRepository;
+  private final TvReviewRepository tvReviewRepository;
+  private final TvCommentRepository tvCommentRepository;
 
   public TVShowsViewModel(@NonNull Application application)
   {
@@ -47,7 +47,8 @@ public class TVShowsViewModel extends AndroidViewModel
 
   public void postReview(TvReview tvReview)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     tvReviewRepository.postReview(tvReview, userId);
   }
 
@@ -68,7 +69,8 @@ public class TVShowsViewModel extends AndroidViewModel
 
   public void postComment(TvComment tvComment)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     tvCommentRepository.postComment(tvComment, userId);
   }
 

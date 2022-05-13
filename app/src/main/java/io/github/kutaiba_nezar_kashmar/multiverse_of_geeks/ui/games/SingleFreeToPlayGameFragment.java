@@ -37,9 +37,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private FragmentSingleFreeToPlayGameBinding binding;
   private FreeToPlayScreenShotsAdapter screenShotsAdapter;
   private GamesViewModel gamesViewModel;
-  private GameCommentAdapter commentAdapter;
   private GameComment gameComment;
-  private List<GameComment> comments = new ArrayList<>();
+  private final List<GameComment> comments = new ArrayList<>();
   private List<GameScreenShots> screenShots = new ArrayList<>();
   private GameReview gameReview;
   private int gameId;
@@ -220,7 +219,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
 
   private void setUpCommentRV(View view)
   {
-    commentAdapter = new GameCommentAdapter(comments);
+    GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
     gamesViewModel.getGameComments(gameId)
         .observe(getViewLifecycleOwner(), update);

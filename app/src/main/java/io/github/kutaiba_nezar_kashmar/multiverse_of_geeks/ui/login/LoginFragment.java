@@ -5,18 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentLoginBinding;
@@ -48,16 +40,16 @@ public class LoginFragment extends Fragment
   {
     signUnViewModel.getCurrentUser()
         .observe(getViewLifecycleOwner(), firebaseUser -> {
+          Intent intent;
           if (firebaseUser != null)
           {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
+            intent = new Intent(getActivity(), MainActivity.class);
           }
           else
           {
-            Intent intent = new Intent(getActivity(), SignInActivity.class);
-            startActivity(intent);
+            intent = new Intent(getActivity(), SignInActivity.class);
           }
+          startActivity(intent);
         });
   }
 }

@@ -20,12 +20,12 @@ public class SettingsViewModel extends AndroidViewModel
 
   public MutableLiveData<Boolean> setUpDarkMode()
   {
-    SharedPreferences sharedPreferences = PreferenceManager
-        .getDefaultSharedPreferences(getApplication());
+    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(
+        getApplication());
     boolean isDark = sharedPreferences.getBoolean("dark_theme", false);
 
-    sharedPreferences
-        .registerOnSharedPreferenceChangeListener((sharedPrefs, s) -> {
+    sharedPreferences.registerOnSharedPreferenceChangeListener(
+        (sharedPrefs, s) -> {
           if (s.equals("dark_theme"))
           {
             boolean setIsDark = sharedPrefs.getBoolean("dark_theme", false);

@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity
 {
 
   private AppBarConfiguration mAppBarConfiguration;
-  private ActivityMainBinding binding;
-  private NavController navController;
   private UserRepository userRepository;
 
   @Override
@@ -35,7 +33,8 @@ public class MainActivity extends AppCompatActivity
   {
     super.onCreate(savedInstanceState);
 
-    binding = ActivityMainBinding.inflate(getLayoutInflater());
+    io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(
+        getLayoutInflater());
     setContentView(binding.getRoot());
     userRepository = UserRepositoryImpl.getInstance(getApplication());
     setSupportActionBar(binding.appBarMain.toolbar);
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home,
         R.id.nav_my_profile, R.id.nav_main_movies, R.id.nav_tv,
         R.id.nav_games).setOpenableLayout(drawer).build();
-    navController = Navigation.findNavController(this,
+    NavController navController = Navigation.findNavController(this,
         R.id.nav_host_fragment_content_main);
     NavigationUI.setupActionBarWithNavController(this, navController,
         mAppBarConfiguration);
@@ -92,8 +91,8 @@ public class MainActivity extends AppCompatActivity
 
   private void checkForTheme()
   {
-    SharedPreferences sp = PreferenceManager
-        .getDefaultSharedPreferences(getApplication());
+    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(
+        getApplication());
     boolean isDark = sp.getBoolean("dark_theme", true);
     if (isDark)
     {

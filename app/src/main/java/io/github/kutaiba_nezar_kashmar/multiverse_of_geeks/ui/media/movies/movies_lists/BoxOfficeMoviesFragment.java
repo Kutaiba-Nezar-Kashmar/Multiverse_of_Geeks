@@ -46,7 +46,8 @@ public class BoxOfficeMoviesFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-    binding = FragmentBoxofficeMoviesBinding.inflate(inflater, container, false);
+    binding = FragmentBoxofficeMoviesBinding.inflate(inflater, container,
+        false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.boxoffice_movies_refresh_view);
     leftArrow = root.findViewById(R.id.boxoffice_movie_left_arrow);
@@ -89,8 +90,7 @@ public class BoxOfficeMoviesFragment extends Fragment
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
+      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections.actionNavMainMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
     });

@@ -38,8 +38,8 @@ public class FreeToPlayGamesFragment extends Fragment
       ViewGroup container, Bundle savedInstanceState)
   {
     gamesViewModel = new ViewModelProvider(this).get(GamesViewModel.class);
-    binding = FragmentFreeToPlayGamesBinding
-        .inflate(inflater, container, false);
+    binding = FragmentFreeToPlayGamesBinding.inflate(inflater, container,
+        false);
     View root = binding.getRoot();
     swipeRefreshLayout = root.findViewById(R.id.free_to_play_refresh_view);
     refresh();
@@ -85,10 +85,9 @@ public class FreeToPlayGamesFragment extends Fragment
   private void setOnClickListener(View view)
   {
     freeToPlayAdapter.setListener(allFreeToPlayGamesResponse -> {
-      MainGamesFragmentDirections.ActionNavGamesToSingleFreeToPlayNav action = MainGamesFragmentDirections
-          .actionNavGamesToSingleFreeToPlayNav();
-      action
-          .setFreeToPlayId(String.valueOf(allFreeToPlayGamesResponse.getId()));
+      MainGamesFragmentDirections.ActionNavGamesToSingleFreeToPlayNav action = MainGamesFragmentDirections.actionNavGamesToSingleFreeToPlayNav();
+      action.setFreeToPlayId(
+          String.valueOf(allFreeToPlayGamesResponse.getId()));
       Navigation.findNavController(view).navigate(action);
     });
   }

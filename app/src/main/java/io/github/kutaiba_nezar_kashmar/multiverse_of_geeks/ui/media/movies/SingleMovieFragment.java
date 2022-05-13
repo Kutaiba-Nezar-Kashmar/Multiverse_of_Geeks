@@ -1,6 +1,5 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,12 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -44,13 +39,11 @@ public class SingleMovieFragment extends Fragment
 {
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
-  private MovieCommentAdapter commentAdapter;
-  private FirebaseRecyclerOptions<MovieComment> options;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private MovieReview review;
   private MovieComment comment;
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
-  private List<MovieComment> comments = new ArrayList<>();
+  private final List<MovieComment> comments = new ArrayList<>();
   private int movieId;
   private RecyclerView commentsRecyclerView;
   private RecyclerView companyRv;
@@ -225,17 +218,6 @@ public class SingleMovieFragment extends Fragment
         });
   }
 
-/*
-  private void setUpCommentButton()
-  {
-    commentButton.setOnClickListener(view -> {
-      comment = new MovieComment(movieId, commentField.getText().toString());
-      moviesViewModel.postComment(comment);
-      commentField.getText().clear();
-    });
-  }
-*/
-
   private void checkIfSignedIn()
   {
     moviesViewModel.getCurrentUser()
@@ -266,7 +248,7 @@ public class SingleMovieFragment extends Fragment
 
   private void setUpCommentRV(View view)
   {
-    commentAdapter = new MovieCommentAdapter(comments);
+    MovieCommentAdapter commentAdapter = new MovieCommentAdapter(comments);
     Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
     moviesViewModel.getMovieComments(movieId)
         .observe(getViewLifecycleOwner(), update);
@@ -294,16 +276,14 @@ public class SingleMovieFragment extends Fragment
           if (singleMovieResponse != null)
           {
             favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
-            favButton.setOnClickListener(view -> {
-              moviesViewModel.deleteMovie(singleMovie);
-            });
+            favButton.setOnClickListener(
+                view -> moviesViewModel.deleteMovie(singleMovie));
           }
           else
           {
             favButton.setBackgroundResource(R.drawable.fav_border_ic);
-            favButton.setOnClickListener(view -> {
-              moviesViewModel.insertMovie(singleMovie);
-            });
+            favButton.setOnClickListener(
+                view -> moviesViewModel.insertMovie(singleMovie));
           }
         });
   }

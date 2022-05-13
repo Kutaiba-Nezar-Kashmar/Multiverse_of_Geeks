@@ -8,7 +8,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -19,17 +18,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 public class MovieCommentRepositoryImpl implements MovieCommentRepository
 {
   private static MovieCommentRepository instance;
-  private final FirebaseDatabase firebaseDatabase;
-  private DatabaseReference reference;
-  private final MutableLiveData<MovieComment> myComments;
+  private final DatabaseReference reference;
   private final MutableLiveData<List<MovieComment>> movieComments;
 
   private MovieCommentRepositoryImpl()
   {
-    firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference().child("movieComment")
         .child("users");
-    myComments = new MutableLiveData<>();
     movieComments = new MutableLiveData<>();
   }
 
@@ -47,12 +43,6 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
   {
     reference.child(userId).child(String.valueOf(movieComment.getMovieId()))
         .push().setValue(movieComment);
-  }
-
-  @Override
-  public void deleteComment(MovieComment movieComment)
-  {
-
   }
 
   @Override

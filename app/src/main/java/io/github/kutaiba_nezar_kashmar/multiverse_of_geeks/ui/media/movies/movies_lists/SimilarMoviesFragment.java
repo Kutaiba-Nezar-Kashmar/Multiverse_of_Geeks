@@ -69,8 +69,7 @@ public class SimilarMoviesFragment extends Fragment
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);
       adapter.setListener(movie -> {
-        SimilarMoviesFragmentDirections.ActionNavSimilarMoviesToNavSingleMovie action = SimilarMoviesFragmentDirections
-            .actionNavSimilarMoviesToNavSingleMovie();
+        SimilarMoviesFragmentDirections.ActionNavSimilarMoviesToNavSingleMovie action = SimilarMoviesFragmentDirections.actionNavSimilarMoviesToNavSingleMovie();
         action.setMovieIdArg(String.valueOf(movieId));
         Navigation.findNavController(view).navigate(action);
       });

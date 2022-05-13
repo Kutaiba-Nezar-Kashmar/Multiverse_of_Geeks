@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -70,7 +69,7 @@ public class TvCreatorAdapter
   {
     private final TextView creatorName;
     private final ImageView creatorPic;
-    private Context context;
+    private final Context context;
 
     public TvCreatorViewHolder(@NonNull View itemView)
     {

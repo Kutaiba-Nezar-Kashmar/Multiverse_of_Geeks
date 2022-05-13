@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -23,8 +22,7 @@ public class TvNetworkAdapter
 {
   private List<TvShowNetworkResponse> tvShowNetworkResponses;
 
-  public TvNetworkAdapter(
-      List<TvShowNetworkResponse> tvShowNetworkResponses)
+  public TvNetworkAdapter(List<TvShowNetworkResponse> tvShowNetworkResponses)
   {
     this.tvShowNetworkResponses = tvShowNetworkResponses;
   }
@@ -43,8 +41,6 @@ public class TvNetworkAdapter
   public void onBindViewHolder(@NonNull TvNetworkHolder holder, int position)
   {
     holder.networkName.setText(tvShowNetworkResponses.get(position).getName());
-    System.out.println("-----------------------------------" + tvShowNetworkResponses.get(position)
-        .getLogo_path() + "----------------------------------");
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShowNetworkResponses.get(position)
             .getLogo_path()).into(holder.networkLogo);
@@ -72,7 +68,7 @@ public class TvNetworkAdapter
   {
     private final TextView networkName;
     private final ImageView networkLogo;
-    private Context context;
+    private final Context context;
 
     public TvNetworkHolder(@NonNull View itemView)
     {

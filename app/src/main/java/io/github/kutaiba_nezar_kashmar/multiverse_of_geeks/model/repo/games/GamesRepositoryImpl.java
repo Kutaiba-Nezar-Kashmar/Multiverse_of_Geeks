@@ -3,6 +3,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -27,7 +28,6 @@ public class GamesRepositoryImpl implements GamesRepository
   private final ExecutorService executorService;
   private final GameDAO gameDAO;
   private final LiveData<List<Game>> favoriteGames;
-  private final LiveData<Game> singleFavoriteGame;
   private final MutableLiveData<Game> gameById;
   private final MutableLiveData<List<Game>> allGames;
   private final MutableLiveData<List<Game>> searchedGames;
@@ -38,7 +38,6 @@ public class GamesRepositoryImpl implements GamesRepository
     gameDAO = database.gameDAO();
     executorService = Executors.newFixedThreadPool(2);
     favoriteGames = gameDAO.getAllFavoriteGames();
-    singleFavoriteGame = new MutableLiveData<>();
     gameById = new MutableLiveData<>();
     allGames = new MutableLiveData<>();
     searchedGames = new MutableLiveData<>();
@@ -86,8 +85,8 @@ public class GamesRepositoryImpl implements GamesRepository
     call.enqueue(new Callback<GamesResponse>()
     {
       @Override
-      public void onResponse(Call<GamesResponse> call,
-          Response<GamesResponse> response)
+      public void onResponse(@NonNull Call<GamesResponse> call,
+          @NonNull Response<GamesResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -99,7 +98,8 @@ public class GamesRepositoryImpl implements GamesRepository
       }
 
       @Override
-      public void onFailure(Call<GamesResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<GamesResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -111,13 +111,13 @@ public class GamesRepositoryImpl implements GamesRepository
   public MutableLiveData<List<Game>> getSearchedGames(String query)
   {
     GamesAPI gamesAPI = GamesClient.gamesAPI();
-    Call<GamesResponse> call = gamesAPI
-        .getSearchGames(BuildConfig.RAWG_API_KEY, query);
+    Call<GamesResponse> call = gamesAPI.getSearchGames(BuildConfig.RAWG_API_KEY,
+        query);
     call.enqueue(new Callback<GamesResponse>()
     {
       @Override
-      public void onResponse(Call<GamesResponse> call,
-          Response<GamesResponse> response)
+      public void onResponse(@NonNull Call<GamesResponse> call,
+          @NonNull Response<GamesResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -129,7 +129,8 @@ public class GamesRepositoryImpl implements GamesRepository
       }
 
       @Override
-      public void onFailure(Call<GamesResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<GamesResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -141,13 +142,13 @@ public class GamesRepositoryImpl implements GamesRepository
   public MutableLiveData<Game> getGameById(int id)
   {
     GamesAPI gamesAPI = GamesClient.gamesAPI();
-    Call<GamesResponse> call = gamesAPI
-        .getGameById(id, BuildConfig.RAWG_API_KEY);
+    Call<GamesResponse> call = gamesAPI.getGameById(id,
+        BuildConfig.RAWG_API_KEY);
     call.enqueue(new Callback<GamesResponse>()
     {
       @Override
-      public void onResponse(Call<GamesResponse> call,
-          Response<GamesResponse> response)
+      public void onResponse(@NonNull Call<GamesResponse> call,
+          @NonNull Response<GamesResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -159,7 +160,8 @@ public class GamesRepositoryImpl implements GamesRepository
       }
 
       @Override
-      public void onFailure(Call<GamesResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<GamesResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }

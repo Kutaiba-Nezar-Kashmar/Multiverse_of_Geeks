@@ -8,13 +8,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.Query;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieReview;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Comment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Movie;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.movie.MovieCommentRepository;
@@ -50,7 +49,8 @@ public class MoviesViewModel extends AndroidViewModel
 
   public void postReview(MovieReview movieReview)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     movieReviewRepository.postReview(movieReview, userId);
   }
 
@@ -71,7 +71,8 @@ public class MoviesViewModel extends AndroidViewModel
 
   public void postComment(MovieComment comment)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     movieCommentRepository.postComment(comment, userId);
   }
 
@@ -129,11 +130,6 @@ public class MoviesViewModel extends AndroidViewModel
   {
     return movieRepository.getAllSearchedMoviesMovies(arg);
   }
-
-  /*public LiveData<List<Comment>> getAllComments(int id)
-  {
-    return movieRepository.getMovieReviews(id);
-  }*/
 
   public LiveData<List<Movie>> getAllSimilarMovies(int id)
   {

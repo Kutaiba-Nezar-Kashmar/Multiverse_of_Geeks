@@ -1,6 +1,5 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.my_profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +10,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentMyProfileBinding;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.SignInActivity;
 
 public class MyProfileFragment extends Fragment
 {
@@ -30,8 +26,6 @@ public class MyProfileFragment extends Fragment
   private ImageView myProfileImage;
   private TextView name;
   private TextView email;
-  private Button toEditFragButton;
-  private Button signOutButton;
 
   public MyProfileFragment()
   {
@@ -48,16 +42,13 @@ public class MyProfileFragment extends Fragment
     myProfileImage = root.findViewById(R.id.my_profile_image);
     name = root.findViewById(R.id.person_name);
     email = root.findViewById(R.id.person_email);
-    toEditFragButton = root.findViewById(R.id.to_edit_frag);
-    signOutButton = root.findViewById(R.id.sign_out_but);
+    Button toEditFragButton = root.findViewById(R.id.to_edit_frag);
+    Button signOutButton = root.findViewById(R.id.sign_out_but);
     checkIfSignedIn(root);
-    toEditFragButton.setOnClickListener(view -> {
-      Navigation.findNavController(root).navigate(
-          MyProfileFragmentDirections.actionNavMyProfileToEditProfileNav());
-    });
-    signOutButton.setOnClickListener(view -> {
-      myProfileViewModel.signOut();
-    });
+    toEditFragButton.setOnClickListener(
+        view -> Navigation.findNavController(root).navigate(
+            MyProfileFragmentDirections.actionNavMyProfileToEditProfileNav()));
+    signOutButton.setOnClickListener(view -> myProfileViewModel.signOut());
     return root;
   }
 
@@ -81,7 +72,9 @@ public class MyProfileFragment extends Fragment
           }
           else
           {
-            System.out.println("+++++++++++++++++++///////////////////++++++++++++" + firebaseUser.getDisplayName());
+            System.out.println(
+                "+++++++++++++++++++///////////////////++++++++++++"
+                    + firebaseUser.getDisplayName());
             name.setText(firebaseUser.getDisplayName());
             email.setText(firebaseUser.getEmail());
             Glide.with(view.getContext()).load(firebaseUser.getPhotoUrl())

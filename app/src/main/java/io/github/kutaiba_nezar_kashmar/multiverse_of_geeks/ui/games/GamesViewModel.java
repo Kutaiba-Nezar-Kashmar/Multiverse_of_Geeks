@@ -5,21 +5,21 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameComment;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameReview;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.AllFreeToPlayGamesResponse;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.games_responses.free_to_play.FreeToPlayGameResponse;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepository;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.GamesRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.free_to_play.FreeToPlayGamesRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.game.GameCommentRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.comment.game.GameCommentRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.game.GameReviewRepository;
@@ -34,11 +34,6 @@ public class GamesViewModel extends AndroidViewModel
   private final UserRepository userRepository;
   private final GameReviewRepository gameReviewRepository;
   private final GameCommentRepository gameCommentRepository;
-  private MutableLiveData<List<AllFreeToPlayGamesResponse>> allFreeGames;
-  private MutableLiveData<FreeToPlayGameResponse> freeGame;
-  private MutableLiveData<List<Game>> allGames;
-  private MutableLiveData<Game> gameById;
-  private MutableLiveData<List<Game>> searchedGames;
 
   public GamesViewModel(@NonNull Application application)
   {
@@ -48,11 +43,6 @@ public class GamesViewModel extends AndroidViewModel
     userRepository = UserRepositoryImpl.getInstance(application);
     gameReviewRepository = GameReviewRepositoryImpl.getInstance();
     gameCommentRepository = GameCommentRepositoryImpl.getInstance();
-    allFreeGames = new MutableLiveData<>();
-    freeGame = new MutableLiveData<>();
-    allGames = new MutableLiveData<>();
-    gameById = new MutableLiveData<>();
-    searchedGames = new MutableLiveData<>();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -62,13 +52,15 @@ public class GamesViewModel extends AndroidViewModel
 
   public void postReview(GameReview gameReview)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     gameReviewRepository.postReview(gameReview, userId);
   }
 
   public void postComment(GameComment gameComment)
   {
-    String userId = userRepository.getCurrentUser().getValue().getUid();
+    String userId = Objects.requireNonNull(
+        userRepository.getCurrentUser().getValue()).getUid();
     gameCommentRepository.postComment(gameComment, userId);
   }
 

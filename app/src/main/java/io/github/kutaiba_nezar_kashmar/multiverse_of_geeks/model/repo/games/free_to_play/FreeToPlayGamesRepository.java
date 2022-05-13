@@ -11,6 +11,18 @@ import io.reactivex.rxjava3.core.Flowable;
 
 public interface FreeToPlayGamesRepository
 {
+  /**
+   * Hold a FreeToPlayGameResponse in A liveData based on given parameter
+   *
+   * @param id The game id
+   * @return MutableLiveData of FreeToPlayGameResponse object
+   */
   MutableLiveData<FreeToPlayGameResponse> findFreeToPlayGame(int id);
+
+  /**
+   * Hold a list of FreeToPlayGameResponse in A liveData
+   *
+   * @return MutableLiveData of al list of FreeToPlayGameResponse object
+   */
   MutableLiveData<List<AllFreeToPlayGamesResponse>> getAllFreeToPlayGames();
 }

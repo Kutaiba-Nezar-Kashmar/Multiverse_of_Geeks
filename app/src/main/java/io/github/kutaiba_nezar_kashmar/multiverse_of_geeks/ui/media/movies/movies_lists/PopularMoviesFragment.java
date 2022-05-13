@@ -87,8 +87,7 @@ public class PopularMoviesFragment extends Fragment
   {
     recyclerView.setAdapter(moviesAdapter);
     moviesAdapter.setListener(movie -> {
-      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections
-          .actionNavMainMoviesToNavSingleMovie();
+      MoviesMainFragmentDirections.ActionNavMainMoviesToNavSingleMovie action = MoviesMainFragmentDirections.actionNavMainMoviesToNavSingleMovie();
       action.setMovieIdArg(String.valueOf(movie.getId()));
       Navigation.findNavController(view).navigate(action);
     });

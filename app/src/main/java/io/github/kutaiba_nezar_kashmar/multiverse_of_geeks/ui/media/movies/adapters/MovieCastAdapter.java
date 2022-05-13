@@ -80,7 +80,7 @@ public class MovieCastAdapter
     private final TextView character;
     private final TextView role;
     private final ImageView pic;
-    private Context context;
+    private final Context context;
 
     public MovieCastViewHolder(@NonNull View itemView)
     {

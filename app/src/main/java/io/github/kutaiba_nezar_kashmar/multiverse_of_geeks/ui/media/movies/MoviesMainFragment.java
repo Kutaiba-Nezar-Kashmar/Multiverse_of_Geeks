@@ -20,10 +20,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapt
 public class MoviesMainFragment extends Fragment
 {
   private FragmentMoviesMainBinding binding;
-  private TabLayout tabLayout;
-  private ViewPager2 viewPager;
-  private MoviePagerAdapter adapter;
-  private final String[] titles = new String[] {"POPULAR", "TOP RATED", "BOX OFFICE", "COMING SOON", "Favorite", "Search Movies"};
+  private final String[] titles = new String[] {"POPULAR", "TOP RATED",
+      "BOX OFFICE", "COMING SOON", "Favorite", "Search Movies"};
   public static final int PAGE_NUM = 6;
 
   @Nullable
@@ -33,9 +31,9 @@ public class MoviesMainFragment extends Fragment
   {
     binding = FragmentMoviesMainBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    tabLayout = root.findViewById(R.id.movies_tab_layout);
-    viewPager = root.findViewById(R.id.movies_view_pager);
-    adapter = new MoviePagerAdapter(this);
+    TabLayout tabLayout = root.findViewById(R.id.movies_tab_layout);
+    ViewPager2 viewPager = root.findViewById(R.id.movies_view_pager);
+    MoviePagerAdapter adapter = new MoviePagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,
         (tab, position) -> tab.setText(titles[position])).attach();

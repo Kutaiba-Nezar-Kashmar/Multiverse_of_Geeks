@@ -41,9 +41,8 @@ public class SingleGameFragment extends Fragment
 {
   private FragmentSingleGameBinding binding;
   private GamesViewModel viewModel;
-  private GameCommentAdapter commentAdapter;
   private GameComment gameComment;
-  private List<GameComment> comments = new ArrayList<>();
+  private final List<GameComment> comments = new ArrayList<>();
   private DeveloperAdapter developerAdapter;
   private PlatformAdapter platformAdapter;
   private List<GamesDevelopersResponse> developersResponses = new ArrayList<>();
@@ -170,16 +169,14 @@ public class SingleGameFragment extends Fragment
           if (favGame != null)
           {
             favButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
-            favButton.setOnClickListener(view -> {
-              viewModel.deleteFavoriteGame(game);
-            });
+            favButton.setOnClickListener(
+                view -> viewModel.deleteFavoriteGame(game));
           }
           else
           {
             favButton.setBackgroundResource(R.drawable.fav_border_ic);
-            favButton.setOnClickListener(view -> {
-              viewModel.insertFavoriteGame(game);
-            });
+            favButton.setOnClickListener(
+                view -> viewModel.insertFavoriteGame(game));
           }
         });
   }
@@ -238,7 +235,7 @@ public class SingleGameFragment extends Fragment
 
   private void setUpCommentRV(View view)
   {
-    commentAdapter = new GameCommentAdapter(comments);
+    GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
     viewModel.getGameComments(gameId).observe(getViewLifecycleOwner(), update);
     commentRV.hasFixedSize();

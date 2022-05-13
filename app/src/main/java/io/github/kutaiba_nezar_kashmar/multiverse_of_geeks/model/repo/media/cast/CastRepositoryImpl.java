@@ -41,7 +41,8 @@ public class CastRepositoryImpl implements CastRepository
   public MutableLiveData<List<Cast>> getMovieCast(int movieId)
   {
     CastAPI castAPI = MediaClient.getCastAPI();
-    Call<CastResponse> call = castAPI.getMovieCast(movieId, BuildConfig.API_KEY);
+    Call<CastResponse> call = castAPI.getMovieCast(movieId,
+        BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()
     {
       @Override
@@ -71,7 +72,8 @@ public class CastRepositoryImpl implements CastRepository
   public MutableLiveData<List<Cast>> getTvShowCast(int tvShowId)
   {
     CastAPI castAPI = MediaClient.getCastAPI();
-    Call<CastResponse> call = castAPI.getTvShowCast(tvShowId, BuildConfig.API_KEY);
+    Call<CastResponse> call = castAPI.getTvShowCast(tvShowId,
+        BuildConfig.API_KEY);
     call.enqueue(new Callback<CastResponse>()
     {
       @Override

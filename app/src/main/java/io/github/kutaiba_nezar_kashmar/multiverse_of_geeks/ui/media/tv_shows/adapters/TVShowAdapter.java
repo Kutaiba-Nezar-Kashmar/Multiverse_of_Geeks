@@ -72,7 +72,7 @@ public class TVShowAdapter
   class TVShowViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
-    private Context context;
+    private final Context context;
 
     public TVShowViewHolder(@NonNull View itemView)
     {
@@ -80,9 +80,8 @@ public class TVShowAdapter
       context = itemView.getContext();
       poster = itemView.findViewById(R.id.tv_image);
 
-      itemView.setOnClickListener(view -> {
-        listener.onClick(tvShows.get(getBindingAdapterPosition()));
-      });
+      itemView.setOnClickListener(
+          view -> listener.onClick(tvShows.get(getBindingAdapterPosition())));
     }
   }
 

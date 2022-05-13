@@ -66,11 +66,11 @@ public class GameCommentAdapter
 
   class CommentViewHolder extends RecyclerView.ViewHolder
   {
-    private TextView commentBody;
-    private TextView username;
-    private TextView timestamp;
-    private ImageView userImage;
-    private Context context;
+    private final TextView commentBody;
+    private final TextView username;
+    private final TextView timestamp;
+    private final ImageView userImage;
+    private final Context context;
 
     public CommentViewHolder(@NonNull View itemView)
     {

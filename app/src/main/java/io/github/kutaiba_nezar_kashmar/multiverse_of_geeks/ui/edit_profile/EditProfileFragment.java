@@ -1,6 +1,5 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.MainActivity;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentEditProfileBinding;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.SignInActivity;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.my_profile.MyProfileFragmentDirections;
 
 public class EditProfileFragment extends Fragment
 {
@@ -36,8 +29,6 @@ public class EditProfileFragment extends Fragment
   private EditText userName;
   private EditText email;
   private Button saveButton;
-  private Button resetButton;
-  private Button deleteButton;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -51,8 +42,6 @@ public class EditProfileFragment extends Fragment
     userName = root.findViewById(R.id.new_name_field);
     email = root.findViewById(R.id.new_email_field_button);
     saveButton = root.findViewById(R.id.save_changes_account_button);
-    resetButton = root.findViewById(R.id.reset_password_button);
-    deleteButton = root.findViewById(R.id.delete_account_button);
     checkIfSignedIn(root);
     return root;
   }

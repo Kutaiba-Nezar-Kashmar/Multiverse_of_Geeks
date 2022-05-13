@@ -26,7 +26,6 @@ public class TvShowSeasonsFragment extends Fragment
   private TVShowsViewModel viewModel;
   private SeasonAdapter adapter;
   private List<TvShowSeasonResponse> seasons = new ArrayList<>();
-  private int tvId;
   private RecyclerView seasonRv;
 
   @Nullable
@@ -47,12 +46,14 @@ public class TvShowSeasonsFragment extends Fragment
   {
     if (getArguments() != null)
     {
-      String id = TvShowSeasonsFragmentArgs.fromBundle(getArguments()).getTvShowId();
+      String id = TvShowSeasonsFragmentArgs.fromBundle(getArguments())
+          .getTvShowId();
       int tvId = Integer.parseInt(id);
-      viewModel.findTvShowById(tvId).observe(getViewLifecycleOwner(), tvShow ->{
-        seasons = tvShow.getSeasons();
-        adapter.updateSeasonsList(seasons);
-      });
+      viewModel.findTvShowById(tvId)
+          .observe(getViewLifecycleOwner(), tvShow -> {
+            seasons = tvShow.getSeasons();
+            adapter.updateSeasonsList(seasons);
+          });
       setSeasonRv(view);
     }
   }

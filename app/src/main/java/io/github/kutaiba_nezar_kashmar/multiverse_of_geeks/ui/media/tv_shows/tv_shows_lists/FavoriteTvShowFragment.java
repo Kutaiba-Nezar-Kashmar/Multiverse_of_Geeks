@@ -27,8 +27,7 @@ public class FavoriteTvShowFragment extends Fragment
 {
   private FragmentFavoriteTvShowBinding binding;
   private TVShowsViewModel viewModel;
-  private FavoriteTvShowAdapter adapter;
-  private List<SingleTvShowResponse> tvShows = new ArrayList<>();
+  private final List<SingleTvShowResponse> tvShows = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout refreshLayout;
 
@@ -65,7 +64,7 @@ public class FavoriteTvShowFragment extends Fragment
 
   private void setUpRecyclerView()
   {
-    adapter = new FavoriteTvShowAdapter(tvShows);
+    FavoriteTvShowAdapter adapter = new FavoriteTvShowAdapter(tvShows);
     Observer<List<SingleTvShowResponse>> update = adapter::updateTvShowList;
     viewModel.getFavoriteTvShows().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);

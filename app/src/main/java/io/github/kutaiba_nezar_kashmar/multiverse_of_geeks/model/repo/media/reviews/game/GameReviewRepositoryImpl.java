@@ -18,17 +18,14 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase
 public class GameReviewRepositoryImpl implements GameReviewRepository
 {
   private static GameReviewRepository instance;
-  private final FirebaseDatabase firebaseDatabase;
-  private DatabaseReference reference;
-  private final MutableLiveData<GameReview> myGameReview;
+  private final DatabaseReference reference;
   private final MutableLiveData<List<GameReview>> gameReviews;
 
   private GameReviewRepositoryImpl()
   {
-    firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     reference = firebaseDatabase.getReference().child("gameReview");
     gameReviews = new MutableLiveData<>();
-    myGameReview = new MutableLiveData<>();
   }
 
   public static synchronized GameReviewRepository getInstance()
@@ -45,12 +42,6 @@ public class GameReviewRepositoryImpl implements GameReviewRepository
   {
     reference.child("users").child(userId)
         .child(String.valueOf(gameReview.getGameId())).setValue(gameReview);
-  }
-
-  @Override
-  public void deleteReview(GameReview gameReview)
-  {
-
   }
 
   @Override

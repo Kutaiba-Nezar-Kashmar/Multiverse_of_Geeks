@@ -27,8 +27,7 @@ public class FavoriteMoviesFragment extends Fragment
 {
   private FragmentFavoriteMoviesBinding binding;
   private MoviesViewModel viewModel;
-  private FavoriteMovieAdapter moviesAdapter;
-  private List<SingleMovieResponse> movies = new ArrayList<>();
+  private final List<SingleMovieResponse> movies = new ArrayList<>();
   private RecyclerView recyclerView;
   private SwipeRefreshLayout refreshLayout;
 
@@ -65,7 +64,7 @@ public class FavoriteMoviesFragment extends Fragment
 
   private void setUpRecyclerView()
   {
-    moviesAdapter = new FavoriteMovieAdapter(movies);
+    FavoriteMovieAdapter moviesAdapter = new FavoriteMovieAdapter(movies);
     Observer<List<SingleMovieResponse>> update = moviesAdapter::updateMovieList;
     viewModel.getFavoriteMovies().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(moviesAdapter);

@@ -2,6 +2,7 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.games.fre
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -17,13 +18,11 @@ import retrofit2.Response;
 public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
 {
   private static FreeToPlayGamesRepository instance;
-  private FreeToPlayGamesClient client;
   private final MutableLiveData<FreeToPlayGameResponse> freeToPlayGame;
   private final MutableLiveData<List<AllFreeToPlayGamesResponse>> freeToPlayGames;
 
   private FreeToPlayGamesRepositoryImpl()
   {
-    client = new FreeToPlayGamesClient();
     freeToPlayGame = new MutableLiveData<>();
     freeToPlayGames = new MutableLiveData<>();
   }
@@ -45,8 +44,8 @@ public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
     call.enqueue(new Callback<FreeToPlayGameResponse>()
     {
       @Override
-      public void onResponse(Call<FreeToPlayGameResponse> call,
-          Response<FreeToPlayGameResponse> response)
+      public void onResponse(@NonNull Call<FreeToPlayGameResponse> call,
+          @NonNull Response<FreeToPlayGameResponse> response)
       {
         if (response.isSuccessful())
         {
@@ -58,7 +57,8 @@ public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
       }
 
       @Override
-      public void onFailure(Call<FreeToPlayGameResponse> call, Throwable t)
+      public void onFailure(@NonNull Call<FreeToPlayGameResponse> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
       }
@@ -70,13 +70,13 @@ public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
   public MutableLiveData<List<AllFreeToPlayGamesResponse>> getAllFreeToPlayGames()
   {
     FreeToPlayAPI freeToPlayAPI = FreeToPlayGamesClient.getFreeToPlayAPI();
-    Call<List<AllFreeToPlayGamesResponse>> call = freeToPlayAPI
-        .getLiveFreeToPlay();
+    Call<List<AllFreeToPlayGamesResponse>> call = freeToPlayAPI.getLiveFreeToPlay();
     call.enqueue(new Callback<List<AllFreeToPlayGamesResponse>>()
     {
       @Override
-      public void onResponse(Call<List<AllFreeToPlayGamesResponse>> call,
-          Response<List<AllFreeToPlayGamesResponse>> response)
+      public void onResponse(
+          @NonNull Call<List<AllFreeToPlayGamesResponse>> call,
+          @NonNull Response<List<AllFreeToPlayGamesResponse>> response)
       {
         if (response.isSuccessful())
         {
@@ -88,8 +88,9 @@ public class FreeToPlayGamesRepositoryImpl implements FreeToPlayGamesRepository
       }
 
       @Override
-      public void onFailure(Call<List<AllFreeToPlayGamesResponse>> call,
-          Throwable t)
+      public void onFailure(
+          @NonNull Call<List<AllFreeToPlayGamesResponse>> call,
+          @NonNull Throwable t)
       {
         Log.i("Retrofit", "Something went wrong :(");
 

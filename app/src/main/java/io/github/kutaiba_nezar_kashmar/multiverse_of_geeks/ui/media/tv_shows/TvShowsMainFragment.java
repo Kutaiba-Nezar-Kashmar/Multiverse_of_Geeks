@@ -20,9 +20,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.ada
 public class TvShowsMainFragment extends Fragment
 {
   private FragmentMainTvShowsBinding binding;
-  private TabLayout tabLayout;
-  private ViewPager2 viewPager;
-  private TvPagerAdapter adapter;
   private final String[] titles = new String[] {"POPULAR", "TOP RATED",
       "STREAMING", "STREAMING TODAY", "Favorite", "Search Tv Show"};
   public static final int PAGE_NUM = 6;
@@ -34,9 +31,9 @@ public class TvShowsMainFragment extends Fragment
   {
     binding = FragmentMainTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
-    tabLayout = root.findViewById(R.id.tv_tab_layout);
-    viewPager = root.findViewById(R.id.tv_view_pager);
-    adapter = new TvPagerAdapter(this);
+    TabLayout tabLayout = root.findViewById(R.id.tv_tab_layout);
+    ViewPager2 viewPager = root.findViewById(R.id.tv_view_pager);
+    TvPagerAdapter adapter = new TvPagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,
         (tab, position) -> tab.setText(titles[position])).attach();

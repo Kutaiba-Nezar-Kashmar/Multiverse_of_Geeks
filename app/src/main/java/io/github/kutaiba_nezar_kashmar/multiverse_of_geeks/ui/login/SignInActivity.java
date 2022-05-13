@@ -2,14 +2,12 @@ package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.firebase.ui.auth.AuthUI;
@@ -32,9 +30,6 @@ public class SignInActivity extends AppCompatActivity
         }
         else
         {
-          System.out.println(
-              "++++++++++++++++++++++++++++++++++++++++++++++++++++ " + result
-                  .getResultCode());
           Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
         }
       });
@@ -70,9 +65,9 @@ public class SignInActivity extends AppCompatActivity
 
   public void signIn()
   {
-    List<AuthUI.IdpConfig> providers = Arrays
-        .asList(new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.GoogleBuilder().build());
+    List<AuthUI.IdpConfig> providers = Arrays.asList(
+        new AuthUI.IdpConfig.EmailBuilder().build(),
+        new AuthUI.IdpConfig.GoogleBuilder().build());
 
     Intent signInIntent = AuthUI.getInstance().createSignInIntentBuilder()
         .setAvailableProviders(providers).setIsSmartLockEnabled(false)

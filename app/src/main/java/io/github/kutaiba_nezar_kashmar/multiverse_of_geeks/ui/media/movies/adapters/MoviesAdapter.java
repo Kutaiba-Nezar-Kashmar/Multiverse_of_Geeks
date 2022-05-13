@@ -71,7 +71,7 @@ public class MoviesAdapter
   class MovieViewHolder extends RecyclerView.ViewHolder
   {
     private final ImageView poster;
-    private Context context;
+    private final Context context;
 
     public MovieViewHolder(@NonNull View itemView)
     {

@@ -79,7 +79,7 @@ public class TvCastAdapter
     private final TextView character;
     private final TextView role;
     private final ImageView pic;
-    private Context context;
+    private final Context context;
 
     public TvCastViewHolder(@NonNull View itemView)
     {
