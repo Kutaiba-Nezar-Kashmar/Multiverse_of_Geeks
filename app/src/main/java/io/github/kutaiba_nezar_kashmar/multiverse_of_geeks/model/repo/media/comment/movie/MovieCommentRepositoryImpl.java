@@ -71,7 +71,7 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
             }
           }
         }
-        movieComments.postValue(commentList);
+        movieComments.setValue(commentList);
       }
 
       @Override
@@ -80,7 +80,7 @@ public class MovieCommentRepositoryImpl implements MovieCommentRepository
 
       }
     };
-    reference.addListenerForSingleValueEvent(listener);
+    reference.addValueEventListener(listener);
     return movieComments;
   }
 }

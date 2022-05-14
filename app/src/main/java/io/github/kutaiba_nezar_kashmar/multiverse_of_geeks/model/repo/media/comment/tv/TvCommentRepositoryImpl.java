@@ -71,7 +71,7 @@ public class TvCommentRepositoryImpl implements TvCommentRepository
             }
           }
         }
-        tvComments.postValue(commentList);
+        tvComments.setValue(commentList);
       }
 
       @Override
@@ -80,7 +80,7 @@ public class TvCommentRepositoryImpl implements TvCommentRepository
 
       }
     };
-    reference.addListenerForSingleValueEvent(listener);
+    reference.addValueEventListener(listener);
     return tvComments;
   }
 }

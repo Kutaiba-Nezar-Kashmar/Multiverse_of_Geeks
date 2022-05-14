@@ -71,7 +71,7 @@ public class GameCommentRepositoryImpl implements GameCommentRepository
             }
           }
         }
-        gameComments.postValue(commentList);
+        gameComments.setValue(commentList);
       }
 
       @Override
@@ -80,7 +80,7 @@ public class GameCommentRepositoryImpl implements GameCommentRepository
 
       }
     };
-    reference.addListenerForSingleValueEvent(listener);
+    reference.addValueEventListener(listener);
     return gameComments;
   }
 }
