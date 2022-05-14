@@ -17,7 +17,7 @@
             android:id="@+id/game_poster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/mog_log_background"
+            android:src="@drawable/place_holder_pic"
             android:layout_marginTop="@dimen/edit_text_margin"/>
 
 </LinearLayout>

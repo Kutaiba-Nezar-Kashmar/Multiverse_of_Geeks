@@ -19,7 +19,7 @@
             android:id="@+id/tv_network_logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/mog_log_background"
+            android:src="@drawable/place_holder_pic"
             android:minHeight="250dp"/>
 
 </LinearLayout>

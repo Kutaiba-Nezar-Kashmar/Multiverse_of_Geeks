@@ -12,6 +12,6 @@
             android:id="@+id/tv_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/my_logo_background" />
+            android:src="@drawable/place_holder_pic" />
 
 </LinearLayout>

@@ -10,6 +10,7 @@
             android:layout_height="match_parent"
             android:minHeight="350dp"
             android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
+            android:paddingEnd="5dp"
+            android:src="@drawable/place_holder_pic"/>
 
 </LinearLayout>
