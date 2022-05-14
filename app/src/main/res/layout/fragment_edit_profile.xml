@@ -10,20 +10,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/new_profile_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="250dp"
-                    android:contentDescription="@string/my_profile_image_disc"
-                    android:src="@drawable/avatar_placeholder" />
+
+        <Button
+                android:id="@+id/edit_profile_piv_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_ic"
+                android:layout_gravity="end" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/new_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/my_profile_image_disc"
+                android:src="@drawable/avatar_placeholder"
+                android:minHeight="250dp" />
+
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name_info_header"
                 app:drawableStartCompat="@drawable/person_ic"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <EditText
                 android:id="@+id/new_name_field"
@@ -40,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 app:drawableStartCompat="@drawable/email_ic"
-                android:layout_marginTop="@dimen/edit_text_margin"/>
+                android:layout_marginTop="@dimen/edit_text_margin" />
 
         <EditText
                 android:id="@+id/new_email_field_button"
@@ -65,7 +75,7 @@
                 android:text="@string/save_button"
                 android:backgroundTint="@color/green"
                 android:textColor="@color/black"
-                android:drawableLeft="@drawable/save_ic"/>
+                android:drawableLeft="@drawable/save_ic" />
 
         <Button
                 android:id="@+id/reset_password_button"
@@ -75,7 +85,7 @@
                 android:text="@string/reset_button"
                 android:backgroundTint="@color/teal_200"
                 android:textColor="@color/black"
-                android:drawableLeft="@drawable/reset_ic"/>
+                android:drawableLeft="@drawable/reset_ic" />
 
         <Button
                 android:id="@+id/delete_account_button"
@@ -84,7 +94,7 @@
                 android:text="@string/delete_button"
                 android:backgroundTint="@color/red"
                 android:textColor="@color/black"
-                android:drawableLeft="@drawable/delete_ic"/>
+                android:drawableLeft="@drawable/delete_ic" />
 
     </LinearLayout>
 

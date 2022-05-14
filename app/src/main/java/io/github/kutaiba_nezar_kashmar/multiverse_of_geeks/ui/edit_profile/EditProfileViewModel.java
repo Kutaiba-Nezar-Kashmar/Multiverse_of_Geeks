@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile;
 
 import android.app.Application;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -56,5 +57,10 @@ public class EditProfileViewModel extends AndroidViewModel
   private void setNotification(String notification)
   {
     this.notification = notification;
+  }
+
+  public void updateProfile(Uri imageUri, String name)
+  {
+    userRepository.updateProfile(imageUri, name);
   }
 }
