@@ -15,9 +15,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentMyProfileBinding;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.GlideApp;
 
 public class MyProfileFragment extends Fragment
 {
@@ -72,12 +74,12 @@ public class MyProfileFragment extends Fragment
           }
           else
           {
-            System.out.println(
-                "+++++++++++++++++++///////////////////++++++++++++"
-                    + firebaseUser.getDisplayName());
             name.setText(firebaseUser.getDisplayName());
             email.setText(firebaseUser.getEmail());
-            Glide.with(view.getContext()).load(firebaseUser.getPhotoUrl())
+            myProfileViewModel.setUserStorageRepository(firebaseUser.getUid());
+            GlideApp.with(view.getContext())
+                .load(myProfileViewModel.profileImagePath())
+                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                 .into(myProfileImage);
           }
         });
