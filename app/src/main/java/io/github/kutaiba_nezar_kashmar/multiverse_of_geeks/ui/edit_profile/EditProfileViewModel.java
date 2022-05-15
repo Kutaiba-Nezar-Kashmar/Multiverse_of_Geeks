@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -74,5 +75,10 @@ public class EditProfileViewModel extends AndroidViewModel
   public void uploadToFirebaseStorage(Uri path)
   {
     userStorageRepository.uploadUserProfileImage(path);
+  }
+
+  public StorageReference profileImagePath()
+  {
+    return userStorageRepository.getReference();
   }
 }

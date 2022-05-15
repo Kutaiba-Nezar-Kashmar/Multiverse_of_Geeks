@@ -1,13 +1,11 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile;
 
 import static android.content.Intent.ACTION_GET_CONTENT;
-import static android.content.Intent.ACTION_PICK;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -26,11 +22,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentEditProfileBinding;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.GlideApp;
 
 public class EditProfileFragment extends Fragment
 {
@@ -44,7 +42,6 @@ public class EditProfileFragment extends Fragment
   private Button saveButton;
   private Button deleteButton;
   private Button resetButton;
-  private Button editPic;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -60,26 +57,23 @@ public class EditProfileFragment extends Fragment
     saveButton = root.findViewById(R.id.save_changes_account_button);
     deleteButton = root.findViewById(R.id.delete_account_button);
     resetButton = root.findViewById(R.id.reset_password_button);
-    editPic = root.findViewById(R.id.edit_profile_piv_button);
+    Button editPic = root.findViewById(R.id.edit_profile_piv_button);
     checkIfSignedIn(root);
-    Glide.with(root.getContext()).load(
-        Objects.requireNonNull(editProfileViewModel.getCurrentUser().getValue())
-            .getPhotoUrl()).into(profileImage);
+    GlideApp.with(root.getContext())
+        .load(editProfileViewModel.profileImagePath())
+        .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+        .into(profileImage);
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),
-        new ActivityResultCallback<ActivityResult>()
-        {
-          @Override
-          public void onActivityResult(ActivityResult result)
+        new ActivityResultContracts.StartActivityForResult(), result -> {
+          if (result.getResultCode() == Activity.RESULT_OK)
           {
-            if (result.getResultCode() == Activity.RESULT_OK)
-            {
-              uri = Objects.requireNonNull(result.getData()).getData();
-              System.out.println("//////////////////////" + uri);
-              Glide.with(root.getContext()).load(uri).into(profileImage);
-              editProfileViewModel.uploadToFirebaseStorage(uri);
-            }
+            uri = Objects.requireNonNull(result.getData()).getData();
+            GlideApp.with(root.getContext())
+                .load(editProfileViewModel.profileImagePath())
+                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .into(profileImage);
+            editProfileViewModel.uploadToFirebaseStorage(uri);
           }
         });
 
