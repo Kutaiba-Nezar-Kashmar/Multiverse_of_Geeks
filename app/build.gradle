@@ -78,6 +78,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     //lifecycle
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'

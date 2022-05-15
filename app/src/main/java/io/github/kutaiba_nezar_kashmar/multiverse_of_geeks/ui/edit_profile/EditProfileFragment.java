@@ -1,5 +1,8 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile;
 
+import static android.content.Intent.ACTION_GET_CONTENT;
+import static android.content.Intent.ACTION_PICK;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -73,14 +76,17 @@ public class EditProfileFragment extends Fragment
             if (result.getResultCode() == Activity.RESULT_OK)
             {
               uri = Objects.requireNonNull(result.getData()).getData();
+              System.out.println("//////////////////////" + uri);
               Glide.with(root.getContext()).load(uri).into(profileImage);
+              editProfileViewModel.uploadToFirebaseStorage(uri);
             }
           }
         });
 
     editPic.setOnClickListener(v -> {
-      Intent openGallery = new Intent(Intent.ACTION_PICK,
-          MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+      Intent openGallery = new Intent();
+      openGallery.setType("image/*");
+      openGallery.setAction(ACTION_GET_CONTENT);
       activityResultLauncher.launch(openGallery);
     });
     setSaveButton();

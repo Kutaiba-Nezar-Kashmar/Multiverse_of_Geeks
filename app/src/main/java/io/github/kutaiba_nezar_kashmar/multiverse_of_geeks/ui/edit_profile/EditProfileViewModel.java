@@ -13,16 +13,23 @@ import java.util.Objects;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepositoryImpl;
 
 public class EditProfileViewModel extends AndroidViewModel
 {
   private final UserRepository userRepository;
+  private final UserStorageRepository userStorageRepository;
   private String notification;
 
   public EditProfileViewModel(@NonNull Application application)
   {
     super(application);
     userRepository = UserRepositoryImpl.getInstance(application);
+    String userId = Objects.requireNonNull(
+        Objects.requireNonNull(userRepository.getCurrentUser().getValue())
+            .getUid());
+    userStorageRepository = UserStorageRepositoryImpl.getInstance(userId);
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -62,5 +69,10 @@ public class EditProfileViewModel extends AndroidViewModel
   public void updateProfile(Uri imageUri, String name)
   {
     userRepository.updateProfile(imageUri, name);
+  }
+
+  public void uploadToFirebaseStorage(Uri path)
+  {
+    userStorageRepository.uploadUserProfileImage(path);
   }
 }
