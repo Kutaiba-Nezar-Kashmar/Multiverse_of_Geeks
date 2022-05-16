@@ -23,6 +23,7 @@ public class MyProfileViewModel extends AndroidViewModel
   {
     super(application);
     userRepository = UserRepositoryImpl.getInstance(application);
+    userStorageRepository = UserStorageRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -30,18 +31,13 @@ public class MyProfileViewModel extends AndroidViewModel
     return userRepository.getCurrentUser();
   }
 
-  public void setUserStorageRepository(String userId)
-  {
-    userStorageRepository = UserStorageRepositoryImpl.getInstance(userId);
-  }
-
   public void signOut()
   {
     userRepository.signOut();
   }
 
-  public StorageReference profileImagePath()
+  public StorageReference profileImagePath(String userId)
   {
-    return userStorageRepository.getReference();
+    return userStorageRepository.getReference(userId);
   }
 }

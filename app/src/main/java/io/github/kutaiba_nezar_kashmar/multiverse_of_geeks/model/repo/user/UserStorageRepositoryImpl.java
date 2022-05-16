@@ -13,33 +13,33 @@ public class UserStorageRepositoryImpl implements UserStorageRepository
   private FirebaseStorage storage;
   private StorageReference reference;
 
-  private UserStorageRepositoryImpl(String userId)
+  private UserStorageRepositoryImpl()
   {
     storage = FirebaseStorage.getInstance();
-    reference = storage.getReference("images/" + userId);
+    reference = storage.getReference("images/");
   }
 
-  public static synchronized UserStorageRepository getInstance(String userId)
+  public static synchronized UserStorageRepository getInstance()
   {
     if (instance == null)
     {
-      instance = new UserStorageRepositoryImpl(userId);
+      instance = new UserStorageRepositoryImpl();
     }
     return instance;
   }
 
   @Override
-  public void uploadUserProfileImage(Uri path)
+  public void uploadUserProfileImage(Uri path, String userId)
   {
-    UploadTask uploadTask = reference.putFile(path);
+    UploadTask uploadTask = reference.child(userId).putFile(path);
     uploadTask.addOnFailureListener(
         e -> Log.i("Firebase Storage: ", "Can't upload")).addOnSuccessListener(
         taskSnapshot -> Log.i("Firebase Storage: ", "Upload done"));
   }
 
   @Override
-  public StorageReference getReference()
+  public StorageReference getReference(String userId)
   {
-    return reference;
+    return reference.child(userId);
   }
 }

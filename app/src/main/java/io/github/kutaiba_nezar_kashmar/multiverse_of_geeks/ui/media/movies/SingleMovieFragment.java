@@ -231,8 +231,8 @@ public class SingleMovieFragment extends Fragment
               comment = new MovieComment(movieId,
                   commentField.getText().toString(),
                   firebaseUser.getDisplayName(),
-                  String.valueOf(firebaseUser.getPhotoUrl()),
                   String.valueOf(Calendar.getInstance().getTime()));
+              comment.setUserImage(null);
               moviesViewModel.postComment(comment);
               commentField.getText().clear();
             });

@@ -36,6 +36,7 @@ public class EditProfileFragment extends Fragment
   private EditProfileViewModel editProfileViewModel;
   private ImageView profileImage;
   private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+  private String userId;
   private Uri uri = null;
   private EditText userName;
   private EditText email;
@@ -59,21 +60,13 @@ public class EditProfileFragment extends Fragment
     resetButton = root.findViewById(R.id.reset_password_button);
     Button editPic = root.findViewById(R.id.edit_profile_piv_button);
     checkIfSignedIn(root);
-    GlideApp.with(root.getContext())
-        .load(editProfileViewModel.profileImagePath())
-        .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
-        .into(profileImage);
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(), result -> {
           if (result.getResultCode() == Activity.RESULT_OK)
           {
             uri = Objects.requireNonNull(result.getData()).getData();
-            GlideApp.with(root.getContext())
-                .load(editProfileViewModel.profileImagePath())
-                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
-                .into(profileImage);
-            editProfileViewModel.uploadToFirebaseStorage(uri);
+            editProfileViewModel.uploadToFirebaseStorage(uri, userId);
           }
         });
 
@@ -106,6 +99,14 @@ public class EditProfileFragment extends Fragment
                 EditProfileFragmentDirections.actionEditProfileNavToNavHome());
             Toast.makeText(getContext(), "Please Login First",
                 Toast.LENGTH_SHORT).show();
+          }
+          else
+          {
+            userId = firebaseUser.getUid();
+            GlideApp.with(view.getContext()).load(
+                    editProfileViewModel.profileImagePath(firebaseUser.getUid()))
+                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .into(profileImage);
           }
         });
   }

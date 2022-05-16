@@ -76,9 +76,8 @@ public class MyProfileFragment extends Fragment
           {
             name.setText(firebaseUser.getDisplayName());
             email.setText(firebaseUser.getEmail());
-            myProfileViewModel.setUserStorageRepository(firebaseUser.getUid());
-            GlideApp.with(view.getContext())
-                .load(myProfileViewModel.profileImagePath())
+            GlideApp.with(view.getContext()).load(
+                    myProfileViewModel.profileImagePath(firebaseUser.getUid()))
                 .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                 .into(myProfileImage);
           }

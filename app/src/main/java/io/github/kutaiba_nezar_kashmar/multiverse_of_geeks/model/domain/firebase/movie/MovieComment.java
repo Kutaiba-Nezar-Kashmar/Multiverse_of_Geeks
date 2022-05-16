@@ -1,5 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie;
 
+import com.google.firebase.storage.StorageReference;
+
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -8,7 +10,7 @@ public class MovieComment
   private int movieId;
   private String comment;
   private String username;
-  private String userImage;
+  private StorageReference userImage;
   private String timeStamp;
 
   public MovieComment()
@@ -16,12 +18,11 @@ public class MovieComment
   }
 
   public MovieComment(int movieId, String comment, String username,
-      String userImage, String timeStamp)
+      String timeStamp)
   {
     this.movieId = movieId;
     this.comment = comment;
     this.username = username;
-    this.userImage = userImage;
     this.timeStamp = timeStamp;
   }
 
@@ -55,12 +56,12 @@ public class MovieComment
     this.username = username;
   }
 
-  public String getUserImage()
+  public StorageReference getUserImage()
   {
     return userImage;
   }
 
-  public void setUserImage(String userImage)
+  public void setUserImage(StorageReference userImage)
   {
     this.userImage = userImage;
   }

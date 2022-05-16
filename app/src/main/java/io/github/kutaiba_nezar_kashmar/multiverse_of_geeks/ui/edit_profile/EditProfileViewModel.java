@@ -27,10 +27,7 @@ public class EditProfileViewModel extends AndroidViewModel
   {
     super(application);
     userRepository = UserRepositoryImpl.getInstance(application);
-    String userId = Objects.requireNonNull(
-        Objects.requireNonNull(userRepository.getCurrentUser().getValue())
-            .getUid());
-    userStorageRepository = UserStorageRepositoryImpl.getInstance(userId);
+    userStorageRepository = UserStorageRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
@@ -72,13 +69,13 @@ public class EditProfileViewModel extends AndroidViewModel
     userRepository.updateProfile(imageUri, name);
   }
 
-  public void uploadToFirebaseStorage(Uri path)
+  public void uploadToFirebaseStorage(Uri path, String userId)
   {
-    userStorageRepository.uploadUserProfileImage(path);
+    userStorageRepository.uploadUserProfileImage(path, userId);
   }
 
-  public StorageReference profileImagePath()
+  public StorageReference profileImagePath(String userId)
   {
-    return userStorageRepository.getReference();
+    return userStorageRepository.getReference(userId);
   }
 }

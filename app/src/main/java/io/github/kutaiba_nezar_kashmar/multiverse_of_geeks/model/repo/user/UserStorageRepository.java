@@ -6,6 +6,6 @@ import com.google.firebase.storage.StorageReference;
 
 public interface UserStorageRepository
 {
-  void uploadUserProfileImage(Uri path);
-  StorageReference getReference();
+  void uploadUserProfileImage(Uri path, String userId);
+  StorageReference getReference(String userId);
 }
