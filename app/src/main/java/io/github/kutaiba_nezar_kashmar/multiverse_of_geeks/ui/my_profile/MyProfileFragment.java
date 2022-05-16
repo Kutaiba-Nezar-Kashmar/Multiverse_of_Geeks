@@ -78,6 +78,7 @@ public class MyProfileFragment extends Fragment
             email.setText(firebaseUser.getEmail());
             GlideApp.with(view.getContext()).load(
                     myProfileViewModel.profileImagePath(firebaseUser.getUid()))
+                .placeholder(R.drawable.avatar_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                 .into(myProfileImage);
           }

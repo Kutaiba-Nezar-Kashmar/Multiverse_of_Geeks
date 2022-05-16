@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +41,7 @@ public class SingleMovieFragment extends Fragment
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
+  private MovieCommentAdapter commentAdapter;
   private MovieReview review;
   private MovieComment comment;
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
@@ -227,14 +229,18 @@ public class SingleMovieFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentsRecyclerView.setVisibility(View.VISIBLE);
             commentButton.setOnClickListener(view -> {
-              comment = new MovieComment(movieId,
+              comment = new MovieComment(movieId, firebaseUser.getUid(),
                   commentField.getText().toString(),
                   firebaseUser.getDisplayName(),
                   String.valueOf(Calendar.getInstance().getTime()));
-              comment.setUserImage(null);
               moviesViewModel.postComment(comment);
               commentField.getText().clear();
+/*
+              comment.setUserImage(
+                  moviesViewModel.getProfileImage(firebaseUser.getUid()));
+*/
             });
           }
           else
@@ -242,16 +248,28 @@ public class SingleMovieFragment extends Fragment
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
+            commentsRecyclerView.setVisibility(View.GONE);
           }
         });
   }
 
   private void setUpCommentRV(View view)
   {
-    MovieCommentAdapter commentAdapter = new MovieCommentAdapter(comments);
+    commentAdapter = new MovieCommentAdapter(comments);
     Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
     moviesViewModel.getMovieComments(movieId)
-        .observe(getViewLifecycleOwner(), update);
+        .observe(getViewLifecycleOwner(), new Observer<List<MovieComment>>()
+        {
+          @Override
+          public void onChanged(List<MovieComment> movieComments)
+          {
+            for (MovieComment mc : movieComments)
+            {
+              mc.setUserImage(moviesViewModel.getProfileImage(mc.getUserId()));
+            }
+            update.onChanged(movieComments);
+          }
+        });
     commentsRecyclerView.hasFixedSize();
     commentsRecyclerView.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

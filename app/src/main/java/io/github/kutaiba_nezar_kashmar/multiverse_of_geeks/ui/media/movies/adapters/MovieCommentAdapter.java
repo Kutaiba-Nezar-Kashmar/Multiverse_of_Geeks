@@ -1,6 +1,7 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.movie.MovieComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.GlideApp;
 
 public class MovieCommentAdapter
     extends RecyclerView.Adapter<MovieCommentAdapter.CommentViewHolder>
@@ -43,8 +46,11 @@ public class MovieCommentAdapter
     holder.username.setText(comments.get(position).getUsername());
     holder.commentBody.setText(comments.get(position).getComment());
     holder.timestamp.setText(comments.get(position).getTimeStamp());
-    Glide.with(holder.context).load(comments.get(position).getUserImage())
+    GlideApp.with(holder.context).load(comments.get(position).getUserImage())
+        .placeholder(R.drawable.avatar_placeholder)
+        .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
         .into(holder.userImage);
+
   }
 
   @Override

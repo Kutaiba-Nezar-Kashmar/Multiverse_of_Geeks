@@ -8,22 +8,34 @@ import java.util.Date;
 public class MovieComment
 {
   private int movieId;
+  private String userId;
   private String comment;
   private String username;
-  private StorageReference userImage;
+  private StorageReference userImage = null;
   private String timeStamp;
 
   public MovieComment()
   {
   }
 
-  public MovieComment(int movieId, String comment, String username,
+  public MovieComment(int movieId, String userID, String comment, String username,
       String timeStamp)
   {
     this.movieId = movieId;
+    this.userId = userID;
     this.comment = comment;
     this.username = username;
     this.timeStamp = timeStamp;
+  }
+
+  public String getUserId()
+  {
+    return userId;
+  }
+
+  public void setUserId(String userId)
+  {
+    this.userId = userId;
   }
 
   public int getMovieId()

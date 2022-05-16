@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.revi
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.movie.MovieReviewRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepositoryImpl;
 
 public class MoviesViewModel extends AndroidViewModel
 {
@@ -31,6 +34,7 @@ public class MoviesViewModel extends AndroidViewModel
   private final UserRepository userRepository;
   private final MovieReviewRepository movieReviewRepository;
   private final MovieCommentRepository movieCommentRepository;
+  private final UserStorageRepository userStorageRepository;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   public MoviesViewModel(Application application)
@@ -40,11 +44,17 @@ public class MoviesViewModel extends AndroidViewModel
     userRepository = UserRepositoryImpl.getInstance(application);
     movieReviewRepository = MovieReviewRepositoryImpl.getInstance();
     movieCommentRepository = MovieCommentRepositoryImpl.getInstance();
+    userStorageRepository = UserStorageRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
   {
     return userRepository.getCurrentUser();
+  }
+
+  public StorageReference getProfileImage(String userId)
+  {
+    return userStorageRepository.getReference(userId);
   }
 
   public void postReview(MovieReview movieReview)

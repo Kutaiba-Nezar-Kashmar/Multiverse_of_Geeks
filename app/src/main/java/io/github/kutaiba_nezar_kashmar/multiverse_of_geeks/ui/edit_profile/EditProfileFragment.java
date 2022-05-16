@@ -105,6 +105,7 @@ public class EditProfileFragment extends Fragment
             userId = firebaseUser.getUid();
             GlideApp.with(view.getContext()).load(
                     editProfileViewModel.profileImagePath(firebaseUser.getUid()))
+                .placeholder(R.drawable.avatar_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                 .into(profileImage);
           }
