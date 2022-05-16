@@ -182,10 +182,11 @@ public class SingleTvFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentRv.setVisibility(View.VISIBLE);
             commentButton.setOnClickListener(view -> {
-              comment = new TvComment(tvId, commentField.getText().toString(),
+              comment = new TvComment(tvId, firebaseUser.getUid(),
+                  commentField.getText().toString(),
                   firebaseUser.getDisplayName(),
-                  String.valueOf(firebaseUser.getPhotoUrl()),
                   String.valueOf(Calendar.getInstance().getTime()));
               tvShowsViewModel.postComment(comment);
               commentField.getText().clear();
@@ -196,6 +197,7 @@ public class SingleTvFragment extends Fragment
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
+            commentRv.setVisibility(View.GONE);
           }
         });
   }
@@ -341,7 +343,13 @@ public class SingleTvFragment extends Fragment
     adapter = new TvCommentAdapter(comments);
     Observer<List<TvComment>> update = adapter::updateTvCommentList;
     tvShowsViewModel.getTvComments(tvId)
-        .observe(getViewLifecycleOwner(), update);
+        .observe(getViewLifecycleOwner(), tvComments -> {
+          for (TvComment tc : tvComments)
+          {
+            tc.setUserImage(tvShowsViewModel.getProfileImage(tc.getUserId()));
+          }
+          update.onChanged(tvComments);
+        });
   }
 
   private void setUpCompanyRv(View view)

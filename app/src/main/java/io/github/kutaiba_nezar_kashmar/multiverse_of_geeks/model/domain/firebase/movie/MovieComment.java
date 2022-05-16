@@ -18,11 +18,11 @@ public class MovieComment
   {
   }
 
-  public MovieComment(int movieId, String userID, String comment, String username,
+  public MovieComment(int movieId, String userId, String comment, String username,
       String timeStamp)
   {
     this.movieId = movieId;
-    this.userId = userID;
+    this.userId = userId;
     this.comment = comment;
     this.username = username;
     this.timeStamp = timeStamp;

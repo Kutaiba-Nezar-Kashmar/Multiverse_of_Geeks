@@ -198,11 +198,11 @@ public class SingleFreeToPlayGameFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentRV.setVisibility(View.VISIBLE);
             commentButton.setOnClickListener(view -> {
-              gameComment = new GameComment(gameId,
+              gameComment = new GameComment(gameId, firebaseUser.getUid(),
                   commentField.getText().toString(),
                   firebaseUser.getDisplayName(),
-                  String.valueOf(firebaseUser.getPhotoUrl()),
                   String.valueOf(Calendar.getInstance().getTime()));
               gamesViewModel.postComment(gameComment);
               commentField.getText().clear();
@@ -213,6 +213,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
+            commentRV.setVisibility(View.GONE);
           }
         });
   }
@@ -222,7 +223,13 @@ public class SingleFreeToPlayGameFragment extends Fragment
     GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
     gamesViewModel.getGameComments(gameId)
-        .observe(getViewLifecycleOwner(), update);
+        .observe(getViewLifecycleOwner(), gameComments -> {
+          for (GameComment gc : gameComments)
+          {
+            gc.setUserImage(gamesViewModel.getProfileImage(gc.getUserId()));
+          }
+          update.onChanged(gameComments);
+        });
     commentRV.hasFixedSize();
     commentRV.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

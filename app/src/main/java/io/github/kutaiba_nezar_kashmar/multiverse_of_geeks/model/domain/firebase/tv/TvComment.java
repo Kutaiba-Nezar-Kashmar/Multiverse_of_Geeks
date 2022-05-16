@@ -1,25 +1,38 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.tv;
 
+import com.google.firebase.storage.StorageReference;
+
 public class TvComment
 {
   private int tvId;
+  private String userId;
   private String comment;
   private String username;
-  private String userImage;
+  private StorageReference userImage;
   private String timeStamp;
 
   public TvComment()
   {
   }
 
-  public TvComment(int tvId, String comment, String username, String userImage,
+  public TvComment(int tvId, String userId, String comment, String username,
       String timeStamp)
   {
     this.tvId = tvId;
+    this.userId = userId;
     this.comment = comment;
     this.username = username;
-    this.userImage = userImage;
     this.timeStamp = timeStamp;
+  }
+
+  public String getUserId()
+  {
+    return userId;
+  }
+
+  public void setUserId(String userId)
+  {
+    this.userId = userId;
   }
 
   public int getTvId()
@@ -52,12 +65,12 @@ public class TvComment
     this.username = username;
   }
 
-  public String getUserImage()
+  public StorageReference getUserImage()
   {
     return userImage;
   }
 
-  public void setUserImage(String userImage)
+  public void setUserImage(StorageReference userImage)
   {
     this.userImage = userImage;
   }

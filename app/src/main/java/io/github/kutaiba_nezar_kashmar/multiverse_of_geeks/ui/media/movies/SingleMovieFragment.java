@@ -237,10 +237,6 @@ public class SingleMovieFragment extends Fragment
                   String.valueOf(Calendar.getInstance().getTime()));
               moviesViewModel.postComment(comment);
               commentField.getText().clear();
-/*
-              comment.setUserImage(
-                  moviesViewModel.getProfileImage(firebaseUser.getUid()));
-*/
             });
           }
           else
@@ -258,17 +254,12 @@ public class SingleMovieFragment extends Fragment
     commentAdapter = new MovieCommentAdapter(comments);
     Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
     moviesViewModel.getMovieComments(movieId)
-        .observe(getViewLifecycleOwner(), new Observer<List<MovieComment>>()
-        {
-          @Override
-          public void onChanged(List<MovieComment> movieComments)
+        .observe(getViewLifecycleOwner(), movieComments -> {
+          for (MovieComment mc : movieComments)
           {
-            for (MovieComment mc : movieComments)
-            {
-              mc.setUserImage(moviesViewModel.getProfileImage(mc.getUserId()));
-            }
-            update.onChanged(movieComments);
+            mc.setUserImage(moviesViewModel.getProfileImage(mc.getUserId()));
           }
+          update.onChanged(movieComments);
         });
     commentsRecyclerView.hasFixedSize();
     commentsRecyclerView.setLayoutManager(

@@ -11,11 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.firebase.game.GameComment;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.GlideApp;
 
 public class GameCommentAdapter
     extends RecyclerView.Adapter<GameCommentAdapter.CommentViewHolder>
@@ -43,7 +45,9 @@ public class GameCommentAdapter
     holder.username.setText(comments.get(position).getUsername());
     holder.commentBody.setText(comments.get(position).getComment());
     holder.timestamp.setText(comments.get(position).getTimeStamp());
-    Glide.with(holder.context).load(comments.get(position).getUserImage())
+    GlideApp.with(holder.context).load(comments.get(position).getUserImage())
+        .placeholder(R.drawable.avatar_placeholder)
+        .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
         .into(holder.userImage);
   }
 

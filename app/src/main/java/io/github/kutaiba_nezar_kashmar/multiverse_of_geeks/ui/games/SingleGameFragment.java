@@ -214,11 +214,11 @@ public class SingleGameFragment extends Fragment
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
+            commentRV.setVisibility(View.VISIBLE);
             commentButton.setOnClickListener(view -> {
-              gameComment = new GameComment(gameId,
+              gameComment = new GameComment(gameId, firebaseUser.getUid(),
                   commentField.getText().toString(),
                   firebaseUser.getDisplayName(),
-                  String.valueOf(firebaseUser.getPhotoUrl()),
                   String.valueOf(Calendar.getInstance().getTime()));
               viewModel.postComment(gameComment);
               commentField.getText().clear();
@@ -229,6 +229,7 @@ public class SingleGameFragment extends Fragment
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
+            commentRV.setVisibility(View.GONE);
           }
         });
   }
@@ -237,7 +238,14 @@ public class SingleGameFragment extends Fragment
   {
     GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
-    viewModel.getGameComments(gameId).observe(getViewLifecycleOwner(), update);
+    viewModel.getGameComments(gameId)
+        .observe(getViewLifecycleOwner(), gameComments -> {
+          for (GameComment gc : gameComments)
+          {
+            gc.setUserImage(viewModel.getProfileImage(gc.getUserId()));
+          }
+          update.onChanged(gameComments);
+        });
     commentRV.hasFixedSize();
     commentRV.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

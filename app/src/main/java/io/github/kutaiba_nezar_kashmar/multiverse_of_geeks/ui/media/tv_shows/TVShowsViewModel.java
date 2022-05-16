@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +24,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_s
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.tv_show.TvShowRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepositoryImpl;
 
 public class TVShowsViewModel extends AndroidViewModel
 {
@@ -30,6 +33,7 @@ public class TVShowsViewModel extends AndroidViewModel
   private final UserRepository userRepository;
   private final TvReviewRepository tvReviewRepository;
   private final TvCommentRepository tvCommentRepository;
+  private final UserStorageRepository userStorageRepository;
 
   public TVShowsViewModel(@NonNull Application application)
   {
@@ -38,11 +42,17 @@ public class TVShowsViewModel extends AndroidViewModel
     userRepository = UserRepositoryImpl.getInstance(application);
     tvReviewRepository = TvReviewRepositoryImpl.getInstance();
     tvCommentRepository = TvCommentRepositoryImpl.getInstance();
+    userStorageRepository = UserStorageRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
   {
     return userRepository.getCurrentUser();
+  }
+
+  public StorageReference getProfileImage(String userId)
+  {
+    return userStorageRepository.getReference(userId);
   }
 
   public void postReview(TvReview tvReview)

@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +27,8 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.revi
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.media.reviews.game.GameReviewRepositoryImpl;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepository;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserRepositoryImpl;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepository;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.repo.user.UserStorageRepositoryImpl;
 
 public class GamesViewModel extends AndroidViewModel
 {
@@ -34,6 +37,7 @@ public class GamesViewModel extends AndroidViewModel
   private final UserRepository userRepository;
   private final GameReviewRepository gameReviewRepository;
   private final GameCommentRepository gameCommentRepository;
+  private final UserStorageRepository userStorageRepository;
 
   public GamesViewModel(@NonNull Application application)
   {
@@ -43,11 +47,17 @@ public class GamesViewModel extends AndroidViewModel
     userRepository = UserRepositoryImpl.getInstance(application);
     gameReviewRepository = GameReviewRepositoryImpl.getInstance();
     gameCommentRepository = GameCommentRepositoryImpl.getInstance();
+    userStorageRepository = UserStorageRepositoryImpl.getInstance();
   }
 
   public LiveData<FirebaseUser> getCurrentUser()
   {
     return userRepository.getCurrentUser();
+  }
+
+  public StorageReference getProfileImage(String userId)
+  {
+    return userStorageRepository.getReference(userId);
   }
 
   public void postReview(GameReview gameReview)
