@@ -28,10 +28,16 @@
 
     </LinearLayout>
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/commenter_avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/avatar_placeholder"
             android:layout_marginStart="@dimen/edit_text_margin" />
 
@@ -41,12 +47,14 @@
             android:layout_height="wrap_content"
             android:text="@string/home_text"
             android:layout_marginTop="@dimen/edit_text_margin"
-            android:layout_marginStart="@dimen/edit_text_margin"/>
+            android:layout_marginStart="@dimen/edit_text_margin"
+            android:gravity="center"/>
+    </LinearLayout>
 
-    <View
+
+    <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="@dimen/edit_text_margin"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/edit_text_margin"/>
 
 </LinearLayout>
