@@ -12,8 +12,8 @@
 <a name="description"/>
 
 ## Description
-The multiverse of Geeks is an Android app where the user can explore various movies and video games characters and their lure.<br/> 
-Furthermore, the user can leave comments, rate characters, and more.<br/>
+The multiverse of Geeks is an Android app where the user can explore various movies, tv shows and video games with all relevant info to said media.<br/> 
+Furthermore, the user can leave comments and rate these media.<br/>
 The motivation behind this app is to have a place where the user can keep track and interact with the geek community through<br/>
 common interests such as movies and video games all in one app.<br/>
 For more information please read the user stories section.<br/>
