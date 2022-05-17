@@ -57,7 +57,7 @@ public class GamesViewModel extends AndroidViewModel
 
   public StorageReference getProfileImage(String userId)
   {
-    return userStorageRepository.getReference(userId);
+    return userStorageRepository.getUserProfileImage(userId);
   }
 
   public void postReview(GameReview gameReview)

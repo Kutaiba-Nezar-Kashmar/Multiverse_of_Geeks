@@ -1,7 +1,6 @@
 package io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.network.cast_network;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.CastResponse;
-import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

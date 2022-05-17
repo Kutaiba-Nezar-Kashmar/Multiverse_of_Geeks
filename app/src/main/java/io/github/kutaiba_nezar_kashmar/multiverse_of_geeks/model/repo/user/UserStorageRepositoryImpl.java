@@ -10,12 +10,11 @@ import com.google.firebase.storage.UploadTask;
 public class UserStorageRepositoryImpl implements UserStorageRepository
 {
   private static UserStorageRepository instance;
-  private FirebaseStorage storage;
-  private StorageReference reference;
+  private final StorageReference reference;
 
   private UserStorageRepositoryImpl()
   {
-    storage = FirebaseStorage.getInstance();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
     reference = storage.getReference("images/");
   }
 
@@ -38,7 +37,7 @@ public class UserStorageRepositoryImpl implements UserStorageRepository
   }
 
   @Override
-  public StorageReference getReference(String userId)
+  public StorageReference getUserProfileImage(String userId)
   {
     return reference.child(userId);
   }

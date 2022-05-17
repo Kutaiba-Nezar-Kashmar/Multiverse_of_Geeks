@@ -76,6 +76,6 @@ public class EditProfileViewModel extends AndroidViewModel
 
   public StorageReference profileImagePath(String userId)
   {
-    return userStorageRepository.getReference(userId);
+    return userStorageRepository.getUserProfileImage(userId);
   }
 }

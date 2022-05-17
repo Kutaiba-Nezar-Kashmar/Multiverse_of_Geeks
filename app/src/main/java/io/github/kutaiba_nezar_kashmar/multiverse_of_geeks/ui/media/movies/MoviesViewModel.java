@@ -54,7 +54,7 @@ public class MoviesViewModel extends AndroidViewModel
 
   public StorageReference getProfileImage(String userId)
   {
-    return userStorageRepository.getReference(userId);
+    return userStorageRepository.getUserProfileImage(userId);
   }
 
   public void postReview(MovieReview movieReview)
