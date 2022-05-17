@@ -36,7 +36,10 @@ public class TvShowSeasonsFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
     binding = FragmentTvShowSeasonsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     seasonRv = root.findViewById(R.id.seasons_rv);
+
     return root;
   }
 
@@ -46,9 +49,12 @@ public class TvShowSeasonsFragment extends Fragment
   {
     if (getArguments() != null)
     {
+      //Get tvShowId from Navigation component argument
       String id = TvShowSeasonsFragmentArgs.fromBundle(getArguments())
           .getTvShowId();
       int tvId = Integer.parseInt(id);
+
+      //Observe TvShow object
       viewModel.findTvShowById(tvId)
           .observe(getViewLifecycleOwner(), tvShow -> {
             seasons = tvShow.getSeasons();

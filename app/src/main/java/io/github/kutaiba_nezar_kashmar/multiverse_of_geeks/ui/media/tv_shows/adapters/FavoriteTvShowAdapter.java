@@ -39,6 +39,7 @@ public class FavoriteTvShowAdapter
   @Override
   public void onBindViewHolder(@NonNull FavTvViewHolder holder, int position)
   {
+    //Glide to set image in poster
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShows.get(position)
             .getPoster_path()).into(holder.poster);

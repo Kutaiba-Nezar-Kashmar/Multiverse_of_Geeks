@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.Objects;
@@ -34,10 +33,10 @@ public class EditProfileFragment extends Fragment
 {
   private FragmentEditProfileBinding binding;
   private EditProfileViewModel editProfileViewModel;
-  private ImageView profileImage;
   private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
   private String userId;
   private Uri uri = null;
+  private ImageView profileImage;
   private EditText userName;
   private EditText email;
   private Button saveButton;
@@ -52,6 +51,8 @@ public class EditProfileFragment extends Fragment
 
     binding = FragmentEditProfileBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     profileImage = root.findViewById(R.id.new_profile_image);
     userName = root.findViewById(R.id.new_name_field);
     email = root.findViewById(R.id.new_email_field_button);
@@ -61,6 +62,7 @@ public class EditProfileFragment extends Fragment
     Button editPic = root.findViewById(R.id.edit_profile_piv_button);
     checkIfSignedIn(root);
 
+    //Setup ActivityResultLauncher for Gallery Intent
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(), result -> {
           if (result.getResultCode() == Activity.RESULT_OK)
@@ -70,15 +72,19 @@ public class EditProfileFragment extends Fragment
           }
         });
 
+    //EditPic button listener
     editPic.setOnClickListener(v -> {
+      //Define gallery update
       Intent openGallery = new Intent();
       openGallery.setType("image/*");
       openGallery.setAction(ACTION_GET_CONTENT);
       activityResultLauncher.launch(openGallery);
     });
+
     setSaveButton();
     setDeleteButton();
     setResetButton();
+
     return root;
   }
 
@@ -103,6 +109,8 @@ public class EditProfileFragment extends Fragment
           else
           {
             userId = firebaseUser.getUid();
+
+            //Set ProfileImage using glide and storage reference
             GlideApp.with(view.getContext()).load(
                     editProfileViewModel.profileImagePath(firebaseUser.getUid()))
                 .placeholder(R.drawable.avatar_placeholder)

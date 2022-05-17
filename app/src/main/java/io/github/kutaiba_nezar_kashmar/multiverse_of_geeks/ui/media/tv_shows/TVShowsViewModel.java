@@ -69,6 +69,7 @@ public class TVShowsViewModel extends AndroidViewModel
 
   public float calculateAverage(List<TvReview> tvReviews)
   {
+    //Get all reviews for a Tv show and find average for them
     float total = 0;
     for (TvReview mr : tvReviews)
     {

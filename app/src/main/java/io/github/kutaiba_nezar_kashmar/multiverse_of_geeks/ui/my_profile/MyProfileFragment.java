@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
@@ -41,15 +40,22 @@ public class MyProfileFragment extends Fragment
 
     binding = FragmentMyProfileBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     myProfileImage = root.findViewById(R.id.my_profile_image);
     name = root.findViewById(R.id.person_name);
     email = root.findViewById(R.id.person_email);
     Button toEditFragButton = root.findViewById(R.id.to_edit_frag);
     Button signOutButton = root.findViewById(R.id.sign_out_but);
+
     checkIfSignedIn(root);
+
+    //Setup editFragButton listener
     toEditFragButton.setOnClickListener(
         view -> Navigation.findNavController(root).navigate(
             MyProfileFragmentDirections.actionNavMyProfileToEditProfileNav()));
+
+    //Setup signOutButton listener
     signOutButton.setOnClickListener(view -> myProfileViewModel.signOut());
     return root;
   }
@@ -76,6 +82,8 @@ public class MyProfileFragment extends Fragment
           {
             name.setText(firebaseUser.getDisplayName());
             email.setText(firebaseUser.getEmail());
+
+            //Glide to set image to myProfileImage using storage reference
             GlideApp.with(view.getContext()).load(
                     myProfileViewModel.profileImagePath(firebaseUser.getUid()))
                 .placeholder(R.drawable.avatar_placeholder)

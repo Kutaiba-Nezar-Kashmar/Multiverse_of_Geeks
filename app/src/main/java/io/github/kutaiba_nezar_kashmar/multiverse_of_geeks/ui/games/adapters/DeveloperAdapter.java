@@ -22,8 +22,7 @@ public class DeveloperAdapter
 {
   private List<GamesDevelopersResponse> developersResponses;
 
-  public DeveloperAdapter(
-      List<GamesDevelopersResponse> developersResponses)
+  public DeveloperAdapter(List<GamesDevelopersResponse> developersResponses)
   {
     this.developersResponses = developersResponses;
   }
@@ -43,6 +42,8 @@ public class DeveloperAdapter
       int position)
   {
     holder.name.setText(developersResponses.get(position).getName());
+
+    //Glide to set image poster
     Glide.with(holder.context)
         .load(developersResponses.get(position).getImage_background())
         .into(holder.poster);

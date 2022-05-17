@@ -16,7 +16,8 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.response.media.movie_responses.SingleMovieResponse;
 
-public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.FavMovieViewHolder>
+public class FavoriteMovieAdapter
+    extends RecyclerView.Adapter<FavoriteMovieAdapter.FavMovieViewHolder>
 {
   private List<SingleMovieResponse> movies;
 
@@ -38,6 +39,7 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
   @Override
   public void onBindViewHolder(@NonNull FavMovieViewHolder holder, int position)
   {
+    //Glide to set image to poster
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + movies.get(position)
             .getPoster_path()).into(holder.poster);
@@ -64,6 +66,7 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
   {
     private final ImageView poster;
     private final Context context;
+
     public FavMovieViewHolder(@NonNull View itemView)
     {
       super(itemView);

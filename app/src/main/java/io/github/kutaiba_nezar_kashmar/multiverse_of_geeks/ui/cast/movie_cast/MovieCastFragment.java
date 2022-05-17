@@ -22,7 +22,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Ca
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapters.MovieCastAdapter;
 
-
 public class MovieCastFragment extends Fragment
 {
   private FragmentMovieCastBinding binding;
@@ -36,9 +35,10 @@ public class MovieCastFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     castViewModel = new ViewModelProvider(this).get(CastViewModel.class);
-
     binding = FragmentMovieCastBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     recyclerView = root.findViewById(R.id.movie_cast_rv);
 
     return root;
@@ -57,12 +57,18 @@ public class MovieCastFragment extends Fragment
   {
     if (getArguments() != null)
     {
+      //receive movieId from NavigationComponent argument
       String id = MovieCastFragmentArgs.fromBundle(getArguments()).getMovieId();
       int movieId = Integer.parseInt(id);
+
       castViewModel.getMovieCast(movieId);
+
+      //Setup recyclerView
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       MovieCastAdapter adapter = new MovieCastAdapter(casts);
+
+      //Setup observer for a List of Cast
       Observer<List<Cast>> update = adapter::updateMovieCastList;
       castViewModel.getMovieCast(movieId)
           .observe(getViewLifecycleOwner(), update);

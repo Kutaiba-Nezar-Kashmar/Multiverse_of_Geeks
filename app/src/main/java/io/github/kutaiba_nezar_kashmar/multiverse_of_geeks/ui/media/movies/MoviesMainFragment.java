@@ -31,8 +31,11 @@ public class MoviesMainFragment extends Fragment
   {
     binding = FragmentMoviesMainBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     TabLayout tabLayout = root.findViewById(R.id.movies_tab_layout);
     ViewPager2 viewPager = root.findViewById(R.id.movies_view_pager);
+
     MoviePagerAdapter adapter = new MoviePagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,

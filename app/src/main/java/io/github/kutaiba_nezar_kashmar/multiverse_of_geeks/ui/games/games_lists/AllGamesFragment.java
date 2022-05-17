@@ -27,10 +27,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.Gam
 public class AllGamesFragment extends Fragment
 {
   private FragmentAllGamesBinding binding;
-  private RecyclerView recyclerView;
-  private final List<Game> gamesResponses = new ArrayList<>();
   private GamesViewModel gamesViewModel;
   private GamesAdapter adapter;
+  private final List<Game> gamesResponses = new ArrayList<>();
+  private RecyclerView recyclerView;
 
   @Nullable
   @Override
@@ -40,7 +40,10 @@ public class AllGamesFragment extends Fragment
     gamesViewModel = new ViewModelProvider(this).get(GamesViewModel.class);
     binding = FragmentAllGamesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     recyclerView = root.findViewById(R.id.all_games_rv);
+
     return root;
   }
 
@@ -55,8 +58,8 @@ public class AllGamesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup RecyclerView
     gamesViewModel.getAllGames();
-
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     setUpRecyclerView();
@@ -66,6 +69,8 @@ public class AllGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new GamesAdapter(gamesResponses);
+
+    //Setup observer for a List of games
     Observer<List<Game>> update = adapter::updateGameList;
     gamesViewModel.getAllGames().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);

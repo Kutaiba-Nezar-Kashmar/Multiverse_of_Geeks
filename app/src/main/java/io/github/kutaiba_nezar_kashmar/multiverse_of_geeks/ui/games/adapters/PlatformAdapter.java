@@ -40,9 +40,12 @@ public class PlatformAdapter
   @Override
   public void onBindViewHolder(@NonNull PlatformViewHolder holder, int position)
   {
-    holder.name.setText(platformsResponses.get(position).getPlatform().getName());
-    Glide.with(holder.context)
-        .load(platformsResponses.get(position).getPlatform().getImage_background())
+    holder.name.setText(
+        platformsResponses.get(position).getPlatform().getName());
+
+    //Glide to set image to poster
+    Glide.with(holder.context).load(
+            platformsResponses.get(position).getPlatform().getImage_background())
         .into(holder.poster);
   }
 

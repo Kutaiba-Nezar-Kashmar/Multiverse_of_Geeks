@@ -31,14 +31,14 @@ public class UpcomingMoviesFragment extends Fragment
 {
   private FragmentUpcomingMoviesBinding binding;
   private RecyclerView recyclerView;
-  private final List<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
+  private final List<Movie> movies = new ArrayList<>();
+  private int pageNum = 1;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button leftArrow;
   private Button rightArrow;
   private TextView pageNumber;
-  private int pageNum = 1;
 
   @Nullable
   @Override
@@ -48,10 +48,13 @@ public class UpcomingMoviesFragment extends Fragment
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
     binding = FragmentUpcomingMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.upcoming_movies_refresh_view);
     leftArrow = root.findViewById(R.id.upcoming_movie_left_arrow);
     rightArrow = root.findViewById(R.id.upcoming_movie_right_arrow);
     pageNumber = root.findViewById(R.id.upcoming_movie_page_number);
+
     refresh();
     return root;
   }
@@ -67,11 +70,12 @@ public class UpcomingMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview
     moviesViewModel.getAllUpcomingMovies(pageNum);
-
     recyclerView = view.findViewById(R.id.upcoming_movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
     setUpOnClickListener(view);
     setUpPageChange();
@@ -80,6 +84,8 @@ public class UpcomingMoviesFragment extends Fragment
   private void setUpRecyclerView()
   {
     moviesAdapter = new MoviesAdapter(movies);
+
+    //Setup observer for a list of Movie object
     Observer<List<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllUpcomingMovies(pageNum)
         .observe(getViewLifecycleOwner(), update);

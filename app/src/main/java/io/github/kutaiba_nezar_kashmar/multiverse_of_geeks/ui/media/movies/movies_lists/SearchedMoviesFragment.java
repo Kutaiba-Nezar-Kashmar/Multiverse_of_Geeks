@@ -29,10 +29,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapt
 public class SearchedMoviesFragment extends Fragment
 {
   private FragmentSerachMoviesBinding binding;
-  private RecyclerView recyclerView;
-  private final List<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
+  private final List<Movie> movies = new ArrayList<>();
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -44,8 +44,11 @@ public class SearchedMoviesFragment extends Fragment
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
     binding = FragmentSerachMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.search_movies_refresh_view);
     searchView = root.findViewById(R.id.movies_search_view);
+
     refresh();
     return root;
   }
@@ -61,10 +64,12 @@ public class SearchedMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview initialization
     recyclerView = view.findViewById(R.id.search_movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     moviesAdapter = new MoviesAdapter(movies);
+
     setUpRecyclerView();
     setUpOnClickListener(view);
   }
@@ -82,6 +87,8 @@ public class SearchedMoviesFragment extends Fragment
   private void setUpRecyclerView()
   {
     moviesAdapter = new MoviesAdapter(movies);
+
+    //Setup observer for a list of Movie object
     Observer<List<Movie>> update = moviesAdapter::updateMovieList;
     setUpSearchView(update);
   }

@@ -30,10 +30,13 @@ public class HomeFragment extends Fragment
   {
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     rawgLink = root.findViewById(R.id.rawg_link);
     tmdbLink = root.findViewById(R.id.tmdb_link);
     rawgImage = root.findViewById(R.id.rawg_ref_image);
     tmdbImage = root.findViewById(R.id.tmdb_ref_image);
+
     return root;
   }
 
@@ -50,9 +53,13 @@ public class HomeFragment extends Fragment
   {
     rawgLink.setText("https://rawg.io/");
     tmdbLink.setText("https://www.themoviedb.org/");
+
+    //Glide to set image from given link to rawgImage
     Glide.with(view.getContext()).load(
             "https://rawg.io/assets/images/cover.117cc320ec2800b9b12092ca23d6e86d.png")
         .into(rawgImage);
+
+    //Glide to set image from given link to tmdbImage
     Glide.with(view.getContext()).load(
             "https://play-lh.googleusercontent.com/IO3niAyss5tFXAQP176P0Jk5rg_A_hfKPNqzC4gb15WjLPjo5I-f7oIZ9Dqxw2wPBAg")
         .into(tmdbImage);

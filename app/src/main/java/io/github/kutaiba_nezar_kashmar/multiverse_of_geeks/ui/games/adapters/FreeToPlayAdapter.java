@@ -22,8 +22,7 @@ public class FreeToPlayAdapter
   private List<AllFreeToPlayGamesResponse> freeToPlayGames;
   private OnClickListener listener;
 
-  public FreeToPlayAdapter(
-      List<AllFreeToPlayGamesResponse> freeToPlayGames)
+  public FreeToPlayAdapter(List<AllFreeToPlayGamesResponse> freeToPlayGames)
   {
     this.freeToPlayGames = freeToPlayGames;
   }
@@ -34,8 +33,8 @@ public class FreeToPlayAdapter
       int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater
-        .inflate(R.layout.free_to_play_game_item, parent, false);
+    View view = inflater.inflate(R.layout.free_to_play_game_item, parent,
+        false);
     return new FreeToPlayViewHolder(view);
   }
 
@@ -43,6 +42,7 @@ public class FreeToPlayAdapter
   public void onBindViewHolder(@NonNull FreeToPlayViewHolder holder,
       int position)
   {
+    //Glide to set image to poster
     Glide.with(holder.context)
         .load(freeToPlayGames.get(position).getThumbnail()).into(holder.poster);
   }

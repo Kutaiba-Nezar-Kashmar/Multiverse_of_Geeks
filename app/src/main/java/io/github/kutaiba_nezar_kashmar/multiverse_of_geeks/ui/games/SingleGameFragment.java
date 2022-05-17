@@ -41,16 +41,15 @@ public class SingleGameFragment extends Fragment
 {
   private FragmentSingleGameBinding binding;
   private GamesViewModel viewModel;
-  private GameComment gameComment;
-  private final List<GameComment> comments = new ArrayList<>();
   private DeveloperAdapter developerAdapter;
   private PlatformAdapter platformAdapter;
+  private GameComment gameComment;
+  private GameReview gameReview;
+  private final List<GameComment> comments = new ArrayList<>();
   private List<GamesDevelopersResponse> developersResponses = new ArrayList<>();
   private List<PlatformsResponse> platformsResponses = new ArrayList<>();
-  private GameReview gameReview;
   private int gameId;
   private TextView title;
-  private ImageView poster;
   private TextView releaseDate;
   private TextView rating;
   private TextView playTime;
@@ -58,13 +57,14 @@ public class SingleGameFragment extends Fragment
   private TextView genre;
   private TextView tags;
   private TextView age;
+  private TextView geekRating;
   private RecyclerView developersRv;
   private RecyclerView platformRv;
-  private Button favButton;
-  private RatingBar ratingBar;
-  private TextView geekRating;
   private RecyclerView commentRV;
+  private Button favButton;
   private Button commentButton;
+  private ImageView poster;
+  private RatingBar ratingBar;
   private EditText commentField;
 
   @Nullable
@@ -75,6 +75,8 @@ public class SingleGameFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
     binding = FragmentSingleGameBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     favButton = root.findViewById(R.id.game_fav_button_id);
     title = root.findViewById(R.id.single_game_title);
     poster = root.findViewById(R.id.single_game_poster);
@@ -92,9 +94,11 @@ public class SingleGameFragment extends Fragment
     commentButton = root.findViewById(R.id.game_post_comment_button);
     commentField = root.findViewById(R.id.game_comment_field);
     commentRV = root.findViewById(R.id.game_coming_rv_id);
+
     setUpRatingBar();
     getGeekAverageRating();
     checkIfSignedIn();
+
     return root;
   }
 
@@ -112,11 +116,16 @@ public class SingleGameFragment extends Fragment
     super.onViewCreated(view, savedInstanceState);
     if (getArguments() != null)
     {
+      //Get gameId for Navigation component argument
       String id = SingleGameFragmentArgs.fromBundle(getArguments()).getGameId();
       this.gameId = Integer.parseInt(id);
+
+      //Observe game object
       viewModel.getGameById(this.gameId)
           .observe(getViewLifecycleOwner(), game -> {
             title.setText(game.getName());
+
+            //Glide to set image to poster
             Glide.with(view.getContext()).load(game.getBackground_image())
                 .into(poster);
             releaseDate.setText(game.getReleased());
@@ -139,6 +148,7 @@ public class SingleGameFragment extends Fragment
             setUpFavorite(game);
           });
     }
+
     setDevelopersRv(view);
     setPlatformRv(view);
     setUpCommentRV(view);
@@ -211,10 +221,13 @@ public class SingleGameFragment extends Fragment
         .observe(getViewLifecycleOwner(), firebaseUser -> {
           if (firebaseUser != null)
           {
+            //Set authentication required views to visible for logged in users
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
             commentRV.setVisibility(View.VISIBLE);
+
+            //Setup comment button listener
             commentButton.setOnClickListener(view -> {
               gameComment = new GameComment(gameId, firebaseUser.getUid(),
                   commentField.getText().toString(),
@@ -226,6 +239,7 @@ public class SingleGameFragment extends Fragment
           }
           else
           {
+            //Set authentication required views to invisible/gone for non logged in users
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
@@ -237,15 +251,20 @@ public class SingleGameFragment extends Fragment
   private void setUpCommentRV(View view)
   {
     GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
+
+    //Setup observer for a list of GameComment object
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
     viewModel.getGameComments(gameId)
         .observe(getViewLifecycleOwner(), gameComments -> {
           for (GameComment gc : gameComments)
           {
+            //Set storage reference to each of GameComment in the list
             gc.setUserImage(viewModel.getProfileImage(gc.getUserId()));
           }
           update.onChanged(gameComments);
         });
+
+    //Setup comment recyclerview
     commentRV.hasFixedSize();
     commentRV.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

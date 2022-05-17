@@ -46,10 +46,13 @@ public class PopularTvShowsFragment extends Fragment
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
     binding = FragmentPopularTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.popular_tv_refresh_view);
     leftArrow = root.findViewById(R.id.popular_tv_left_arrow);
     rightArrow = root.findViewById(R.id.popular_tv_right_arrow);
     pageNumber = root.findViewById(R.id.popular_tv_page_number);
+
     refresh();
     return root;
   }
@@ -65,11 +68,12 @@ public class PopularTvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview
     tvShowsViewModel.getAllPopularTvShows(pageNum);
-
     recyclerView = view.findViewById(R.id.popular_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
     setUpOnClickListener(view);
     setUpPageChange();
@@ -78,6 +82,8 @@ public class PopularTvShowsFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new TVShowAdapter(tvShows);
+
+    //Setup observer for a list of TvShow
     Observer<List<TvShow>> update = adapter::updateTVShowList;
     tvShowsViewModel.getAllPopularTvShows(pageNum)
         .observe(getViewLifecycleOwner(), update);

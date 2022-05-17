@@ -36,9 +36,10 @@ public class SimilarMoviesFragment extends Fragment
       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
   {
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-
     binding = FragmentSimilarMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     recyclerView = root.findViewById(R.id.similar_movie_rv);
 
     return root;
@@ -57,17 +58,24 @@ public class SimilarMoviesFragment extends Fragment
   {
     if (getArguments() != null)
     {
+      //Get a movieId from Navigation component arguments
       String id = SimilarMoviesFragmentArgs.fromBundle(getArguments())
           .getMovieId();
       int movieId = Integer.parseInt(id);
+
+      //Setup recyclerview
       moviesViewModel.getAllSimilarMovies(movieId);
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       MoviesAdapter adapter = new MoviesAdapter(movies);
+
+      //Setup observer for a list of Movie objects
       Observer<List<Movie>> update = adapter::updateMovieList;
       moviesViewModel.getAllSimilarMovies(movieId)
           .observe(getViewLifecycleOwner(), update);
       recyclerView.setAdapter(adapter);
+
+      //Setup listener for recyclerview item
       adapter.setListener(movie -> {
         SimilarMoviesFragmentDirections.ActionNavSimilarMoviesToNavSingleMovie action = SimilarMoviesFragmentDirections.actionNavSimilarMoviesToNavSingleMovie();
         action.setMovieIdArg(String.valueOf(movieId));

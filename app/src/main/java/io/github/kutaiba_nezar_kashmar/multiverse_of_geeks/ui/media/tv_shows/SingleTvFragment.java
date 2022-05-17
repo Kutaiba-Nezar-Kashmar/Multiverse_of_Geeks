@@ -48,11 +48,11 @@ public class SingleTvFragment extends Fragment
   private TvNetworkAdapter networkAdapter;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
   private TvComment comment;
+  private TvReview review;
   private final List<TvComment> comments = new ArrayList<>();
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
   private List<TvShowCreatorResponse> creatorResponses = new ArrayList<>();
   private List<TvShowNetworkResponse> tvShowNetworkResponses = new ArrayList<>();
-  private TvReview review;
   private int tvId;
   private TextView tvTitle;
   private TextView tvOverview;
@@ -65,18 +65,18 @@ public class SingleTvFragment extends Fragment
   private TextView tvStatus;
   private TextView tvType;
   private TextView tvHomePage;
+  private TextView tvRating;
+  private TextView geekRating;
   private Button toCastButton;
   private Button toSeasonsButton;
-  private TextView tvRating;
+  private Button favButton;
   private ImageView tvPoster;
+  private Button commentButton;
   private RecyclerView commentRv;
   private RecyclerView creatorRv;
   private RecyclerView networkRv;
   private RecyclerView productionCompanyRv;
-  private Button favButton;
   private RatingBar ratingBar;
-  private TextView geekRating;
-  private Button commentButton;
   private EditText commentField;
 
   @Nullable
@@ -89,6 +89,8 @@ public class SingleTvFragment extends Fragment
     binding = FragmentSingleTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     checkIfSignedIn();
+
+    //Views
     favButton = root.findViewById(R.id.tv_fav_button_id);
     tvTitle = root.findViewById(R.id.single_tv_title);
     tvOverview = root.findViewById(R.id.tv_overview);
@@ -113,6 +115,7 @@ public class SingleTvFragment extends Fragment
     geekRating = root.findViewById(R.id.geek_tv_rating);
     commentButton = root.findViewById(R.id.tv_post_comment_button);
     commentField = root.findViewById(R.id.comment_edit_text_id_tv);
+
     return root;
   }
 
@@ -121,12 +124,15 @@ public class SingleTvFragment extends Fragment
       @Nullable Bundle savedInstanceState)
   {
     super.onViewCreated(view, savedInstanceState);
+
+    //Setup listener for cast button
     toCastButton.setOnClickListener(view1 -> {
       SingleTvFragmentDirections.ActionNavSingleTvToNavTvCast action = SingleTvFragmentDirections.actionNavSingleTvToNavTvCast();
       action.setTvId(String.valueOf(tvId));
       Navigation.findNavController(view1).navigate(action);
     });
 
+    //Setup listener for season button
     toSeasonsButton.setOnClickListener(view1 -> {
       SingleTvFragmentDirections.ActionNavSingleTvToNavTvSeasons action = SingleTvFragmentDirections.actionNavSingleTvToNavTvSeasons();
       action.setTvShowId(String.valueOf(tvId));
@@ -135,8 +141,11 @@ public class SingleTvFragment extends Fragment
 
     if (getArguments() != null)
     {
+      //Get tvShowId form Navigation component argument
       String id = SingleTvFragmentArgs.fromBundle(getArguments()).getTvShowId();
       tvId = Integer.parseInt(id);
+
+      //Observe TvShow object
       tvShowsViewModel.findTvShowById(tvId)
           .observe(getViewLifecycleOwner(), tvShow -> {
             setTvTitle(tvShow);
@@ -164,10 +173,12 @@ public class SingleTvFragment extends Fragment
             networkAdapter.updateNetworkList(tvShowNetworkResponses);
             setUpFavoriteTv(tvShow);
           });
+
       setUpCompanyRv(view);
       setUpCreatorRv(view);
       setUpNetworkRv(view);
     }
+
     setCommentRv(view);
     setUpRatingBar();
     getGeekAverageRating();
@@ -179,10 +190,13 @@ public class SingleTvFragment extends Fragment
         .observe(getViewLifecycleOwner(), firebaseUser -> {
           if (firebaseUser != null)
           {
+            //Set authentication required views to visible for logged in users
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
             commentRv.setVisibility(View.VISIBLE);
+
+            //Setup comment button
             commentButton.setOnClickListener(view -> {
               comment = new TvComment(tvId, firebaseUser.getUid(),
                   commentField.getText().toString(),
@@ -194,6 +208,7 @@ public class SingleTvFragment extends Fragment
           }
           else
           {
+            //Set authentication required views to invisible/gone for non logged in users
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
@@ -341,6 +356,8 @@ public class SingleTvFragment extends Fragment
   private void setUpAdapterView()
   {
     adapter = new TvCommentAdapter(comments);
+
+    //Setup observer for a list of TvComment
     Observer<List<TvComment>> update = adapter::updateTvCommentList;
     tvShowsViewModel.getTvComments(tvId)
         .observe(getViewLifecycleOwner(), tvComments -> {

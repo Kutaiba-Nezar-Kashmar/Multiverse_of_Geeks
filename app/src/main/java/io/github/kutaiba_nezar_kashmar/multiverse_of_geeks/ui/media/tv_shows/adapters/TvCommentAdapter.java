@@ -46,6 +46,8 @@ public class TvCommentAdapter
     holder.username.setText(comments.get(position).getUsername());
     holder.commentBody.setText(comments.get(position).getComment());
     holder.timestamp.setText(comments.get(position).getTimeStamp());
+
+    //Glide to set image in userImage using storage reference
     GlideApp.with(holder.context).load(comments.get(position).getUserImage())
         .placeholder(R.drawable.avatar_placeholder)
         .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)

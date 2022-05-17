@@ -31,14 +31,14 @@ public class AiringTodayTvShowsFragment extends Fragment
 {
   private FragmentAiringTodayTvShowsBinding binding;
   private TVShowsViewModel tvShowsViewModel;
-  private RecyclerView recyclerView;
-  private final List<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
+  private final List<TvShow> tvShows = new ArrayList<>();
+  private int pageNum = 1;
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button leftArrow;
   private Button rightArrow;
   private TextView pageNumber;
-  private int pageNum = 1;
 
   @Nullable
   @Override
@@ -49,10 +49,13 @@ public class AiringTodayTvShowsFragment extends Fragment
     binding = FragmentAiringTodayTvShowsBinding.inflate(inflater, container,
         false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.airing_today_tv_refresh_view);
     leftArrow = root.findViewById(R.id.airing_today_tv_left_arrow);
     rightArrow = root.findViewById(R.id.airing_today_tv_right_arrow);
     pageNumber = root.findViewById(R.id.airing_today_tv_page_number);
+
     refresh();
     return root;
   }
@@ -68,11 +71,12 @@ public class AiringTodayTvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recycler view
     tvShowsViewModel.getAllAiringTodayTvShows(pageNum);
-
     recyclerView = view.findViewById(R.id.airing_today_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
     setUpOnClickListener(view);
     setUpPageChange();
@@ -81,6 +85,8 @@ public class AiringTodayTvShowsFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new TVShowAdapter(tvShows);
+
+    //Setup observer for a list of TvShow
     Observer<List<TvShow>> update = adapter::updateTVShowList;
     tvShowsViewModel.getAllAiringTodayTvShows(pageNum)
         .observe(getViewLifecycleOwner(), update);

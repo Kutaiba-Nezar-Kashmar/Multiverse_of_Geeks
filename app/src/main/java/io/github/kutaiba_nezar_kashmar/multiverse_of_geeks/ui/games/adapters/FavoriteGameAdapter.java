@@ -16,7 +16,6 @@ import java.util.List;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Game;
 
-
 public class FavoriteGameAdapter
     extends RecyclerView.Adapter<FavoriteGameAdapter.FavGamesViewHolder>
 {
@@ -40,6 +39,8 @@ public class FavoriteGameAdapter
   @Override
   public void onBindViewHolder(@NonNull FavGamesViewHolder holder, int position)
   {
+
+    //Glide to set image to poster
     Glide.with(holder.context).load(games.get(position).getBackground_image())
         .into(holder.poster);
   }

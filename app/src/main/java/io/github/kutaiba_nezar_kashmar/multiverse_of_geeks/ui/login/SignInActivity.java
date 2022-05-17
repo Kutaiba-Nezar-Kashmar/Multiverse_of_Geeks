@@ -22,6 +22,7 @@ public class SignInActivity extends AppCompatActivity
 {
   private SignUnViewModel signUnViewModel;
 
+  //Setup ActivityResultLauncher for Activity navigation
   ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
       new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK)
@@ -65,10 +66,12 @@ public class SignInActivity extends AppCompatActivity
 
   public void signIn()
   {
+    //Setup FirebaseAuthUi with email providers
     List<AuthUI.IdpConfig> providers = Arrays.asList(
         new AuthUI.IdpConfig.EmailBuilder().build(),
         new AuthUI.IdpConfig.GoogleBuilder().build());
 
+    //Setup Intent for login
     Intent signInIntent = AuthUI.getInstance().createSignInIntentBuilder()
         .setAvailableProviders(providers).setIsSmartLockEnabled(false)
         .setLogo(R.mipmap.my_logo_round).build();

@@ -40,6 +40,7 @@ public class MoviesAdapter
   @Override
   public void onBindViewHolder(@NonNull MovieViewHolder holder, int position)
   {
+    //Glide to set image to poster
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + movies.get(position)
             .getPoster_path()).into(holder.poster);

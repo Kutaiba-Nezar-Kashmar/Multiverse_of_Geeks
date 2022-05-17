@@ -29,10 +29,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.Gam
 public class SearchedGamesFragment extends Fragment
 {
   private FragmentSearchGamesBinding binding;
-  private RecyclerView recyclerView;
-  private final List<Game> games = new ArrayList<>();
   private GamesViewModel viewModel;
   private GamesAdapter gamesAdapter;
+  private final List<Game> games = new ArrayList<>();
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -44,8 +44,11 @@ public class SearchedGamesFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
     binding = FragmentSearchGamesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.search_game_refresh_view);
     searchView = root.findViewById(R.id.game_search_view);
+
     refresh();
     return root;
   }
@@ -61,6 +64,7 @@ public class SearchedGamesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup Recyclerview
     recyclerView = view.findViewById(R.id.game_search_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -82,6 +86,8 @@ public class SearchedGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     gamesAdapter = new GamesAdapter(games);
+
+    //Setup observer for a list of Games
     Observer<List<Game>> update = gamesAdapter::updateGameList;
     setUpSearchView(update);
   }

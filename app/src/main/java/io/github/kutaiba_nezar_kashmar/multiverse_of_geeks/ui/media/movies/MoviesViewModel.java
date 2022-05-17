@@ -71,6 +71,7 @@ public class MoviesViewModel extends AndroidViewModel
 
   public float calculateAverage(List<MovieReview> movieReviews)
   {
+    //Get all reviews for a Movie and find average for them
     float total = 0;
     for (MovieReview mr : movieReviews)
     {

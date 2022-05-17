@@ -34,8 +34,8 @@ public class MediaProductionCompanyAdapter extends
       @NonNull ViewGroup parent, int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater
-        .inflate(R.layout.production_companies_item, parent, false);
+    View view = inflater.inflate(R.layout.production_companies_item, parent,
+        false);
     return new MovieProductionCompanyViewHolder(view);
   }
 
@@ -43,13 +43,15 @@ public class MediaProductionCompanyAdapter extends
   public void onBindViewHolder(@NonNull MovieProductionCompanyViewHolder holder,
       int position)
   {
-    holder.companyName
-        .setText(productionCompaniesResponses.get(position).getName());
+    holder.companyName.setText(
+        productionCompaniesResponses.get(position).getName());
     holder.companyCountry.setText(
         productionCompaniesResponses.get(position).getOrigin_country());
+
+    //Glide to set image to companyLogo
     Glide.with(holder.context).load(
-        "https://image.tmdb.org/t/p/w500" + productionCompaniesResponses
-            .get(position).getLogo_path()).into(holder.companyLogo);
+        "https://image.tmdb.org/t/p/w500" + productionCompaniesResponses.get(
+            position).getLogo_path()).into(holder.companyLogo);
   }
 
   @Override
@@ -62,7 +64,8 @@ public class MediaProductionCompanyAdapter extends
     return 0;
   }
 
-  public void updateCompanyList(final List<MediaProductionCompaniesResponse> productionCompaniesResponses)
+  public void updateCompanyList(
+      final List<MediaProductionCompaniesResponse> productionCompaniesResponses)
   {
     this.productionCompaniesResponses.clear();
     this.productionCompaniesResponses = productionCompaniesResponses;

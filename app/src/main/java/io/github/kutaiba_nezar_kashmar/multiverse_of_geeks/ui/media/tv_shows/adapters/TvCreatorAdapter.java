@@ -22,8 +22,7 @@ public class TvCreatorAdapter
 {
   private List<TvShowCreatorResponse> tvShowCreatorResponses;
 
-  public TvCreatorAdapter(
-      List<TvShowCreatorResponse> tvShowCreatorResponses)
+  public TvCreatorAdapter(List<TvShowCreatorResponse> tvShowCreatorResponses)
   {
     this.tvShowCreatorResponses = tvShowCreatorResponses;
   }
@@ -43,6 +42,8 @@ public class TvCreatorAdapter
       int position)
   {
     holder.creatorName.setText(tvShowCreatorResponses.get(position).getName());
+
+    //Glide to set image to creatorPic
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShowCreatorResponses.get(position)
             .getProfile_path()).into(holder.creatorPic);
@@ -58,7 +59,8 @@ public class TvCreatorAdapter
     return 0;
   }
 
-  public void updateCreatorList(final List<TvShowCreatorResponse> tvShowCreatorResponses)
+  public void updateCreatorList(
+      final List<TvShowCreatorResponse> tvShowCreatorResponses)
   {
     this.tvShowCreatorResponses.clear();
     this.tvShowCreatorResponses = tvShowCreatorResponses;

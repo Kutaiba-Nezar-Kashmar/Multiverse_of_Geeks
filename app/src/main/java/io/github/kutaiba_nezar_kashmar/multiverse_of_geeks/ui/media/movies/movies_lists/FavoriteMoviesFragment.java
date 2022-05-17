@@ -39,8 +39,11 @@ public class FavoriteMoviesFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
     binding = FragmentFavoriteMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     refreshLayout = root.findViewById(R.id.movie_fav_refresh_view);
     recyclerView = root.findViewById(R.id.favorite_movies_rv);
+
     refresh();
     return root;
   }
@@ -56,15 +59,19 @@ public class FavoriteMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview initialization
     viewModel.getFavoriteMovies();
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
   }
 
   private void setUpRecyclerView()
   {
     FavoriteMovieAdapter moviesAdapter = new FavoriteMovieAdapter(movies);
+
+    //Setup observer for a list of SingleMovieResponse
     Observer<List<SingleMovieResponse>> update = moviesAdapter::updateMovieList;
     viewModel.getFavoriteMovies().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(moviesAdapter);

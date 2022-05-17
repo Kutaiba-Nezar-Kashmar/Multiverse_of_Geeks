@@ -86,6 +86,7 @@ public class GamesViewModel extends AndroidViewModel
 
   public float calculateAverage(List<GameReview> gameReviews)
   {
+    //Takes the rating of every game in the data base and calculate average
     float total = 0;
     for (GameReview gr : gameReviews)
     {

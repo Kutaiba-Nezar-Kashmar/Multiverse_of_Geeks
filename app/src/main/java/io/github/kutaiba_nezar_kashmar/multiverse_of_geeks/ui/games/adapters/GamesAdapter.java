@@ -41,9 +41,11 @@ public class GamesAdapter
   @Override
   public void onBindViewHolder(@NonNull GamesViewHolder holder, int position)
   {
+    //Glide to set image to gamePoster
     Glide.with(holder.context)
         .load(gamesResponses.get(position).getBackground_image())
         .into(holder.gamePoster);
+
     holder.gameTitle.setText(gamesResponses.get(position).getName());
   }
 

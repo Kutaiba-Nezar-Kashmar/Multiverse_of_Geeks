@@ -28,10 +28,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.Fre
 public class FreeToPlayGamesFragment extends Fragment
 {
   private FragmentFreeToPlayGamesBinding binding;
-  private RecyclerView recyclerView;
-  private final List<AllFreeToPlayGamesResponse> freeToPlayGames = new ArrayList<>();
   private GamesViewModel gamesViewModel;
   private FreeToPlayAdapter freeToPlayAdapter;
+  private final List<AllFreeToPlayGamesResponse> freeToPlayGames = new ArrayList<>();
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,7 +41,10 @@ public class FreeToPlayGamesFragment extends Fragment
     binding = FragmentFreeToPlayGamesBinding.inflate(inflater, container,
         false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.free_to_play_refresh_view);
+
     refresh();
     return root;
   }
@@ -57,8 +60,8 @@ public class FreeToPlayGamesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup Recyclerview
     gamesViewModel.getAllFreeToPlay();
-
     recyclerView = view.findViewById(R.id.free_to_play_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -69,6 +72,8 @@ public class FreeToPlayGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     freeToPlayAdapter = new FreeToPlayAdapter(freeToPlayGames);
+
+    //Setup observer for a list of AllFreeToPlayGamesResponse
     Observer<List<AllFreeToPlayGamesResponse>> update = freeToPlayAdapter::updateFreeToPlayList;
     gamesViewModel.getAllFreeToPlay().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(freeToPlayAdapter);

@@ -39,8 +39,11 @@ public class FavoriteGamesFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(GamesViewModel.class);
     binding = FragmentFavoriteGameBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.game_fav_refresh_view);
     recyclerView = root.findViewById(R.id.favorite_games_rv);
+
     refresh();
     return root;
   }
@@ -56,6 +59,7 @@ public class FavoriteGamesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup RecyclerView
     viewModel.getFavoriteGames();
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -65,6 +69,8 @@ public class FavoriteGamesFragment extends Fragment
   private void setUpRecyclerView()
   {
     FavoriteGameAdapter adapter = new FavoriteGameAdapter(games);
+
+    //Setup observer for a list of games
     Observer<List<Game>> update = adapter::updateGameList;
     viewModel.getFavoriteGames().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);

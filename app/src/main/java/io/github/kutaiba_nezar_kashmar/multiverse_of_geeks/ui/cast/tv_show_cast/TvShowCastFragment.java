@@ -22,7 +22,6 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.model.domain.local.Ca
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.cast.CastViewModel;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvCastAdapter;
 
-
 public class TvShowCastFragment extends Fragment
 {
   private FragmentTvShowCastBinding binding;
@@ -39,6 +38,8 @@ public class TvShowCastFragment extends Fragment
 
     binding = FragmentTvShowCastBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     recyclerView = root.findViewById(R.id.tv_cast_rv);
 
     return root;
@@ -57,12 +58,18 @@ public class TvShowCastFragment extends Fragment
   {
     if (getArguments() != null)
     {
+      //receive movieId from NavigationComponent argument
+
       String id = TvShowCastFragmentArgs.fromBundle(getArguments()).getTvId();
       int tvId = Integer.parseInt(id);
+
+      //Setup recyclerView
       castViewModel.getTvShowCast(tvId);
       recyclerView.hasFixedSize();
       recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
       TvCastAdapter adapter = new TvCastAdapter(casts);
+
+      //Setup observer for a List of Cast
       Observer<List<Cast>> update = adapter::updateTvCastList;
       castViewModel.getTvShowCast(tvId)
           .observe(getViewLifecycleOwner(), update);

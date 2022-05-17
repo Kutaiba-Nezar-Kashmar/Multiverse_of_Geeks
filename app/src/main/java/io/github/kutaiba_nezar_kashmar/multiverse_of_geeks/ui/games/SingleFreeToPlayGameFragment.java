@@ -38,17 +38,14 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private FreeToPlayScreenShotsAdapter screenShotsAdapter;
   private GamesViewModel gamesViewModel;
   private GameComment gameComment;
+  private GameReview gameReview;
   private final List<GameComment> comments = new ArrayList<>();
   private List<GameScreenShots> screenShots = new ArrayList<>();
-  private GameReview gameReview;
   private int gameId;
   private TextView title;
-  private ImageView poster;
   private TextView releaseDate;
   private TextView shortDescription;
   private TextView description;
-  private TextView url;
-  private RecyclerView screenShotRv;
   private TextView status;
   private TextView genre;
   private TextView platform;
@@ -58,11 +55,14 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private TextView graphics;
   private TextView memory;
   private TextView storage;
-  private RatingBar ratingBar;
+  private TextView url;
   private TextView geekRating;
-  private RecyclerView commentRV;
-  private Button commentButton;
   private EditText commentField;
+  private ImageView poster;
+  private RecyclerView screenShotRv;
+  private RecyclerView commentRV;
+  private RatingBar ratingBar;
+  private Button commentButton;
 
   @Nullable
   @Override
@@ -73,6 +73,8 @@ public class SingleFreeToPlayGameFragment extends Fragment
     binding = FragmentSingleFreeToPlayGameBinding.inflate(inflater, container,
         false);
     View root = binding.getRoot();
+
+    //Views
     title = root.findViewById(R.id.single_free_to_play_title);
     poster = root.findViewById(R.id.single_free_to_play_poster);
     releaseDate = root.findViewById(R.id.free_to_play_release_date);
@@ -98,6 +100,7 @@ public class SingleFreeToPlayGameFragment extends Fragment
     setUpRatingBar();
     getGeekAverageRating();
     checkIfSignedIn();
+
     return root;
   }
 
@@ -115,14 +118,20 @@ public class SingleFreeToPlayGameFragment extends Fragment
     super.onViewCreated(view, savedInstanceState);
     if (getArguments() != null)
     {
+      //Get FreeToPlay id from navigation component argument
       String id = SingleFreeToPlayGameFragmentArgs.fromBundle(getArguments())
           .getFreeToPlayId();
       gameId = Integer.parseInt(id);
+
+      //Observe a FreeToPlay object and set values to views
       gamesViewModel.findFreeToPlayGameById(gameId)
           .observe(getViewLifecycleOwner(), freeToPlayGameResponse -> {
             title.setText(freeToPlayGameResponse.getTitle());
+
+            //Glide to set image to poster
             Glide.with(view.getContext())
                 .load(freeToPlayGameResponse.getThumbnail()).into(poster);
+
             releaseDate.setText(freeToPlayGameResponse.getRelease_date());
             shortDescription.setText(
                 freeToPlayGameResponse.getShort_description());
@@ -150,12 +159,14 @@ public class SingleFreeToPlayGameFragment extends Fragment
             screenShotsAdapter.updateScreenShotList(screenShots);
           });
     }
+
     setUpRecyclerView(view);
     setUpCommentRV(view);
   }
 
   private void setUpRecyclerView(View view)
   {
+    //Setup Recyclerview
     screenShotRv.hasFixedSize();
     screenShotRv.setLayoutManager(new LinearLayoutManager(view.getContext(),
         LinearLayoutManager.HORIZONTAL, false));
@@ -195,10 +206,13 @@ public class SingleFreeToPlayGameFragment extends Fragment
         .observe(getViewLifecycleOwner(), firebaseUser -> {
           if (firebaseUser != null)
           {
+            //Set authentication required view to visible for logged in users
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
             commentRV.setVisibility(View.VISIBLE);
+
+            //Setup listener for CommentButton
             commentButton.setOnClickListener(view -> {
               gameComment = new GameComment(gameId, firebaseUser.getUid(),
                   commentField.getText().toString(),
@@ -207,9 +221,11 @@ public class SingleFreeToPlayGameFragment extends Fragment
               gamesViewModel.postComment(gameComment);
               commentField.getText().clear();
             });
+
           }
           else
           {
+            //Set authentication required view to invisible/gone for non logged in users
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
@@ -221,15 +237,20 @@ public class SingleFreeToPlayGameFragment extends Fragment
   private void setUpCommentRV(View view)
   {
     GameCommentAdapter commentAdapter = new GameCommentAdapter(comments);
+
+    //Setup observer for a list of GameComment
     Observer<List<GameComment>> update = commentAdapter::updateGameCommentList;
     gamesViewModel.getGameComments(gameId)
         .observe(getViewLifecycleOwner(), gameComments -> {
           for (GameComment gc : gameComments)
           {
+            //Set Storage reference for every gameComment in the list
             gc.setUserImage(gamesViewModel.getProfileImage(gc.getUserId()));
           }
           update.onChanged(gameComments);
         });
+
+    //Setup comment recyclerview
     commentRV.hasFixedSize();
     commentRV.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

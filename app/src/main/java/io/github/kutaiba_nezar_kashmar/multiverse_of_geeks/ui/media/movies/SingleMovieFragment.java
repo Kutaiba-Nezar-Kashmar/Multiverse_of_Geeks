@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,7 +40,6 @@ public class SingleMovieFragment extends Fragment
   private FragmentSingleMovieBinding binding;
   private MoviesViewModel moviesViewModel;
   private MediaProductionCompanyAdapter productionCompanyAdapter;
-  private MovieCommentAdapter commentAdapter;
   private MovieReview review;
   private MovieComment comment;
   private List<MediaProductionCompaniesResponse> companiesResponses = new ArrayList<>();
@@ -66,8 +64,8 @@ public class SingleMovieFragment extends Fragment
   private Button favButton;
   private Button toSimilarButton;
   private Button toCastButton;
-  private RatingBar ratingBar;
   private Button commentButton;
+  private RatingBar ratingBar;
   private EditText commentField;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -78,6 +76,8 @@ public class SingleMovieFragment extends Fragment
     binding = FragmentSingleMovieBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     checkIfSignedIn();
+
+    //Views
     favButton = root.findViewById(R.id.movie_fav_button_id);
     movieTitle = root.findViewById(R.id.single_movie_title);
     movieOverview = root.findViewById(R.id.movie_overview);
@@ -100,11 +100,11 @@ public class SingleMovieFragment extends Fragment
     toSimilarButton = root.findViewById(R.id.to_similar_movie_button);
     commentButton = root.findViewById(R.id.post_comment_button);
     commentField = root.findViewById(R.id.movie_comment_field);
+
     setUpToCastButton();
     setUpSimilarButton();
     setUpRatingBar();
     getGeekAverageRating();
-    //setUpCommentButton();
     return root;
   }
 
@@ -115,18 +115,24 @@ public class SingleMovieFragment extends Fragment
     super.onViewCreated(view, savedInstanceState);
     if (getArguments() != null)
     {
+      //Get movieId using Navigation component argument
       String id = SingleMovieFragmentArgs.fromBundle(getArguments())
           .getMovieIdArg();
       movieId = Integer.parseInt(id);
+
+      //Observe a movie object
       moviesViewModel.findMovieById(movieId)
           .observe(getViewLifecycleOwner(), movie -> {
             movieTitle.setText(movie.getTitle());
             movieOverview.setText(movie.getOverview());
             movieReleaseYear.setText(movie.getRelease_date());
             movieRatting.setText(String.valueOf(movie.getVote_average()));
+
+            //Glide to set image in moviePoster
             Glide.with(view.getContext()).load(
                     "https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(moviePoster);
+
             movieTagline.setText(movie.getTagline());
             budget.setText(String.valueOf(movie.getBudget()));
             revenue.setText(String.valueOf(movie.getRevenue()));
@@ -139,6 +145,8 @@ public class SingleMovieFragment extends Fragment
               }
             }
             homePage.setText(movie.getHomepage());
+
+            //Check if there is a collection for the chosen movie
             if (movie.getBelongs_to_collection() != null)
             {
               collectionHeader.setVisibility(View.VISIBLE);
@@ -147,6 +155,8 @@ public class SingleMovieFragment extends Fragment
               collectionName.setText("");
               collectionName.setText(
                   movie.getBelongs_to_collection().getName());
+
+              //Glide to set image in collectionPoster
               Glide.with(view.getContext()).load(
                       "https://image.tmdb.org/t/p/w500"
                           + movie.getBelongs_to_collection().getPoster_path())
@@ -164,6 +174,7 @@ public class SingleMovieFragment extends Fragment
             productionCompanyAdapter.updateCompanyList(companiesResponses);
             setUpFavorite(movie);
           });
+
       setUpCompanyRv(view);
       setUpCommentRV(view);
     }
@@ -226,10 +237,13 @@ public class SingleMovieFragment extends Fragment
         .observe(getViewLifecycleOwner(), firebaseUser -> {
           if (firebaseUser != null)
           {
+            //Set authentication required views to visible for logged in users
             ratingBar.setVisibility(View.VISIBLE);
             commentField.setVisibility(View.VISIBLE);
             commentButton.setVisibility(View.VISIBLE);
             commentsRecyclerView.setVisibility(View.VISIBLE);
+
+            //Setup commentButton listener
             commentButton.setOnClickListener(view -> {
               comment = new MovieComment(movieId, firebaseUser.getUid(),
                   commentField.getText().toString(),
@@ -241,6 +255,7 @@ public class SingleMovieFragment extends Fragment
           }
           else
           {
+            //Set authentication required views to invisible/gone for non logged in users
             ratingBar.setVisibility(View.INVISIBLE);
             commentField.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);
@@ -251,16 +266,21 @@ public class SingleMovieFragment extends Fragment
 
   private void setUpCommentRV(View view)
   {
-    commentAdapter = new MovieCommentAdapter(comments);
+    MovieCommentAdapter commentAdapter = new MovieCommentAdapter(comments);
+
+    //Set observer for a list of MovieComment object
     Observer<List<MovieComment>> update = commentAdapter::updateMovieCommentList;
     moviesViewModel.getMovieComments(movieId)
         .observe(getViewLifecycleOwner(), movieComments -> {
           for (MovieComment mc : movieComments)
           {
+            //Set storage reference for each MovieComment in the list
             mc.setUserImage(moviesViewModel.getProfileImage(mc.getUserId()));
           }
           update.onChanged(movieComments);
         });
+
+    //Setup comment recyclerview
     commentsRecyclerView.hasFixedSize();
     commentsRecyclerView.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,

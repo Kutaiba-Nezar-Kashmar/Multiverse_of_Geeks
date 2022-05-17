@@ -31,12 +31,17 @@ public class MainGamesFragment extends Fragment
   {
     binding = FragmentGamesMainBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     TabLayout tabLayout = root.findViewById(R.id.games_tab_layout);
     ViewPager2 viewPager = root.findViewById(R.id.games_view_pager);
     GamesPagerAdapter adapter = new GamesPagerAdapter(this);
+
+    //Setup ViewPager2
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,
         (tab, position) -> tab.setText(titles[position])).attach();
+
     return root;
   }
 

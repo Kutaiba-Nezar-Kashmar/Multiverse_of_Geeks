@@ -10,11 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentAboutBinding;
-import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileViewModel;
 
 public class AboutFragment extends Fragment
 {
@@ -26,23 +24,29 @@ public class AboutFragment extends Fragment
     binding = FragmentAboutBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
     String action = Intent.ACTION_VIEW;
+
+    //Views
     TextView facebook = root.findViewById(R.id.facebook_link);
     TextView github = root.findViewById(R.id.github_link);
     TextView linkedin = root.findViewById(R.id.linkedin_link);
 
+    //Views click Listeners
     facebook.setOnClickListener(view -> {
+      //set up facebook implicit intent
       Intent intent = new Intent(action,
           navToLinkIntent("https://www.facebook.com/kutaiba.kashmar"));
       startActivity(intent);
     });
 
     github.setOnClickListener(view -> {
+      //set up github implicit intent
       Intent intent = new Intent(action,
           navToLinkIntent("https://github.com/Kutaiba-Nezar-Kashmar"));
       startActivity(intent);
     });
 
     linkedin.setOnClickListener(view -> {
+      //set up linkedin implicit intent
       Intent intent = new Intent(action, navToLinkIntent(
           "https://www.linkedin.com/in/kutaiba-nezar-kashmar-5380a81b5/"));
       startActivity(intent);
@@ -58,6 +62,7 @@ public class AboutFragment extends Fragment
     binding = null;
   }
 
+  //Parse a string to a uri
   private Uri navToLinkIntent(String uri)
   {
     return Uri.parse(uri);

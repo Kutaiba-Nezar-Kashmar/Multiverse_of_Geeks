@@ -30,15 +30,15 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.adapt
 public class PopularMoviesFragment extends Fragment
 {
   private FragmentPopularMoviesBinding binding;
-  private RecyclerView recyclerView;
-  private final List<Movie> movies = new ArrayList<>();
   private MoviesViewModel moviesViewModel;
   private MoviesAdapter moviesAdapter;
+  private final List<Movie> movies = new ArrayList<>();
+  private int pageNum = 1;
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button leftArrow;
   private Button rightArrow;
   private TextView pageNumber;
-  private int pageNum = 1;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState)
@@ -46,10 +46,13 @@ public class PopularMoviesFragment extends Fragment
     moviesViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
     binding = FragmentPopularMoviesBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.popular_movies_refresh_view);
     leftArrow = root.findViewById(R.id.popular_movie_left_arrow);
     rightArrow = root.findViewById(R.id.popular_movie_right_arrow);
     pageNumber = root.findViewById(R.id.popular_movie_page_number);
+
     refresh();
     return root;
   }
@@ -65,11 +68,12 @@ public class PopularMoviesFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview initialization
     moviesViewModel.getAllPopularMovies(pageNum);
-
     recyclerView = view.findViewById(R.id.popular_movies_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
     setUpOnClickListener(view);
     setUpPageChange();
@@ -78,6 +82,8 @@ public class PopularMoviesFragment extends Fragment
   private void setUpRecyclerView()
   {
     moviesAdapter = new MoviesAdapter(movies);
+
+    //Setup observer for a list of Movie Object
     Observer<List<Movie>> update = moviesAdapter::updateMovieList;
     moviesViewModel.getAllPopularMovies(pageNum)
         .observe(getViewLifecycleOwner(), update);

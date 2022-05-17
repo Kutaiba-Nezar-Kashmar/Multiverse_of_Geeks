@@ -31,8 +31,11 @@ public class TvShowsMainFragment extends Fragment
   {
     binding = FragmentMainTvShowsBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     TabLayout tabLayout = root.findViewById(R.id.tv_tab_layout);
     ViewPager2 viewPager = root.findViewById(R.id.tv_view_pager);
+
     TvPagerAdapter adapter = new TvPagerAdapter(this);
     viewPager.setAdapter(adapter);
     new TabLayoutMediator(tabLayout, viewPager,

@@ -40,14 +40,16 @@ public class SeasonAdapter
   @Override
   public void onBindViewHolder(@NonNull SeasonViewHolder holder, int position)
   {
+    //Glide to set image in poster
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + seasons.get(position)
             .getPoster_path()).into(holder.poster);
+
     holder.seasonName.setText(seasons.get(position).getName());
-    holder.seasonNumber
-        .setText("Season " + seasons.get(position).getSeason_number());
-    holder.seasonEpisodesNumber
-        .setText("episode " + seasons.get(position).getEpisode_count());
+    holder.seasonNumber.setText(
+        "Season " + seasons.get(position).getSeason_number());
+    holder.seasonEpisodesNumber.setText(
+        "episode " + seasons.get(position).getEpisode_count());
     holder.seasonAirDate.setText(seasons.get(position).getAir_date());
     holder.seasonOverview.setText(seasons.get(position).getOverview());
   }

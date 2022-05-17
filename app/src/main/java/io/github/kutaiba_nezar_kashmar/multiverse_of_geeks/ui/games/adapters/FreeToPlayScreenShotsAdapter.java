@@ -21,8 +21,7 @@ public class FreeToPlayScreenShotsAdapter extends
 {
   private List<GameScreenShots> gameScreenShots;
 
-  public FreeToPlayScreenShotsAdapter(
-      List<GameScreenShots> gameScreenShots)
+  public FreeToPlayScreenShotsAdapter(List<GameScreenShots> gameScreenShots)
   {
     this.gameScreenShots = gameScreenShots;
   }
@@ -33,8 +32,8 @@ public class FreeToPlayScreenShotsAdapter extends
       @NonNull ViewGroup parent, int viewType)
   {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-    View view = inflater
-        .inflate(R.layout.free_to_play_screen_shot_item, parent, false);
+    View view = inflater.inflate(R.layout.free_to_play_screen_shot_item, parent,
+        false);
     return new FreeToPlayScreenShotsViewHolder(view);
   }
 
@@ -42,13 +41,12 @@ public class FreeToPlayScreenShotsAdapter extends
   public void onBindViewHolder(@NonNull FreeToPlayScreenShotsViewHolder holder,
       int position)
   {
-    Glide.with(holder.context)
-        .load(gameScreenShots.get(position).getImage())
+    //Glide to set image to screenShot
+    Glide.with(holder.context).load(gameScreenShots.get(position).getImage())
         .into(holder.screenShot);
   }
 
-  public void updateScreenShotList(
-      final List<GameScreenShots> gameScreenShots)
+  public void updateScreenShotList(final List<GameScreenShots> gameScreenShots)
   {
     this.gameScreenShots.clear();
     this.gameScreenShots = gameScreenShots;

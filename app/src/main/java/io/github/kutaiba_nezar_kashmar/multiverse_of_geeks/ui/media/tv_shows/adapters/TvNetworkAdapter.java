@@ -41,6 +41,8 @@ public class TvNetworkAdapter
   public void onBindViewHolder(@NonNull TvNetworkHolder holder, int position)
   {
     holder.networkName.setText(tvShowNetworkResponses.get(position).getName());
+
+    //Glide to set image to networkLogo
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + tvShowNetworkResponses.get(position)
             .getLogo_path()).into(holder.networkLogo);

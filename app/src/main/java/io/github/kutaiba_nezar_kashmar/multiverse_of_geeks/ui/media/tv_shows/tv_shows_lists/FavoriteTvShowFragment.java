@@ -39,8 +39,11 @@ public class FavoriteTvShowFragment extends Fragment
     viewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
     binding = FragmentFavoriteTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     refreshLayout = root.findViewById(R.id.tv_fav_refresh_view);
     recyclerView = root.findViewById(R.id.favorite_tv_rv);
+
     refresh();
     return root;
   }
@@ -56,15 +59,19 @@ public class FavoriteTvShowFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview
     viewModel.getFavoriteTvShows();
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
   }
 
   private void setUpRecyclerView()
   {
     FavoriteTvShowAdapter adapter = new FavoriteTvShowAdapter(tvShows);
+
+    //Setup observer for a list of SingleTvShowResponse
     Observer<List<SingleTvShowResponse>> update = adapter::updateTvShowList;
     viewModel.getFavoriteTvShows().observe(getViewLifecycleOwner(), update);
     recyclerView.setAdapter(adapter);

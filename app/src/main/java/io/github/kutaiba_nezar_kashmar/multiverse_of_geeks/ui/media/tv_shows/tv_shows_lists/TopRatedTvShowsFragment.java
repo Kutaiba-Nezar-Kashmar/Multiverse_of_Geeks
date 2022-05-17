@@ -31,14 +31,14 @@ public class TopRatedTvShowsFragment extends Fragment
 {
   private FragmentTopRatedTvShowsBinding binding;
   private TVShowsViewModel tvShowsViewModel;
-  private RecyclerView recyclerView;
-  private final List<TvShow> tvShows = new ArrayList<>();
   private TVShowAdapter adapter;
+  private final List<TvShow> tvShows = new ArrayList<>();
+  private int pageNum = 1;
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private Button leftArrow;
   private Button rightArrow;
   private TextView pageNumber;
-  private int pageNum = 1;
 
   @Nullable
   @Override
@@ -49,6 +49,8 @@ public class TopRatedTvShowsFragment extends Fragment
     binding = FragmentTopRatedTvShowsBinding.inflate(inflater, container,
         false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.top_rated_tv_refresh_view);
     leftArrow = root.findViewById(R.id.top_rated_tv_left_arrow);
     rightArrow = root.findViewById(R.id.top_rated_tv_right_arrow);
@@ -69,11 +71,12 @@ public class TopRatedTvShowsFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview
     tvShowsViewModel.getAllTopRatedTvShows(pageNum);
-
     recyclerView = view.findViewById(R.id.top_rated_tv_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
     setUpRecyclerView();
     setUpOnClickListener(view);
     setUpPageChange();
@@ -82,6 +85,8 @@ public class TopRatedTvShowsFragment extends Fragment
   private void setUpRecyclerView()
   {
     adapter = new TVShowAdapter(tvShows);
+
+    //Setup observer for a list of TvShow object
     Observer<List<TvShow>> update = adapter::updateTVShowList;
     tvShowsViewModel.getAllTopRatedTvShows(pageNum)
         .observe(getViewLifecycleOwner(), update);

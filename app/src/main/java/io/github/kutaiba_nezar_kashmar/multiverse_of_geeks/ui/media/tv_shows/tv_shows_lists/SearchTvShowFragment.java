@@ -29,10 +29,10 @@ import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.ada
 public class SearchTvShowFragment extends Fragment
 {
   private FragmentSearchTvShowBinding binding;
-  private RecyclerView recyclerView;
-  private final List<TvShow> tvShows = new ArrayList<>();
   private TVShowsViewModel tvShowsViewModel;
   private TVShowAdapter tvShowAdapter;
+  private final List<TvShow> tvShows = new ArrayList<>();
+  private RecyclerView recyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private SearchView searchView;
 
@@ -44,8 +44,11 @@ public class SearchTvShowFragment extends Fragment
     tvShowsViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
     binding = FragmentSearchTvShowBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
+
+    //Views
     swipeRefreshLayout = root.findViewById(R.id.search_tv_refresh_view);
     searchView = root.findViewById(R.id.tv_search_view);
+
     refresh();
     return root;
   }
@@ -61,10 +64,12 @@ public class SearchTvShowFragment extends Fragment
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState)
   {
+    //Setup recyclerview
     recyclerView = view.findViewById(R.id.tv_search_rv);
     recyclerView.hasFixedSize();
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     tvShowAdapter = new TVShowAdapter(tvShows);
+
     setUpRecyclerView();
     setUpOnClickListener(view);
   }
@@ -82,6 +87,8 @@ public class SearchTvShowFragment extends Fragment
   private void setUpRecyclerView()
   {
     tvShowAdapter = new TVShowAdapter(tvShows);
+
+    //Setup observer for a list of TvShow
     Observer<List<TvShow>> update = tvShowAdapter::updateTVShowList;
     setUpSearchView(update);
   }

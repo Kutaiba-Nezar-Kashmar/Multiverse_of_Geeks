@@ -42,14 +42,15 @@ public class MovieCastAdapter
       int position)
   {
     holder.name.setText(
-        holder.context.getString(R.string.name_holder) + " " + casts
-            .get(position).getName());
+        holder.context.getString(R.string.name_holder) + " " + casts.get(
+            position).getName());
     holder.character.setText(
         holder.context.getString(R.string.character) + " " + casts.get(position)
             .getCharacter());
     holder.role.setText(
         holder.context.getString(R.string.role) + " " + casts.get(position)
             .getKnown_for_department());
+
     //set up image view from an API requires Glide
     Glide.with(holder.context).load(
         "https://image.tmdb.org/t/p/w500" + casts.get(position)
