@@ -1,11 +1,11 @@
 # Multiverse_of_Geeks
 
-[![App demo](https://img.youtube.com/vi/H0KwZAhZ8Bs/0.jpg)](https://www.youtube.com/watch?v=H0KwZAhZ8Bs)
 
 
 ## Table of Contents
 
 - [Description](#description)
+- [App Demo](#demo)
 - [User stories](#user_stories)
 - [Built With](#built_with)
 - [Mockup](#mockup) 
@@ -21,6 +21,14 @@ common interests such as movies and video games all in one app.<br/>
 For more information please read the user stories section.<br/>
 
 This app was made as to the mandatory assignment for AND1 (Android development) in the fourth semester at VIA University Collage.<br/>
+
+
+<a name="demo"/>
+
+## App Demo (Youtube)
+
+
+[![App demo](https://img.youtube.com/vi/H0KwZAhZ8Bs/0.jpg)](https://www.youtube.com/watch?v=H0KwZAhZ8Bs)
 
 
 <a name="user_stories"/>
