@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentGamesMainBinding;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.adapters.GamesPagerAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.ZoomOutPageTransformer;
 
 public class MainGamesFragment extends Fragment
 {
@@ -35,6 +36,8 @@ public class MainGamesFragment extends Fragment
     //Views
     TabLayout tabLayout = root.findViewById(R.id.games_tab_layout);
     ViewPager2 viewPager = root.findViewById(R.id.games_view_pager);
+    viewPager.setPageTransformer(new ZoomOutPageTransformer());
+
     GamesPagerAdapter adapter = new GamesPagerAdapter(this);
 
     //Setup ViewPager2

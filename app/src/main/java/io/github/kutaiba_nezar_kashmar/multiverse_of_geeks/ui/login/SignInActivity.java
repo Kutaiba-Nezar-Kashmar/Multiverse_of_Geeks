@@ -74,7 +74,7 @@ public class SignInActivity extends AppCompatActivity
     //Setup Intent for login
     Intent signInIntent = AuthUI.getInstance().createSignInIntentBuilder()
         .setAvailableProviders(providers).setIsSmartLockEnabled(false)
-        .setLogo(R.mipmap.my_logo_round).build();
+        .setLogo(R.drawable.sigin_log).build();
 
     activityResultLauncher.launch(signInIntent);
   }

@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.R;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.databinding.FragmentMainTvShowsBinding;
 import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.adapters.TvPagerAdapter;
+import io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.util.ZoomOutPageTransformer;
 
 public class TvShowsMainFragment extends Fragment
 {
@@ -35,6 +36,7 @@ public class TvShowsMainFragment extends Fragment
     //Views
     TabLayout tabLayout = root.findViewById(R.id.tv_tab_layout);
     ViewPager2 viewPager = root.findViewById(R.id.tv_view_pager);
+    viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
     TvPagerAdapter adapter = new TvPagerAdapter(this);
     viewPager.setAdapter(adapter);

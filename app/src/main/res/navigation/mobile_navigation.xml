@@ -33,10 +33,12 @@
             android:id="@+id/nav_login"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.login.LoginFragment"
             android:label="@string/login"
-            tools:layout="@layout/fragment_login" >
+            tools:layout="@layout/fragment_login">
         <action
                 android:id="@+id/action_nav_login_to_nav_home"
-                app:destination="@id/nav_home" />
+                app:destination="@id/nav_home"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -47,21 +49,25 @@
         <action
                 android:id="@+id/action_nav_my_profile_to_edit_profile_nav"
                 app:destination="@id/edit_profile_nav"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim" />
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
         <action
                 android:id="@+id/action_nav_my_profile_to_nav_home"
-                app:destination="@id/nav_home" />
+                app:destination="@id/nav_home"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
             android:id="@+id/edit_profile_nav"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.edit_profile.EditProfileFragment"
             android:label="@string/edit_profile_nav"
-            tools:layout="@layout/fragment_edit_profile" >
+            tools:layout="@layout/fragment_edit_profile">
         <action
                 android:id="@+id/action_edit_profile_nav_to_nav_home"
-                app:destination="@id/nav_home" />
+                app:destination="@id/nav_home"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
 
@@ -74,7 +80,9 @@
             android:label="@string/movies_main_nav">
         <action
                 android:id="@+id/action_nav_main_movies_to_nav_single_movie"
-                app:destination="@id/nav_single_movie" />
+                app:destination="@id/nav_single_movie"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -112,10 +120,14 @@
                 android:defaultValue="default" />
         <action
                 android:id="@+id/action_nav_single_movie_to_nav_movie_cast"
-                app:destination="@id/nav_movie_cast" />
+                app:destination="@id/nav_movie_cast"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
         <action
                 android:id="@+id/action_nav_single_movie_to_nav_similar_movies"
-                app:destination="@id/nav_similar_movies" />
+                app:destination="@id/nav_similar_movies"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -129,7 +141,9 @@
                 android:defaultValue="default" />
         <action
                 android:id="@+id/action_nav_similar_movies_to_nav_single_movie"
-                app:destination="@id/nav_single_movie" />
+                app:destination="@id/nav_single_movie"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -153,7 +167,7 @@
             android:id="@+id/nav_fav_movies"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.movies.movies_lists.FavoriteMoviesFragment"
             android:label="@string/fav_movie_nav"
-            tools:layout="@layout/fragment_favorite_movies"/>
+            tools:layout="@layout/fragment_favorite_movies" />
 
     <!--TV SHOWS-->
 
@@ -164,7 +178,9 @@
             tools:layout="@layout/fragment_main_tv_shows">
         <action
                 android:id="@+id/action_nav_tv_to_nav_single_tv"
-                app:destination="@id/nav_single_tv" />
+                app:destination="@id/nav_single_tv"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -208,10 +224,14 @@
                 android:defaultValue="default" />
         <action
                 android:id="@+id/action_nav_single_tv_to_nav_tv_cast"
-                app:destination="@id/nav_tv_cast" />
+                app:destination="@id/nav_tv_cast"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
         <action
                 android:id="@+id/action_nav_single_tv_to_nav_tv_seasons"
-                app:destination="@id/nav_tv_seasons" />
+                app:destination="@id/nav_tv_seasons"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -240,7 +260,7 @@
             android:id="@+id/nav_fav_tv"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.media.tv_shows.tv_shows_lists.FavoriteTvShowFragment"
             android:label="@string/fav_tv_nav"
-            tools:layout="@layout/fragment_favorite_tv_show"/>
+            tools:layout="@layout/fragment_favorite_tv_show" />
 
     <!--Games-->
 
@@ -251,10 +271,14 @@
             tools:layout="@layout/fragment_games_main">
         <action
                 android:id="@+id/action_nav_games_to_single_free_to_play_nav"
-                app:destination="@id/single_free_to_play_nav" />
+                app:destination="@id/single_free_to_play_nav"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
         <action
                 android:id="@+id/action_nav_games_to_single_game_nave"
-                app:destination="@id/single_game_nave" />
+                app:destination="@id/single_game_nave"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -295,6 +319,6 @@
             android:id="@+id/fav_game_nav"
             android:name="io.github.kutaiba_nezar_kashmar.multiverse_of_geeks.ui.games.games_lists.FavoriteGamesFragment"
             android:label="@string/fav_game_nav"
-            tools:layout="@layout/fragment_favorite_game"/>
+            tools:layout="@layout/fragment_favorite_game" />
 
 </navigation>
